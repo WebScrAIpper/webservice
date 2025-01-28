@@ -1,0 +1,361 @@
+
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>The hardest problem in computer science / fuzzy notepad</title>
+    <meta name="author" content="Eevee">
+
+    <link href="https://eev.ee/feeds/atom.xml" type="application/atom+xml" rel="alternate" title="fuzzy notepad">
+    <link href="https://eev.ee/feeds/rss.xml" type="application/rss+xml" rel="alternate" title="fuzzy notepad">
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.colorbox/1.6.4/jquery.colorbox-min.js"></script>
+    <script>
+        $(function() {
+            $('article').each(function(index, article) {
+                $(article).find('a.photo').colorbox({
+                    fixed: true,
+                    maxWidth: '100%',
+                    maxHeight: '100%',
+                    rel: 'colorbox' + String(index + 1),
+                    // Text
+                    previous: '←',
+                    next: '→',
+                    close: '×',
+                });
+            });
+        });
+    </script>
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://eev.ee/favicon.png" rel="icon">
+    <link href="https://eev.ee/theme/css/all.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+
+    <meta name="og:type" content="article">
+    <meta name="og:article:published_time" content="2016-07-26T18:46:00-07:00">
+    <meta name="twitter:card" content="summary">
+    <meta name="og:image" content="https://eev.ee/theme/images/home-photo.webp">
+    <meta name="twitter:site" content="@eevee">
+    <meta name="og:title" content="The hardest problem in computer science">
+    <meta name="og:description" content="…is, of course, naming. Not just naming variables or new technologies. Oh no. We can’t even agree on names for basic concepts.">
+</head>
+
+<body>
+<header role="banner">
+    <div class="-lounge-eevee">
+        <img src="https://eev.ee/theme/images/eevee-header.png" alt="logo: drawing of an eevee lounging atop the website">
+    </div>
+    <h1><a href="https://eev.ee/">fuzzy <img src="https://eev.ee/favicon.png" alt=""> notepad</a></h1>
+</header>
+<nav role="navigation">
+    <ul class="main-navigation">
+        <li style="--hue: 330;"><ul>
+            <li><a href="https://eev.ee/">Home</a></li>
+            <li><a href="https://eev.ee/site-index/">Index</a></li>
+            <li><a href="https://t.eev.ee/">Tame art</a></li>
+            <li><a href="https://d.eev.ee/">🔞 Spicy art</a></li>
+            <li><a href="https://c.eev.ee/">Everything</a></li>
+        </ul></li>
+
+        <li style="--hue: 350;"><ul>
+            <li><a href="https://eev.ee/blog/">Blog</a></li>
+            <li><a href="https://eev.ee/blog/archive/">Archive</a></li>
+            <li>
+                <details>
+                    <summary>Categories</summary>
+                    <ul>
+                        <li>
+                            <a href="https://eev.ee/blog/articles/">
+                                <img class="category-glyph" src="https://eev.ee/theme/images/category-articles.png" alt="">
+
+                                Articles
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://eev.ee/blog/dev/">
+                                <img class="category-glyph" src="https://eev.ee/theme/images/category-dev.png" alt="">
+
+                                Dev log
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://eev.ee/blog/personal/">
+                                <img class="category-glyph" src="https://eev.ee/theme/images/category-personal.png" alt="">
+
+                                Personal
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://eev.ee/blog/process/">
+                                <img class="category-glyph" src="https://eev.ee/theme/images/category-process.png" alt="">
+
+                                Process
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://eev.ee/blog/updates/">
+                                <img class="category-glyph" src="https://eev.ee/theme/images/category-updates.png" alt="">
+
+                                Updates
+                            </a>
+                        </li>
+                    </ul>
+                </details>
+            </li>
+            <li><a href="https://eev.ee/blog/tags/">Tags</a></li>
+        </ul></li>
+
+        <li style="--hue: 10;"><ul>
+            <li><a href="https://eev.ee/site-index/#pages">Pages</a></li>
+        </ul></li>
+    </ul>
+    <ul class="account-links">
+        <li>
+            <a href="mailto:eevee.fuzzynotepad@veekun.com" style="--color: #9966cc;">
+                <img src="https://eev.ee/theme/images/logo-email.png" alt="email">
+            </a>
+            <div class="-label">email</div>
+        </li>
+        <li>
+            <a href="https://bsky.app/profile/eev.ee" style="--color: #1185fe;">
+                <img src="https://eev.ee/theme/images/logo-bluesky.svg" alt="Bluesky">
+            </a>
+            <div class="-label">Bluesky</div>
+        </li>
+        <li>
+            <a href="https://discord.gg/W7aumDVTgE" style="--color: #5865F2;">
+                <img src="https://eev.ee/theme/images/logo-discord.svg" alt="Discord">
+            </a>
+            <div class="-label">Discord</div>
+        </li>
+        <li>
+            <a href="https://eevee.itch.io/" style="--color: #fa5c5c;">
+                <img src="https://eev.ee/theme/images/logo-itch.png" alt="itch.io">
+            </a>
+            <div class="-label">itch.io</div>
+        </li>
+        <li>
+            <a href="https://github.com/eevee" style="--color: #4183c4;">
+                <img src="https://eev.ee/theme/images/logo-github.png" alt="GitHub">
+            </a>
+            <div class="-label">GitHub</div>
+        </li>
+        <li>
+            <a href="https://twitch.tv/lexyeevee" style="--color: #6441a4;">
+                <img src="https://eev.ee/theme/images/logo-twitch.png" alt="Twitch">
+            </a>
+            <div class="-label">Twitch</div>
+        </li>
+        <li>
+            <a href="https://www.youtube.com/user/lexyeevee" style="--color: #cc181e;">
+                <img src="https://eev.ee/theme/images/logo-youtube.png" alt="YouTube">
+            </a>
+            <div class="-label">YouTube</div>
+        </li>
+        <li>
+            <a href="https://www.patreon.com/eevee" style="--color: #ff5900;">
+                <img src="https://eev.ee/theme/images/logo-patreon.png" alt="Patreon">
+            </a>
+            <div class="-label">Patreon</div>
+        </li>
+        <li>
+            <a href="https://cash.me/$eevee" style="--color: #29c501;">
+                <img src="https://eev.ee/theme/images/logo-square-cash.png" alt="Square">
+            </a>
+            <div class="-label">Square</div>
+        </li>
+        <li>
+            <a href="https://www.paypal.me/lexyeevee" style="--color: #009cde;">
+                <img src="https://eev.ee/theme/images/logo-paypal.png" alt="PayPal">
+            </a>
+            <div class="-label">PayPal</div>
+        </li>
+    </ul>
+</nav>
+<main>
+    <header>
+        <h1>
+            <a href="https://eev.ee/blog/2016/07/26/the-hardest-problem-in-computer-science/">
+                The hardest problem in computer science
+            </a>
+        </h1>
+        <ol class="-breadcrumbs">
+            <li><a href="https://eev.ee/blog/">Blog</a></li>
+            <li>
+                <img class="category-glyph" src="https://eev.ee/theme/images/category-articles.png" alt="[articles]">
+
+                <a href="https://eev.ee/blog/articles/">Articles</a>
+            </li>
+        </ol>
+        <time datetime="2016-07-26" pubdate>Tue Jul 26, 2016</time>
+
+
+    </header>
+    <article class="single" role="article">
+        <div class="entry-content">
+
+            <p>&#8230;is, of course,&nbsp;naming.</p>
+            <p>Not just naming variables or new technologies.  Oh no.  We can&#8217;t even agree on names for basic&nbsp;concepts.</p>
+
+
+            <h2 id="a-thousand-overlapping-vernaculars"><a class="toclink" href="#a-thousand-overlapping-vernaculars">A thousand overlapping&nbsp;vernaculars</a></h2>
+            <p>Did you know that <a href="http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1124.pdf">the C specification</a> makes frequent reference to &#8220;objects&#8221;?  Not in the <span class="caps">OO</span> sense as you might think — a C &#8220;object&#8221; is defined as a &#8220;region of data storage in the execution environment, the contents of which can represent values&#8221;.  The spec then goes on to discuss, for example, &#8220;objects of type <code>char</code><span class="dquo">&#8220;</span>.</p>
+            <p><span class="dquo">&#8220;</span>Method&#8221; is a pretty universal term, but you may encounter a C++ programmer who only knows it as &#8220;member function&#8221;.  Conversely, Java may not have functions at all, depending on who you ask.  &#8220;Procedure&#8221; and &#8220;subroutine&#8221; aren&#8217;t used much any more, but a procedure is a completely different construct from a function in&nbsp;Pascal.</p>
+            <p>Even within the same language, we get sloppy: see if you can catch a Python programmer using &#8220;property&#8221; to refer to a regular &#8220;attribute&#8221;, when <code>property</code> is a special kind of&nbsp;attribute.</p>
+            <p>There&#8217;s a difference between &#8220;argument&#8221; and &#8220;parameter&#8221;, but no one cares what it is, so we all just use &#8220;argument&#8221; which abbreviates more easily.  I use the word &#8220;signature&#8221; a lot, but I rarely see anyone else use it, and sometimes I wonder if anyone understands what I&nbsp;mean.</p>
+            <p>A <code>float</code> is single-precision in C and double-precision in Python.  I reflexively tense up whenever someone says &#8220;word&#8221; unqualified, because it could mean any of three or four different&nbsp;sizes.</p>
+            <p>Part of the problem here is that we&#8217;re not actually doing computer science.  We&#8217;re <a href="https://twitter.com/hashtag/iamdoingprogramming?src=hash">doing programming</a>, with a wide variety (hundreds!) of imperfect languages with different combinations of features and restrictions.  There are only so many words to go around, so the same names get used for vaguely similar features across many languages, and native speakers naturally attach their mother tongue&#8217;s baggage to the jargon it uses.  Someone who got started with JavaScript would have a very different idea of what a &#8220;class&#8221; is than someone who got started with Ruby.  People come to Python or JavaScript and <a href="https://eev.ee/blog/2011/04/24/gotcha-python-scoping-closures/">exclaim</a> that they &#8220;don&#8217;t have real closures&#8221; because of a quirk of name&nbsp;binding.</p>
+            <p>Most of the time, this is fine.  Sometimes, it&#8217;s incredibly confusing.  Here are my (least?) favorite lexical clashes.  (That was one&nbsp;too!)</p>
+            <h2 id="arrays-vectors-and-lists"><a class="toclink" href="#arrays-vectors-and-lists">Arrays, vectors, and&nbsp;lists</a></h2>
+            <p>In C, an array is a contiguous block of storage, in which you can put some fixed number of values of the same type.  <code>int[5]</code> describes enough space to store five <code>int</code>s, all snuggled right next to each other.  There&#8217;s no such thing as a &#8220;vector&#8221;.  &#8220;List&#8221; would likely be interpreted as a <em>linked</em> list, in which each value is stored separately and has a pointer to the next&nbsp;one.</p>
+            <p>C++ introduced <code>vector</code>, an array that automatically expands to fit an arbitrary number of values.  There&#8217;s also a standard <code>list</code> type, which is a doubly-linked list.  (The exact implementations may be anything, but the types require certain properties that make an array and a linked list the most obvious choices.)  But wait!  C++11 introduced the <code>initializer_list</code>, which is actually an&nbsp;array.</p>
+            <p>Lisp dialects are of course nothing <em>but</em> lists, but under the hood, these tend to be implemented as linked lists — which is no doubt why Lisp originally handled lists in terms of heads and tails (very easy to do with linked lists), rather than random access (very easy to do with contiguous arrays).  Haskell works similarly, and additionally has a <code>Data.Array</code> module which offers fast random&nbsp;access.</p>
+            <p>Perl (5)&#8217;s sequence type is the array, though &#8220;type&#8221; is a little misleading here, because it&#8217;s really one of Perl&#8217;s handful of <em>shapes</em> of variables.  Perl also has a distinct thing called a &#8220;list&#8221;, but it&#8217;s a transient <em>context</em> that only exists while evaluating an expression, and is not a type of value.  It&#8217;s weird and I can&#8217;t really explain it within a single&nbsp;paragraph.</p>
+            <p>Meanwhile, in Python, <code>list</code> is the fundamental sequence type, but it has similar properties to a C++ vector and (in CPython) is implemented with a C array.  The standard library also offers the rarely-used <code>array</code> type, which packs numbers into C arrays to save space — a source of occasional confusion for new Python programmers coming from C, who think &#8220;array&#8221; is the thing they want.  Oh, and there&#8217;s the built-in <code>bytearray</code> type, a mutable sequence of bytes, which is different from an <code>array</code> that stores&nbsp;bytes.</p>
+            <p>JavaScript has an <code>Array</code> type, but it&#8217;s (semantically) built on top of the only data structure in JavaScript, which is a hash table with string (!) keys.  There&#8217;s also a family of <code>ArrayBuffer</code> types for storing numbers in C arrays, much like Python&#8217;s <code>array</code> module.</p>
+            <p><span class="caps">PHP</span>&#8217;s sole data structure is called <code>array</code>, but it&#8217;s really an ordered hash table with string (!) keys.  It also has a thing called <code>list</code>, but it&#8217;s not a type, just quirky syntax for doing deconstructing assignment.  People coming from <span class="caps">PHP</span> to other languages are occasionally frustrated that hash tables lose their&nbsp;order.</p>
+            <p>Lua likewise has only a single data structure, but is more upfront in calling its structure a &#8220;table&#8221;; there&#8217;s nothing in the language called &#8220;array&#8221;, &#8220;vector&#8221;, <em>or</em>&nbsp;&#8220;list&#8221;.</p>
+            <p>While I&#8217;m at it, the names for mapping types are all over the&nbsp;place:</p>
+            <ul>
+                <li>C++: <code>map</code> (actually a binary tree; C++11&#8217;s <code>unordered_map</code> is a hash&nbsp;table)</li>
+                <li>JavaScript: object (!)  (though it&#8217;s not a generic mapping, since the keys must be strings; there&#8217;s now a <code>Map</code> type)</li>
+                <li>Lua:&nbsp;table</li>
+                <li><span class="caps">PHP</span>: array (!)  (string keys&nbsp;only)</li>
+                <li>Perl: hash (another &#8220;shape&#8221;, somewhat misleading since a &#8220;hash&#8221; is also a different thing, and again string keys only), though the documentation likes to say &#8220;associative array&#8221; a&nbsp;lot</li>
+                <li>Python:&nbsp;dict</li>
+                <li>Rust: map, though it exists as two separate types, <code>BTreeMap</code> and <code>HashMap</code></li>
+            </ul>
+            <h2 id="pointers-references-and-aliases"><a class="toclink" href="#pointers-references-and-aliases">Pointers, references, and&nbsp;aliases</a></h2>
+            <p>C has pointers, which are storage addresses.  This is pretty easy for C to do, since it&#8217;s all about operating on one big array of storage (more or less).  A pointer is just an index into that&nbsp;storage.</p>
+            <p>C++ inherited pointers from C, but chastizes you for using them.  As an alternative it introduced &#8220;references&#8221;, which are exactly like pointers, except you can leave off the <code>*</code>.  This added a very strange new capability that didn&#8217;t exist in C: two regular ol&#8217; local variables could refer to the same storage, so that <code>a = 5;</code> could also change the value of <code>b</code>.</p>
+            <p>And so all programming conversation was doomed forever, but more on that in a&nbsp;moment.</p>
+            <p>Rust has things called references, and uses the C++ reference syntax for their types, but they&#8217;re really &#8220;borrowed pointers&#8221; (i.e., pointers, but opaque and subject to compile-time lifetime constraints).  It also has lesser-used &#8220;raw pointers&#8221;, which use C&#8217;s pointer&nbsp;syntax.</p>
+            <p>Perl has things called references.  Two different kinds of things, in fact.  The ones people generally refer to are &#8220;hard references&#8221;, which are pretty much like C pointers, except the &#8220;address&#8221; is supposed to be opaque and can&#8217;t be arbitrarily operated on.  The others are &#8220;soft references&#8221;, where you use the contents of a variable as the name of another variable using much the same syntax as hard references, but this is forbidden by <code>use strict</code> so doesn&#8217;t see much use (and can be done other ways anyway).  Perl <em>also</em> has things called aliases, which work like C++ references — but they don&#8217;t work on local variables, and they&#8217;re not really a type, just explicit manipulation of the symbol table.  (Cool fact: Perl functions receive their arguments as aliases!  It&#8217;s easy not to notice, because most people immediately assign the arguments to readable&nbsp;names.)</p>
+            <p><span class="caps">PHP</span> has things called references, but despite <span class="caps">PHP</span>&#8217;s prominent Perl influence, it borrowed its references from C++.  C++ declares references as part of the type, but <span class="caps">PHP</span> has no variable declaration whatsoever, so a variable <em>becomes</em> a reference if it&#8217;s involved in one of a handful of specific operations with a <code>&amp;</code> involved.  The variable is then permanently &#8220;infected&#8221; with&nbsp;reference-ness.</p>
+            <p>Python, Ruby, JavaScript, Lua, Java, and probably several hundred other high-level languages have nothing called pointers, references, <em>or</em> aliases.  This causes endless confusion when trying to explain the language semantics to someone with a C or C++ background, because we want to say things like &#8220;this references that&#8221; or &#8220;this points to that&#8221; which can lead them to think that there are literal references and pointers available for them to twiddle.  For this reason (and my Perl background), I like to call C++&#8217;s reference behavior &#8220;aliasing&#8221;, which more clearly describes what it does and frees up the word &#8220;refer&#8221; to be used in its generic English&nbsp;sense.</p>
+            <h2 id="pass-by-value-pass-by-reference"><a class="toclink" href="#pass-by-value-pass-by-reference">Pass by value, pass by&nbsp;reference</a></h2>
+            <p>Speaking of references.  I&#8217;ve <a href="https://eev.ee/blog/2012/05/23/python-faq-passing/">explained this before for Python</a>, but here&#8217;s the quick(ish) version.  I maintain that this dichotomy makes no sense in <a href="https://en.wikipedia.org/wiki/Almost_all">almost all</a> languages, because the very question hinges on C&#8217;s idea of what a value <em>is</em>, and it&#8217;s a relatively rare attitude outside of the C&nbsp;family.</p>
+            <p>The fundamental issue is that C has syntax to imply structure, but the semantics are all about <em>bytes</em>.  A <code>struct</code> looks and sounds like a container, a thing with a lid on it: it&#8217;s wrapped in braces, and you have to use <code>.</code> to look inside it.  But C just sees a blob of bytes, not much different from an <code>int</code>, except that it lets you look at a few of those bytes at a time.  If you put one <code>struct</code> inside another, C will dump the inner&#8217;s structure into the outer.  If you assign one <code>struct</code> to another, C will dutifully copy all the bytes over, same as it would for a <code>double</code>.  The boundary is illusory.  In effect, the only &#8220;true&#8221; container C has — the only form of containment that doesn&#8217;t spill its contents all over the place — is the&nbsp;pointer!</p>
+            <p>If you pass a <code>struct</code> to or from a function, C will copy the whole thing, as with any other form of assignment.  If you want a function to modify a struct, you have to pass in a <em>pointer</em> to it, so the function can modify the original storage and not a local copy.  If you want to pass a very large struct to a function, you should still use a pointer, or you&#8217;ll waste a lot of time uselessly copying data around just to throw it&nbsp;away.</p>
+            <p>This is so-called &#8220;pass by value&#8221;, but it&#8217;s really about the underlying storage, not any semantic notion of &#8220;value&#8221;.  Pass by copy, if you will.  It&#8217;s similar to how forgetting to quote a variable in a shell script will cause it to be split on whitespace, or how passing an array to a function in Perl will copy all the elements.  It&#8217;s nonsense.  The semantics, the diagrams of boxes that we draw, and even the very <em>syntax</em> all imply that there&#8217;s something being bundled up, but then you turn your back for a second and the language scatters your data to the&nbsp;wind.</p>
+            <p>C++ added references to make this sort of thing more transparent, just in case C was too easy to understand.  Now you can <em>appear</em> to pass a <code>struct</code> <span class="dquo">&#8220;</span>by value&#8221;, but if the function is declared as taking references for arguments, it can still freely modify your data.  The function&#8217;s argument becomes an alias for whatever you pass in, so even an atomic type like an <code>int</code> can be overwritten wholesale.  This is &#8220;pass by reference&#8221;, perhaps better named &#8220;pass by&nbsp;alias&#8221;.</p>
+            <p>The way Java, Python, Ruby, Lua, JavaScript, and countless other languages work is to have containers act as a single unit.  When you have a variable containing a structure, and you assign that variable to another variable, no copying is done.  Rather, both variables now refer to—  err, point to—&nbsp;err&#8230;</p>
+            <p>And here&#8217;s the major issue with the terminology.  Someone who&#8217;s asking whether X language is by-value or by-reference has likely ingrained the C model, and takes for granted that this is how programming fundamentally works.  If I say &#8220;refer&#8221;, they might think there are C++ references (alias) involved somewhere.  If I say &#8220;point&#8221;, they might think the language has some form of indirection like a C pointer.  In most cases, the languages have neither, but there are only so many ways to express this concept in&nbsp;English.</p>
+            <p>Semantically, those languages act like values exist in their own right, and variables are merely names.  Assignment gives another name to a value.  It&#8217;s tempting to explain <code>a = b</code> as &#8220;now <code>a</code> points to <code>b</code>&#8221; or &#8220;now they refer to the same object&#8221;, but that introduces an indirection, implies an intermediate layer that doesn&#8217;t exist in the language.  <code>a</code> and <code>b</code> both <em>name</em> the same&nbsp;value.</p>
+            <p>Function calls are a form of assignment, so the arguments inside a function <em>name</em> the same values that the caller passed in.  You can modify them in-place, if they&#8217;re mutable, and the caller will see the changes, because it&#8217;s the same value.  You <em>can&#8217;t</em> just reassign the variable: the variable is not an alias, and assigning to it merely makes it a name for something else instead.  This exists so far outside the dichotomy that it doesn&#8217;t even have a consistent name, though I&#8217;ve seen it called pass by object, pass by identity, and pass by&nbsp;sharing.</p>
+            <p>It&#8217;s entirely possible to have these passing styles in higher-level languages — as I mentioned, <span class="caps">PHP</span> can pass by alias using its C++-style references.  But pass by alias really exists as a response to pass by copy, and pass by copy exists because there&#8217;s not really any alternative in a fairly low-level language like&nbsp;C.</p>
+            <p>Anything you can do with pass by copy, you can do with pass by sharing followed by an explicit copy.  Most things you can do with pass by alias, you can also do with pass by sharing, as long as you&#8217;re mutating the same value via its own interface.  The exceptions are attempts to rebind the name itself, and most of <em>those</em> are only for the sake of returning multiple values, which you can do directly in most higher-level&nbsp;languages.</p>
+            <h2 id="loose-typing"><a class="toclink" href="#loose-typing">Loose&nbsp;typing</a></h2>
+            <p>Okay, so, this is really up for interpretation, but I&#8217;m pretty sure &#8220;loose typing&#8221; is not actually a thing.  At least, I&#8217;ve never seen a particularly concrete definition for it, which is kind of ironic.  To&nbsp;recap:</p>
+            <ul>
+                <li>
+                    <p><em>Strong typing</em> means that <em>values</em> do not implicitly change type to fit operations performed on them.  Rust is strongly typed: comparing an <code>i32</code> with a <code>i64</code> is an&nbsp;error.</p>
+                </li>
+                <li>
+                    <p><em>Weak typing</em> means that <em>values</em> can implicitly change type to fit operations performed on them.  JavaScript is weakly typed: <code>5 + "3"</code> will implicitly convert the string to a number and produce <code>8</code>.  (Haha, just kidding, it produces <code>"53"</code>.)  Also, C is weakly typed: you can just straight up assign <code>"3"</code> to an <code>int</code> and get some hilarious&nbsp;nonsense.</p>
+                </li>
+                <li>
+                    <p><em>Static typing</em> means that <em>names</em> (variables) have associated types that are known before the program runs.  Java is statically typed: Java code is 70% type names by&nbsp;volume.</p>
+                </li>
+                <li>
+                    <p><em>Dynamic typing</em> means that <em>names</em> are not given types ahead of time.  Ruby is dynamically typed: types are figured out on the fly while the program&nbsp;runs.</p>
+                </li>
+            </ul>
+            <p>Strong–weak forms a spectrum, and static–dynamic forms a spectrum.  Languages may have both strong and weak elements, or both static and dynamic elements, though usually one is more prominent.  For example, while Go is considered statically-typed, <code>interface{}</code> acts much like dynamic typing.  Conversely, you <a href="https://existentialtype.wordpress.com/2011/03/19/dynamic-languages-are-static-languages/">could argue</a> that Python is statically-typed and every variable is of type <code>object</code>, but good luck with&nbsp;that.</p>
+            <p>Crucially, because strong–weak concerns <em>values</em> and static–dynamic concerns <em>names</em>, all four combinations exist.  Haskell is strong and static.  C is weak and static.  Python is strong and dynamic.  Shell is weak and&nbsp;dynamic.</p>
+            <p>So, then, what exactly is &#8220;loose typing&#8221;?  You&#8217;d think it would mean the same as &#8220;weak typing&#8221;, but I&#8217;ve seen a lot of people refer to Python as &#8220;loosely typed&#8221;, even though Python is mostly strong.  (Stronger than&nbsp;C!)</p>
+            <p>Given that I rarely see the phrase used in a non-derogatory context, my best guess is that &#8220;loosely typed&#8221; really means &#8220;doesn&#8217;t have C++&#8217;s type system&#8221;.  Which is kind of funny, given how flimsy C++&#8217;s type system is.  What type is a pointer to a <code>T</code>?  It&#8217;s not <code>T*</code>, because that might be a null pointer (which is not a pointer to <code>T</code>) or complete garbage (which is unlikely to be a pointer to a <code>T</code>) or uninitialized (also unlikely to be a pointer to a <code>T</code>).  What&#8217;s the point of static typing if your variables don&#8217;t actually have to contain the type they&#8217;re declared&nbsp;as?</p>
+            <h2 id="caching"><a class="toclink" href="#caching">Caching</a></h2>
+            <p>This one is most anecdotal, as it&#8217;s not even a language&nbsp;feature.</p>
+            <p>Caching is storing the results of some computations so you don&#8217;t have to compute them again later.  It&#8217;s an optimization, trading memory in exchange for&nbsp;speed.</p>
+            <p>I think a <em>crucial</em> property of a cache is that if the cache is emptied or destroyed or unavailable for any reason, <em>everything still works, just more slowly</em>.</p>
+            <p>And yet I&#8217;ve seen a number of programmers use &#8220;cache&#8221; to refer to any form of storing a value to use later.  I find this very confusing, since that&#8217;s all programming <em>is</em>.</p>
+            <p>A fabulous example is a handy Python utility that shows up in a number of projects.  I know it by the name <code>reify</code>, which is how it&#8217;s spelled in <a href="http://pyramid.readthedocs.io/en/latest/">Pyramid</a>, where I first saw it.  It does lazy initialization of an object attribute, for&nbsp;example:</p>
+            <div class="highlight"><pre><span></span><code><span class="linenos">1</span><span class="k">class</span> <span class="nc">Monster</span><span class="p">:</span>
+<span class="linenos">2</span>    <span class="k">def</span> <span class="nf">think</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos">3</span>        <span class="c1"># do something smart</span>
+<span class="linenos">4</span>
+<span class="linenos">5</span>    <span class="nd">@reify</span>
+<span class="linenos">6</span>    <span class="k">def</span> <span class="nf">inventory</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos">7</span>        <span class="k">return</span> <span class="p">[]</span>
+</code></pre></div>
+
+            <p>Here, <code>monster.inventory</code> doesn&#8217;t actually exist until you try to read it, at which point the function is called — <em>once</em> — and the list it returns becomes the attribute.  It&#8217;s completely transparent, and once the value is created, it&#8217;s a normal attribute with no indirection cost.  You can add items to it, and you&#8217;ll see the same list every time.  Hence, &#8220;to make real&#8221;: the attribute isn&#8217;t real until you summon it into being by observing&nbsp;it.</p>
+            <p>This is nice for objects that deal with several related but interconnected ideas (which are thus difficult to split into multiple objects).  If part of the object takes time or space to set up, you can slap <code>@reify</code> on it, and the end user won&#8217;t have to pay the cost if they don&#8217;t use that&nbsp;functionality.</p>
+            <p>It wasn&#8217;t on PyPI as a separate package for the longest time, probably because it can be implemented in a dozen lines.  When I said it &#8220;shows up in a number of projects&#8221;, I meant &#8220;a number of projects have copy/pasted it from each&nbsp;other&#8221;.</p>
+            <p>It finally showed up a couple years ago, under the name&#8230;  <a href="https://pypi.python.org/pypi/cached-property">cached-property</a>.  The docs even prominently show how to &#8220;invalidate&#8221; the &#8220;cache&#8221; — by mucking with object&nbsp;internals.</p>
+            <p>The problem I have here is that virtually every use of this decorator I have ever seen <em>is not a cache</em>.  The example above is silly, of course, but it immediately demonstrates the problem: &#8220;invalidating&#8221; <code>monster.inventory</code> would irrevocably lose the only copy of the monster&#8217;s inventory.  Real uses of <code>@reify</code> tend to produce database connections and other kinds of mutable storage, where &#8220;invalidating&#8221; would be similarly destructive.  This isn&#8217;t data you can just whip up again if need&nbsp;be.</p>
+            <p>It&#8217;s <em>possible</em> to use <code>@reify</code> to create a cache, but it&#8217;s also possible to use <code>dict</code> to create a cache, so I don&#8217;t find that very&nbsp;compelling.</p>
+            <p>I did try to make my case for renaming the project early on — especially as the maintainer wanted to add this to the standard library! — but no one else liked <code>reify</code> and the conversation degenerated into bikeshedding over an alternative name.  Naming really <em>is</em> the hardest problem in computer&nbsp;science.</p>
+            <h2 id="bonus-cool-terminology-we-should-use-more"><a class="toclink" href="#bonus-cool-terminology-we-should-use-more">Bonus: cool terminology we should use&nbsp;more</a></h2>
+            <p>I love that the <a href="https://github.com/git/git/blob/master/Documentation/RelNotes/2.7.0.txt">Git changelog</a> refers to commands as having &#8220;learned&#8221; new&nbsp;things:</p>
+            <blockquote>
+                <p><span class="dquo">&#8220;</span>git remote&#8221; learned &#8220;get-url&#8221; subcommand to show the <span class="caps">URL</span> for a given remote name used for fetching and&nbsp;pushing.</p>
+            </blockquote>
+            <p>Relatedly, I love to see &#8220;spelled&#8221; use to explain how to write code (especially a single construct or brief expression).  Indexing is spelled <code>a[b]</code>,&nbsp;etc.</p>
+            <p>A function &#8220;signature&#8221; is just its interface: the arguments it takes, their names, their types, the return type, and exceptions that may be thrown.  Generally &#8220;signature&#8221; only refers to the parts that can be expressed directly in the language (and that affect call semantics), so a Python programmer likely wouldn&#8217;t consider exceptions to be part of a function signature, and a C++ programmer would likewise ignore argument&nbsp;names.</p>
+            <p>I realize I said &#8220;semantic&#8221; a bunch of times in this post, but it doesn&#8217;t see much use outside <span class="caps">HTML</span> — a lot of programmers seem to get really preoccupied with what the physical hardware is doing.  &#8220;Semantic&#8221; refers to what code <em>means</em>, as opposed to how it works in&nbsp;practice.</p>
+            <p>And my favorite, which I wish I had more excuses to use: a &#8220;nybble&#8221; is four&nbsp;bits.</p>
+        </div>
+
+
+    </article>
+
+    <figure class="oh-wow-patreon">
+        <img src="https://eev.ee/theme/images/eevee-begging.png" alt="drawing of an eevee looking sad and pleading that her food bowl only has two coins in it">
+        <figcaption>
+            <p>Thanks for stopping by!  If you found this worth reading to the end, and you have a few bucks to spare, maybe toss a couple at my <a href="https://www.patreon.com/eevee">Patreon</a>?</p>
+            <p>Making stuff is my full-time job, and this helps me keep doing it!</p>
+        </figcaption>
+    </figure>
+
+
+    <section>
+        <h1>Comments</h1>
+        <div id="disqus_thread" aria-live="polite">
+            <noscript>
+                <p>Apologies, but part of running a static blog is that the comments are served by Disqus's JavaScript slurry.</p>
+                <p>If it's any consolation, you're probably not missing much.  :)</p>
+            </noscript>
+        </div>
+        <script type="text/javascript">
+            var disqus_config = function() {
+                this.page.url = 'https://eev.ee/blog/2016/07/26/the-hardest-problem-in-computer-science/';
+                this.page.title = 'The hardest problem in computer science';
+            };
+            (function() {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = '//veekun.disqus.com/embed.js';
+                dsq.setAttribute('data-timestamp', +new Date());
+                (document.head || document.body).appendChild(dsq);
+            })();
+        </script>
+    </section>
+
+</main>
+<footer role="contentinfo">
+    <p>© 2024 Eevee a.k.a. Evelyn Woods</p>
+    <p><a rel="license" href="https://creativecommons.org/licenses/by/3.0/us/">
+        <img
+                title="Licensed under Creative Commons Attribution 3.0 United States"
+                alt="Licensed under Creative Commons Attribution 3.0 United States"
+                src="https://i.creativecommons.org/l/by/3.0/us/80x15.png"></a>
+    </p>
+    <p>Backgrounds via <a href="https://www.transparenttextures.com/">Transparent Textures</a></p>
+    <p>Powered by <a href="http://docs.getpelican.com/en/latest/">Pelican</a></p>
+    <p><a href="https://github.com/eevee/eev.ee">Source code</a></p>
+</footer>
+
+
+</body>
+</html>
