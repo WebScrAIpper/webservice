@@ -17,6 +17,10 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
+
 @RestController
 @RequestMapping("/api")
 public class ArticleController
@@ -53,6 +57,10 @@ public class ArticleController
                     .body("The 'content' parameter is required and cannot be empty.");
         }
 
+        System.out.println("Content size to be processed: " + content.length());
+        content = scrapContent(content);
+        System.out.println("Content size after scraping: " + content.length());
+        
         var prompt = generatePrompt(content);
         var aiAnswer = requestToAi(prompt);
 
@@ -154,5 +162,13 @@ public class ArticleController
             }
         }
         return null;
+    }
+
+    public String scrapContent(String content) {
+        Document document = Jsoup.parse(content);
+    
+        document.select("script, style, form, nav, aside, button, svg").remove();
+        //TODO: think about the iframe
+        return document.text();
     }
 }
