@@ -6,7 +6,7 @@ public class ArticleDto extends AIFilledArticle {
     public ArticleDto() {
     }
 
-    public ArticleDto(String url, String title, String author, String date, String image, String description, String content_type, String language, String[] classifiers) {
+    public ArticleDto(String url, String title, String author, String date, String image, String description, CONTENT_TYPE content_type, SUPPORTED_LANGUAGES language, String[] classifiers) {
         super(title, author, date, image, description, content_type, language, classifiers);
         this.url = url;
     }
@@ -23,6 +23,8 @@ public class ArticleDto extends AIFilledArticle {
     public void setUrl(String url) {
         this.url = url;
     }
+
+
 
 
 }
