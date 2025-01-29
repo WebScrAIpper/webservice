@@ -3,6 +3,9 @@ package com.polytech.webscraipper.dto;
 public class ArticleDto extends AIFilledArticle {
     private String url;
 
+    public ArticleDto() {
+    }
+
     public ArticleDto(String url, String title, String author, String date, String image, String description, String content_type, String language, String[] classifiers) {
         super(title, author, date, image, description, content_type, language, classifiers);
         this.url = url;
