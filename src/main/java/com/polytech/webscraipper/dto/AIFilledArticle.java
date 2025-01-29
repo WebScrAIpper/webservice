@@ -1,5 +1,7 @@
 package com.polytech.webscraipper.dto;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 /**
     *             - title: the title of the article
     *             - author: the author of the article
@@ -10,6 +12,7 @@ package com.polytech.webscraipper.dto;
     *             - language: the language of the article
     *             - classifiers: a list of topics that the article covers
  */
+@Document
 public class AIFilledArticle {
     protected String title;
     protected String author;
