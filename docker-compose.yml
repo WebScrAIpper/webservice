@@ -6,8 +6,8 @@ services:
     ports:
       - 27017:27017
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: IAmUnsecure!
+      MONGO_INITDB_ROOT_USERNAME: polytech
+      MONGO_INITDB_ROOT_PASSWORD: polytech
       MONGO_INITDB_DATABASE: database
     volumes:
       - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
