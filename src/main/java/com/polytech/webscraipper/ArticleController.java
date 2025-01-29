@@ -4,12 +4,14 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.polytech.webscraipper.dto.AIFilledArticle;
 import com.polytech.webscraipper.dto.ArticleDto;
+import com.polytech.webscraipper.dto.ArticleRepository;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.openai.OpenAiChatOptions;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -25,6 +27,9 @@ public class ArticleController
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final List<ArticleDto> articleDtos = new ArrayList<>();
 
+    @Autowired
+    private ArticleRepository articleRepo;
+
 
     public ArticleController(ChatModel chatModel) {
         this.chatModel = chatModel;
@@ -32,7 +37,7 @@ public class ArticleController
 
     @GetMapping("/articles")
     public List<ArticleDto> getArticles() {
-        return articleDtos;
+        return articleRepo.findAll();
     }
 
     @CrossOrigin(origins = "*")
@@ -63,7 +68,7 @@ public class ArticleController
         }
         ArticleDto articleDto = new ArticleDto(aiAnswer, url);
         String answer = objectMapper.writeValueAsString(articleDto);
-        articleDtos.add(articleDto);
+        articleRepo.save(articleDto);
         return ResponseEntity.ok(answer);
     }
 
