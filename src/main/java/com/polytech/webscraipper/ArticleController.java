@@ -81,10 +81,8 @@ public class ArticleController
 
         // Handle Classifiers
         var newClassifiers = Arrays.stream(aiAnswer.getClassifiers()).filter(classifier -> !getExistingClassifiers().contains(classifier)).toArray(String[]::new);
-        if (newClassifiers.length > 0) {
-            for (String newClassifier : newClassifiers) {
-                addClassifier(newClassifier);
-            }
+        for (String newClassifier : newClassifiers) {
+            addClassifier(newClassifier);
         }
 
         articleRepo.save(articleDto);
