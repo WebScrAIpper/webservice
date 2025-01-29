@@ -4,7 +4,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.polytech.webscraipper.dto.AIFilledArticle;
 import com.polytech.webscraipper.dto.ArticleDto;
+import com.polytech.webscraipper.dto.ClassifierDto;
 import com.polytech.webscraipper.repositories.ArticleRepository;
+import com.polytech.webscraipper.repositories.ClassifierRepository;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.openai.OpenAiChatOptions;
@@ -31,8 +33,8 @@ public class ArticleController
 
     @Autowired
     private ArticleRepository articleRepo;
-
-    private final Set<String> classifiers = new HashSet<String>();
+    @Autowired
+    private ClassifierRepository classifierRepository;
 
 
     public ArticleController(ChatModel chatModel) {
@@ -80,7 +82,9 @@ public class ArticleController
         // Handle Classifiers
         var newClassifiers = Arrays.stream(aiAnswer.getClassifiers()).filter(classifier -> !getExistingClassifiers().contains(classifier)).toArray(String[]::new);
         if (newClassifiers.length > 0) {
-            classifiers.addAll(Arrays.asList(newClassifiers));
+            for (String newClassifier : newClassifiers) {
+                addClassifier(newClassifier);
+            }
         }
 
         articleRepo.save(articleDto);
@@ -88,8 +92,8 @@ public class ArticleController
     }
 
     @GetMapping("/classifiers")
-    public Set<String> getExistingClassifiers() {
-        return classifiers;
+    public List<String> getExistingClassifiers() {
+        return classifierRepository.findAll().stream().map(ClassifierDto::getName).toList();
     }
 
     @PostMapping("/classifiers/add/{classifier}")
@@ -99,12 +103,12 @@ public class ArticleController
                     .status(HttpStatus.BAD_REQUEST)
                     .body("The 'classifier' parameter is required and cannot be empty.");
         }
-        if (classifiers.contains(classifier)) {
+        if (classifierRepository.findAll().contains(new ClassifierDto(classifier))) {
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
                     .body("The classifier already exists.");
         }
-        classifiers.add(classifier);
+        classifierRepository.save(new ClassifierDto(classifier));
         return ResponseEntity.ok("Classifier added successfully.");
     }
 
