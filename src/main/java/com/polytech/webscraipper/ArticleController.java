@@ -35,7 +35,8 @@ public class ArticleController
         return articleDtos;
     }
 
-    @GetMapping("/build")
+    @CrossOrigin(origins = "*")
+    @PostMapping("/build")
     public ResponseEntity<String> buildAWebSiteResume(
             @RequestParam String url,
             @RequestBody String content
