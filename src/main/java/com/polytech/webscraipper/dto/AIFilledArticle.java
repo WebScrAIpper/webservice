@@ -1,5 +1,6 @@
 package com.polytech.webscraipper.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
@@ -19,14 +20,15 @@ public class AIFilledArticle {
     protected String date;
     protected String image;
     protected String description;
-    protected String content_type;
-    protected String language;
+    protected CONTENT_TYPE content_type;
+    @JsonDeserialize(using = SupportedLanguagesDeserializer.class)
+    protected SUPPORTED_LANGUAGES language;
     protected String[] classifiers;
 
     public  AIFilledArticle() {
     }
 
-    public AIFilledArticle(String title, String author, String date, String image, String description, String content_type, String language, String[] classifiers) {
+    public AIFilledArticle(String title, String author, String date, String image, String description, CONTENT_TYPE content_type, SUPPORTED_LANGUAGES language, String[] classifiers) {
         this.title = title;
         this.author = author;
         this.date = date;
@@ -77,19 +79,19 @@ public class AIFilledArticle {
         this.description = description;
     }
 
-    public String getContent_type() {
+    public CONTENT_TYPE getContent_type() {
         return content_type;
     }
 
-    public void setContent_type(String content_type) {
+    public void setContent_type(CONTENT_TYPE content_type) {
         this.content_type = content_type;
     }
 
-    public String getLanguage() {
+    public SUPPORTED_LANGUAGES getLanguage() {
         return language;
     }
 
-    public void setLanguage(String language) {
+    public void setLanguage(SUPPORTED_LANGUAGES language) {
         this.language = language;
     }
 
