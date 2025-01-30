@@ -7,11 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class WebScrAIpperApplication {
-    private final ChatModel chatModel;
 
-    public WebScrAIpperApplication(ChatModel chatModel) {
-        this.chatModel = chatModel;
-    }
+    public WebScrAIpperApplication() {}
 
     public static void main(String[] args) {
         SpringApplication.run(WebScrAIpperApplication.class, args);

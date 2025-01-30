@@ -4,17 +4,17 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
-    *             - title: the title of the article
-    *             - author: the author of the article
-    *             - date: the date of the article
-    *             - image: the image that best represents the article (not required for now)
-    *             - description: a short description of the article
+    *             - title: the title of the document
+    *             - author: the author of the document
+    *             - date: the date of the document
+    *             - image: the image that best represents the document (not required for now)
+    *             - description: a short description of the document
     *             - content_type: the type of content (can take the values ARTICLE | VIDEO | PODCAST)
-    *             - language: the language of the article
-    *             - classifiers: a list of topics that the article covers
+    *             - language: the language of the document
+    *             - classifiers: a list of topics that the document covers
  */
 @Document
-public class AIFilledArticle {
+public class AIFilledDocument {
     protected String title;
     protected String author;
     protected String date;
@@ -25,10 +25,10 @@ public class AIFilledArticle {
     protected SUPPORTED_LANGUAGES language;
     protected String[] classifiers;
 
-    public  AIFilledArticle() {
+    public AIFilledDocument() {
     }
 
-    public AIFilledArticle(String title, String author, String date, String image, String description, CONTENT_TYPE content_type, SUPPORTED_LANGUAGES language, String[] classifiers) {
+    public AIFilledDocument(String title, String author, String date, String image, String description, CONTENT_TYPE content_type, SUPPORTED_LANGUAGES language, String[] classifiers) {
         this.title = title;
         this.author = author;
         this.date = date;

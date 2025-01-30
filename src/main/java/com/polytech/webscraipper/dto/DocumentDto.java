@@ -1,17 +1,17 @@
 package com.polytech.webscraipper.dto;
 
-public class ArticleDto extends AIFilledArticle {
+public class DocumentDto extends AIFilledDocument {
     private String url;
 
-    public ArticleDto() {
+    public DocumentDto() {
     }
 
-    public ArticleDto(String url, String title, String author, String date, String image, String description, CONTENT_TYPE content_type, SUPPORTED_LANGUAGES language, String[] classifiers) {
+    public DocumentDto(String url, String title, String author, String date, String image, String description, CONTENT_TYPE content_type, SUPPORTED_LANGUAGES language, String[] classifiers) {
         super(title, author, date, image, description, content_type, language, classifiers);
         this.url = url;
     }
 
-    public ArticleDto(AIFilledArticle dto, String url) {
+    public DocumentDto(AIFilledDocument dto, String url) {
         super(dto.getTitle(), dto.getAuthor(), dto.getDate(), dto.getImage(), dto.getDescription(), dto.getContent_type(), dto.getLanguage(), dto.getClassifiers());
         this.url = url;
     }
