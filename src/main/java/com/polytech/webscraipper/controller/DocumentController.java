@@ -9,13 +9,13 @@ import com.polytech.webscraipper.services.ClassifierService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.*;
 
 @RestController
 @RequestMapping("/api")
-public class DocumentController
-{
+public class DocumentController {
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Autowired
@@ -25,11 +25,15 @@ public class DocumentController
     @Autowired
     private DocumentRepository documentRepo;
 
-
-    public DocumentController() {}
+    public DocumentController() {
+    }
 
     @GetMapping("/documents")
-    public List<DocumentDto> getDocuments() {
+    public List<DocumentDto> getDocuments(@RequestParam(required = false) String url) {
+        if (url != null) {
+            return List.of(documentRepo.findByUrl(url)
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Document not found")));
+        }
         return documentRepo.findAll();
     }
 
@@ -37,8 +41,7 @@ public class DocumentController
     @PostMapping("/build")
     public ResponseEntity<String> buildAWebSiteResume(
             @RequestParam String url,
-            @RequestBody String content
-    ) throws JsonProcessingException {
+            @RequestBody String content) throws JsonProcessingException {
 
         if (url == null || url.isEmpty()) {
             return ResponseEntity
@@ -49,6 +52,12 @@ public class DocumentController
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
                     .body("The 'content' parameter is required and cannot be empty.");
+        }
+
+        if (documentRepo.findByUrl(url).isPresent()) {
+            return ResponseEntity
+                    .status(HttpStatus.CONFLICT)
+                    .body("A document with this URL already exists.");
         }
 
         System.out.println("Content size to be processed: " + content.length());
@@ -72,16 +81,16 @@ public class DocumentController
         String answer = objectMapper.writeValueAsString(documentDto);
 
         // Handle Classifiers
-        var newClassifiers = Arrays.stream(aiAnswer.getClassifiers()).filter(classifier -> !classifierService.getAllClassifiers().contains(classifier)).toArray(String[]::new);
+        var newClassifiers = Arrays.stream(aiAnswer.getClassifiers())
+                .filter(classifier -> !classifierService.getAllClassifiers().contains(classifier))
+                .toArray(String[]::new);
         for (String newClassifier : newClassifiers) {
             classifierService.addClassifier(newClassifier);
         }
-
 
         // Saving the document
         documentRepo.save(documentDto);
         return ResponseEntity.ok(answer);
     }
-
 
 }
