@@ -4,14 +4,14 @@ import yt_dlp
 
 def get_video_info(url):
     try:
-        # Création d'une instance d'yt-dlp
+        # yt-dlp instance creation
         ydl_opts = {
-            'quiet': True,  # Pour ne pas afficher les logs
-            'extract_flat': True  # Extraire uniquement les métadonnées sans télécharger la vidéo
+            'quiet': True,
+            'extract_flat': True  # Extract only metadatas
         }
 
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-            info_dict = ydl.extract_info(url, download=False)  # Récupérer les informations sans télécharger la vidéo
+            info_dict = ydl.extract_info(url, download=False)
 
             video_data = {
                 "title": info_dict.get('title'),
