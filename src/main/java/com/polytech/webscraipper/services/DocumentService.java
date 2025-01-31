@@ -9,13 +9,16 @@ import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.openai.OpenAiChatOptions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.google.gson.Gson;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class DocumentService {
@@ -36,8 +39,7 @@ public class DocumentService {
             String url
     ) {
         if (isYoutubeVideo(url)){
-            System.out.println("Youtube video found");
-            return generateYoutubePrompt(url);
+            return generateYoutubePrompt(content);
         }
         try {
             List<String> exampleInputLines = Files.readAllLines(Paths.get("src/main/resources/static/pageExample.html"));
@@ -98,9 +100,7 @@ public class DocumentService {
         }
     }
 
-    private String generateYoutubePrompt(String url) {
-        String subtitles = getSubtitles(url);
-        System.out.println(subtitles);
+    private String generateYoutubePrompt(String content) {
         String resultExample = """
             {
                 "title": "Write code that is easy to delete, not easy to extend",
@@ -126,7 +126,7 @@ public class DocumentService {
         YOu should ALWAYS write the content of your summary in English even if the original content is in another language.
        \s
         The exact structure required by the json object is this one:
-        - title: the title of the document
+        - title: the title of the document, in the language of the document.
         - author: the author of the document
         - date: the date of the document
         - image: the image that best represents the document. The image should be a URL, if there is no image, on the website, it might be null.
@@ -136,17 +136,17 @@ public class DocumentService {
         - classifiers: a list of topics that the document covers. Can go anywhere from 3 to 6. It's recommended for most of the classifiers of this list: %s. However, you may use other classifiers if you think they are more relevant. You should anyway never use a classifier that is not related to the topic of the document.
        \s
        \s
-       Here is the transcript you have to summarize:
+       Here is the informations about the video that we collected on the youtube video page and the transcript you have to summarize:
 
        %s
-      
+       
        \s
        Do not wrap the response in a
        ```json
        ...
        ```
           block, just return the JSON object.
-       \s""".stripIndent().formatted(resultExample, classifierService.getAllClassifiers(), subtitles);
+       \s""".stripIndent().formatted(resultExample, classifierService.getAllClassifiers(), content);
     }
 
     public AIFilledDocument requestToAi(String prompt) {
@@ -175,7 +175,10 @@ public class DocumentService {
         return null;
     }
 
-    public String scrapContent(String content) {
+    public String scrapContent(String content,String url) {
+        if (isYoutubeVideo(url)){
+            return getYoutubeContent(url);
+        }
         Document document = Jsoup.parse(content);
 
         document.select("script, style, form, nav, aside, button, svg").remove();
@@ -187,23 +190,38 @@ public class DocumentService {
         return videoUrl != null && videoUrl.startsWith("https://www.youtube.com/watch?");
     }
 
-    private String getSubtitles(String url) {
+    private String getYoutubeContent(String url) {
         try {
-            ProcessBuilder pb = new ProcessBuilder("python3", "/home/cazorla/Polytech/5A/WebScrAIpper/webservice/src/scripts/get_transcript.py", url);
-            Process process = pb.start();
+            //Get video information
+            String videoInfoJson = executeScript("src/scripts/get_yt_infos.py", url);
 
-            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            StringBuilder transcript = new StringBuilder();
-            String line;
+            //Get transcript
+            String transcript = executeScript("src/scripts/get_transcript.py", url);
 
-            while ((line = reader.readLine()) != null) {
-                transcript.append(line).append("\n");
-            }
+            Map<String, String> result = new HashMap<>();
+            result.put("infos", videoInfoJson);
+            result.put("transcript", transcript);
 
-            process.waitFor();
-            return transcript.toString().trim();
+            Gson gson = new Gson();
+            return gson.toJson(result);
+
         } catch (Exception e) {
-            return "Error fetching transcript: " + e.getMessage();
+            return "{\"error\": \"" + e.getMessage() + "\"}";
         }
+    }
+
+    private String executeScript(String scriptPath, String url) throws IOException, InterruptedException {
+        ProcessBuilder pb = new ProcessBuilder("src/.venv/bin/python3", scriptPath, url);        Process process = pb.start();
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+        StringBuilder output = new StringBuilder();
+        String line;
+
+        while ((line = reader.readLine()) != null) {
+            output.append(line).append("\n");
+        }
+        process.waitFor();
+
+        return output.toString().trim();
     }
 }
