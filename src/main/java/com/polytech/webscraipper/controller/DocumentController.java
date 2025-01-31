@@ -56,7 +56,7 @@ public class DocumentController
         System.out.println("Content size after scraping: " + content.length());
 
         // Generating the prompt dynamically
-        var prompt = documentService.generatePrompt(content);
+        var prompt = documentService.generatePrompt(content,url);
 
         // Requesting the AI
         var aiAnswer = documentService.requestToAi(prompt);
