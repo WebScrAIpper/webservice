@@ -52,7 +52,7 @@ public class DocumentController
         }
 
         System.out.println("Content size to be processed: " + content.length());
-        content = documentService.scrapContent(content);
+        content = documentService.scrapContent(content,url);
         System.out.println("Content size after scraping: " + content.length());
 
         // Generating the prompt dynamically
