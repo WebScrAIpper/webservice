@@ -21,13 +21,16 @@ repositories {
 extra["springAiVersion"] = "1.0.0-M5"
 
 dependencies {
+    implementation("org.springframework.boot:spring-boot-docker-compose")
     implementation ("org.springframework.boot:spring-boot-starter-data-mongodb")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("org.springframework.ai:spring-ai-openai-spring-boot-starter")
+    implementation("org.jsoup:jsoup:1.15.4")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
+
 
 dependencyManagement {
     imports {
