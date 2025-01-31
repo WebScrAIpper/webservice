@@ -10,12 +10,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.io.IOException;
 import java.util.*;
 
 @RestController
 @RequestMapping("/api")
-public class DocumentController
-{
+public class DocumentController {
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Autowired
@@ -25,8 +26,8 @@ public class DocumentController
     @Autowired
     private DocumentRepository documentRepo;
 
-
-    public DocumentController() {}
+    public DocumentController() {
+    }
 
     @GetMapping("/documents")
     public List<DocumentDto> getDocuments() {
@@ -37,8 +38,7 @@ public class DocumentController
     @PostMapping("/build")
     public ResponseEntity<String> buildAWebSiteResume(
             @RequestParam String url,
-            @RequestBody String content
-    ) throws JsonProcessingException {
+            @RequestBody String content) throws Exception {
 
         if (url == null || url.isEmpty()) {
             return ResponseEntity
@@ -58,30 +58,31 @@ public class DocumentController
         // Generating the prompt dynamically
         var prompt = documentService.generatePrompt(content);
 
-        // Requesting the AI
-        var aiAnswer = documentService.requestToAi(prompt);
+        try {
+            // Requesting the AI
+            var aiAnswer = documentService.requestToAi(prompt);
 
-        if (aiAnswer == null) {
-            return ResponseEntity
-                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("An error occurred while processing the AI request. Please try again later.");
+            // Building the response
+            DocumentDto documentDto = new DocumentDto(aiAnswer, url);
+            String answer = objectMapper.writeValueAsString(documentDto);
+
+            // Handle Classifiers
+            var newClassifiers = Arrays.stream(aiAnswer.getClassifiers())
+                    .filter(classifier -> !classifierService.getAllClassifiers().contains(classifier))
+                    .toArray(String[]::new);
+            for (String newClassifier : newClassifiers) {
+                classifierService.addClassifier(newClassifier);
+            }
+
+            // Saving the document
+            documentRepo.save(documentDto);
+            return ResponseEntity.ok(answer);
+        } catch (IOException | IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
 
-        // Building the response
-        DocumentDto documentDto = new DocumentDto(aiAnswer, url);
-        String answer = objectMapper.writeValueAsString(documentDto);
-
-        // Handle Classifiers
-        var newClassifiers = Arrays.stream(aiAnswer.getClassifiers()).filter(classifier -> !classifierService.getAllClassifiers().contains(classifier)).toArray(String[]::new);
-        for (String newClassifier : newClassifiers) {
-            classifierService.addClassifier(newClassifier);
-        }
-
-
-        // Saving the document
-        documentRepo.save(documentDto);
-        return ResponseEntity.ok(answer);
     }
-
 
 }
