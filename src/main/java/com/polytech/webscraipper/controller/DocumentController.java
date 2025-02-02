@@ -6,10 +6,8 @@ import com.polytech.webscraipper.dto.DocumentDto;
 import com.polytech.webscraipper.repositories.DocumentRepository;
 import com.polytech.webscraipper.services.DocumentService;
 import com.polytech.webscraipper.services.ClassifierService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.*;
 
@@ -20,10 +18,6 @@ public class DocumentController {
 
     @Autowired
     private DocumentService documentService;
-    @Autowired
-    private ClassifierService classifierService;
-    @Autowired
-    private DocumentRepository documentRepo;
 
     public DocumentController() {
     }
@@ -34,64 +28,25 @@ public class DocumentController {
     }
 
     @GetMapping("/document")
-    public DocumentDto getDocumentByURL(@RequestParam String url) {
-        return documentService.getDocumentByURL(url).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Document not found"));
+    public Optional<DocumentDto> getDocumentByURL(@RequestParam String url) {
+        return documentService.getDocumentByUrl(url);
     }
 
     @CrossOrigin(origins = "*")
     @PostMapping("/build")
-    public ResponseEntity<String> buildAWebSiteResume(
+    public ResponseEntity<String> buildWebsiteSummary(
             @RequestParam String url,
             @RequestBody String content) throws JsonProcessingException {
 
-        if (url == null || url.isEmpty()) {
-            return ResponseEntity
-                    .status(HttpStatus.BAD_REQUEST)
-                    .body("The 'url' parameter is required and cannot be empty.");
-        }
-        if (content == null || content.isEmpty()) {
-            return ResponseEntity
-                    .status(HttpStatus.BAD_REQUEST)
-                    .body("The 'content' parameter is required and cannot be empty.");
-        }
-
-        if (documentRepo.findByUrl(url).isPresent()) {
-            return ResponseEntity
-                    .status(HttpStatus.CONFLICT)
-                    .body("A document with this URL already exists.");
-        }
-
-        System.out.println("Content size to be processed: " + content.length());
-        content = documentService.scrapContent(content,url);
-        System.out.println("Content size after scraping: " + content.length());
-
-        // Generating the prompt dynamically
-        var prompt = documentService.generatePrompt(content,url);
-
-        // Requesting the AI
-        var aiAnswer = documentService.requestToAi(prompt);
-
-        if (aiAnswer == null) {
-            return ResponseEntity
-                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("An error occurred while processing the AI request. Please try again later.");
-        }
-
-        // Building the response
-        DocumentDto documentDto = new DocumentDto(aiAnswer, url);
-        String answer = objectMapper.writeValueAsString(documentDto);
-
-        // Handle Classifiers
-        var newClassifiers = Arrays.stream(aiAnswer.getClassifiers())
-                .filter(classifier -> !classifierService.getAllClassifiers().contains(classifier))
-                .toArray(String[]::new);
-        for (String newClassifier : newClassifiers) {
-            classifierService.addClassifier(newClassifier);
-        }
-
-        // Saving the document
-        documentRepo.save(documentDto);
-        return ResponseEntity.ok(answer);
+        documentService.buildWebsiteSummary(url, content);
+        return ResponseEntity.ok("Website summary successfully built.");
     }
 
+    @CrossOrigin(origins = "*")
+    @PostMapping("/youtubeBuild")
+    public ResponseEntity<String> buildYoutubeVodSummary(
+            @RequestParam String url) throws JsonProcessingException {
+        documentService.buildYoutubeVodSummary(url);
+        return ResponseEntity.ok("Youtube VOD summary successfully built.");
+    }
 }

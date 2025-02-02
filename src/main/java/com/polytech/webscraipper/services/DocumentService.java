@@ -1,5 +1,6 @@
 package com.polytech.webscraipper.services;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.polytech.webscraipper.dto.AIFilledDocument;
 import com.polytech.webscraipper.dto.DocumentDto;
@@ -10,6 +11,8 @@ import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.openai.OpenAiChatOptions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import com.google.gson.Gson;
 
@@ -18,10 +21,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class DocumentService {
@@ -38,7 +38,7 @@ public class DocumentService {
     public DocumentService() {
     }
 
-    public Optional<DocumentDto> getDocumentByURL(String url){
+    public Optional<DocumentDto> getDocumentByUrl(String url){
         return documentRepo.findByUrl(url);
     }
 
@@ -46,14 +46,34 @@ public class DocumentService {
         return documentRepo.findAll();
     }
 
+    public void buildWebsiteSummary(String url, String content) throws JsonProcessingException {
+        checkUrl(url);
+        checkContent(content);
+        System.out.println("Content size to be processed: " + content.length());
+        content = scrapContent(content,url);
+        System.out.println("Content size after scraping: " + content.length());
+        // Generating the prompt dynamically
+        var prompt = generatePrompt(content);
+        // Requesting the AI
+        var aiAnswer = requestToAi(prompt);
+        buildAnswer(aiAnswer,url);
+    }
+
+    public void buildYoutubeVodSummary(String url) throws JsonProcessingException {
+        checkUrl(url);
+        String content = scrapYoutubeVod(url);
+        System.out.println("Content size after scraping: " + content.length());
+        // Generating the prompt dynamically
+        var prompt = generateYoutubePrompt(content);
+        // Requesting the AI
+        var aiAnswer = requestToAi(prompt);
+        buildAnswer(aiAnswer,url);
+    }
+
 
     public String generatePrompt(
-            String content,
-            String url
+            String content
     ) {
-        if (isYoutubeVideo(url)){
-            return generateYoutubePrompt(content);
-        }
         try {
             List<String> exampleInputLines = Files.readAllLines(Paths.get("src/main/resources/static/pageExample.html"));
             String inputExample = String.join("\n", exampleInputLines);
@@ -189,9 +209,6 @@ public class DocumentService {
     }
 
     public String scrapContent(String content,String url) {
-        if (isYoutubeVideo(url)){
-            return getYoutubeContent(url);
-        }
         Document document = Jsoup.parse(content);
 
         document.select("script, style, form, nav, aside, button, svg").remove();
@@ -199,8 +216,8 @@ public class DocumentService {
         return document.text();
     }
 
-    public boolean isYoutubeVideo(String videoUrl) {
-        return videoUrl != null && videoUrl.startsWith("https://www.youtube.com/watch?");
+    public String scrapYoutubeVod(String url) {
+        return getYoutubeContent(url);
     }
 
     private String getYoutubeContent(String url) {
@@ -236,5 +253,47 @@ public class DocumentService {
         process.waitFor();
 
         return output.toString().trim();
+    }
+
+    public void checkUrl(String url) {
+        if (url == null || url.isEmpty()) {
+            ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body("The 'url' parameter is required and cannot be empty.");
+            return;
+        }
+
+        if (getDocumentByUrl(url).isPresent()){
+            ResponseEntity
+                    .status(HttpStatus.CONFLICT)
+                    .body("A document with this URL already exists.");
+        }
+
+    }
+
+    public void checkContent(String content) {
+        if (content == null || content.isEmpty()) {
+            ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body("The 'content' parameter is required and cannot be empty.");
+        }
+    }
+
+    public void buildAnswer(AIFilledDocument aiAnswer, String url) throws JsonProcessingException {
+        // Building the response
+        DocumentDto documentDto = new DocumentDto(aiAnswer, url);
+        String answer = objectMapper.writeValueAsString(documentDto);
+
+        // Handle Classifiers
+        var newClassifiers = Arrays.stream(aiAnswer.getClassifiers())
+                .filter(classifier -> !classifierService.getAllClassifiers().contains(classifier))
+                .toArray(String[]::new);
+        for (String newClassifier : newClassifiers) {
+            classifierService.addClassifier(newClassifier);
+        }
+
+        // Saving the document
+        documentRepo.save(documentDto);
+        ResponseEntity.ok(answer);
     }
 }
