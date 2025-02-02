@@ -2,6 +2,8 @@ package com.polytech.webscraipper.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.polytech.webscraipper.dto.AIFilledDocument;
+import com.polytech.webscraipper.dto.DocumentDto;
+import com.polytech.webscraipper.repositories.DocumentRepository;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.ai.chat.model.ChatModel;
@@ -19,6 +21,7 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class DocumentService {
@@ -26,11 +29,21 @@ public class DocumentService {
     private ObjectMapper objectMapper = new ObjectMapper();
 
     @Autowired
+    private DocumentRepository documentRepo;
+    @Autowired
     private ClassifierService classifierService;
     @Autowired
     private ChatModel chatModel;
 
     public DocumentService() {
+    }
+
+    public Optional<DocumentDto> getDocumentByURL(String url){
+        return documentRepo.findByUrl(url);
+    }
+
+    public List<DocumentDto> getAllDocuments(){
+        return documentRepo.findAll();
     }
 
 

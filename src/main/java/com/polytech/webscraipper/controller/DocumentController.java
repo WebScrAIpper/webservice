@@ -29,12 +29,13 @@ public class DocumentController {
     }
 
     @GetMapping("/documents")
-    public List<DocumentDto> getDocuments(@RequestParam(required = false) String url) {
-        if (url != null) {
-            return List.of(documentRepo.findByUrl(url)
-                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Document not found")));
-        }
-        return documentRepo.findAll();
+    public List<DocumentDto> getAllDocuments() {
+        return documentService.getAllDocuments();
+    }
+
+    @GetMapping("/document")
+    public DocumentDto getDocumentByURL(@RequestParam String url) {
+        return documentService.getDocumentByURL(url).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Document not found"));
     }
 
     @CrossOrigin(origins = "*")
