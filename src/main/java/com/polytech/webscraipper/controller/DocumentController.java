@@ -9,6 +9,7 @@ import com.polytech.webscraipper.services.ClassifierService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
@@ -30,7 +31,11 @@ public class DocumentController {
     }
 
     @GetMapping("/documents")
-    public List<DocumentDto> getDocuments() {
+    public List<DocumentDto> getDocuments(@RequestParam(required = false) String url) {
+        if (url != null) {
+            return List.of(documentRepo.findByUrl(url)
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Document not found")));
+        }
         return documentRepo.findAll();
     }
 
@@ -38,6 +43,7 @@ public class DocumentController {
     @PostMapping("/build")
     public ResponseEntity<String> buildAWebSiteResume(
             @RequestParam String url,
+
             @RequestBody String content) throws Exception {
 
         if (url == null || url.isEmpty()) {
@@ -51,12 +57,19 @@ public class DocumentController {
                     .body("The 'content' parameter is required and cannot be empty.");
         }
 
+        if (documentRepo.findByUrl(url).isPresent()) {
+            return ResponseEntity
+                    .status(HttpStatus.CONFLICT)
+                    .body("A document with this URL already exists.");
+        }
+
         System.out.println("Content size to be processed: " + content.length());
-        content = documentService.scrapContent(content);
+        content = documentService.scrapContent(content,url);
         System.out.println("Content size after scraping: " + content.length());
 
         // Generating the prompt dynamically
-        var prompt = documentService.generatePrompt(content);
+        var prompt = documentService.generatePrompt(content,url);
+
 
         try {
             // Requesting the AI
