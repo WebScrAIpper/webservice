@@ -196,7 +196,7 @@ public class DocumentService {
 
         document.select("script, style, form, nav, aside, button, svg").remove();
         // TODO: think about the iframe
-        return document.text();
+        return document.toString();
     }
 
     public boolean isYoutubeVideo(String videoUrl) {
