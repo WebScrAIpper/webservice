@@ -2,6 +2,7 @@ plugins {
     java
     id("org.springframework.boot") version "3.4.2"
     id("io.spring.dependency-management") version "1.1.7"
+    kotlin("jvm")
 }
 
 group = "com.polytech"
@@ -19,22 +20,27 @@ repositories {
 }
 
 extra["springAiVersion"] = "1.0.0-M5"
+val springCloudVersion by extra("2024.0.0")
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-docker-compose")
-    implementation ("org.springframework.boot:spring-boot-starter-data-mongodb")
+    implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("org.springframework.ai:spring-ai-openai-spring-boot-starter")
     implementation("org.jsoup:jsoup:1.15.4")
+    implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    implementation(kotlin("stdlib-jdk8"))
+    implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
 }
 
 
 dependencyManagement {
     imports {
         mavenBom("org.springframework.ai:spring-ai-bom:${property("springAiVersion")}")
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion")
     }
 }
 
