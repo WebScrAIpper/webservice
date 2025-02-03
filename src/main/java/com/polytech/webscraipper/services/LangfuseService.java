@@ -1,5 +1,7 @@
 package com.polytech.webscraipper.services;
 
+import com.polytech.webscraipper.sdk.LangfuseSDK;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import java.util.Map;
 import java.util.Base64;
@@ -15,6 +17,9 @@ public class LangfuseService {
 
     private final String sessionId = UUID.randomUUID().toString();
 
+    @Autowired
+    private LangfuseSDK langfuseSDK;
+
     public LangfuseService(@Value("${langfuse.api.username}") String username,
                            @Value("${langfuse.api.password}") String apiKey) {
         // Encodage en Base64 pour Basic Auth
@@ -28,6 +33,8 @@ public class LangfuseService {
     }
 
     public Mono<String> logLLMRequest(String url, String request, String response) {
+        //var res = langfuseSDK.prompts.getById("default-prompt");
+        //System.out.println(res);
         return webClient.post()
                 .uri("/traces")
                 .bodyValue(Map.of(

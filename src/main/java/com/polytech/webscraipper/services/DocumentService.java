@@ -48,10 +48,10 @@ public class DocumentService {
         var aiAnswer = requestToAi(prompt);
 
         if (aiAnswer == null)
-
             throw new IOException("The AI answer is null");;
 
         if (langfuseTracing) {
+            System.out.println("Sending Langfuse log...");
             var langResponse = langfuseService.logLLMRequest(url, prompt, objectMapper.writeValueAsString(aiAnswer));
             if (langResponse.block() != null && Objects.requireNonNull(langResponse.block()).startsWith("{\"id\":\"")) {
                 System.out.println("Langfuse log sent successfully");
@@ -79,7 +79,7 @@ public class DocumentService {
     "date": "2016-02-13",
     "image": null,
     "description": "This document discusses the importance of writing disposable code to reduce maintenance costs, emphasizing practices like intentional code duplication to minimize dependencies and the strategic layering and separation of code components.",
-    "content_type": "DOCUMENT",
+    "content_type": "ARTICLE",
     "language": "ENGLISH",
     "classifiers": ["Software Architecture", "Design Patterns"]
 }
