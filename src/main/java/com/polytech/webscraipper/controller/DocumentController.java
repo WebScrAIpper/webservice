@@ -1,12 +1,10 @@
 package com.polytech.webscraipper.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.polytech.webscraipper.dto.DocumentDto;
 import com.polytech.webscraipper.repositories.DocumentRepository;
 import com.polytech.webscraipper.services.DocumentService;
 import com.polytech.webscraipper.services.ClassifierService;
-import com.polytech.webscraipper.services.LangfuseService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,8 +23,6 @@ public class DocumentController
     private ClassifierService classifierService;
     @Autowired
     private DocumentRepository documentRepo;
-    @Autowired
-    private LangfuseService langfuseService;
 
 
     public DocumentController() {}
