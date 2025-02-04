@@ -4,103 +4,108 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
-    *             - title: the title of the document
-    *             - author: the author of the document
-    *             - date: the date of the document
-    *             - image: the image that best represents the document (not required for now)
-    *             - description: a short description of the document
-    *             - content_type: the type of content (can take the values ARTICLE | VIDEO | PODCAST)
-    *             - language: the language of the document
-    *             - classifiers: a list of topics that the document covers
+ * - title: the title of the document - author: the author of the document - date: the date of the
+ * document - image: the image that best represents the document (not required for now) -
+ * description: a short description of the document - content_type: the type of content (can take
+ * the values ARTICLE | VIDEO | PODCAST) - language: the language of the document - classifiers: a
+ * list of topics that the document covers
  */
 @Document
 public class AIFilledDocument {
-    protected String title;
-    protected String author;
-    protected String date;
-    protected String image;
-    protected String description;
-    protected CONTENT_TYPE content_type;
-    @JsonDeserialize(using = SupportedLanguagesDeserializer.class)
-    protected SUPPORTED_LANGUAGES language;
-    protected String[] classifiers;
+  protected String title;
+  protected String author;
+  protected String date;
+  protected String image;
+  protected String description;
+  protected CONTENT_TYPE content_type;
 
-    public AIFilledDocument() {
-    }
+  @JsonDeserialize(using = SupportedLanguagesDeserializer.class)
+  protected SUPPORTED_LANGUAGES language;
 
-    public AIFilledDocument(String title, String author, String date, String image, String description, CONTENT_TYPE content_type, SUPPORTED_LANGUAGES language, String[] classifiers) {
-        this.title = title;
-        this.author = author;
-        this.date = date;
-        this.image = image;
-        this.description = description;
-        this.content_type = content_type;
-        this.language = language;
-        this.classifiers = classifiers;
-    }
+  protected String[] classifiers;
 
-    public String getTitle() {
-        return title;
-    }
+  public AIFilledDocument() {}
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+  public AIFilledDocument(
+      String title,
+      String author,
+      String date,
+      String image,
+      String description,
+      CONTENT_TYPE content_type,
+      SUPPORTED_LANGUAGES language,
+      String[] classifiers) {
+    this.title = title;
+    this.author = author;
+    this.date = date;
+    this.image = image;
+    this.description = description;
+    this.content_type = content_type;
+    this.language = language;
+    this.classifiers = classifiers;
+  }
 
-    public String getAuthor() {
-        return author;
-    }
+  public String getTitle() {
+    return title;
+  }
 
-    public void setAuthor(String author) {
-        this.author = author;
-    }
+  public void setTitle(String title) {
+    this.title = title;
+  }
 
-    public String getDate() {
-        return date;
-    }
+  public String getAuthor() {
+    return author;
+  }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
+  public void setAuthor(String author) {
+    this.author = author;
+  }
 
-    public String getImage() {
-        return image;
-    }
+  public String getDate() {
+    return date;
+  }
 
-    public void setImage(String image) {
-        this.image = image;
-    }
+  public void setDate(String date) {
+    this.date = date;
+  }
 
-    public String getDescription() {
-        return description;
-    }
+  public String getImage() {
+    return image;
+  }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+  public void setImage(String image) {
+    this.image = image;
+  }
 
-    public CONTENT_TYPE getContent_type() {
-        return content_type;
-    }
+  public String getDescription() {
+    return description;
+  }
 
-    public void setContent_type(CONTENT_TYPE content_type) {
-        this.content_type = content_type;
-    }
+  public void setDescription(String description) {
+    this.description = description;
+  }
 
-    public SUPPORTED_LANGUAGES getLanguage() {
-        return language;
-    }
+  public CONTENT_TYPE getContent_type() {
+    return content_type;
+  }
 
-    public void setLanguage(SUPPORTED_LANGUAGES language) {
-        this.language = language;
-    }
+  public void setContent_type(CONTENT_TYPE content_type) {
+    this.content_type = content_type;
+  }
 
-    public String[] getClassifiers() {
-        return classifiers;
-    }
+  public SUPPORTED_LANGUAGES getLanguage() {
+    return language;
+  }
 
-    public void setClassifiers(String[] classifiers) {
-        this.classifiers = classifiers;
-    }
+  public void setLanguage(SUPPORTED_LANGUAGES language) {
+    this.language = language;
+  }
+
+  public String[] getClassifiers() {
+    return classifiers;
+  }
+
+  public void setClassifiers(String[] classifiers) {
+    this.classifiers = classifiers;
+  }
 }
-
