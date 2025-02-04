@@ -1,6 +1,7 @@
 package com.polytech.webscraipper.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.polytech.webscraipper.PromptException;
 import com.polytech.webscraipper.dto.AIFilledDocument;
 import com.polytech.webscraipper.dto.DocumentDto;
 import com.polytech.webscraipper.sdk.LangfuseSDK;
@@ -53,7 +54,7 @@ public class DocumentService {
         return documentRepo.findAll();
     }
 
-    public ResponseEntity<String> buildWebsiteSummary(String url, String content) throws IOException {
+    public DocumentDto buildWebsiteSummary(String url, String content) throws IOException, PromptException {
 
         // Scraping website content
         String scrappedContent = scrapContent(content);
@@ -66,7 +67,7 @@ public class DocumentService {
         return buildAnswer(aiAnswer,url);
     }
 
-    public ResponseEntity<String> buildYoutubeVodSummary(String url) throws IOException {
+    public DocumentDto buildYoutubeVodSummary(String url) throws IOException, PromptException {
 
         // Scraping vod content (transcript & metas)
         String content = scrapYoutubeVod(url);
@@ -101,11 +102,17 @@ public class DocumentService {
 
             Gson gson = new Gson();
             return gson.toJson(result);
-    public DocumentDto buildTheAiJson(String url, String content) throws IOException {
+        } catch (Exception e) {
+            return "{\"error\": \"" + e.getMessage() + "\"}";
+        }
+    }
+
+
+    public DocumentDto buildTheAiJson(String url, String content) throws IOException, PromptException {
         return buildTheAiJson(url, content, true);
     }
 
-    public DocumentDto buildTheAiJson(String url, String content, boolean langfuseTracing) throws IOException {
+    public DocumentDto buildTheAiJson(String url, String content, boolean langfuseTracing) throws PromptException, IOException {
         System.out.println("Content size to be processed: " + content.length());
         content = scrapContent(content);
         System.out.println("Content size after scraping: " + content.length());
@@ -135,10 +142,6 @@ public class DocumentService {
         return new DocumentDto(aiAnswer, url);
     }
 
-        } catch (Exception e) {
-            return "{\"error\": \"" + e.getMessage() + "\"}";
-        }
-    }
 
     public String generatePrompt(String content) {
         try {
@@ -153,7 +156,7 @@ public class DocumentService {
                         "date": "2016-02-13",
                         "image": null,
                         "description": "This document discusses the importance of writing disposable code to reduce maintenance costs, emphasizing practices like intentional code duplication to minimize dependencies and the strategic layering and separation of code components.",
-                        "content_type": "DOCUMENT",
+                        "content_type": "ARTICLE",
                         "language": "ENGLISH",
                         "classifiers": ["Software Architecture", "Design Patterns"]
                     }
@@ -254,7 +257,7 @@ public class DocumentService {
        \s""".stripIndent().formatted(resultExample, classifierService.getAllClassifiers(), content);
     }
 
-    public AIFilledDocument requestToAi(String prompt) throws IOException {
+    public AIFilledDocument requestToAi(String prompt) throws PromptException {
 
         int MAX_TRIES = 3;
         int tries = 0;
@@ -270,7 +273,7 @@ public class DocumentService {
 
                 String aiResponseText = aiAnswer.getResult().getOutput().getText();
                 if (aiResponseText == null || aiResponseText.isEmpty()) {
-                    throw new IllegalArgumentException("AI returned an empty or invalid response.");
+                    throw new IOException("AI returned an empty or invalid response.");
                 }
 
                 System.out.println(aiResponseText);
@@ -278,22 +281,15 @@ public class DocumentService {
 
             } catch (IOException e) {
                 tries++;
-                if (tries >= MAX_TRIES) {
-                    throw new IOException("Failed to contact AI service after multiple attempts.");
-                }
-                System.out.println("An error occurred while processing the AI request. Retrying...");
-            } catch (Exception e) {
-                throw new RuntimeException("An unexpected error occurred while processing the AI request.");
+                System.out.println("Error while calling the AI: " + e.getMessage());
             }
         }
-        throw new IOException("Could not retrieve a valid response from AI after multiple attempts.");
+        throw new PromptException("The LLM did not succeed to fill the summary.");
     }
 
-    public ResponseEntity<String> buildAnswer(AIFilledDocument aiAnswer, String url) {
-        try {
+    public DocumentDto buildAnswer(AIFilledDocument aiAnswer, String url) {
             // Building the response
             DocumentDto documentDto = new DocumentDto(aiAnswer, url);
-            String answer = objectMapper.writeValueAsString(documentDto);
 
             // Handle Classifiers
             var newClassifiers = Arrays.stream(aiAnswer.getClassifiers())
@@ -305,14 +301,7 @@ public class DocumentService {
 
             // Saving the document
             documentRepo.save(documentDto);
-
-            return ResponseEntity.ok("Document summary successfully built : \n\n" + answer);
-
-        } catch (IOException | IllegalArgumentException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
-        }
+            return documentDto;
     }
 
     //TODO: think about moving this method somewhere else

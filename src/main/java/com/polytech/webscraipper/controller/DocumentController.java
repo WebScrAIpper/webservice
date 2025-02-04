@@ -1,5 +1,6 @@
 package com.polytech.webscraipper.controller;
 
+import com.polytech.webscraipper.PromptException;
 import com.polytech.webscraipper.dto.DocumentDto;
 import com.polytech.webscraipper.services.DocumentService;
 import org.springframework.http.HttpStatus;
@@ -50,7 +51,7 @@ public class DocumentController {
         return buildDocumentSummary(url, null, true); // true for YouTube
     }
 
-    private ResponseEntity<String> buildDocumentSummary(String url, String content, boolean isYoutube) throws IOException {
+    private ResponseEntity<String> buildDocumentSummary(String url, String content, boolean isYoutube) {
         if (url == null || url.isEmpty()) {
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
@@ -68,11 +69,26 @@ public class DocumentController {
                     .status(HttpStatus.BAD_REQUEST)
                     .body("The 'content' parameter is required and cannot be empty.");
         }
-
-        if (isYoutube) {
-            return documentService.buildYoutubeVodSummary(url);
-        } else {
-           return documentService.buildWebsiteSummary(url, content);
+        try {
+            if (isYoutube) {
+                var res = documentService.buildYoutubeVodSummary(url);
+                return ResponseEntity
+                        .status(HttpStatus.OK)
+                        .body("The document summary has been successfully built.\n" + res);
+            } else {
+                var res = documentService.buildWebsiteSummary(url, content);
+                return ResponseEntity
+                        .status(HttpStatus.OK)
+                        .body("The document summary has been successfully built.\n" + res);
+            }
+        } catch (PromptException e) {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(e.getMessage());
+        } catch (IOException e) {
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("An error occurred while building the document summary.");
         }
     }
 
