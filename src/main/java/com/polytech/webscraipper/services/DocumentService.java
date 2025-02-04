@@ -2,12 +2,16 @@ package com.polytech.webscraipper.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.polytech.webscraipper.dto.AIFilledDocument;
+import com.polytech.webscraipper.dto.DocumentDto;
+import com.polytech.webscraipper.repositories.DocumentRepository;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.openai.OpenAiChatOptions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import com.google.gson.Gson;
 
@@ -16,15 +20,15 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class DocumentService {
 
     private ObjectMapper objectMapper = new ObjectMapper();
 
+    @Autowired
+    private DocumentRepository documentRepo;
     @Autowired
     private ClassifierService classifierService;
     @Autowired
@@ -33,13 +37,69 @@ public class DocumentService {
     public DocumentService() {
     }
 
-    public String generatePrompt(
-            String content,
-            String url
-    ) {
-        if (isYoutubeVideo(url)){
-            return generateYoutubePrompt(content);
+    public Optional<DocumentDto> getDocumentByUrl(String url){
+        return documentRepo.findByUrl(url);
+    }
+
+    public List<DocumentDto> getAllDocuments(){
+        return documentRepo.findAll();
+    }
+
+    public ResponseEntity<String> buildWebsiteSummary(String url, String content) throws IOException {
+
+        // Scraping website content
+        String scrappedContent = scrapContent(content);
+
+        // Generating the prompt dynamically
+        var prompt = generatePrompt(scrappedContent);
+
+        // Requesting the AI
+        var aiAnswer = requestToAi(prompt);
+        return buildAnswer(aiAnswer,url);
+    }
+
+    public ResponseEntity<String> buildYoutubeVodSummary(String url) throws IOException {
+
+        // Scraping vod content (transcript & metas)
+        String content = scrapYoutubeVod(url);
+
+        // Generating the prompt dynamically
+        var prompt = generateYoutubePrompt(content);
+
+        // Requesting the AI
+        var aiAnswer = requestToAi(prompt);
+        return buildAnswer(aiAnswer,url);
+    }
+
+    public String scrapContent(String content) {
+        Document document = Jsoup.parse(content);
+
+        document.select("script, style, form, nav, aside, button, svg").remove();
+        //TODO: think about the iframe
+        return document.toString();
+    }
+
+    private String scrapYoutubeVod(String url) {
+        try {
+            // Get vod metadata
+            String videoInfoJson = executePythonScript("src/scripts/get_yt_infos.py", url);
+
+            // Get transcript
+            String transcript = executePythonScript("src/scripts/get_transcript.py", url);
+
+            Map<String, String> result = new HashMap<>();
+            result.put("metadata", videoInfoJson);
+            result.put("transcript", transcript);
+
+            Gson gson = new Gson();
+            return gson.toJson(result);
+
+        } catch (Exception e) {
+            return "{\"error\": \"" + e.getMessage() + "\"}";
         }
+    }
+
+    public String generatePrompt(String content) {
         try {
             List<String> exampleInputLines = Files
                     .readAllLines(Paths.get("src/main/resources/static/pageExample.html"));
@@ -153,7 +213,7 @@ public class DocumentService {
        \s""".stripIndent().formatted(resultExample, classifierService.getAllClassifiers(), content);
     }
 
-    public AIFilledDocument requestToAi(String prompt) throws Exception {
+    public AIFilledDocument requestToAi(String prompt) throws IOException {
 
         int MAX_TRIES = 3;
         int tries = 0;
@@ -188,42 +248,34 @@ public class DocumentService {
         throw new IOException("Could not retrieve a valid response from AI after multiple attempts.");
     }
 
-    public String scrapContent(String content,String url) {
-        if (isYoutubeVideo(url)){
-            return getYoutubeContent(url);
-        }
-        Document document = Jsoup.parse(content);
-
-        document.select("script, style, form, nav, aside, button, svg").remove();
-        // TODO: think about the iframe
-        return document.toString();
-    }
-
-    public boolean isYoutubeVideo(String videoUrl) {
-        return videoUrl != null && videoUrl.startsWith("https://www.youtube.com/watch?");
-    }
-
-    private String getYoutubeContent(String url) {
+    public ResponseEntity<String> buildAnswer(AIFilledDocument aiAnswer, String url) {
         try {
-            //Get video information
-            String videoInfoJson = executeScript("src/scripts/get_yt_infos.py", url);
+            // Building the response
+            DocumentDto documentDto = new DocumentDto(aiAnswer, url);
+            String answer = objectMapper.writeValueAsString(documentDto);
 
-            //Get transcript
-            String transcript = executeScript("src/scripts/get_transcript.py", url);
+            // Handle Classifiers
+            var newClassifiers = Arrays.stream(aiAnswer.getClassifiers())
+                    .filter(classifier -> !classifierService.getAllClassifiers().contains(classifier))
+                    .toArray(String[]::new);
+            for (String newClassifier : newClassifiers) {
+                classifierService.addClassifier(newClassifier);
+            }
 
-            Map<String, String> result = new HashMap<>();
-            result.put("infos", videoInfoJson);
-            result.put("transcript", transcript);
+            // Saving the document
+            documentRepo.save(documentDto);
 
-            Gson gson = new Gson();
-            return gson.toJson(result);
+            return ResponseEntity.ok("Document summary successfully built : \n\n" + answer);
 
-        } catch (Exception e) {
-            return "{\"error\": \"" + e.getMessage() + "\"}";
+        } catch (IOException | IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
 
-    private String executeScript(String scriptPath, String url) throws IOException, InterruptedException {
+    //TODO: think about moving this method somewhere else
+    public String executePythonScript(String scriptPath, String url) throws IOException, InterruptedException {
         ProcessBuilder pb = new ProcessBuilder("src/.venv/bin/python3", scriptPath, url);        Process process = pb.start();
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
