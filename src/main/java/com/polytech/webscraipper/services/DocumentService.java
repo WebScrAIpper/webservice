@@ -1,6 +1,5 @@
 package com.polytech.webscraipper.services;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.polytech.webscraipper.dto.AIFilledDocument;
 import com.polytech.webscraipper.dto.DocumentDto;
@@ -46,34 +45,61 @@ public class DocumentService {
         return documentRepo.findAll();
     }
 
-    public void buildWebsiteSummary(String url, String content) throws JsonProcessingException {
-        checkUrl(url);
-        checkContent(content);
-        System.out.println("Content size to be processed: " + content.length());
-        content = scrapContent(content,url);
-        System.out.println("Content size after scraping: " + content.length());
+    public ResponseEntity<String> buildWebsiteSummary(String url, String content) {
+
+        // Scraping website content
+        String scrappedContent = scrapContent(content);
+
         // Generating the prompt dynamically
-        var prompt = generatePrompt(content);
+        var prompt = generatePrompt(scrappedContent);
+
         // Requesting the AI
         var aiAnswer = requestToAi(prompt);
-        buildAnswer(aiAnswer,url);
+        return buildAnswer(aiAnswer,url);
     }
 
-    public void buildYoutubeVodSummary(String url) throws JsonProcessingException {
-        checkUrl(url);
+    public ResponseEntity<String> buildYoutubeVodSummary(String url) {
+
+        // Scraping vod content (transcript & metas)
         String content = scrapYoutubeVod(url);
-        System.out.println("Content size after scraping: " + content.length());
+
         // Generating the prompt dynamically
         var prompt = generateYoutubePrompt(content);
+
         // Requesting the AI
         var aiAnswer = requestToAi(prompt);
-        buildAnswer(aiAnswer,url);
+        return buildAnswer(aiAnswer,url);
     }
 
+    public String scrapContent(String content) {
+        Document document = Jsoup.parse(content);
 
-    public String generatePrompt(
-            String content
-    ) {
+        document.select("script, style, form, nav, aside, button, svg").remove();
+        //TODO: think about the iframe
+        return document.toString();
+    }
+
+    private String scrapYoutubeVod(String url) {
+        try {
+            // Get vod metadata
+            String videoInfoJson = executePythonScript("src/scripts/get_yt_infos.py", url);
+
+            // Get transcript
+            String transcript = executePythonScript("src/scripts/get_transcript.py", url);
+
+            Map<String, String> result = new HashMap<>();
+            result.put("metadata", videoInfoJson);
+            result.put("transcript", transcript);
+
+            Gson gson = new Gson();
+            return gson.toJson(result);
+
+        } catch (Exception e) {
+            return "{\"error\": \"" + e.getMessage() + "\"}";
+        }
+    }
+
+    public String generatePrompt(String content) {
         try {
             List<String> exampleInputLines = Files.readAllLines(Paths.get("src/main/resources/static/pageExample.html"));
             String inputExample = String.join("\n", exampleInputLines);
@@ -208,39 +234,34 @@ public class DocumentService {
         return null;
     }
 
-    public String scrapContent(String content,String url) {
-        Document document = Jsoup.parse(content);
-
-        document.select("script, style, form, nav, aside, button, svg").remove();
-        //TODO: think about the iframe
-        return document.text();
-    }
-
-    public String scrapYoutubeVod(String url) {
-        return getYoutubeContent(url);
-    }
-
-    private String getYoutubeContent(String url) {
+    public ResponseEntity<String> buildAnswer(AIFilledDocument aiAnswer, String url) {
         try {
-            //Get video information
-            String videoInfoJson = executeScript("src/scripts/get_yt_infos.py", url);
+            // Building the response
+            DocumentDto documentDto = new DocumentDto(aiAnswer, url);
+            String answer = objectMapper.writeValueAsString(documentDto);
 
-            //Get transcript
-            String transcript = executeScript("src/scripts/get_transcript.py", url);
+            // Handle Classifiers
+            var newClassifiers = Arrays.stream(aiAnswer.getClassifiers())
+                    .filter(classifier -> !classifierService.getAllClassifiers().contains(classifier))
+                    .toArray(String[]::new);
+            for (String newClassifier : newClassifiers) {
+                classifierService.addClassifier(newClassifier);
+            }
 
-            Map<String, String> result = new HashMap<>();
-            result.put("infos", videoInfoJson);
-            result.put("transcript", transcript);
+            // Saving the document
+            documentRepo.save(documentDto);
 
-            Gson gson = new Gson();
-            return gson.toJson(result);
+            return ResponseEntity.ok("Document summary successfully built : \n\n" + answer);
 
-        } catch (Exception e) {
-            return "{\"error\": \"" + e.getMessage() + "\"}";
+        } catch (IOException | IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
 
-    private String executeScript(String scriptPath, String url) throws IOException, InterruptedException {
+    //TODO: think about moving this method somewhere else
+    public String executePythonScript(String scriptPath, String url) throws IOException, InterruptedException {
         ProcessBuilder pb = new ProcessBuilder("src/.venv/bin/python3", scriptPath, url);        Process process = pb.start();
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
@@ -253,47 +274,5 @@ public class DocumentService {
         process.waitFor();
 
         return output.toString().trim();
-    }
-
-    public void checkUrl(String url) {
-        if (url == null || url.isEmpty()) {
-            ResponseEntity
-                    .status(HttpStatus.BAD_REQUEST)
-                    .body("The 'url' parameter is required and cannot be empty.");
-            return;
-        }
-
-        if (getDocumentByUrl(url).isPresent()){
-            ResponseEntity
-                    .status(HttpStatus.CONFLICT)
-                    .body("A document with this URL already exists.");
-        }
-
-    }
-
-    public void checkContent(String content) {
-        if (content == null || content.isEmpty()) {
-            ResponseEntity
-                    .status(HttpStatus.BAD_REQUEST)
-                    .body("The 'content' parameter is required and cannot be empty.");
-        }
-    }
-
-    public void buildAnswer(AIFilledDocument aiAnswer, String url) throws JsonProcessingException {
-        // Building the response
-        DocumentDto documentDto = new DocumentDto(aiAnswer, url);
-        String answer = objectMapper.writeValueAsString(documentDto);
-
-        // Handle Classifiers
-        var newClassifiers = Arrays.stream(aiAnswer.getClassifiers())
-                .filter(classifier -> !classifierService.getAllClassifiers().contains(classifier))
-                .toArray(String[]::new);
-        for (String newClassifier : newClassifiers) {
-            classifierService.addClassifier(newClassifier);
-        }
-
-        // Saving the document
-        documentRepo.save(documentDto);
-        ResponseEntity.ok(answer);
     }
 }
