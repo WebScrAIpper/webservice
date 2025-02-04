@@ -45,7 +45,7 @@ public class DocumentService {
         return documentRepo.findAll();
     }
 
-    public ResponseEntity<String> buildWebsiteSummary(String url, String content) {
+    public ResponseEntity<String> buildWebsiteSummary(String url, String content) throws IOException {
 
         // Scraping website content
         String scrappedContent = scrapContent(content);
@@ -58,7 +58,7 @@ public class DocumentService {
         return buildAnswer(aiAnswer,url);
     }
 
-    public ResponseEntity<String> buildYoutubeVodSummary(String url) {
+    public ResponseEntity<String> buildYoutubeVodSummary(String url) throws IOException {
 
         // Scraping vod content (transcript & metas)
         String content = scrapYoutubeVod(url);
@@ -213,7 +213,7 @@ public class DocumentService {
        \s""".stripIndent().formatted(resultExample, classifierService.getAllClassifiers(), content);
     }
 
-    public AIFilledDocument requestToAi(String prompt) throws Exception {
+    public AIFilledDocument requestToAi(String prompt) throws IOException {
 
         int MAX_TRIES = 3;
         int tries = 0;

@@ -1,7 +1,5 @@
 package com.polytech.webscraipper.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.polytech.webscraipper.dto.DocumentDto;
 import com.polytech.webscraipper.services.DocumentService;
 import org.springframework.http.HttpStatus;
@@ -10,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.io.IOException;
 import java.util.*;
 
 @RestController
@@ -40,18 +39,18 @@ public class DocumentController {
     @PostMapping("/build")
     public ResponseEntity<String> buildWebsiteSummary(
             @RequestParam String url,
-            @RequestBody String content) {
+            @RequestBody String content) throws IOException {
         return buildDocumentSummary(url, content, false); // false for website
     }
 
     @CrossOrigin(origins = "*")
     @PostMapping("/youtubeBuild")
-    public ResponseEntity<String> buildYoutubeVodSummary(
-            @RequestParam String url) {
+    public ResponseEntity<String> buildYoutubeVodSummary (
+            @RequestParam String url) throws IOException {
         return buildDocumentSummary(url, null, true); // true for YouTube
     }
 
-    private ResponseEntity<String> buildDocumentSummary(String url, String content, boolean isYoutube) {
+    private ResponseEntity<String> buildDocumentSummary(String url, String content, boolean isYoutube) throws IOException {
         if (url == null || url.isEmpty()) {
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
