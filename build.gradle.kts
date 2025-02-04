@@ -30,10 +30,13 @@ dependencies {
     implementation("org.springframework.ai:spring-ai-openai-spring-boot-starter")
     implementation("org.jsoup:jsoup:1.15.4")
     implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.springframework.boot:spring-boot-starter-test") {
+        exclude(group = "org.mockito")
+    }
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     implementation(kotlin("stdlib-jdk8"))
     implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
+    implementation("io.github.openfeign:feign-okhttp:13.5")
 }
 
 

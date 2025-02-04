@@ -1,36 +1,35 @@
 package com.polytech.webscraipper.sdk.responses
 
+import com.fasterxml.jackson.annotation.JsonFormat
+import java.time.LocalDateTime
+
 data class PromptResponse(
+    @JvmField
+    val id: String,
+    @JvmField
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSX")
+    val createdAt: LocalDateTime,
+    @JvmField
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSX")
+    val updatedAt: LocalDateTime,
+    @JvmField
+    val projectId: String,
+    @JvmField
+    val createdBy: String,
+    @JvmField
     val type: String,
-    val prompt: List<Prompt>,
+    @JvmField
+    val prompt: String,
+    @JvmField
     val name: String,
+    @JvmField
     val version: Int,
+    @JvmField
     val config: Any?,
+    @JvmField
     val labels: List<String>,
+    @JvmField
     val tags: List<String>,
-    val commitMessage: String
-) {
-    data class Prompt(
-        val role: String,
-        val content: String
-    )
-}
-//    {
-//        "type": "chat",
-//        "prompt": [
-//        {
-//            "role": "…",
-//            "content": "…"
-//        }
-//        ],
-//        "name": "…",
-//        "version": 1,
-//        "config": null,
-//        "labels": [
-//        "…"
-//        ],
-//        "tags": [
-//        "…"
-//        ],
-//        "commitMessage": "…"
-//    }
+    @JvmField
+    val commitMessage: String?
+)
