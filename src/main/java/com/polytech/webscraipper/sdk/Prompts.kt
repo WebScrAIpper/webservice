@@ -24,14 +24,12 @@ class Prompts(private val promptsClient: PromptsClient) {
     fun getAll(): List<PromptsResponse.IndividualPrompt> = promptsClient.getAllPrompts().data
 
     @JvmOverloads
-    fun getByName(promptName: String, version: Int? = null, label: String? = null): PromptResponse {
-        return promptsClient.getPromptByName(promptName, version, label)
-    }
+    fun getByName(promptName: String, version: Int? = null, label: String? = null): PromptResponse = promptsClient.getPromptByName(promptName, version, label)
 
     @FeignClient(
         name = "langfuse-sdk-prompts",
         url = "https://cloud.langfuse.com/api/public/v2/prompts",
-        configuration = [FeignConfig::class]
+        configuration = [FeignConfig::class],
     )
     interface PromptsClient {
 
@@ -42,16 +40,16 @@ class Prompts(private val promptsClient: PromptsClient) {
         fun getPromptByName(
             @PathVariable("promptId") promptId: String,
             @RequestParam("version", required = false) version: Int? = null,
-            @RequestParam("label", required = false) label: String? = null
+            @RequestParam("label", required = false) label: String? = null,
         ): PromptResponse
     }
 
-    fun extractVariablesFromText(text : String) : List<String> {
+    fun extractVariablesFromText(text: String): List<String> {
         val regex = Regex("\\{\\{([^}]*)}}")
         return regex.findAll(text).map { it.groupValues[1] }.toList()
     }
 
-    fun replacesVariablesInText(text : String, variables : Map<String, String>) : String {
+    fun replacesVariablesInText(text: String, variables: Map<String, String>): String {
         var newText = text
 
         val reelVariables = extractVariablesFromText(text)
@@ -60,9 +58,7 @@ class Prompts(private val promptsClient: PromptsClient) {
             throw IllegalArgumentException("Not all variables have a value")
         }
 
-        variables.forEach { (key, value) -> newText = newText.replace("{{${key}}}", value) }
+        variables.forEach { (key, value) -> newText = newText.replace("{{$key}}", value) }
         return newText
     }
-
-
 }

@@ -14,16 +14,12 @@ open class FeignConfig(
     @Value("\${langfuse.api.username}")
     val username: String,
     @Value("\${langfuse.api.password}")
-    val apiKey: String
-)
-{
+    val apiKey: String,
+) {
     private val authHeader: String = "Basic " + Base64.getEncoder().encodeToString(("$username:$apiKey").toByteArray())
 
-
     @Bean
-    open fun authInterceptor(): RequestInterceptor {
-        return RequestInterceptor { template -> template.header("Authorization", authHeader) }
-    }
+    open fun authInterceptor(): RequestInterceptor = RequestInterceptor { template -> template.header("Authorization", authHeader) }
 
     @Bean
     open fun feignClient(): Client {

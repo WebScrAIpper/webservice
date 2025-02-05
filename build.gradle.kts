@@ -3,6 +3,21 @@ plugins {
     id("org.springframework.boot") version "3.4.2"
     id("io.spring.dependency-management") version "1.1.7"
     kotlin("jvm")
+    id("com.diffplug.spotless") version "7.0.2"
+}
+
+spotless {
+    kotlin {
+        ktlint().editorConfigOverride(
+            mapOf(
+                "ktlint_standard_no-wildcard-imports" to "disabled"
+            )
+        )
+    }
+    java {
+        googleJavaFormat()
+    }
+
 }
 
 group = "com.polytech"

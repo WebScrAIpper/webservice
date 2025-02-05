@@ -5,13 +5,9 @@ import org.springframework.web.bind.annotation.*
 
 class Traces(private val tracesClient: TracesClient) {
 
-    fun postTrace(traceData: Map<String, Any>): String {
-        return tracesClient.postTrace(traceData)
-    }
+    fun postTrace(traceData: Map<String, Any>): String = tracesClient.postTrace(traceData)
 
-    fun postTrace(vararg entries: Pair<String, Any>): String {
-        return postTrace(entries.toMap())
-    }
+    fun postTrace(vararg entries: Pair<String, Any>): String = postTrace(entries.toMap())
 
     fun postGenericAILog(
         promptName: String,
@@ -26,7 +22,7 @@ class Traces(private val tracesClient: TracesClient) {
             "promptVersion" to promptVersion,
             "response" to response,
             "sourceUrl" to sourceUrl,
-            "sessionId" to sessionId
+            "sessionId" to sessionId,
         )
         postTrace(traceRequest)
     }
@@ -34,7 +30,7 @@ class Traces(private val tracesClient: TracesClient) {
     @FeignClient(
         name = "langfuse-sdk-traces",
         url = "https://cloud.langfuse.com/api/public/traces",
-        configuration = [FeignConfig::class]
+        configuration = [FeignConfig::class],
     )
     interface TracesClient {
         @PostMapping("/")
