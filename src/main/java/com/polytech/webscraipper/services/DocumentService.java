@@ -13,7 +13,6 @@ import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
-import kotlin.Pair;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.ai.chat.model.ChatModel;
@@ -117,23 +116,24 @@ public class DocumentService {
     var aiAnswer = requestToAi(prompt);
 
     if (aiAnswer == null) throw new IOException("The AI answer is null");
-    ;
 
     if (langfuseTracing) {
       System.out.println("Sending Langfuse log...");
-      var langResponse =
-          langfuseSDK.traces.postTrace(
-              new Pair<>("name", "LLM Request"),
-              new Pair<>("url", url),
-              new Pair<>("input", prompt),
-              new Pair<>("output", objectMapper.writeValueAsString(aiAnswer)),
-              new Pair<>("sessionId", SESSION_ID));
+      Map<String, Object> args =
+          Map.of(
+              "name", "LLM Request",
+              "url", url,
+              "input", prompt,
+              "output", objectMapper.writeValueAsString(aiAnswer),
+              "sessionId", SESSION_ID);
+      var langResponse = langfuseSDK.traces.postTrace(args);
+
       System.out.println(
           "Langfuse trace https://cloud.langfuse.com/project/cm6hy97qq06qy2y0ih8hh7ha2/traces/"
               + langResponse
                   .stripIndent()
                   .substring("{\"id\":\"".length(), langResponse.length() - 2)
-              + " sent.\nWarning: The serveur update might take a few minutes");
+              + " sent.\nWarning: The server update might take a few minutes");
     }
 
     // Building the response
@@ -214,7 +214,7 @@ public class DocumentService {
                 "date": "2016-02-13",
                 "image": null,
                 "description": "This document discusses the importance of writing disposable code to reduce maintenance costs, emphasizing practices like intentional code duplication to minimize dependencies and the strategic layering and separation of code components.",
-                "content_type": "DOCUMENT",
+                "content_type": "ARTICLE",
                 "language": "ENGLISH",
                 "classifiers": ["Software Architecture", "Design Patterns"]
             }
