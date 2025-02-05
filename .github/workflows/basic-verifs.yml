@@ -17,6 +17,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      LANGFUSE_API_SK: ${{ secrets.LANGFUSE_API_SK }}
+      LANGFUSE_API_PK: ${{ secrets.LANGFUSE_API_PK }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
