@@ -1,6 +1,5 @@
 package com.polytech.webscraipper.sdk.responses
 
-
 data class PromptsResponse(
     @JvmField
     val data: List<IndividualPrompt>,
@@ -16,6 +15,6 @@ data class PromptsResponse(
         @JvmField
         val versions: List<Int>,
         @JvmField
-        val labels: List<String>
+        val labels: List<String>,
     )
 }

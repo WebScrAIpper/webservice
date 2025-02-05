@@ -31,5 +31,5 @@ data class PromptResponse(
     @JvmField
     val tags: List<String>,
     @JvmField
-    val commitMessage: String?
+    val commitMessage: String?,
 )
