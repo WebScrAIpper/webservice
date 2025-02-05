@@ -1,3 +1,5 @@
+# Might be a temporary solution, if we have time it should be rewritten in Java
+
 import sys
 import json
 import yt_dlp

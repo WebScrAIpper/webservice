@@ -26,3 +26,17 @@ Run the following command to start the application:
 ./gradlew bootRun
 ```
 
+### Langfuse setup 
+
+Linux and MacOS:
+```bash
+export LANGFUSE_API_SK="sk-XXXXXXXXXXX"
+export LANGFUSE_API_PK "pk-XXXXXXXXXXX"
+
+```
+
+Windows:
+```cmd
+setx LANGFUSE_API_SK "sk-XXXXXXXXXXX"
+setx LANGFUSE_API_PK "pk-XXXXXXXXXXX"
+```
