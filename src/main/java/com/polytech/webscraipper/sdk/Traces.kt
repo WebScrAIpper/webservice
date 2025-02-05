@@ -1,17 +1,16 @@
 package com.polytech.webscraipper.sdk
 
 import org.springframework.cloud.openfeign.FeignClient
-import org.springframework.cloud.openfeign.RefreshableUrl
 import org.springframework.web.bind.annotation.*
 
 class Traces(private val tracesClient: TracesClient) {
 
-    fun postTrace(traceRequest: Map<String, Any>): String {
-        return tracesClient.postTrace(traceRequest)
+    fun postTrace(traceData: Map<String, Any>): String {
+        return tracesClient.postTrace(traceData)
     }
 
-    fun postTrace(vararg traceRequest: Pair<String, Any>): String {
-        return postTrace(traceRequest.toMap())
+    fun postTrace(vararg entries: Pair<String, Any>): String {
+        return postTrace(entries.toMap())
     }
 
     fun postGenericAILog(
