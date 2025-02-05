@@ -12,12 +12,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
  */
 @Document
 public class AIFilledDocument {
-  protected String title;
+  protected     String title;
   protected String author;
-  protected String date;
+  protected String    date;
   protected String image;
-  protected String description;
-  protected CONTENT_TYPE content_type;
+  protected String   description;
+  protected CONTENT_TYPE    content_type;
 
   @JsonDeserialize(using = SupportedLanguagesDeserializer.class)
   protected SUPPORTED_LANGUAGES language;

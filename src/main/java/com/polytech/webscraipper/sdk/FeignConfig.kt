@@ -16,7 +16,7 @@ open class FeignConfig(
     @Value("\${langfuse.api.password}")
     val apiKey: String,
 ) {
-    private val authHeader: String = "Basic " + Base64.getEncoder().encodeToString(("$username:$apiKey").toByteArray())
+    private val      authHeader: String = "Basic " + Base64.getEncoder().encodeToString(("$username:$apiKey").toByteArray())
 
     @Bean
     open fun authInterceptor(): RequestInterceptor = RequestInterceptor { template -> template.header("Authorization", authHeader) }
