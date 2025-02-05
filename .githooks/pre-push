@@ -1,3 +1,23 @@
 #!/bin/sh
+
+echo "Running Spotless before commit..."
+
+# Get a list of currently staged files (before running Spotless)
+STAGED_FILES=$(git diff --name-only --cached)
+
+# Run Spotless formatting
 ./gradlew spotlessApply
-git add .
+
+# Get a list of all modified files after Spotless ran
+MODIFIED_FILES=$(git diff --name-only)
+
+# Get only the intersection: files that were both staged and modified by Spotless
+FILES_TO_STAGE=$(comm -12 <(echo "$STAGED_FILES" | sort) <(echo "$MODIFIED_FILES" | sort))
+
+# Stage only those files
+if [ -n "$FILES_TO_STAGE" ]; then
+    echo "$FILES_TO_STAGE" | xargs git add
+    echo "Spotless formatting applied and staged only for originally staged files."
+else
+    echo "No formatting changes detected."
+fi
