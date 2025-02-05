@@ -214,7 +214,7 @@ public class DocumentService {
                 "date": "2016-02-13",
                 "image": null,
                 "description": "This document discusses the importance of writing disposable code to reduce maintenance costs, emphasizing practices like intentional code duplication to minimize dependencies and the strategic layering and separation of code components.",
-                "content_type": "DOCUMENT",
+                "content_type": "ARTICLE",
                 "language": "ENGLISH",
                 "classifiers": ["Software Architecture", "Design Patterns"]
             }
