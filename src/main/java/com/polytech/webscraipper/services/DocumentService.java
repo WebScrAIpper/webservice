@@ -121,19 +121,22 @@ public class DocumentService {
 
     if (langfuseTracing) {
       System.out.println("Sending Langfuse log...");
+      Map<String, Object> args = Map.of(
+              "name", "LLM Request",
+              "url", url,
+              "input", prompt,
+              "output", objectMapper.writeValueAsString(aiAnswer),
+              "sessionId", SESSION_ID
+      );
       var langResponse =
-          langfuseSDK.traces.postTrace(
-              new Pair<>("name", "LLM Request"),
-              new Pair<>("url", url),
-              new Pair<>("input", prompt),
-              new Pair<>("output", objectMapper.writeValueAsString(aiAnswer)),
-              new Pair<>("sessionId", SESSION_ID));
+          langfuseSDK.traces.postTrace(args);
+
       System.out.println(
           "Langfuse trace https://cloud.langfuse.com/project/cm6hy97qq06qy2y0ih8hh7ha2/traces/"
               + langResponse
                   .stripIndent()
                   .substring("{\"id\":\"".length(), langResponse.length() - 2)
-              + " sent.\nWarning: The serveur update might take a few minutes");
+              + " sent.\nWarning: The server update might take a few minutes");
     }
 
     // Building the response
