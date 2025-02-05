@@ -8,7 +8,11 @@ plugins {
 
 spotless {
     kotlin {
-        ktlint("0.50.0")
+        ktlint().editorConfigOverride(
+            mapOf(
+                "ktlint_standard_no-wildcard-imports" to "disabled"
+            )
+        )
     }
     java {
         googleJavaFormat()
