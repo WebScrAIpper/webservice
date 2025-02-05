@@ -2,16 +2,16 @@
 
 echo "Running Spotless before commit..."
 
-# Get a list of currently staged files (before running Spotless)
+# Get a list of currently staged files
 STAGED_FILES=$(git diff --name-only --cached)
 
-# Run Spotless formatting
-./gradlew spotlessApply
+# Run Spotless formatting (force synchronous execution)
+./gradlew spotlessApply || { echo "Spotless failed! Aborting commit."; exit 1; }
 
-# Get a list of all modified files after Spotless ran
+# Get a list of modified files after Spotless ran
 MODIFIED_FILES=$(git diff --name-only)
 
-# Get only the intersection: files that were both staged and modified by Spotless
+# Find the intersection: files that were both staged and modified
 FILES_TO_STAGE=$(comm -12 <(echo "$STAGED_FILES" | sort) <(echo "$MODIFIED_FILES" | sort))
 
 # Stage only those files
@@ -21,3 +21,6 @@ if [ -n "$FILES_TO_STAGE" ]; then
 else
     echo "No formatting changes detected."
 fi
+
+echo "Pre-commit hook completed."
+exit 0

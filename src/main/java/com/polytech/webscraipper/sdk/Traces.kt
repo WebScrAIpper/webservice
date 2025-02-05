@@ -7,6 +7,8 @@ class Traces(private val tracesClient: TracesClient) {
 
     fun postTrace(traceData: Map<String, Any>): String = tracesClient.postTrace(traceData)
 
+    fun postTrace(vararg entries: Pair<String, Any>): String = postTrace(entries.toMap())
+
     fun postGenericAILog(
         promptName: String,
         promptVersion: Int,
