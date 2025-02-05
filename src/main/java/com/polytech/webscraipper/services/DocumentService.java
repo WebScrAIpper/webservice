@@ -13,7 +13,6 @@ import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
-import kotlin.Pair;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.ai.chat.model.ChatModel;
@@ -117,19 +116,17 @@ public class DocumentService {
     var aiAnswer = requestToAi(prompt);
 
     if (aiAnswer == null) throw new IOException("The AI answer is null");
-    ;
 
     if (langfuseTracing) {
       System.out.println("Sending Langfuse log...");
-      Map<String, Object> args = Map.of(
+      Map<String, Object> args =
+          Map.of(
               "name", "LLM Request",
               "url", url,
               "input", prompt,
               "output", objectMapper.writeValueAsString(aiAnswer),
-              "sessionId", SESSION_ID
-      );
-      var langResponse =
-          langfuseSDK.traces.postTrace(args);
+              "sessionId", SESSION_ID);
+      var langResponse = langfuseSDK.traces.postTrace(args);
 
       System.out.println(
           "Langfuse trace https://cloud.langfuse.com/project/cm6hy97qq06qy2y0ih8hh7ha2/traces/"

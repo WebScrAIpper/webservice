@@ -17,8 +17,7 @@ import org.springframework.web.server.ResponseStatusException;
 public class DocumentController {
 
   @Autowired private DocumentService documentService;
-    @Autowired
-    private ObjectMapper objectMapper;
+  @Autowired private ObjectMapper objectMapper;
 
   public DocumentController() {}
 
@@ -70,11 +69,15 @@ public class DocumentController {
       if (isYoutube) {
         var res = documentService.buildYoutubeVodSummary(url);
         return ResponseEntity.status(HttpStatus.OK)
-            .body("The document summary has been successfully built.\n" + objectMapper.writeValueAsString(res));
+            .body(
+                "The document summary has been successfully built.\n"
+                    + objectMapper.writeValueAsString(res));
       } else {
         var res = documentService.buildWebsiteSummary(url, content);
         return ResponseEntity.status(HttpStatus.OK)
-            .body("The document summary has been successfully built.\n" + objectMapper.writeValueAsString(res));
+            .body(
+                "The document summary has been successfully built.\n"
+                    + objectMapper.writeValueAsString(res));
       }
     } catch (PromptException e) {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
