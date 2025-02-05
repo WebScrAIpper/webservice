@@ -1,23 +1,26 @@
-# Utilisez une image de base appropriée
-FROM alpine/java:21-jdk
+# Build
+FROM eclipse-temurin:21-jdk AS build
 
-# Définissez le répertoire de travail
 WORKDIR .
-
 COPY . .
 
-RUN echo $(pwd)
+RUN chmod +x gradlew
+RUN ./gradlew clean bootJar
 
-# Exécutez la commande Gradle pour construire le JAR
-RUN chmod +x ./gradlew && ./gradlew clean bootJar
+# Exec
+FROM eclipse-temurin:21-jdk
 
-# Copiez le JAR généré dans le répertoire de travail
-COPY build/libs/*.jar app.jar
+WORKDIR .
+COPY . .
 
-# Définissez la commande à exécuter lorsque le conteneur démarre
+RUN apt-get update && apt-get install -y python3 python3-venv python3-pip
+
+# Copy JAR generated from build
+COPY --from=build /build/libs/*.jar app.jar
+
+RUN python3 -m venv /src/.venv && \
+    . /src/.venv/bin/activate && \
+    pip install --upgrade pip setuptools && \
+    pip install youtube_transcript_api yt-dlp
+
 ENTRYPOINT ["java", "-jar", "app.jar"]
-
-#COPY src/main/resources/static/pageExample.html src/main/resources/static/pageExample.html
-#COPY src/.venv src/.venv
-#COPY src/scripts/get_transcript.py src/scripts/get_transcript.py
-#COPY src/scripts/get_yt_infos.py src/scripts/get_yt_infos.py
