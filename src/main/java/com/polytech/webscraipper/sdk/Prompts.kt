@@ -16,10 +16,11 @@ class Prompts(private val promptsClient: PromptsClient) {
     }
 
     @JvmOverloads
-    fun getCustomizedPrompt(promptName: String, version: Int? = null, label: String? = null, variables: Map<String, String>): String {
+    fun getCustomizedPrompt(promptName: String, version: Int? = null, label: String? = null, variables: Map<String, String>): Pair<String, PromptResponse> {
         val prompt = getByName(promptName, version, label)
-        return replacesVariablesInText(prompt.prompt, variables)
+        return replacesVariablesInText(prompt.prompt, variables) to prompt
     }
+
     @JvmOverloads
     fun getAllPrompts(
         name: String? = null,
@@ -30,7 +31,6 @@ class Prompts(private val promptsClient: PromptsClient) {
         fromUpdatedAt: String? = null,
         toUpdatedAt: String? = null,
     ): List<PromptsResponse.IndividualPrompt> = promptsClient.getAllPrompts(name, label, tag, page, limit, fromUpdatedAt, toUpdatedAt).data
-
 
     @JvmOverloads
     fun getByName(promptName: String, version: Int? = null, label: String? = null): PromptResponse = promptsClient.getPromptByName(promptName, version, label)
