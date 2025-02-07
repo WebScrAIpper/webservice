@@ -20,8 +20,17 @@ class Prompts(private val promptsClient: PromptsClient) {
         val prompt = getByName(promptName, version, label)
         return replacesVariablesInText(prompt.prompt, variables)
     }
+    @JvmOverloads
+    fun getAllPrompts(
+        name: String? = null,
+        label: String? = null,
+        tag: String? = null,
+        page: Int? = null,
+        limit: Int? = null,
+        fromUpdatedAt: String? = null,
+        toUpdatedAt: String? = null,
+    ): List<PromptsResponse.IndividualPrompt> = promptsClient.getAllPrompts(name, label, tag, page, limit, fromUpdatedAt, toUpdatedAt).data
 
-    fun getAll(): List<PromptsResponse.IndividualPrompt> = promptsClient.getAllPrompts().data
 
     @JvmOverloads
     fun getByName(promptName: String, version: Int? = null, label: String? = null): PromptResponse = promptsClient.getPromptByName(promptName, version, label)
@@ -34,7 +43,38 @@ class Prompts(private val promptsClient: PromptsClient) {
     interface PromptsClient {
 
         @GetMapping("/")
-        fun getAllPrompts(): PromptsResponse
+        fun getAllPrompts(
+//            name
+//            null | string
+//        label
+//        null | string
+//        tag
+//        null | string
+//        page
+//        null | integer
+//        page number, starts at 1
+//
+//        limit
+//        null | integer
+//        limit of items per page
+//
+//        fromUpdatedAt
+//        null | string
+//        date-time
+//        Optional filter to only include prompt versions created/updated on or after a certain datetime (ISO 8601)
+//
+//        toUpdatedAt
+//        null | string
+//        date-time
+//        Optional filter to only include prompt versions created/updated before a certain datetime (ISO 8601)
+            @RequestParam("name", required = false) name: String? = null,
+            @RequestParam("label", required = false) label: String? = null,
+            @RequestParam("tag", required = false) tag: String? = null,
+            @RequestParam("page", required = false) page: Int? = null,
+            @RequestParam("limit", required = false) limit: Int? = null,
+            @RequestParam("fromUpdatedAt", required = false) fromUpdatedAt: String? = null,
+            @RequestParam("toUpdatedAt", required = false) toUpdatedAt: String? = null,
+        ): PromptsResponse
 
         @GetMapping("/{promptId}")
         fun getPromptByName(
