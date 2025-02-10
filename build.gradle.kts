@@ -2,18 +2,10 @@ plugins {
     java
     id("org.springframework.boot") version "3.4.2"
     id("io.spring.dependency-management") version "1.1.7"
-    kotlin("jvm")
     id("com.diffplug.spotless") version "7.0.2"
 }
 
 spotless {
-    kotlin {
-        ktlint().editorConfigOverride(
-            mapOf(
-                "ktlint_standard_no-wildcard-imports" to "disabled"
-            )
-        )
-    }
     java {
         googleJavaFormat()
     }
@@ -50,7 +42,6 @@ dependencies {
         exclude(group = "org.mockito")
     }
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-    implementation(kotlin("stdlib-jdk8"))
     implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
     implementation("io.github.openfeign:feign-okhttp:13.5")
 }
