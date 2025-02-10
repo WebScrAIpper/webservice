@@ -8,9 +8,6 @@ class Traces(private val tracesClient: TracesClient) {
 
     fun postTrace(traceData: Map<String, Any>): String = tracesClient.postTrace(traceData)
 
-    @UnstableApi
-    fun postTrace(vararg entries: Pair<String, Any>): String = postTrace(entries.toMap())
-
     @FeignClient(
         name = "langfuse-sdk-traces",
         url = "https://cloud.langfuse.com/api/public/traces",
