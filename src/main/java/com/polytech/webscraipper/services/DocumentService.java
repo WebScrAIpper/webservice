@@ -91,7 +91,7 @@ public class DocumentService {
       timerLogger.cancel();
       var timeAtEnd = System.currentTimeMillis();
       System.out.println(
-              "The OpenAI API answered in " + (timeAtEnd - timeAtStart) / 1000 + "seconds.");
+          "The OpenAI API answered in " + (timeAtEnd - timeAtStart) / 1000 + " seconds.");
     }
   }
 
