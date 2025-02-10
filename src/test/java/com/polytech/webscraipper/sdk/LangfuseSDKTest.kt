@@ -16,8 +16,9 @@ class LangfuseSDKTest {
 
     @Test
     fun `should fetch all prompts successfully`() {
-        val res = langfuseSDK.prompts.getAll()
+        val res = langfuseSDK.prompts.getAllPrompts()
         assertNotNull(res)
+        println(res)
         assertTrue(res.isNotEmpty(), "Expected non-empty prompt list")
     }
 

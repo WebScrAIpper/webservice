@@ -39,14 +39,23 @@ public class DocumentController {
   @PostMapping("/build")
   public ResponseEntity<String> buildWebsiteSummary(
       @RequestParam String url, @RequestBody String content) throws IOException {
-    return buildDocumentSummary(url, content, false); // false for website
+    System.out.println("Building document summary for " + url);
+    var res = buildDocumentSummary(url, content, false); // false for website
+    if (res.getStatusCode() != HttpStatus.OK) {
+      System.out.println("Error while building document summary for " + url + "\n" + res.getBody());
+    }
+    return res;
   }
 
   @CrossOrigin(origins = "*")
   @PostMapping("/youtubeBuild")
   public ResponseEntity<String> buildYoutubeVodSummary(@RequestParam String url)
       throws IOException {
-    return buildDocumentSummary(url, null, true); // true for YouTube
+    var res = buildDocumentSummary(url, null, true); // true for YouTube
+    if (res.getStatusCode() != HttpStatus.OK) {
+      System.out.println("Error while building document summary for " + url + "\n" + res.getBody());
+    }
+    return res;
   }
 
   private ResponseEntity<String> buildDocumentSummary(

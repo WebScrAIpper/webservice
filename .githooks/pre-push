@@ -1,0 +1,23 @@
+#!/bin/sh
+
+echo "Running Spotless before push..."
+
+# Run spotlessCheck and capture the output
+output=$(./gradlew spotlessCheck 2>&1)
+status=$?
+
+# Check if the command failed
+if [ $status -ne 0 ]; then
+  echo "Spotless check failed. Please fix the formatting issues before pushing."
+  echo "Trying to apply formatting changes automatically..."
+  apply_output=$(./gradlew spotlessApply 2>1)
+  if [ $? -ne 0 ]; then
+    echo "Spotless apply failed. Please fix the formatting issues manually and commit the changes."
+  else
+    echo "Spotless apply succeeded. Please commit the changes and push again."
+  fi
+  exit 1
+fi
+
+echo "Pre-push hook completed successfully."
+exit 0

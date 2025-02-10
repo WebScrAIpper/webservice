@@ -40,3 +40,15 @@ Windows:
 setx LANGFUSE_API_SK "sk-XXXXXXXXXXX"
 setx LANGFUSE_API_PK "pk-XXXXXXXXXXX"
 ```
+
+### Formatting
+
+We use spotless for formatting. Run the following command to format the code:
+```bash
+./gradlew spotlessApply
+```
+
+To automatically format the code on push, run the following command:
+```bash
+git config core.hooksPath .githooks 
+```
