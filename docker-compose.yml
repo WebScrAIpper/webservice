@@ -32,10 +32,10 @@ services:
       - main-network
     healthcheck:
       test: [ "CMD", "mongosh", "--username", "polytech", "--password", "polytech", "--authenticationDatabase", "admin", "--eval", "db.runCommand('ping').ok" ]
-      interval: 10s
-      timeout: 5s
+      interval: 5s
+      timeout: 2s
       retries: 5
-      start_period: 10s
+      start_period: 5s
 
 
 networks:
