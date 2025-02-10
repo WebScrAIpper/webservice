@@ -72,6 +72,7 @@ public class DocumentService {
   }
 
   public String scrapContent(String content) {
+    System.out.println("Début de scrapContent()");
     Document document = Jsoup.parse(content);
 
     document.select("script, style, form, nav, aside, button, svg").remove();
@@ -142,6 +143,7 @@ public class DocumentService {
 
   public String generatePrompt(String content) {
     try {
+      System.out.println("Début de generatePrompt()");
       List<String> exampleInputLines =
           Files.readAllLines(Paths.get("src/main/resources/static/pageExample.html"));
       String inputExample = String.join("\n", exampleInputLines);
@@ -259,7 +261,7 @@ public class DocumentService {
   }
 
   public AIFilledDocument requestToAi(String prompt) throws PromptException {
-
+    System.out.println("Début de requestToAi()");
     int MAX_TRIES = 3;
     int tries = 0;
 
