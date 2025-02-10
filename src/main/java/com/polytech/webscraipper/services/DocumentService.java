@@ -6,12 +6,11 @@ import com.polytech.webscraipper.PromptException;
 import com.polytech.webscraipper.dto.AIFilledDocument;
 import com.polytech.webscraipper.dto.DocumentDto;
 import com.polytech.webscraipper.repositories.DocumentRepository;
-import com.polytech.webscraipper.sdk.LangfuseSDK;
+import com.polytech.webscraipper.services.langfusesubservices.PromptManagementService;
+import com.polytech.webscraipper.services.langfusesubservices.TracesManagementService;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.*;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -29,7 +28,8 @@ public class DocumentService {
   @Autowired private DocumentRepository documentRepo;
   @Autowired private ClassifierService classifierService;
   @Autowired private ChatModel chatModel;
-  @Autowired private LangfuseSDK langfuseSDK;
+  @Autowired private PromptManagementService promptManagementService;
+  @Autowired private TracesManagementService tracesManagementService;
 
   // current date as an id
   private static final String SESSION_ID = new Date().toString();
@@ -51,11 +51,46 @@ public class DocumentService {
     String scrappedContent = scrapContent(content);
 
     // Generating the prompt dynamically
-    var prompt = generatePrompt(scrappedContent);
+    var prompt =
+        promptManagementService.createDefaultProdPrompt(
+            classifierService.getAllClassifiers(), scrappedContent);
 
     // Requesting the AI
-    var aiAnswer = requestToAi(prompt);
-    return buildAnswer(aiAnswer, url);
+    try {
+      System.out.println(
+          "Requesting the AI for the prompt: " + prompt.getFirst().substring(0, 100) + "...");
+      var timeAtStart = System.currentTimeMillis();
+      // Added a time logger since sometime the OpenAI API is overloaded and takes a long time to
+      // answer.
+      var timerLogger = new Timer();
+      timerLogger.scheduleAtFixedRate(
+          new TimerTask() {
+            @Override
+            public void run() {
+              var timeAtNow = System.currentTimeMillis();
+              System.out.println(
+                  "Waiting for the OpenAI Api to answer since: "
+                      + (timeAtNow - timeAtStart) / 1000
+                      + "seconds.");
+            }
+          },
+          5000,
+          5000);
+      var aiAnswer = requestToAi(prompt.getFirst());
+      timerLogger.cancel();
+      var timeAtEnd = System.currentTimeMillis();
+      System.out.println(
+          "The OpenAI API answered in " + (timeAtEnd - timeAtStart) / 1000 + "seconds.");
+      var res = buildAnswer(aiAnswer, url);
+
+      tracesManagementService.postGenericAILog(
+          prompt.getSecond(), aiAnswer.toString(), url, SESSION_ID);
+      return res;
+    } catch (Exception e) {
+      tracesManagementService.postFailedOutputAILog(
+          prompt.getSecond(), e.getMessage(), url, SESSION_ID);
+      throw e;
+    }
   }
 
   public DocumentDto buildYoutubeVodSummary(String url) throws IOException, PromptException {
@@ -64,10 +99,12 @@ public class DocumentService {
     String content = scrapYoutubeVod(url);
 
     // Generating the prompt dynamically
-    var prompt = generateYoutubePrompt(content);
+    var prompt =
+        promptManagementService.createYouTubeProdPrompt(
+            classifierService.getAllClassifiers(), content);
 
     // Requesting the AI
-    var aiAnswer = requestToAi(prompt);
+    var aiAnswer = requestToAi(prompt.getFirst());
     return buildAnswer(aiAnswer, url);
   }
 
@@ -98,191 +135,25 @@ public class DocumentService {
     }
   }
 
-  public DocumentDto buildTheAiJson(String url, String content)
-      throws IOException, PromptException {
-    return buildTheAiJson(url, content, true);
-  }
-
-  public DocumentDto buildTheAiJson(String url, String content, boolean langfuseTracing)
-      throws PromptException, IOException {
-    System.out.println("Content size to be processed: " + content.length());
-    content = scrapContent(content);
-    System.out.println("Content size after scraping: " + content.length());
-
-    // Generating the prompt dynamically
-    var prompt = generatePrompt(content);
-
-    // Requesting the AI
-    var aiAnswer = requestToAi(prompt);
-
-    if (aiAnswer == null) throw new IOException("The AI answer is null");
-
-    if (langfuseTracing) {
-      System.out.println("Sending Langfuse log...");
-      Map<String, Object> args =
-          Map.of(
-              "name", "LLM Request",
-              "url", url,
-              "input", prompt,
-              "output", objectMapper.writeValueAsString(aiAnswer),
-              "sessionId", SESSION_ID);
-      var langResponse = langfuseSDK.traces.postTrace(args);
-
-      System.out.println(
-          "Langfuse trace https://cloud.langfuse.com/project/cm6hy97qq06qy2y0ih8hh7ha2/traces/"
-              + langResponse
-                  .stripIndent()
-                  .substring("{\"id\":\"".length(), langResponse.length() - 2)
-              + " sent.\nWarning: The server update might take a few minutes");
-    }
-
-    // Building the response
-    return new DocumentDto(aiAnswer, url);
-  }
-
-  public String generatePrompt(String content) {
-    try {
-      List<String> exampleInputLines =
-          Files.readAllLines(Paths.get("src/main/resources/static/pageExample.html"));
-      String inputExample = String.join("\n", exampleInputLines);
-
-      String resultExample =
-          """
-                    {
-                        "title": "Write code that is easy to delete, not easy to extend",
-                        "author": "programming is terrible",
-                        "date": "2016-02-13",
-                        "image": null,
-                        "description": "This document discusses the importance of writing disposable code to reduce maintenance costs, emphasizing practices like intentional code duplication to minimize dependencies and the strategic layering and separation of code components.",
-                        "content_type": "ARTICLE",
-                        "language": "ENGLISH",
-                        "classifiers": ["Software Architecture", "Design Patterns"]
-                    }
-                    """
-              .stripIndent();
-
-      return """
-                     Your role is to extract most important information's from a webpage.
-                    \s
-                     For instance, given the following HTML content:
-                     ```html
-                     %s
-                     ```
-                    \s
-                     You should return a JSON object with the following structure:
-                     ```json
-                     %s
-                     ```
-                    \s
-                     YOu should ALWAYS write the content of your summary in English even if the original content is in another language.
-                    \s
-                     The exact structure required by the json object is this one:
-                     - title: the title of the document
-                     - author: the author of the document
-                     - date: the date of the document
-                     - image: the image that best represents the document. The image should be a URL, if there is no image, on the website, it might be null.
-                     - description: a short description of the document
-                     - content_type: the type of content (can take the values ARTICLE | VIDEO | AUDIO)
-                     - language: the language of the document
-                     - classifiers: a list of topics that the document covers. Can go anywhere from 3 to 6. It's recommended for most of the classifiers of this list: %s. However, you may use other classifiers if you think they are more relevant. You should anyway never use a classifier that is not related to the topic of the document.
-                    \s
-                    \s
-                    Here is the webpage you have to scrape:
-                    ```html
-                    %s
-                    ```
-                    \s
-                    Do not wrap the response in a
-                    ```json
-                    ...
-                    ```
-                       block, just return the JSON object.
-                    \s"""
-          .stripIndent()
-          .formatted(inputExample, resultExample, classifierService.getAllClassifiers(), content);
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
-  }
-
-  private String generateYoutubePrompt(String content) {
-    String resultExample =
-        """
-            {
-                "title": "Write code that is easy to delete, not easy to extend",
-                "author": "programming is terrible",
-                "date": "2016-02-13",
-                "image": null,
-                "description": "This document discusses the importance of writing disposable code to reduce maintenance costs, emphasizing practices like intentional code duplication to minimize dependencies and the strategic layering and separation of code components.",
-                "content_type": "ARTICLE",
-                "language": "ENGLISH",
-                "classifiers": ["Software Architecture", "Design Patterns"]
-            }
-            """
-            .stripIndent();
-
-    return """
-        Your role is to extract most important information's from a youtube video.
-
-       \s
-        You should return a JSON object with the following structure:
-        ```json
-        %s
-        ```
-       \s
-        YOu should ALWAYS write the content of your summary in English even if the original content is in another language.
-       \s
-        The exact structure required by the json object is this one:
-        - title: the title of the document, in the language of the document.
-        - author: the author of the document
-        - date: the date of the document
-        - image: the image that best represents the document. The image should be a URL, if there is no image, on the website, it might be null.
-        - description: a short description of the document
-        - content_type: the type of content (can take the values ARTICLE | VIDEO | AUDIO)
-        - language: the language of the document, not the language of the summary you are making.
-        - classifiers: a list of topics that the document covers. Can go anywhere from 3 to 6. It's recommended for most of the classifiers of this list: %s. However, you may use other classifiers if you think they are more relevant. You should anyway never use a classifier that is not related to the topic of the document.
-       \s
-       \s
-       Here is the informations about the video that we collected on the youtube video page and the transcript you have to summarize:
-
-       %s
-
-       \s
-       Do not wrap the response in a
-       ```json
-       ...
-       ```
-          block, just return the JSON object.
-       \s"""
-        .stripIndent()
-        .formatted(resultExample, classifierService.getAllClassifiers(), content);
-  }
-
   public AIFilledDocument requestToAi(String prompt) throws PromptException {
+    try {
+      var aiAnswer =
+          chatModel.call(
+              new Prompt(prompt, OpenAiChatOptions.builder().model("gpt-4o-mini").build()));
 
-    int MAX_TRIES = 3;
-    int tries = 0;
-
-    while (tries < MAX_TRIES) {
-      try {
-        var aiAnswer =
-            chatModel.call(
-                new Prompt(prompt, OpenAiChatOptions.builder().model("gpt-4o-mini").build()));
-
-        String aiResponseText = aiAnswer.getResult().getOutput().getText();
-        if (aiResponseText == null || aiResponseText.isEmpty()) {
-          throw new IOException("AI returned an empty or invalid response.");
-        }
-
-        System.out.println(aiResponseText);
-        return objectMapper.readValue(aiResponseText, AIFilledDocument.class);
-
-      } catch (IOException e) {
-        tries++;
-        System.out.println("Error while calling the AI: " + e.getMessage());
+      String aiResponseText = aiAnswer.getResult().getOutput().getText();
+      if (aiResponseText == null || aiResponseText.isEmpty()) {
+        throw new IOException("AI returned an empty or invalid response.");
       }
+
+      System.out.println(aiResponseText);
+      return objectMapper.readValue(aiResponseText, AIFilledDocument.class);
+
+    } catch (IOException e) {
+      // TODO: We might need cleaner error message for a better prompt tracking
+      throw new PromptException(
+          "The LLM did not succeed to fill the summary successfully\n" + e.getMessage());
     }
-    throw new PromptException("The LLM did not succeed to fill the summary.");
   }
 
   public DocumentDto buildAnswer(AIFilledDocument aiAnswer, String url) {
@@ -306,6 +177,7 @@ public class DocumentService {
   // TODO: think about moving this method somewhere else
   public String executePythonScript(String scriptPath, String url)
       throws IOException, InterruptedException {
+    // TODO: Doesn't work for everyone, venv does not always have a bin folder.
     ProcessBuilder pb = new ProcessBuilder("src/.venv/bin/python3", scriptPath, url);
     Process process = pb.start();
 
