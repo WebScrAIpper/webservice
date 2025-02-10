@@ -37,18 +37,18 @@ public class DocumentController {
   @PostMapping("/build")
   public ResponseEntity<String> buildWebsiteSummary(
       @RequestParam String url, @RequestBody String content) throws IOException {
-    return buildDocumentSummary(url, content, false); // false for website
+    return buildDocumentSummary(url, content, false, true); // false for website
   }
 
   @CrossOrigin(origins = "*")
   @PostMapping("/youtubeBuild")
   public ResponseEntity<String> buildYoutubeVodSummary(@RequestParam String url)
       throws IOException {
-    return buildDocumentSummary(url, null, true); // true for YouTube
+    return buildDocumentSummary(url, null, true, true); // true for YouTube
   }
 
   private ResponseEntity<String> buildDocumentSummary(
-      String url, String content, boolean isYoutube) {
+      String url, String content, boolean isYoutube, boolean toSave) {
     if (url == null || url.isEmpty()) {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST)
           .body("The 'url' parameter is required and cannot be empty.");
@@ -65,11 +65,11 @@ public class DocumentController {
     }
     try {
       if (isYoutube) {
-        var res = documentService.buildYoutubeVodSummary(url);
+        var res = documentService.buildYoutubeVodSummary(url, toSave);
         return ResponseEntity.status(HttpStatus.OK)
             .body("The document summary has been successfully built.\n" + res);
       } else {
-        var res = documentService.buildWebsiteSummary(url, content);
+        var res = documentService.buildWebsiteSummary(url, content, toSave);
         return ResponseEntity.status(HttpStatus.OK)
             .body("The document summary has been successfully built.\n" + res);
       }

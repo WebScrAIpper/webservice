@@ -45,7 +45,7 @@ public class DocumentService {
     return documentRepo.findAll();
   }
 
-  public DocumentDto buildWebsiteSummary(String url, String content)
+  public DocumentDto buildWebsiteSummary(String url, String content, Boolean toSave)
       throws IOException, PromptException {
 
     // Scraping website content
@@ -56,10 +56,11 @@ public class DocumentService {
 
     // Requesting the AI
     var aiAnswer = requestToAi(prompt);
-    return buildAnswer(aiAnswer, url);
+    return buildAnswer(aiAnswer, url, toSave);
   }
 
-  public DocumentDto buildYoutubeVodSummary(String url) throws IOException, PromptException {
+  public DocumentDto buildYoutubeVodSummary(String url, Boolean toSave)
+      throws IOException, PromptException {
 
     // Scraping vod content (transcript & metas)
     String content = scrapYoutubeVod(url);
@@ -69,7 +70,7 @@ public class DocumentService {
 
     // Requesting the AI
     var aiAnswer = requestToAi(prompt);
-    return buildAnswer(aiAnswer, url);
+    return buildAnswer(aiAnswer, url, toSave);
   }
 
   public String scrapContent(String content) {
@@ -285,7 +286,7 @@ public class DocumentService {
     throw new PromptException("The LLM did not succeed to fill the summary.");
   }
 
-  public DocumentDto buildAnswer(AIFilledDocument aiAnswer, String url) {
+  public DocumentDto buildAnswer(AIFilledDocument aiAnswer, String url, Boolean toSave) {
     // Building the response
     DocumentDto documentDto = new DocumentDto(aiAnswer, url);
 
@@ -298,8 +299,9 @@ public class DocumentService {
       classifierService.addClassifier(newClassifier);
     }
 
-    // Saving the document
-    documentRepo.save(documentDto);
+    if (toSave) {
+      documentRepo.save(documentDto);
+    }
     return documentDto;
   }
 

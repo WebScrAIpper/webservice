@@ -1,0 +1,372 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<!--
+                 ____       _
+ _ __ ___  _   _/ ___|  ___(_) ___ _ __   ___ ___
+| '_ ' _ \| | | \___ \ / __| |/ _ \ '_ \ / __/ _ \ ®
+| | | | | | |_| |___) | (__| |  __/ | | | (_|  __/
+|_| |_| |_|\__, |____/ \___|_|\___|_| |_|\___\___|
+           |___/
+                        
+-->
+<meta charset="iso-8859-15">
+<meta name="Author" content="Scimetrica, www.scimetrica.com - &copy; 2025">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="Keywords" content="rejection, computer, diagnosis, science, research, jobs, career, employment, news, France ">
+<meta name="Description" content="5.05.2023 - In a recent study published in the journal Nature Medicine , a research team from Université Paris Cité, Inserm and AP-HP, led by Professor Alexandre Loupy at the Centre d'expertise de la transplantation multi-organ de Paris, has created an automated computer assistant that can correct 40% of misdiagnoses of allograft rejection in humans and better guide patient management">
+<title>An automated computer assistant specialized in the diagnosis of transplant rejection | news.myScience  / news / news 2023</title>
+<link rel="alternate" hreflang="fr" href="https://www.myscience.fr/fr/news/2023/un_assistant_informatique_automatise_specialise_dans_le_diagnostic_du_rejet_de_greffe-2023-inserm">
+<link rel="canonical" hreflang="en" href="https://www.myscience.fr/en/news/2023/un_assistant_informatique_automatise_specialise_dans_le_diagnostic_du_rejet_de_greffe-2023-inserm">
+<link rel="stylesheet" type="text/css" href="/cache/mysciencefr/merged_styles_sec.4.css?t=1738232802">
+<meta name="theme-color" content="#005779">
+<link rel="shortcut icon" href="/image/favicons/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" sizes="180x180" href="/image/favicons/apple-touch-icon-180x180.png">
+<link rel="icon" type="image/png" href="/image/favicons/favicon-16x16.png" sizes="16x16">
+<link rel="icon" type="image/png" href="/image/favicons/favicon-32x32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="/image/favicons/apple-touch-icon-57x57.png" sizes="57x57" >
+<link rel="icon" type="image/png" href="/image/favicons/android-chrome-192x192.png" sizes="192x192">
+<link rel="mask-icon" href="/image/favicons/safari-pinned-tab.svg">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-TileImage" content="/image/favicons/mstile-144x144.png">
+<meta property="og:site_name" content="myScience France">
+<meta property="og:title" content="An automated computer assistant specialized in the diagnosis of transplant rejection">
+<meta property="og:type" content="article">
+<meta name="article:published_time" content="2023-05-05CEST08:00:00">
+<meta name="article:modified_time" content="2023-05-08CEST14:27:22">
+<meta name="article:section" content="Health">
+<meta name="article:section" content="Computer Science">
+<meta property="og:image" content="https://www.myscience.fr/news/2023/un_assistant_informatique_automatise_specialise_dans_le_diagnostic_du_rejet_de_greffe-2023-inserm/image.jpg">
+<script src="/js/jquery-3.5.1.min.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YP83225RD9"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-YP83225RD9');
+</script>
+<script src="/cache/mysciencefr/matomo_code.js"></script> 
+</head>
+<body>
+<div id="wrapper">
+<div id="pageStart">
+<div id="header">
+<div id="headerContent">
+<div id="headerTop">
+<div id="flag" class="flagBox"><a href="/home/about" title="About myscience.fr"><img src="/image/flags2/32/fr.png" width="32" height="32" alt="fr flag" OnClick="location.href='/home/about'"></a></div>
+<div id="searchBox" role="search">
+<form id="search_form" class="inline" action="/search" name="quicksearch" method="GET"><label for="keyword" class="hidden">Keyword:</label>
+<input type="text" id="keyword" placeholder="Search" title="Search in myscience.fr" class="inputSearch" size="40" maxlength="200" name="q" autocomplete="off" oninput="suggest()"><label for="submit_search" class="hidden">Search:</label>
+<input type="text" id="submit_search" name="search" value="search" class="hidden"><button type="submit" class="header_search_button"><svg class="headerBoxIcon" xml:space="preserve" version="1.1" enable-background="new 0 0 32 32" viewBox="0 0 22 22" width="22px" height="22px"> 
+  <path fill="#666" d="M18.593,16.721,18.48,16.602v-0.001l-4.545-4.787c0.631-1.146,0.998-2.474,1.008-3.894,0.025-4.32-3.343-7.92-7.443-7.92h-0.05c-4.084,0-7.45,3.5-7.45,7.819-0.026,4.3,3.3,7.9,7.4,7.919h0.049c1.371,0,2.656-0.391,3.762-1.072l4.541,4.784v-0.001l0.115,0.119c0.342,0.4,0.9,0.4,1.2,0l1.461-1.538c0.409-0.33,0.372-0.93,0.072-1.33m-11.165-2.969c-3.067-0.021-5.549-2.667-5.529-5.9,0.02-3.211,2.516-5.825,5.563-5.825h0.038c1.486,0,2.9,0.6,3.9,1.743,1.043,1.1,1.6,2.6,1.6,4.157-0.01,1.559-0.594,3.023-1.643,4.1-1.05,1.099-2.442,1.703-3.922,1.703h-0.007v0.022z"/>
+  <path fill="#e6e6e6" d="m16.146,19.726c-0.09344-0.03814-4.0881-4.1999-4.6536-4.8483l-0.26146-0.29976-0.37966,0.2225c-1.3374,0.784-3.3356,1.072-4.9442,0.712-0.8193-0.184-2.025-0.749-2.7314-1.279-1.6863-1.268-2.8282-3.321-3.0697-5.5199-0.37212-3.3883,1.3994-6.5949,4.416-7.9937,1.0705-0.49634,1.7166-0.63536,2.9529-0.63536,1.2711,0,1.9094,0.14272,3.0215,0.67562,2.6655,1.2773,4.3499,3.9881,4.3671,7.0285,0.0078,1.3777-0.17387,2.2542-0.71638,3.4566l-0.25956,0.57527,0.29363,0.31456c0.1615,0.17301,1.0163,1.0777,1.8996,2.0104,2.9434,3.1081,2.6653,2.7734,2.6653,3.2079,0,0.37557-0.023,0.4084-0.98445,1.4056-0.85914,0.89111-1.0183,1.0202-1.25,1.0144-0.14605-0.0037-0.31026-0.02494-0.36491-0.04725zm-7.2307-6.179c1.3387-0.4,2.7827-1.584,3.4107-2.797,0.578-1.1159,0.826-2.4675,0.665-3.625-0.205-1.4662-0.766-2.6061-1.783-3.6189-1.114-1.1096-2.3604-1.5775-3.9877-1.4968-1.4472,0.0717-2.5171,0.5468-3.5673,1.5839-0.719,0.71-1.1667,1.4378-1.5029,2.4435-0.1919,0.574-0.2172,0.788-0.217,1.8362,0.0001695,1.0592,0.024431,1.2591,0.22629,1.8644,0.64014,1.9195,2.12,3.3557,3.9775,3.8603,0.73356,0.19926,2.0195,0.17566,2.7783-0.05098z"/>
+</svg>
+</button>
+<div id="suggest_results_container" style="display:none;">
+<div id="suggest_results" style="display:none;"></div>
+</div>
+</form>
+<script src="/cache/js/autcomplete.js" async></script>
+</div>
+<div id="languageBox" class="languageSwitch right">
+
+<div class="languages"><span class="langBox"><a href="/fr/news/2023/un_assistant_informatique_automatise_specialise_dans_le_diagnostic_du_rejet_de_greffe-2023-inserm" class="lang" title="Fran&ccedil;ais" target="_top">FR</a></span> <span class="langBox"><a href="/en/news/2023/un_assistant_informatique_automatise_specialise_dans_le_diagnostic_du_rejet_de_greffe-2023-inserm" class="lang slang" title="English" target="_top">EN</a></span> 
+</div></div>
+<div class="mobile_menu_space"></div>
+<div id="loginBox" class="headerBox" onmouseover="document.getElementById('loginBoxContent').className='headerBoxContent';">
+<div class="headerBoxTitle" onclick="document.getElementById('loginBoxContent').className = 'headerBoxContent hidden';"><span id="loginText" class="inline w60p"><a href="/account/login">Login</a></span>
+<a href="/account/login"><img src="/image/icon/login.svg" alt="login" width="22" height="22" class="headerBoxIcon"></a>
+</div>
+<div id="loginBoxContent" class="headerBoxContent hidden">
+<div class="block right" onclick="document.getElementById('loginBoxContent').className='headerBoxContent hidden';"><span class="close"></span></div>
+<script src="/js/crypto-login.1.js" async></script> 
+<div class="center p5">
+<form class="inlineLogin" action="/account/login" method="POST" name="loginform" onsubmit="javascript:return cryptpass(loginform)">
+<input type="hidden" name="challenge" value="173e84888242ee29ab3d3805e91c6a546b6c92dd">
+<input type="hidden" name="password_key" value="">
+<input type="hidden" name="last_url" value="/account/login">
+<input type="hidden" name="direct_login" value="1">
+<div class="block h20">&nbsp;</div>
+<div class="twocolumns">
+<div class="column1 w30p right"><span class="large mr10"><label for="username"><b>Username:</b></label></span> </div>
+<div class="column2 w60p"><input type="text" id="username" class="user_input" placeholder="Username" name="username" title="Enter your username or email address" size="20"><br></div></div><div class="box h10"></div>
+<div class="twocolumns">
+<div class="column1 w30p right"><span class="large mr10"><label for="password"><b>Password:</b></label></span> </div>
+<div class="column2 w60p"><input type="password" id="password" class="user_input" placeholder="Password" name="password" title="Enter your password" size="20"><br>
+ <div class="block right w80p">  <span class="st"><input id="show_password" type="checkbox" onclick="display_password()"><label for="show_password">Show password</label></span></div></div>
+</div><div class="block p5 center">
+<div class="center st p5"><input type="checkbox" name="persistent" id="persistent"><label for="persistent">Keep me logged in</label></div>
+<input type="submit" class="button" value="Login" title="Encrypted Login"></div> 
+</form></div>
+<div class="block"><hr></div>
+<div class="block center borderF"> 
+<a href="/register" rel="nofollow" class="inline"><span class="button">No account yet? Register</span></a> 
+<div class="block"><br></div>
+<br> <a href="/account/forgot_password" rel="nofollow"><span class="smallbutton">&#187; Password forgotten</span></a> </div>
+</div></div>
+<div id="bnt_menu" onclick="toggleMenu('left');return false;"><span title="menu"><svg class="svg_icon" version="1.1" x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32" enable-background="new 0 0 32 32" xml:space="preserve"> <path fill="#EEEEEE" d="M4,10h24c1.104,0,2-0.896,2-2s-0.896-2-2-2H4C2.896,6,2,6.896,2,8S2.896,10,4,10z M28,14H4 c-1.104,0-2,0.896-2,2s0.896,2,2,2h24c1.104,0,2-0.896,2-2S29.104,14,28,14z M28,22H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h24 c1.104,0,2-0.896,2-2S29.104,22,28,22z"/></svg>
+</span></div>
+</div>
+<div id="headerBottom">
+<div id="website_logo" class="logo"><a href="/en/"><img src="/image/myscience.svg" height="91" width="200" alt="myScience" title="myScience Home" OnError="this.removeAttribute('onerror');  src='/image/myscience.gif'" ></a></div>
+<div id="navigationBox" role="navigation">
+<ul id="navigation" class="dropdown"><li class="menutop2"><a href="/en/" class="a2" id="m1" accesskey="1"><span class="hide_1600">home</span></a>&nbsp; 
+
+<ul class="dropDownBox w350"><li><a href="/en/home/about">about myScience.fr</a></li><li><a href="/en/home/why_to_register">why to register?</a></li>
+</ul></li><li class="menutop2"><a href="/en/jobs" class="a2" id="m2" accesskey="2">job portal</a>&nbsp; 
+
+<ul class="dropDownBox w450"><li><a href="/en/jobs/search">job offers for scientists and engineers</a></li><li><a href="/en/jobs/advertise_jobs">&#9749; employers: publish a job offer</a></li><li><a href="/en/jobs/phd_in_france">phd in france</a></li><li><a href="/en/jobs/postdoc_in_france">postdoc in france</a></li><li><a href="/en/jobs/professor_in_france">professorship in france</a></li><li><a href="/en/jobs/career_in_industry">careers and jobs in industry in france</a></li><li><a href="/en/jobs/how_to_apply_in_france">how to apply in france</a></li>
+</ul></li><li class="menutop2"><a href="/en/news" class="a2 selected_menu" id="m3" accesskey="3">news</a>&nbsp; 
+
+<ul class="dropDownBox w350"><li><a href="/en/news/2019">2019</a></li><li><a href="/en/news/2020">news 2020</a></li><li><a href="/en/news/2021">news 2021</a></li><li><a href="/en/news/2022">news 2022</a></li><li><a href="/en/news/2023">news 2023</a></li><li><a href="/en/news/2024">actualit&eacute;s 2024</a></li><li><a href="/en/news/2025">news 2025</a></li><li><a href="/en/news/wire">wire - news in brief</a></li>
+</ul></li><li class="menutop2"><a href="/en/research" class="a2" id="m4" accesskey="4">research</a>&nbsp;</li><li class="menutop2"><a href="/en/directory" class="a2" id="m5" accesskey="5">directory</a>&nbsp; 
+
+<ul class="dropDownBox w550"><li><a href="/en/directory/business_schools">business schools</a></li><li><a href="/en/directory/engineering_schools">engineering schools</a></li><li><a href="/en/directory/industrial_research">industrial research</a></li><li><a href="/en/directory/medical_research">medical research</a></li><li><a href="/en/directory/research_institutions">research institutions</a></li><li><a href="/en/directory/schools_of_political_science_and_administration">schools of political science and administration</a></li><li><a href="/en/directory/universities">universities</a></li>
+</ul></li><li class="menutop2"><a href="/en/search" class="a2" id="m6" accesskey="6">search</a>&nbsp;</li>
+</ul>
+</div></div></div>
+</div>
+</div>
+<div id="page">
+<div id="maincontent">
+<div id="breadcrumbs">
+<div itemscope itemtype="https://schema.org/BreadcrumbList">
+<span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a itemprop="item" href="https://www.myscience.fr"><span class="text" itemprop="name">myscience.fr</span></a><meta itemprop="position" content="0"></span> <span class="bold">&#8250;</span> 
+<span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a itemprop="item" href="/news"><span  class="st" itemprop="name">news</span></a><meta itemprop="position" content="1"></span> <span class="bold">&#8250;</span> 
+<span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a itemprop="item" href="/news/2023"><span  class="st" itemprop="name">news 2023</span></a><meta itemprop="position" content="2"></span> <span class="bold">&#8250;</span> 
+<span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a itemprop="item" href="/news/2023/un_assistant_informatique_automatise_specialise_dans_le_diagnostic_du_rejet_de_greffe-2023-inserm"><span  class="gray" itemprop="name">An automated computer assistant specialized in the diagnosis of transplant rejection</span></a><meta itemprop="position" content="3"></span>
+</div>
+</div>
+<div id="leftandmiddle">
+<div id="left" role="navigation">
+<div class="language bgHeader mobile">
+<div class="languages"><span class="langBox"><a href="/fr/news/2023/un_assistant_informatique_automatise_specialise_dans_le_diagnostic_du_rejet_de_greffe-2023-inserm" class="lang" title="Fran&ccedil;ais" target="_top">FR</a></span> <span class="langBox"><a href="/en/news/2023/un_assistant_informatique_automatise_specialise_dans_le_diagnostic_du_rejet_de_greffe-2023-inserm" class="lang slang" title="English" target="_top">EN</a></span> 
+</div>
+</div>
+<div id="shortNav">
+<div class="block">
+<div class="mm"> <a href="/home">home</a></div> 
+<div class="mm"> <a href="/jobs">job portal</a></div> 
+<div class="mm bgWhite"><span class="bullet">&raquo;</span> <a href="/news"><b>news</b></a></div> 
+<div class="mm"> <a href="/research">research</a></div> 
+<div class="mm"> <a href="/directory">directory</a></div> 
+<div class="mm"> <a href="/search">search</a></div> 
+<div class="mm"> <a href="/sitemap">sitemap</a></div> 
+</div>
+</div>
+<div id="navigation_left">
+<div class="box"><a href="/news" title=" news " class="side2"><strong>news</strong></a></div>
+<div class="menucontainer_level3">
+<div class="mb bg_e"><div class="mbl lw3"><span class="bullet">&rsaquo;</span></div><div class="mbr rw3"><a href="/news/2023" class="side3s"><b>news 2023</b></a></div> 
+<div class="menucontainer">
+<div class="mb bg_f"><div class="mbl lw4"><span class="bullet">&raquo;</span></div><div class="mbr rw4"><a href="/news/2023/un_assistant_informatique_automatise_specialise_dans_le_diagnostic_du_rejet_de_greffe-2023-inserm" class="side4s"><b>An automated computer assistant specialized in the diagnosis of transplant rejection</b> - <span class=st>5.5.23</span></a></div> 
+<div class="space3"></div></div></div>
+<div class="space3"></div></div></div>
+<div class="box"></div>
+<div class="box">&nbsp;</div>
+</div><div class="block"><div class="block"><br><b class="gray">Advert</b></div><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3721390067330036" crossorigin="anonymous"></script>
+<!-- Ad left -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3721390067330036"
+     data-ad-slot="6126766900"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<hr><br></div>
+</div>
+<div id="middle" role="main">
+<div id="middle_content">
+<!--##print_start##-->
+<div id="article" itemscope itemtype="https://schema.org/Article">
+<div class="heading1"><h1 itemprop="headline">An automated computer assistant specialized in the diagnosis of transplant rejection</h1></div>
+<div class="block">
+<div class="container"><span class="updated dtstamp gray"><time itemprop="datePublished" datetime="2023-05-05">5 May 2023</time> </span> 
+<span id="alt_language" class="languageSwitchPage"><span class="inlineBlock center gray w5p">-</span> <a href="/fr/news/2023/un_assistant_informatique_automatise_specialise_dans_le_diagnostic_du_rejet_de_greffe-2023-inserm" title="Fran&ccedil;ais"><span class="lang">FR</span></a><span class="inlineBlock center gray w2p">-</span> <span class="lang slang" title="English">EN</span> </span>
+</div><div class="space3 w100p"></div><div class="container w90p">
+<div><a href="/news/Health" rel="tag"><span class="topics" itemprop="about">Health</span></a> &nbsp;|&nbsp; <a href="/news/Computer+Science" rel="tag"><span class="topics" itemprop="about">Computer Science</span></a></div><div>
+<!--googleoff: all-->
+<div class="social_sharing">
+<a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fwww.myscience.fr%2Fnews%2F2023%2Fun_assistant_informatique_automatise_specialise_dans_le_diagnostic_du_rejet_de_greffe-2023-inserm" rel="nofollow" target="_blank"><img src="/image/share/linkedin.png" width="25" height="25" alt="LinkedIn" title="Share on LinkedIn" class="social_icon m5"></a>
+<a href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Fwww.myscience.fr%2Fnews%2F2023%2Fun_assistant_informatique_automatise_specialise_dans_le_diagnostic_du_rejet_de_greffe-2023-inserm" rel="nofollow" target="_blank"><img src="/image/share/facebook.png" width="25" height="25" alt="Facebook" title="Share on Facebook" class="social_icon m5"></a>
+<a href="https://bsky.app/intent/compose?text=https%3A%2F%2Fwww.myscience.fr%2Fnews%2F2023%2Fun_assistant_informatique_automatise_specialise_dans_le_diagnostic_du_rejet_de_greffe-2023-inserm" rel="nofollow" target="_blank"><img src="/image/share/bluesky.png" width="25" height="25" alt="Bluesky" title="Share on Bluesky" class="social_icon m5"></a>
+<a href="https://api.whatsapp.com/send?text=An%20automated%20computer%20assistant%20specialized%20in%20the%20diagnosis%20of%20transplant%20rejection%20-%20www.myscience.fr%20https%3A%2F%2Fwww.myscience.fr%2Fnews%2F2023%2Fun_assistant_informatique_automatise_specialise_dans_le_diagnostic_du_rejet_de_greffe-2023-inserm" rel="nofollow" target="_blank"><img src="/image/share/whatsapp.png" width="25" height="25" alt="WhatsApp Web" title="Share on WhatsApp Web" class="social_icon m5"></a>
+<a href="mailto:?subject=An%20automated%20computer%20assistant%20specialized%20in%20the%20diagnosis%20of%20transplant%20rejection&body=%2AAn%20automated%20computer%20assistant%20specialized%20in%20the%20diagnosis%20of%20transplant%20rejection%20-%20www.myscience.fr%2A%0D%0Dhttps%3A%2F%2Fwww.myscience.fr%2Fnews%2F2023%2Fun_assistant_informatique_automatise_specialise_dans_le_diagnostic_du_rejet_de_greffe-2023-inserm%0D" rel="nofollow"><img src="/image/share/email.png" width="25" height="25" alt="Email" title="Send by Email" class="social_icon m5"></a>
+</div>
+<!--googleon: all-->
+</div></div>
+</div>
+<div class="readtext" itemprop="articleBody">
+<figure class="release_image w100p" itemscope itemtype="https://schema.org/ImageObject"><img src="/news/2023/un_assistant_informatique_automatise_specialise_dans_le_diagnostic_du_rejet_de_greffe-2023-inserm/image.jpg" alt="Human kidney section magnified 400 times by a polychromatic immunofluorescence m" height="408" width="620" class="w100p" itemprop="contentUrl"><figcaption class="caption" itemprop="description">Human kidney section magnified 400 times by a polychromatic immunofluorescence microscope. Inserm/Oriol, Rafael</figcaption></figure>
+<p><strong>In a recent study published in the journal </strong><em> Nature Medicine </em><strong>, a research team from Université Paris Cité, Inserm and AP-HP, led by Professor Alexandre Loupy at the Centre d&rsquo;expertise de la transplantation multi-organ de Paris, has created an automated computer assistant that can correct 40% of misdiagnoses of allograft rejection in humans and better guide patient management</strong>.</p>
+ <p>Rejection is the main cause of graft failure after renal transplantation. It is therefore a major public health problem in view of the worldwide shortage of organs.</p>
+ <p>The diagnosis of rejection is based on an international classification that has become considerably more complex over the last 30 years. It is now necessary for physicians to analyze and integrate complex and extremely diverse data - histological, immunological, or transcriptomic data - to make a correct diagnosis, which will guide the therapeutic management of patients.</p>
+ <p>This complexity in diagnosing rejection, initially necessary to better understand and define its type and severity, has become a daily problem for physicians, who are faced with situations where it can be difficult to make a correct diagnosis.</p>
+ <p>Therefore, in view of the increasing number of diagnostic errors that are continuously documented in the scientific literature, the international transplant societies have called on researchers worldwide to react and find a solution to simplify and make the diagnosis of rejection more reliable.</p>
+ <p><strong>The research team had a novel idea to solve this problem. </strong></p>
+ <blockquote> <p>" <em>Precision medicine needs diagnostic tools that are reliable, robust, accurate, widely validated and demonstrate a real and measurable benefit for patients. It is also essential that these digital systems are ethical and benefit from complete transparency in their construction as well as in the interpretation and reporting of results. In our study, we were able to demonstrate that an automated computerized assistant allowed doctors to make more accurate diagnoses</em>," says Professor Alexandre Loupy.</p>
+ <p><em>"Our main challenge was to establish a consortium of experts in transplantation, nephrology, pathology, data science, epidemiology, biostatistics, computer programming and artificial intelligence to develop this computer system and recruit patients from around the world to test whether it could correctly diagnose rejection. The results are clear: more than 40% of diagnoses are corrected and reclassified by the machine. This tool will allow better treatment of patients and also improve clinical trials and the development of immunosuppressive treatments</em>.</p>
+ </blockquote> <p>The consortium first conducted a systematic review of the scientific literature to collect all diagnostic rules for the classification of rejection published over the last 30 years. Physicians and pathologists then worked with <em>data scientists</em>, developers and computer programmers to translate these diagnostic rules into a computer algorithm covering all possible rejection scenarios. They then created an easy-to-use, online automated computer assistant that instantly interprets the complex medical data provided by the physicians with the algorithm to provide patients with a diagnosis by strictly applying the rules of the international classification.</p>
+ <blockquote> <p>" <em>It&rsquo;s sort of a conversational agent that specializes in rejections," </em>says Daniel Yoo,<em> data scientist </em>and co-first author of the study.<em> "We have developed a system that is intelligent and very easy to use. Doctors can get a correct diagnosis for their patients with a few clicks. The computer assistant also provides them with a report of the analysis as well as a decision tree that explains the algorithm&rsquo;s reasoning</em>."</p>
+ </blockquote> <p>The second part of the study was to demonstrate the clinical utility of this computerized assistant, i.e. its ability to correctly identify rejection. To do this, the researchers recruited more than 4,000 kidney transplant patients from 20 European and North American transplantation reference centers. For each patient, they had the initial diagnoses of the physicians, as well as all the data necessary for the automated system to make its own diagnosis. This allowed them to compare the human with the machine and determine which one was making the most relevant diagnosis.</p>
+ <blockquote> <p>" <em>One of the strengths of this computer assistant is that it can also handle large databases and improve clinical trials</em>," emphasizes Valentin Goutaudier, nephrologist and epidemiologist, first author of the study, " <em>The computer system allowed us to reclassify more than 40% of erroneous diagnoses of rejection among the patients we had recruited, and to make more accurate diagnoses. As a result, these results allow us to better guide patient management.</em>"</p>
+ </blockquote> <p>The results of this study were published on May 4, 2023 in the journal <em>Nature Medicine </em>and are accompanied by an editorial. This is a major advance towards precision medicine supported by automated computer systems, and the first study in any medical specialty to show that a computer assistant can help doctors make a better diagnosis.</p>
+ <p>This computerized assistant, which improves the diagnostic performance of rejection phenomena, has been validated by all international transplantation societies and will soon be used by transplantation teams worldwide to improve patient management. It will also allow standardization of rejection diagnoses in next-generation clinical trials to facilitate the development of new immunosuppressive treatments.</p>
+ <p>Transplantation is not the only medical specialty facing increasingly complex data. Other specialties, such as oncology and immunology, where varied and complex data are increasingly used, may look to automating disease classifications to improve patient management.</p>
+</div>
+<div id="bottom" class="container"> 
+<div class="block w95p"><h2>Links</h2><ul><li><span itemprop="author"><a href="/directory/medical_research/inserm">Institut national de la santé et de la recherche médicale (INSERM)</a></span><li><a href="/jobs?q=Institut national de la santé et de la recherche médicale (INSERM)">Job offers: Institut national de la santé et de la recherche médicale (INSERM)</li><li><a href="/wire" title="All news and press releases">Science Wire</a></li><li><a href="/news" title="News"> News from the Lab</a> - <span class="tlb"><a href="/news"><b class="subdomain">news</b><b class="dot">.</b><b class="myscience">myScience</b></a></span></li></ul>
+</div></div> 
+<div class="block"> 
+ <br><div class="line"></div>
+<!--googleoff: all-->
+<div class="social_sharing">
+<a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fwww.myscience.fr%2Fnews%2F2023%2Fun_assistant_informatique_automatise_specialise_dans_le_diagnostic_du_rejet_de_greffe-2023-inserm" rel="nofollow" target="_blank"><img src="/image/share/linkedin.png" width="25" height="25" alt="LinkedIn" title="Share on LinkedIn" class="social_icon m5"></a>
+<a href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Fwww.myscience.fr%2Fnews%2F2023%2Fun_assistant_informatique_automatise_specialise_dans_le_diagnostic_du_rejet_de_greffe-2023-inserm" rel="nofollow" target="_blank"><img src="/image/share/facebook.png" width="25" height="25" alt="Facebook" title="Share on Facebook" class="social_icon m5"></a>
+<a href="https://bsky.app/intent/compose?text=https%3A%2F%2Fwww.myscience.fr%2Fnews%2F2023%2Fun_assistant_informatique_automatise_specialise_dans_le_diagnostic_du_rejet_de_greffe-2023-inserm" rel="nofollow" target="_blank"><img src="/image/share/bluesky.png" width="25" height="25" alt="Bluesky" title="Share on Bluesky" class="social_icon m5"></a>
+<a href="https://api.whatsapp.com/send?text=An%20automated%20computer%20assistant%20specialized%20in%20the%20diagnosis%20of%20transplant%20rejection%20-%20www.myscience.fr%20https%3A%2F%2Fwww.myscience.fr%2Fnews%2F2023%2Fun_assistant_informatique_automatise_specialise_dans_le_diagnostic_du_rejet_de_greffe-2023-inserm" rel="nofollow" target="_blank"><img src="/image/share/whatsapp.png" width="25" height="25" alt="WhatsApp Web" title="Share on WhatsApp Web" class="social_icon m5"></a>
+<a href="mailto:?subject=An%20automated%20computer%20assistant%20specialized%20in%20the%20diagnosis%20of%20transplant%20rejection&body=%2AAn%20automated%20computer%20assistant%20specialized%20in%20the%20diagnosis%20of%20transplant%20rejection%20-%20www.myscience.fr%2A%0D%0Dhttps%3A%2F%2Fwww.myscience.fr%2Fnews%2F2023%2Fun_assistant_informatique_automatise_specialise_dans_le_diagnostic_du_rejet_de_greffe-2023-inserm%0D" rel="nofollow"><img src="/image/share/email.png" width="25" height="25" alt="Email" title="Send by Email" class="social_icon m5"></a>
+</div>
+<!--googleon: all-->
+</div>
+<div class="advert_block"><div class="block"><br><hr><b class="gray">Advert</b></div>
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3721390067330036"
+     crossorigin="anonymous"></script>
+<!-- middle -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3721390067330036"
+     data-ad-slot="8061329941"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+</div>
+<!--##print_end##-->
+</div>
+</div><!--end of #middle-->
+</div><!--end of #leftandmiddle-->
+<div id="right" role="navigation">
+<div class="sidebox">
+<div class="boxcontent">
+<div class="menucontainer">
+<div class="mb"><div class="mbr rw2"><a href="/sitemap" class="side2">sitemap</a></div> </div></div>
+</div>
+</div>
+<div class="sidebox"><div class="boxcontent">
+<div class="container"><div><a href="/sciences" class="icon_box"><svg class="svg_icon" width="48.10556px" height="54.250171pt"  version="1.1"  viewBox="0 0 481.0556 542.50171">  
+<g transform="translate(-109.4712,-8.75)">  
+<path d="m 186.73,470.66 c -16.71173,0.20298 -32.86978,-10.4585 -39.25887,-25.90168 -6.75986,-15.27718 -3.32127,-34.31659 8.35335,-46.26565 11.38829,-12.24032 30.26397,-16.57769 45.85233,-10.53317 15.71182,5.65747 27.1146,21.27717 27.70497,37.96769 0.99732,16.66673 -8.86261,33.29591 -23.96031,40.42318 -5.79733,2.82872 -12.24067,4.31526 -18.69147,4.30963 z m 0,-67.812 c -11.89976,-0.23355 -23.00865,9.10593 -24.82762,20.86709 -2.27888,11.69701 5.03918,24.25519 16.33089,28.05443 11.1396,4.23934 24.76326,-0.83498 30.4293,-11.31767 6.26785,-10.67576 3.28487,-25.68148 -6.82758,-32.92717 -4.31731,-3.24766 -9.70243,-5.04101 -15.10499,-5.02868 v 0.24156 z"   />  <path d="m 350,322.7 c -16.70326,0.20402 -32.8575,-10.44252 -39.24778,-25.878 -6.76019,-15.26761 -3.34379,-34.29966 8.31236,-46.25705 11.37244,-12.24553 30.23158,-16.59804 45.82263,-10.58508 15.71709,5.62617 27.1351,21.2232 27.75934,37.90386 1.00438,16.67665 -8.8526,33.32095 -23.94868,40.47286 C 362.90044,321.19478 356.45496,322.6924 350,322.7 Z m 0,-67.898 c -11.89894,-0.23363 -23.00924,9.10492 -24.8242,20.86709 -2.27626,11.69538 5.03162,24.2607 16.32747,28.05611 11.13949,4.23364 24.76996,-0.82927 30.43224,-11.31818 6.18124,-10.43612 3.27215,-25.02908 -6.44905,-32.28758 C 361.10443,256.69008 355.56435,254.78851 350,254.802 Z"   />  <path  d="m 409.41,132.21 c -16.70452,0.20544 -32.85664,-10.44391 -39.24968,-25.878 -6.76496,-15.266404 -3.3435,-34.298133 8.31424,-46.253058 11.37116,-12.246028 30.23015,-16.605141 45.82093,-10.587384 15.71227,5.631367 27.13439,21.22216 27.76102,37.902222 1.03164,16.6848 -8.81948,33.3555 -23.93365,40.4982 -5.80281,2.83472 -12.25463,4.32362 -18.71286,4.31802 z m 0,-67.898 c -12.11721,-0.244733 -23.37808,9.457088 -24.92652,21.477701 -2.0359,11.961284 5.9194,24.541579 17.59757,27.831539 11.33317,3.687 24.69653,-2.03913 29.84113,-12.79005 5.55995,-10.537067 2.19123,-24.674677 -7.52281,-31.572879 -4.29794,-3.1964 -9.63282,-4.95815 -14.98937,-4.946311 z"   />  <path  d="m 507.5,484.75 c -16.71019,0.23702 -32.89088,-10.38743 -39.30921,-25.81883 -6.79231,-15.26347 -3.39387,-34.31172 8.25714,-46.28502 11.36437,-12.26248 30.22998,-16.6332 45.83073,-10.62522 15.72248,5.62513 27.15618,21.22271 27.7828,37.9104 1.01754,16.8331 -9.04363,33.62169 -24.36116,40.67252 -5.66403,2.6985 -11.92721,4.12344 -18.2003,4.14615 z m 0,-67.898 c -11.90721,-0.27404 -23.05413,9.04097 -24.90269,20.80634 -2.30865,11.69966 4.98847,24.28853 16.28604,28.10387 11.34256,4.34486 25.25364,-1.01034 30.75692,-11.83785 5.92628,-10.56948 2.67572,-25.06806 -7.19392,-32.09772 C 518.16316,418.62935 512.845,416.85927 507.5,416.852 Z"   />  <path  d="M 350,551.25 C 317.93923,550.14932 299.88001,517.85065 288.44653,491.90685 261.03619,423.95974 254.33407,349.58061 253.7562,276.9223 254.85026,206.29962 261.73676,134.10021 288.44653,68.093147 299.88001,42.149348 317.93923,9.8506846 350,8.75 377.0077,9.7095459 395.60163,34.661572 405.47581,57.2883 392.89645,84.197903 380.3707,40.293946 367.28632,33.379555 351.66277,17.852063 329.39989,31.379599 320.30066,47.204337 291.55153,92.042801 282.315,146.0321 275.66392,198.00492 c -8.54624,85.48051 -5.86516,173.42784 18.19014,256.34036 9.65848,27.78223 19.3901,60.03397 45.56869,76.70523 21.06709,10.11818 38.10624,-12.73723 47.0517,-28.88031 29.91349,-57.7602 37.92362,-123.87001 41.53917,-187.98014 2.99036,-63.76801 -1.84446,-128.05271 -16.76384,-190.20034 7.03179,-25.444046 23.74815,4.2891 21.82021,18.24535 18.65605,94.35562 17.55438,192.60674 -2.00373,286.71527 -9.64211,39.42837 -20.76342,82.04483 -51.45367,110.6502 C 371.37558,546.58111 360.93653,551.35494 350,551.25 Z"   />  <path  d="m 541.54,449.14 c -23.22164,-8.13364 7.01123,-22.96524 17.05077,-25.53041 15.36482,-18.37233 1.72692,-43.50069 -8.7805,-60.89552 C 511.60805,301.32311 453.27204,255.82464 394.30098,215.604 332.04665,174.75031 263.82632,138.73954 189.34462,127.77022 c -21.59188,-4.10201 -58.72701,0.92957 -54.72419,30.67308 6.50103,34.65402 31.15282,62.20405 53.31419,88.28902 56.1047,59.59351 124.61228,106.74448 197.25409,143.93282 29.31836,14.53944 59.88585,26.70446 91.51429,35.20086 19.63885,14.73868 -15.09231,23.05497 -24.65948,11.29276 C 356.95081,405.46204 271.25421,349.27324 197.69105,281.8273 164.5355,250.30473 131.80869,214.62048 118.14497,170.03013 c -6.12523,-22.83377 4.81166,-50.76624 29.32309,-56.61741 38.49707,-11.86108 78.89034,2.28492 115.44985,14.52512 95.44553,35.57806 181.84962,93.82318 254.34599,165.04714 27.34364,28.32285 54.10484,60.14036 64.83914,98.72596 6.78114,24.47336 -8.68209,51.83772 -34.02922,56.4703 l -3.24849,0.6067 z"   />  <path  d="m 152.86,438.29 h -1.75 c -14.77,-1.8711 -27.965,-10.164 -36.051,-22.664 -31.148,-54.074 72.977,-153.12 186.9,-218.75 61.25,-35.523 124.07,-61.25 176.14,-71.664 55.652,-11.461 93.102,-4.5469 106.84,19.164 31.148,54.074 -72.977,153.12 -186.9,218.75 -61.25,35 -123.64,61.25 -175.61,71.574 -2.2734,0.46484 -4.6406,0.008 -6.5781,-1.2734 -1.9336,-1.2812 -3.2852,-3.2773 -3.7461,-5.5508 -0.92578,-4.6523 2.0234,-9.1914 6.6484,-10.238 60.035,-14.344 117.52,-37.805 170.45,-69.562 129.5,-74.812 199.06,-162.75 180.43,-194.95 -9.2734,-16.188 -42.262,-20.301 -88.113,-10.852 -50.227,10.324 -110.95,35 -170.89,70 -129.41,74.465 -198.98,162.4 -180.34,194.6 5.6211,8.0195 14.484,13.172 24.234,14.086 2.293,0.44531 4.3125,1.7852 5.6094,3.7227 1.2969,1.9414 1.7656,4.3164 1.3047,6.6055 -0.83203,4.0742 -4.418,7 -8.5742,7 z"   />  
+</g> 
+</svg>
+
+<p>Sciences</p></a></div><div><a href="/register" rel="nofollow" class="icon_box"><svg class="svg_icon" data-icon="user-plus" role="img" version="1.1" viewBox="0 0 613.97 512" width="36px" height="36px" xmlns="http://www.w3.org/2000/svg"> <path d="m606.29 224h-84.42v-88c0-4.4-3.4536-8-7.6746-8h-15.349c-4.221 0-7.6746 3.6-7.6746 8v88h-84.42c-4.221 0-7.6746 3.6-7.6746 8v16c0 4.4 3.4536 8 7.6746 8h84.42v88c0 4.4 3.4536 8 7.6746 8h15.349c4.221 0 7.6746-3.6 7.6746-8v-88h84.42c4.221 0 7.6746-3.6 7.6746-8v-16c0-4.4-3.4536-8-7.6746-8zm-305.45 64c-27.533 0-40.771 16-85.955 16-45.184 0-58.327-16-85.955-16-71.182 0-128.93 60.2-128.93 134.4v41.6c0 26.5 20.625 48 46.047 48h337.68c25.422 0 46.047-21.5 46.047-48v-41.6c0-74.2-57.751-134.4-128.93-134.4zm98.235 176c0 8.8-6.9071 16-15.349 16h-337.68c-8.442 0-15.349-7.2-15.349-16v-41.6c0-56.5 44.033-102.4 98.235-102.4 18.803 0 37.509 16 85.955 16 48.35 0 67.153-16 85.955-16 54.202 0 98.235 45.9 98.235 102.4zm-184.19-208c67.824 0 122.79-57.3 122.79-128s-54.969-128-122.79-128c-67.824 0-122.79 57.3-122.79 128s54.969 128 122.79 128zm0-224c50.748 0 92.095 43.1 92.095 96s-41.347 96-92.095 96c-50.748 0-92.095-43.1-92.095-96s41.347-96 92.095-96z" fill="currentColor" stroke-width=".97945"/></svg>
+ 
+<p>Sign up</p></a></div> 
+<div><a href="/jobs" title="Search Job Offers" class="icon_box"><svg class="svg_icon" aria-hidden="true" data-icon="briefcase" role="img" version="1.1" width="45px" height="42px" viewBox="0 0 485.97 448" xmlns="http://www.w3.org/2000/svg"> <path d="m440.41 96h-106.31v-72c0-13.26-10.194-24-22.78-24h-136.68c-12.586 0-22.78 10.74-22.78 24v72h-106.31c-25.162 0-45.559 21.49-45.559 48v256c0 26.51 20.397 48 45.559 48h394.85c25.162 0 45.559-21.49 45.559-48v-256c0-26.51-20.397-48-45.559-48zm-258.17-64h121.49v64h-121.49zm273.36 368c0 8.82-6.8149 16-15.186 16h-394.85c-8.3715 0-15.186-7.18-15.186-16v-144h151.86v40c0 13.25 10.203 24 22.78 24h75.932c12.576 0 22.78-10.75 22.78-24v-40h151.86zm-242.98-112v-32h60.746v32zm242.98-64h-425.22v-80c0-8.82 6.8149-16 15.186-16h394.85c8.3715 0 15.186 7.18 15.186 16z" fill="currentColor" stroke-width=".97424"/></svg>
+<p>Job Portal</p></a>
+</div>
+<div><a href="/events" class="icon_box"><svg class="svg_icon" data-icon="calendar" role="img" version="1.1" width="42px" height="45px" viewBox="0 0 428.47 512" xmlns="http://www.w3.org/2000/svg"><path d="m382.57 64h-45.908v-52c0-6.6-5.1646-12-11.477-12h-7.6513c-6.3124 0-11.477 5.4-11.477 12v52h-183.63v-52c0-6.6-5.1646-12-11.477-12h-7.6513c-6.3124 0-11.477 5.4-11.477 12v52h-45.908c-25.345 0-45.908 21.5-45.908 48v352c0 26.5 20.563 48 45.908 48h336.66c25.345 0 45.908-21.5 45.908-48v-352c0-26.5-20.563-48-45.908-48zm-336.66 32h336.66c8.4165 0 15.303 7.2 15.303 16v48h-367.26v-48c0-8.8 6.8862-16 15.303-16zm336.66 384h-336.66c-8.4165 0-15.303-7.2-15.303-16v-272h367.26v272c0 8.8-6.8862 16-15.303 16zm-241.02-160h-38.257c-6.3124 0-11.477-5.4-11.477-12v-40c0-6.6 5.1646-12 11.477-12h38.257c6.3124 0 11.477 5.4 11.477 12v40c0 6.6-5.1646 12-11.477 12zm91.816 0h-38.257c-6.3124 0-11.477-5.4-11.477-12v-40c0-6.6 5.1646-12 11.477-12h38.257c6.3124 0 11.477 5.4 11.477 12v40c0 6.6-5.1646 12-11.477 12zm91.816 0h-38.257c-6.3124 0-11.477-5.4-11.477-12v-40c0-6.6 5.1646-12 11.477-12h38.257c6.3124 0 11.477 5.4 11.477 12v40c0 6.6-5.1646 12-11.477 12zm-91.816 96h-38.257c-6.3124 0-11.477-5.4-11.477-12v-40c0-6.6 5.1646-12 11.477-12h38.257c6.3124 0 11.477 5.4 11.477 12v40c0 6.6-5.1646 12-11.477 12zm-91.816 0h-38.257c-6.3124 0-11.477-5.4-11.477-12v-40c0-6.6 5.1646-12 11.477-12h38.257c6.3124 0 11.477 5.4 11.477 12v40c0 6.6-5.1646 12-11.477 12zm183.63 0h-38.257c-6.3124 0-11.477-5.4-11.477-12v-40c0-6.6 5.1646-12 11.477-12h38.257c6.3124 0 11.477 5.4 11.477 12v40c0 6.6-5.1646 12-11.477 12z" fill="currentColor" stroke-width=".97797"/></svg>
+
+<p>Events</p></a></div><div><a href="/account/my_alerts" rel="nofollow" class="icon_box"><svg class="svg_icon" data-icon="paper-plane" version="1.1" width="45px" height="42px" viewBox="0 0 540.18 485.99" xmlns="http://www.w3.org/2000/svg"><path d="m489.55 4.1064-472.68 245.26c-24.267 12.624-21.84 44.8 4.0093 54.387l147.92 55.051v96.814c0 28.664 39.882 41.098 59.823 19.268l64.044-70.048 133.36 49.546c20.152 7.4983 42.942-3.9864 46.213-23.444l67.526-395.89c4.3258-25.342-25.955-43.566-50.222-30.942zm-286.98 451.51v-84.285l57.502 21.356zm236.34-29.329-217.56-80.868 210.49-223.81c5.0644-5.3153-3.0598-12.529-8.9682-7.9729l-269.36 206.54-119.75-44.42 472.68-245.36z" fill="currentColor" stroke-width="1.0007"/></svg>
+
+<p>Jobmail &amp; Alerts</p></a></div></div>
+</div></div><div class="container"><div class="block"><b class="gray">Advert</b></div>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3721390067330036"
+     crossorigin="anonymous"></script>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3721390067330036"
+     data-ad-slot="2964626951"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+<div class="sidebox">
+<div class="block w90p p5"> <div class="fb_box"><a href="https://www.facebook.com/pages/myScience/121810527842303" rel="nofollow" class="fb_button fb_logo" title="myScience on Facebook">f</a></div>
+<div class="fb_box"><span class="fb_button" title="Share on Facebook">Share</span></div>
+<div class="fb_box"><span class="fb_button" title="Like (Facebook)">Like</span></div>
+</div><div class="clear"></div></div> 
+ <div class="relatedstories">
+<div class="relatedstoriesA">
+<div class="large bold">Related Stories</div>
+<div class="heading"><a href="/news/Health"><span class="topics">Health</span></a></div>
+ <div class="related_story"><a href="/news/2025/avancee_majeure_pour_gestion_epidemies_influenza_aviaire_outil_numerique_pour_mieux_tracer_elevage-2025-inrae" class="title_rs">A major advance in the management of avian influenza epidemics: a digital tool for better tracking of infected farms</a> - <span class="date">08.01</span></div>
+ <div class="related_story"><a href="/news/2025/performance_surveillance_virus_influenza_aviaire_hautement_pathogene_les_elevages_vaccines-2025-inrae" class="title_rs">Performance of highly pathogenic avian influenza virus surveillance in vaccinated farms</a> - <span class="date">06.01</span></div>
+ <div class="related_story"><a href="/news/wire/a_transdisciplinary_systemic_vision_of_health_and_well_being-2024-ens-lyon" class="title_rs">A transdisciplinary systemic vision of health and well-being</a> - <span class="date">19.12.2024</span></div>
+</div><div class="space3"></div>
+<div class="relatedstoriesB">
+<div class="large bold">Related Stories</div>
+<div class="heading"><a href="/news/Computer+Science"><span class="topics">Computer Science</span></a></div>
+ <div class="related_story"><a href="/news/wire/the_cnrs_aims_to_attract_the_ai_talent_of_tomorrow-2024-cnrs" class="title_rs">The CNRS aims to attract the AI talent of tomorrow</a> - <span class="date">24.09.2024</span><a href="/news/wire/the_cnrs_aims_to_attract_the_ai_talent_of_tomorrow-2024-cnrs"> <img src="/news/wire/the_cnrs_aims_to_attract_the_ai_talent_of_tomorrow-2024-cnrs/image_h200.jpg" height="200" width="300" alt="The CNRS aims to attract the AI talent of tomorrow"></a></div>
+ <div class="related_story"><a href="/news/wire/pooling_computing_resources_to_progress_further_together_at_paris_saclay_university-2024-cnrs" class="title_rs">Pooling computing resources to progress further together at Paris-Saclay University</a> - <span class="date">22.07.2024</span><a href="/news/wire/pooling_computing_resources_to_progress_further_together_at_paris_saclay_university-2024-cnrs"> <img src="/news/wire/pooling_computing_resources_to_progress_further_together_at_paris_saclay_university-2024-cnrs/image_h200.jpg" height="200" width="308" alt="Pooling computing resources to progress further together at Paris-Saclay Univers"></a></div>
+</div>
+</div>
+
+</div><!--end of #right-->
+<div class="clear"></div>
+</div><!--end of #maincontent-->
+</div><!--end of #page-->
+<footer id="footer">
+<div id="footerContent">
+<div class="bottom">
+<div class="footerColumns">
+<div class="overflow_hidden center w90p">
+<div class="clear_after"></div>
+<div class="footerCol" id="col1">
+<h3>INFO</h3>
+ <a href="/home/about">About us</a>
+<br><a href="/privacy">Privacy</a>
+<br><a href="/sitemap">Sitemap</a>
+<br></div>
+<div class="footerCol" id="col2">
+<h3>COMMUNICATE</h3>
+ <a href="/jobs/advertise_jobs">Post a job</a>
+<br></div>
+<div class="clear_after"></div>
+<div class="footerCol" id="col3">
+<h3>INTERACT</h3>
+ <a href="/account/login">Login</a>
+<br><a href="/register">Register</a>
+<br><a href="/search">Search</a>
+<br><a href="/contact">Contact</a>
+<br></div>
+<div class="footerCol" id="col4">
+<h3>SHARE</h3>
+ <a href="https://www.facebook.com/pages/myScience/121810527842303" rel="nofollow">facebook</a>
+<br></div>
+</div>
+</div>
+</div>
+<div id="myScienceNetwork" class="bottom"><a href="/about"><img src="/image/logo_myScience_square.png" width="18" height="18" alt="myScience" title="myScience Logo" class="flag"> <strong>myScience Network</strong></a></div>
+<div id="copyright" class="bottom"><hr><span class="st"><a href="https://www.myscience.fr/home/about">Copyright &copy;  2008-2025 - myScience<sup>&reg;</sup></a> - <span class="gray st">ISSN 2813-270X</span></span>
+</div>
+</div>
+ <a href="/bt/2025" class="bt" rel="nofollow">.</a>
+</footer>
+</div>
+<script src="/js/scripts_common.js"></script>
+<!--googleoff: all-->
+<div id="analytics_consent" class="analytics_consent_box" style="display:none">
+<div class="center large"> This site uses cookies and analysis tools to improve the usability of the site. <button type="button" class="button w200" value="analytics_consent" name="analytics_consent" OnClick="setCookie('analytics_consent','yes','360','myscience.fr');$(this).parent().parent().hide();">OK</button> &nbsp; &nbsp; <br><br><a href="/privacy">More information</a>    &nbsp; &nbsp; | &nbsp; &nbsp; <a href="https://www.google.fr/search?q=myscience+news" rel="nofollow" target="_blank"><span class="link" value="leave" name="leave">Leave</span></a> 
+</div>
+</div>
+<!--googleon: all-->
+<div id="returnOnTop" title="Top">&nbsp;</div>
+<script>
+  cookie_permission = getCookieValue('analytics_consent');
+  console.log('cookie analytics_consent: '+cookie_permission);
+  if(cookie_permission!='yes')
+   {
+         document.getElementById('analytics_consent').style.display = 'block';
+    }
+</script>
+</body>
+</html>
