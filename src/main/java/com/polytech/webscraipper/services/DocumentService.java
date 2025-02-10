@@ -56,13 +56,14 @@ public class DocumentService {
             classifierService.getAllClassifiers(), scrappedContent);
 
     // Requesting the AI
+    var timeAtStart = System.currentTimeMillis();
+    // Added a time logger since sometime the OpenAI API is overloaded and takes a long time to
+    // answer.
+    var timerLogger = new Timer();
     try {
       System.out.println(
           "Requesting the AI for the prompt: " + prompt.getFirst().substring(0, 100) + "...");
-      var timeAtStart = System.currentTimeMillis();
-      // Added a time logger since sometime the OpenAI API is overloaded and takes a long time to
-      // answer.
-      var timerLogger = new Timer();
+
       timerLogger.scheduleAtFixedRate(
           new TimerTask() {
             @Override
@@ -77,10 +78,6 @@ public class DocumentService {
           5000,
           5000);
       var aiAnswer = requestToAi(prompt.getFirst());
-      timerLogger.cancel();
-      var timeAtEnd = System.currentTimeMillis();
-      System.out.println(
-          "The OpenAI API answered in " + (timeAtEnd - timeAtStart) / 1000 + "seconds.");
       var res = buildAnswer(aiAnswer, url);
 
       tracesManagementService.postGenericAILog(
@@ -90,6 +87,11 @@ public class DocumentService {
       tracesManagementService.postFailedOutputAILog(
           prompt.getSecond(), e.getMessage(), url, SESSION_ID);
       throw e;
+    } finally {
+      timerLogger.cancel();
+      var timeAtEnd = System.currentTimeMillis();
+      System.out.println(
+              "The OpenAI API answered in " + (timeAtEnd - timeAtStart) / 1000 + "seconds.");
     }
   }
 
