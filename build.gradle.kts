@@ -4,6 +4,7 @@ plugins {
     id("io.spring.dependency-management") version "1.1.7"
     kotlin("jvm")
     id("com.diffplug.spotless") version "7.0.2"
+    id("com.avast.gradle.docker-compose") version "0.16.12"
 }
 
 spotless {
@@ -34,12 +35,17 @@ repositories {
     maven { url = uri("https://repo.spring.io/milestone") }
 }
 
+dockerCompose {
+    useComposeFiles = listOf("docker-compose.yml")
+    startedServices = listOf("mongo_db")
+    isRequiredBy(tasks.bootRun)
+}
+
 extra["springAiVersion"] = "1.0.0-M5"
 val springCloudVersion by extra("2024.0.0")
 
 dependencies {
     implementation("com.google.code.gson:gson:2.10.1")
-    implementation("org.springframework.boot:spring-boot-docker-compose")
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-webflux")
