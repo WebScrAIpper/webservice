@@ -1,6 +1,5 @@
 package com.polytech.webscraipper.sdk
 
-import io.netty.util.internal.UnstableApi
 import org.springframework.cloud.openfeign.FeignClient
 import org.springframework.web.bind.annotation.*
 
