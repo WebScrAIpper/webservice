@@ -5,6 +5,8 @@ import com.polytech.webscraipper.PromptException;
 import com.polytech.webscraipper.dto.DocumentDto;
 import com.polytech.webscraipper.services.DocumentService;
 import java.io.IOException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -39,6 +41,7 @@ public class DocumentController {
   @PostMapping("/build")
   public ResponseEntity<String> buildWebsiteSummary(
       @RequestParam String url, @RequestBody String content) throws IOException {
+    url = URLDecoder.decode(url, StandardCharsets.UTF_8);
     System.out.println("Building document summary for " + url);
     var res = buildDocumentSummary(url, content, false); // false for website
     if (res.getStatusCode() != HttpStatus.OK) {
@@ -51,6 +54,7 @@ public class DocumentController {
   @PostMapping("/youtubeBuild")
   public ResponseEntity<String> buildYoutubeVodSummary(@RequestParam String url)
       throws IOException {
+    url = URLDecoder.decode(url, StandardCharsets.UTF_8);
     var res = buildDocumentSummary(url, null, true); // true for YouTube
     if (res.getStatusCode() != HttpStatus.OK) {
       System.out.println("Error while building document summary for " + url + "\n" + res.getBody());
