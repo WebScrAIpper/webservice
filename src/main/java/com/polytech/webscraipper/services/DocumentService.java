@@ -172,22 +172,29 @@ public class DocumentService {
   }
 
   // TODO: think about moving this method somewhere else
-  public String executePythonScript(String scriptPath, String url)
-      throws IOException, InterruptedException {
-
-    // TODO: Doesn't work for everyone, venv does not always have a bin folder.
+  public String executePythonScript(String scriptPath, String url) throws IOException, InterruptedException {
     ProcessBuilder pb = new ProcessBuilder("src/.venv/bin/python3", scriptPath, url);
     Process process = pb.start();
 
     BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
     StringBuilder output = new StringBuilder();
     String line;
-
     while ((line = reader.readLine()) != null) {
       output.append(line).append("\n");
     }
-    process.waitFor();
+
+    int exitCode = process.waitFor();
+
+    if (exitCode != 0) {
+      BufferedReader errorReader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+      StringBuilder errorOutput = new StringBuilder();
+      while ((line = errorReader.readLine()) != null) {
+        errorOutput.append(line).append("\n");
+      }
+      throw new IOException("Error executing Python script " + scriptPath + " : " + errorOutput.toString().trim());
+    }
 
     return output.toString().trim();
   }
+
 }
