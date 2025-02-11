@@ -1,12 +1,13 @@
 package com.polytech.webscraipper.sdk
 
+import com.polytech.webscraipper.WebScrAIpperApplication
 import com.polytech.webscraipper.sdk.responses.PromptResponse
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 
-@SpringBootTest
+@SpringBootTest(classes = [WebScrAIpperApplication::class])
 class LangfuseSDKTest {
 
     @Autowired
