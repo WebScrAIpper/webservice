@@ -19,7 +19,8 @@ def get_transcript(url, languages=('en', 'fr')):
         text = " ".join([entry['text'] for entry in transcript])
         print(text)
     except Exception as e:
-        print("Error:", e)
+        print(f"Error: {str(e)}")
+        sys.exit(1)
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
