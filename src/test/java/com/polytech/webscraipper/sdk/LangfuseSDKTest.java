@@ -2,6 +2,7 @@ package com.polytech.webscraipper.sdk;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import com.polytech.webscraipper.WebScrAIpperApplication;
 import com.polytech.webscraipper.sdk.responses.PromptResponse;
 import com.polytech.webscraipper.sdk.responses.PromptsResponse;
 import java.util.List;
@@ -10,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+@SpringBootTest(classes = WebScrAIpperApplication.class)
 public class LangfuseSDKTest {
 
   @Autowired private LangfuseSDK langfuseSDK;
