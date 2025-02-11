@@ -38,7 +38,9 @@ repositories {
 dockerCompose {
     useComposeFiles = listOf("docker-compose.yml")
     startedServices = listOf("mongo_db")
+    isRequiredBy(tasks.bootTestRun)
     isRequiredBy(tasks.bootRun)
+    isRequiredBy(tasks.test)
 }
 
 extra["springAiVersion"] = "1.0.0-M5"
