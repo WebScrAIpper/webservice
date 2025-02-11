@@ -23,4 +23,4 @@ RUN python3 -m venv /src/.venv && \
     pip install --upgrade pip setuptools && \
     pip install youtube_transcript_api yt-dlp
 
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar", "--spring.profiles.active=prod"]
