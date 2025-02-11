@@ -172,8 +172,15 @@ public class DocumentService {
   }
 
   // TODO: think about moving this method somewhere else
-  public String executePythonScript(String scriptPath, String url) throws IOException, InterruptedException {
-    ProcessBuilder pb = new ProcessBuilder("src/.venv/bin/python3", scriptPath, url);
+  public String executePythonScript(String scriptPath, String url)
+      throws IOException, InterruptedException {
+
+    ProcessBuilder pb;
+    if (System.getProperty("os.name").contains("Windows")) {
+      pb = new ProcessBuilder("src/.venv/Scripts/python.exe", scriptPath, url);
+    } else {
+      pb = new ProcessBuilder("src/.venv/bin/python3", scriptPath, url);
+    }
     Process process = pb.start();
 
     BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
