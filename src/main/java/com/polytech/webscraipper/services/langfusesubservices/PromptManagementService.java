@@ -6,7 +6,6 @@ import com.polytech.webscraipper.sdk.LangfuseSDK;
 import com.polytech.webscraipper.sdk.responses.PromptResponse;
 import java.util.List;
 import java.util.Map;
-import kotlin.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,8 +27,7 @@ public class PromptManagementService {
         .toList();
   }
 
-  public Pair<String, PromptResponse> createDefaultProdPrompt(
-      List<String> classifiersNames, String content) {
+  public PromptResponse createDefaultProdPrompt(List<String> classifiersNames, String content) {
     String classifiersJson;
     try {
       classifiersJson = objectMapper.writeValueAsString(classifiersNames);
@@ -47,8 +45,7 @@ public class PromptManagementService {
   // Note: The behaviour for both is almost the same for now but could change in future prompt
   // improvements.
 
-  public Pair<String, PromptResponse> createYouTubeProdPrompt(
-      List<String> classifiersNames, String content) {
+  public PromptResponse createYouTubeProdPrompt(List<String> classifiersNames, String content) {
     String classifiersJson;
     try {
       classifiersJson = objectMapper.writeValueAsString(classifiersNames);

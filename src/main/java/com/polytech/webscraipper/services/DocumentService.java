@@ -57,12 +57,14 @@ public class DocumentService {
 
     // Requesting the AI
     var timeAtStart = System.currentTimeMillis();
-    // Added a time logger since sometime the OpenAI API is overloaded and takes a long time to
+    // Added a time logger since sometimes the OpenAI API is overloaded and takes a long time to
     // answer.
     var timerLogger = new Timer();
     try {
       System.out.println(
-          "Requesting the AI for the prompt: " + prompt.getFirst().substring(0, 100) + "...");
+          "Requesting the AI for the prompt:\n\"\"\""
+              + prompt.prompt.substring(0, 300)
+              + "...\n\"\"\"");
 
       timerLogger.scheduleAtFixedRate(
           new TimerTask() {
@@ -72,20 +74,18 @@ public class DocumentService {
               System.out.println(
                   "Waiting for the OpenAI Api to answer since: "
                       + (timeAtNow - timeAtStart) / 1000
-                      + "seconds.");
+                      + " seconds.");
             }
           },
           5000,
           5000);
-      var aiAnswer = requestToAi(prompt.getFirst());
+      var aiAnswer = requestToAi(prompt.prompt);
       var res = buildAnswer(aiAnswer, url);
 
-      tracesManagementService.postGenericAILog(
-          prompt.getSecond(), aiAnswer.toString(), url, SESSION_ID);
+      tracesManagementService.postGenericAILog(prompt, aiAnswer.toString(), url, SESSION_ID);
       return res;
     } catch (Exception e) {
-      tracesManagementService.postFailedOutputAILog(
-          prompt.getSecond(), e.getMessage(), url, SESSION_ID);
+      tracesManagementService.postFailedOutputAILog(prompt, e.getMessage(), url, SESSION_ID);
       throw e;
     } finally {
       timerLogger.cancel();
@@ -106,7 +106,7 @@ public class DocumentService {
             classifierService.getAllClassifiers(), content);
 
     // Requesting the AI
-    var aiAnswer = requestToAi(prompt.getFirst());
+    var aiAnswer = requestToAi(prompt.prompt);
     return buildAnswer(aiAnswer, url);
   }
 
