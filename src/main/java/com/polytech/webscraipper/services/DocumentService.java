@@ -193,15 +193,16 @@ public class DocumentService {
     int exitCode = process.waitFor();
 
     if (exitCode != 0) {
-      BufferedReader errorReader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+      BufferedReader errorReader =
+          new BufferedReader(new InputStreamReader(process.getErrorStream()));
       StringBuilder errorOutput = new StringBuilder();
       while ((line = errorReader.readLine()) != null) {
         errorOutput.append(line).append("\n");
       }
-      throw new IOException("Error executing Python script " + scriptPath + " : " + errorOutput.toString().trim());
+      throw new IOException(
+          "Error executing Python script " + scriptPath + " : " + errorOutput.toString().trim());
     }
 
     return output.toString().trim();
   }
-
 }
