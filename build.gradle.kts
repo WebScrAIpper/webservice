@@ -3,7 +3,7 @@ plugins {
     id("org.springframework.boot") version "3.4.2"
     id("io.spring.dependency-management") version "1.1.7"
     id("com.diffplug.spotless") version "7.0.2"
-    id("com.avast.gradle.docker-compose") version "0.16.12"
+    id("com.avast.gradle.docker-compose") version "0.17.12"
 }
 
 spotless {
@@ -30,6 +30,7 @@ repositories {
 dockerCompose {
     useComposeFiles = listOf("docker-compose.yml")
     startedServices = listOf("mongo_db")
+    useDockerComposeV2 = true
     isRequiredBy(tasks.bootTestRun)
     isRequiredBy(tasks.bootRun)
     isRequiredBy(tasks.test)
