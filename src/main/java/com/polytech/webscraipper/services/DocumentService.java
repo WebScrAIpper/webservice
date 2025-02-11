@@ -176,7 +176,12 @@ public class DocumentService {
       throws IOException, InterruptedException {
 
     // TODO: Doesn't work for everyone, venv does not always have a bin folder.
-    ProcessBuilder pb = new ProcessBuilder("src/.venv/bin/python3", scriptPath, url);
+    ProcessBuilder pb;
+    if (System.getProperty("os.name").contains("Windows")) {
+      pb = new ProcessBuilder("src/.venv/Scripts/python.exe", scriptPath, url);
+    } else {
+      pb = new ProcessBuilder("src/.venv/bin/python3", scriptPath, url);
+    }
     Process process = pb.start();
 
     BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
