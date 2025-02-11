@@ -8,7 +8,6 @@ import com.polytech.webscraipper.dto.DocumentDto;
 import com.polytech.webscraipper.repositories.DocumentRepository;
 import com.polytech.webscraipper.services.langfusesubservices.PromptManagementService;
 import com.polytech.webscraipper.services.langfusesubservices.TracesManagementService;
-
 import java.io.*;
 import java.util.*;
 import org.jsoup.Jsoup;
@@ -94,7 +93,8 @@ public class DocumentService {
     }
   }
 
-  public DocumentDto buildYoutubeVodSummary(String url) throws IOException, PromptException, InterruptedException {
+  public DocumentDto buildYoutubeVodSummary(String url)
+      throws IOException, PromptException, InterruptedException {
 
     // Scraping vod content (transcript & metas)
     String content = scrapYoutubeVod(url);
@@ -173,7 +173,7 @@ public class DocumentService {
 
   // TODO: think about moving this method somewhere else
   public String executePythonScript(String scriptPath, String url)
-          throws IOException, InterruptedException {
+      throws IOException, InterruptedException {
 
     // TODO: Doesn't work for everyone, venv does not always have a bin folder.
     ProcessBuilder pb = new ProcessBuilder("src/.venv/bin/python3", scriptPath, url);
