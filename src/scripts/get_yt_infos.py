@@ -26,7 +26,8 @@ def get_video_info(url):
             print(json.dumps(video_data, indent=4, ensure_ascii=False))
 
     except Exception as e:
-        print("Error:", e)
+        print(f"Error: {str(e)}")
+        sys.exit(1)
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:

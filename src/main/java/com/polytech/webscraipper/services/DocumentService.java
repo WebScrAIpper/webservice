@@ -175,7 +175,6 @@ public class DocumentService {
   public String executePythonScript(String scriptPath, String url)
       throws IOException, InterruptedException {
 
-    // TODO: Doesn't work for everyone, venv does not always have a bin folder.
     ProcessBuilder pb;
     if (System.getProperty("os.name").contains("Windows")) {
       pb = new ProcessBuilder("src/.venv/Scripts/python.exe", scriptPath, url);
@@ -187,11 +186,22 @@ public class DocumentService {
     BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
     StringBuilder output = new StringBuilder();
     String line;
-
     while ((line = reader.readLine()) != null) {
       output.append(line).append("\n");
     }
-    process.waitFor();
+
+    int exitCode = process.waitFor();
+
+    if (exitCode != 0) {
+      BufferedReader errorReader =
+          new BufferedReader(new InputStreamReader(process.getErrorStream()));
+      StringBuilder errorOutput = new StringBuilder();
+      while ((line = errorReader.readLine()) != null) {
+        errorOutput.append(line).append("\n");
+      }
+      throw new IOException(
+          "Error executing Python script " + scriptPath + " : " + errorOutput.toString().trim());
+    }
 
     return output.toString().trim();
   }
