@@ -40,6 +40,6 @@ public class DefaultBuilder implements ISummaryBuilder {
 
   @Override
   public boolean isAnAppropriateBuilder(String url) {
-    return true;
+    return !url.startsWith("https://www.youtube.com/watch?");
   }
 }

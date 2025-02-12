@@ -18,9 +18,8 @@ def get_transcript(url, languages=('en', 'fr')):
         transcript = YouTubeTranscriptApi.get_transcript(video_id, languages=languages)
         text = " ".join([entry['text'] for entry in transcript])
         print(text)
-    except Exception as e:
-        print(f"Error: {str(e)}")
-        sys.exit(1)
+    except:
+        print("Subtitles are disabled for this video, you have to deal with it")
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:

@@ -27,10 +27,10 @@ public class YouTubeBuilder implements ISummaryBuilder {
   public String scrapContent(String url, String pageContent) throws ScrappingException {
     try {
       // Get vod metadata
-      String videoInfoJson = executePythonScript("src/scripts/get_yt_infos.py", url);
+      String videoInfoJson = executePythonScript("python/scripts/get_yt_infos.py", url);
 
       // Get transcript
-      String transcript = executePythonScript("src/scripts/get_transcript.py", url);
+      String transcript = executePythonScript("python/scripts/get_transcript.py", url);
 
       Map<String, String> result = new HashMap<>();
       result.put("metadata", videoInfoJson);
@@ -46,17 +46,18 @@ public class YouTubeBuilder implements ISummaryBuilder {
 
   @Override
   public PromptResponse generatePrompt(String scrappedContent, List<String> classifiers) {
-    return null;
+    return promptManagementService.createYouTubeProdPrompt(classifiers, scrappedContent);
   }
 
   @Override
-  public DocumentDto polishAnswer(String url, DocumentDto response) throws PromptException {
-    return null;
+  public DocumentDto polishAnswer(String url, DocumentDto documentDto) throws PromptException {
+    documentDto.setUrl(url);
+    return documentDto;
   }
 
   @Override
   public boolean isAnAppropriateBuilder(String url) {
-    return false;
+    return url.startsWith("https://www.youtube.com/watch?");
   }
 
   // TODO: think about moving this method somewhere else
@@ -65,9 +66,9 @@ public class YouTubeBuilder implements ISummaryBuilder {
 
     ProcessBuilder pb;
     if (System.getProperty("os.name").contains("Windows")) {
-      pb = new ProcessBuilder("src/.venv/Scripts/python.exe", scriptPath, url);
+      pb = new ProcessBuilder("python/.venv/Scripts/python.exe", scriptPath, url);
     } else {
-      pb = new ProcessBuilder("src/.venv/bin/python3", scriptPath, url);
+      pb = new ProcessBuilder("python/.venv/bin/python3", scriptPath, url);
     }
     Process process = pb.start();
 
@@ -87,6 +88,7 @@ public class YouTubeBuilder implements ISummaryBuilder {
       while ((line = errorReader.readLine()) != null) {
         errorOutput.append(line).append("\n");
       }
+      System.out.println(output.toString().trim());
       throw new IOException(
           "Error executing Python script " + scriptPath + " : " + errorOutput.toString().trim());
     }
