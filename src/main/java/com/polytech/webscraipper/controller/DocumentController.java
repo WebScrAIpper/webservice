@@ -1,8 +1,8 @@
 package com.polytech.webscraipper.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.polytech.webscraipper.PromptException;
 import com.polytech.webscraipper.dto.DocumentDto;
+import com.polytech.webscraipper.exceptions.PromptException;
 import com.polytech.webscraipper.services.DocumentService;
 import java.io.IOException;
 import java.net.URLDecoder;

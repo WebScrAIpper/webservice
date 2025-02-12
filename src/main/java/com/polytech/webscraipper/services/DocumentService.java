@@ -2,18 +2,15 @@ package com.polytech.webscraipper.services;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
-import com.polytech.webscraipper.PromptException;
 import com.polytech.webscraipper.builders.ISummaryBuilder;
 import com.polytech.webscraipper.dto.DocumentDto;
+import com.polytech.webscraipper.exceptions.PromptException;
+import com.polytech.webscraipper.exceptions.ScrappingException;
 import com.polytech.webscraipper.repositories.DocumentRepository;
 import com.polytech.webscraipper.services.langfusesubservices.PromptManagementService;
 import com.polytech.webscraipper.services.langfusesubservices.TracesManagementService;
 import com.polytech.webscraipper.utils.FunctionTimer;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.*;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
@@ -54,7 +51,8 @@ public class DocumentService {
     return documentRepo.findAll();
   }
 
-  public DocumentDto buildWebsiteSummary(String url, String content) throws PromptException {
+  public DocumentDto buildWebsiteSummary(String url, String content)
+      throws PromptException, ScrappingException {
 
     // 1. Choose the Builder
     ISummaryBuilder builder =
@@ -67,7 +65,7 @@ public class DocumentService {
     System.out.println("Using builder: " + builder.getClass().getSimpleName());
 
     // 2. Scraping website content
-    String scrappedContent = builder.scrapContent(content);
+    String scrappedContent = builder.scrapContent(url, content);
 
     // 3. Generating the prompt dynamically
     var prompt = builder.generatePrompt(scrappedContent, classifierService.getAllClassifiers());
@@ -122,22 +120,22 @@ public class DocumentService {
     documentRepo.save(res);
   }
 
-  public DocumentDto buildYoutubeVodSummary(String url)
-      throws IOException, PromptException, InterruptedException {
+  // public DocumentDto buildYoutubeVodSummary(String url)
+  //     throws IOException, PromptException, InterruptedException {
 
-    // Scraping vod content (transcript & metas)
-    String content = scrapYoutubeVod(url);
+  // Scraping vod content (transcript & metas)
+  // String content = scrapYoutubeVod(url);
 
-    // Generating the prompt dynamically
-    var prompt =
-        promptManagementService.createYouTubeProdPrompt(
-            classifierService.getAllClassifiers(), content);
+  // Generating the prompt dynamically
+  // var prompt =
+  //    promptManagementService.createYouTubeProdPrompt(
+  //        classifierService.getAllClassifiers(), content);
 
-    // Requesting the AI
-    var aiAnswer = requestToAi(prompt.prompt);
+  // Requesting the AI
+  // var aiAnswer = requestToAi(prompt.prompt);
 
-    return aiAnswer;
-  }
+  // return aiAnswer;
+  // }
 
   public String scrapContent(String content) {
     Document document = Jsoup.parse(content);
@@ -145,21 +143,6 @@ public class DocumentService {
     document.select("script, style, form, nav, aside, button, svg").remove();
     // TODO: think about the iframe
     return document.toString();
-  }
-
-  private String scrapYoutubeVod(String url) throws IOException, InterruptedException {
-    // Get vod metadata
-    String videoInfoJson = executePythonScript("src/scripts/get_yt_infos.py", url);
-
-    // Get transcript
-    String transcript = executePythonScript("src/scripts/get_transcript.py", url);
-
-    Map<String, String> result = new HashMap<>();
-    result.put("metadata", videoInfoJson);
-    result.put("transcript", transcript);
-
-    Gson gson = new Gson();
-    return gson.toJson(result);
   }
 
   public DocumentDto requestToAi(String prompt) throws PromptException {
@@ -181,40 +164,5 @@ public class DocumentService {
       throw new PromptException(
           "The LLM did not succeed to fill the summary successfully\n" + e.getMessage());
     }
-  }
-
-  // TODO: think about moving this method somewhere else
-  public String executePythonScript(String scriptPath, String url)
-      throws IOException, InterruptedException {
-
-    ProcessBuilder pb;
-    if (System.getProperty("os.name").contains("Windows")) {
-      pb = new ProcessBuilder("src/.venv/Scripts/python.exe", scriptPath, url);
-    } else {
-      pb = new ProcessBuilder("src/.venv/bin/python3", scriptPath, url);
-    }
-    Process process = pb.start();
-
-    BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-    StringBuilder output = new StringBuilder();
-    String line;
-    while ((line = reader.readLine()) != null) {
-      output.append(line).append("\n");
-    }
-
-    int exitCode = process.waitFor();
-
-    if (exitCode != 0) {
-      BufferedReader errorReader =
-          new BufferedReader(new InputStreamReader(process.getErrorStream()));
-      StringBuilder errorOutput = new StringBuilder();
-      while ((line = errorReader.readLine()) != null) {
-        errorOutput.append(line).append("\n");
-      }
-      throw new IOException(
-          "Error executing Python script " + scriptPath + " : " + errorOutput.toString().trim());
-    }
-
-    return output.toString().trim();
   }
 }

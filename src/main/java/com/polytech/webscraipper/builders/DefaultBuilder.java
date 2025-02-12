@@ -1,7 +1,7 @@
 package com.polytech.webscraipper.builders;
 
-import com.polytech.webscraipper.PromptException;
 import com.polytech.webscraipper.dto.DocumentDto;
+import com.polytech.webscraipper.exceptions.PromptException;
 import com.polytech.webscraipper.sdk.responses.PromptResponse;
 import com.polytech.webscraipper.services.langfusesubservices.PromptManagementService;
 import java.util.List;
@@ -18,7 +18,7 @@ public class DefaultBuilder implements ISummaryBuilder {
   public DefaultBuilder() {}
 
   @Override
-  public String scrapContent(String pageContent) {
+  public String scrapContent(String url, String pageContent) {
     Document document = Jsoup.parse(pageContent);
 
     document.select("script, style, form, nav, aside, button, svg").remove();
