@@ -20,13 +20,15 @@ def get_video_info(url):
                 "description": info_dict.get('description'),
                 "publish_date": info_dict.get('upload_date'),
                 "channel_title": info_dict.get('uploader'),
-                "keywords": info_dict.get('tags', [])
+                "keywords": info_dict.get('tags', []),
+                "thumbnail": info_dict.get('thumbnail', None)
             }
 
             print(json.dumps(video_data, indent=4, ensure_ascii=False))
 
     except Exception as e:
-        print("Error:", e)
+        print(f"Error: {str(e)}")
+        sys.exit(1)
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:

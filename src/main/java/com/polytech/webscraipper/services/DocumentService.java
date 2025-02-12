@@ -13,6 +13,7 @@ import com.polytech.webscraipper.utils.FunctionTimer;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.*;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
@@ -121,7 +122,8 @@ public class DocumentService {
     documentRepo.save(res);
   }
 
-  public DocumentDto buildYoutubeVodSummary(String url) throws IOException, PromptException {
+  public DocumentDto buildYoutubeVodSummary(String url)
+      throws IOException, PromptException, InterruptedException {
 
     // Scraping vod content (transcript & metas)
     String content = scrapYoutubeVod(url);
@@ -145,23 +147,19 @@ public class DocumentService {
     return document.toString();
   }
 
-  private String scrapYoutubeVod(String url) {
-    try {
-      // Get vod metadata
-      String videoInfoJson = executePythonScript("src/scripts/get_yt_infos.py", url);
+  private String scrapYoutubeVod(String url) throws IOException, InterruptedException {
+    // Get vod metadata
+    String videoInfoJson = executePythonScript("src/scripts/get_yt_infos.py", url);
 
-      // Get transcript
-      String transcript = executePythonScript("src/scripts/get_transcript.py", url);
+    // Get transcript
+    String transcript = executePythonScript("src/scripts/get_transcript.py", url);
 
-      Map<String, String> result = new HashMap<>();
-      result.put("metadata", videoInfoJson);
-      result.put("transcript", transcript);
+    Map<String, String> result = new HashMap<>();
+    result.put("metadata", videoInfoJson);
+    result.put("transcript", transcript);
 
-      Gson gson = new Gson();
-      return gson.toJson(result);
-    } catch (Exception e) {
-      return "{\"error\": \"" + e.getMessage() + "\"}";
-    }
+    Gson gson = new Gson();
+    return gson.toJson(result);
   }
 
   public DocumentDto requestToAi(String prompt) throws PromptException {
@@ -188,18 +186,34 @@ public class DocumentService {
   // TODO: think about moving this method somewhere else
   public String executePythonScript(String scriptPath, String url)
       throws IOException, InterruptedException {
-    // TODO: Doesn't work for everyone, venv does not always have a bin folder.
-    ProcessBuilder pb = new ProcessBuilder("src/.venv/bin/python3", scriptPath, url);
+
+    ProcessBuilder pb;
+    if (System.getProperty("os.name").contains("Windows")) {
+      pb = new ProcessBuilder("src/.venv/Scripts/python.exe", scriptPath, url);
+    } else {
+      pb = new ProcessBuilder("src/.venv/bin/python3", scriptPath, url);
+    }
     Process process = pb.start();
 
     BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
     StringBuilder output = new StringBuilder();
     String line;
-
     while ((line = reader.readLine()) != null) {
       output.append(line).append("\n");
     }
-    process.waitFor();
+
+    int exitCode = process.waitFor();
+
+    if (exitCode != 0) {
+      BufferedReader errorReader =
+          new BufferedReader(new InputStreamReader(process.getErrorStream()));
+      StringBuilder errorOutput = new StringBuilder();
+      while ((line = errorReader.readLine()) != null) {
+        errorOutput.append(line).append("\n");
+      }
+      throw new IOException(
+          "Error executing Python script " + scriptPath + " : " + errorOutput.toString().trim());
+    }
 
     return output.toString().trim();
   }
