@@ -1,39 +1,22 @@
 package com.polytech.webscraipper.builders;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.polytech.webscraipper.PromptException;
 import com.polytech.webscraipper.dto.DocumentDto;
 import com.polytech.webscraipper.sdk.responses.PromptResponse;
-import com.polytech.webscraipper.services.ClassifierService;
-import com.polytech.webscraipper.services.langfusesubservices.PromptManagementService;
-import com.polytech.webscraipper.services.langfusesubservices.TracesManagementService;
-import org.springframework.ai.chat.model.ChatModel;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
+import org.springframework.stereotype.Component;
 
-@Service
-public abstract class ISummaryBuilder {
-
-  @Autowired protected ChatModel chatModel;
-  @Autowired protected PromptManagementService promptManagementService;
-  @Autowired protected TracesManagementService tracesManagementService;
-
-  protected ObjectMapper objectMapper = new ObjectMapper();
-
+@Component
+public interface ISummaryBuilder {
 
   // Scrapping the website content
-  public abstract String scrapContent(String pageContent);
+  String scrapContent(String pageContent);
 
   // Generating the prompt dynamically
-  public abstract PromptResponse generatePrompt(String scrappedContent, List<String> classifiers);
-
-  // Requesting the AI
-  public abstract String requestAI(PromptResponse promptResponse);
+  PromptResponse generatePrompt(String scrappedContent, List<String> classifiers);
 
   // Polishing the Answer
-  public abstract DocumentDto polishAnswer(String url, String response) throws PromptException;
+  DocumentDto polishAnswer(String url, DocumentDto response) throws PromptException;
 
-  public abstract boolean isAnAppropriateBuilder(String url);
+  boolean isAnAppropriateBuilder(String url);
 }

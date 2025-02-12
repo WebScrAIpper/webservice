@@ -1,17 +1,22 @@
 package com.polytech.webscraipper.services;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.polytech.webscraipper.PromptException;
-import com.polytech.webscraipper.dto.AIFilledDocument;
+import com.polytech.webscraipper.builders.ISummaryBuilder;
 import com.polytech.webscraipper.dto.DocumentDto;
 import com.polytech.webscraipper.repositories.DocumentRepository;
 import com.polytech.webscraipper.services.langfusesubservices.PromptManagementService;
 import com.polytech.webscraipper.services.langfusesubservices.TracesManagementService;
+import com.polytech.webscraipper.utils.FunctionTimer;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.ai.chat.model.ChatModel;
@@ -31,10 +36,14 @@ public class DocumentService {
   @Autowired private PromptManagementService promptManagementService;
   @Autowired private TracesManagementService tracesManagementService;
 
+  private final List<ISummaryBuilder> builders;
+
   // current date as an id
   private static final String SESSION_ID = new Date().toString();
 
-  public DocumentService() {}
+  public DocumentService(List<ISummaryBuilder> builders) {
+    this.builders = builders;
+  }
 
   public Optional<DocumentDto> getDocumentByUrl(String url) {
     return documentRepo.findByUrl(url);
@@ -44,55 +53,72 @@ public class DocumentService {
     return documentRepo.findAll();
   }
 
-  public DocumentDto buildWebsiteSummary(String url, String content)
-      throws IOException, PromptException {
+  public DocumentDto buildWebsiteSummary(String url, String content) throws PromptException {
 
-    // Scraping website content
-    String scrappedContent = scrapContent(content);
+    // 1. Choose the Builder
+    ISummaryBuilder builder =
+        builders.stream()
+            .filter(b -> b.isAnAppropriateBuilder(url))
+            .findFirst()
+            .orElseThrow(
+                () -> new PromptException("No appropriate builder found for the given URL"));
 
-    // Generating the prompt dynamically
-    var prompt =
-        promptManagementService.createDefaultProdPrompt(
-            classifierService.getAllClassifiers(), scrappedContent);
+    System.out.println("Using builder: " + builder.getClass().getSimpleName());
 
-    // Requesting the AI
-    var timeAtStart = System.currentTimeMillis();
-    // Added a time logger since sometimes the OpenAI API is overloaded and takes a long time to
-    // answer.
-    var timerLogger = new Timer();
+    // 2. Scraping website content
+    String scrappedContent = builder.scrapContent(content);
+
+    // 3. Generating the prompt dynamically
+    var prompt = builder.generatePrompt(scrappedContent, classifierService.getAllClassifiers());
+
+    DocumentDto documentDto;
     try {
-      System.out.println(
-          "Requesting the AI for the prompt:\n\"\"\""
-              + prompt.prompt.substring(0, 300)
-              + "...\n\"\"\"");
+      // 4. Requesting the AI with timing and timeout handling
+      var aiFullAnswer =
+          FunctionTimer.timeExecutionWithTimeout(
+              "AI Summary: " + url,
+              () ->
+                  chatModel.call(
+                      new Prompt(
+                          prompt.prompt, OpenAiChatOptions.builder().model("gpt-4o-mini").build())),
+              30,
+              TimeUnit.SECONDS);
 
-      timerLogger.scheduleAtFixedRate(
-          new TimerTask() {
-            @Override
-            public void run() {
-              var timeAtNow = System.currentTimeMillis();
-              System.out.println(
-                  "Waiting for the OpenAI Api to answer since: "
-                      + (timeAtNow - timeAtStart) / 1000
-                      + " seconds.");
-            }
-          },
-          5000,
-          5000);
-      var aiAnswer = requestToAi(prompt.prompt);
-      var res = buildAnswer(aiAnswer, url);
+      var aiAnswer = aiFullAnswer.getResult().getOutput().getText();
 
-      tracesManagementService.postGenericAILog(prompt, aiAnswer.toString(), url, SESSION_ID);
+      // 5. Build a solid object from the AI response
+      documentDto = objectMapper.readValue(aiAnswer, DocumentDto.class);
+
+      // Building the response
+      var res = builder.polishAnswer(url, documentDto);
+
+      System.out.println(objectMapper.writeValueAsString(res));
+
+      updateDatabase(res);
+
+      tracesManagementService.postGenericAILog(prompt, res.toString(), url, SESSION_ID);
+
       return res;
-    } catch (Exception e) {
+    } catch (TimeoutException | InterruptedException | ExecutionException e) {
+      throw new PromptException("The AI request timed out or failed: " + e.getMessage());
+    } catch (JsonProcessingException e) {
       tracesManagementService.postFailedOutputAILog(prompt, e.getMessage(), url, SESSION_ID);
-      throw e;
-    } finally {
-      timerLogger.cancel();
-      var timeAtEnd = System.currentTimeMillis();
-      System.out.println(
-          "The OpenAI API answered in " + (timeAtEnd - timeAtStart) / 1000 + " seconds.");
+      throw new PromptException("The AI response could not be parsed: " + e.getMessage());
     }
+  }
+
+  private void updateDatabase(DocumentDto res) {
+    // Handle Classifiers
+    var newClassifiers =
+        Arrays.stream(res.getClassifiers())
+            .filter(classifier -> !classifierService.getAllClassifiers().contains(classifier))
+            .toArray(String[]::new);
+    for (String newClassifier : newClassifiers) {
+      classifierService.addClassifier(newClassifier);
+    }
+
+    // Saving the document
+    documentRepo.save(res);
   }
 
   public DocumentDto buildYoutubeVodSummary(String url) throws IOException, PromptException {
@@ -107,7 +133,8 @@ public class DocumentService {
 
     // Requesting the AI
     var aiAnswer = requestToAi(prompt.prompt);
-    return buildAnswer(aiAnswer, url);
+
+    return aiAnswer;
   }
 
   public String scrapContent(String content) {
@@ -137,7 +164,7 @@ public class DocumentService {
     }
   }
 
-  public AIFilledDocument requestToAi(String prompt) throws PromptException {
+  public DocumentDto requestToAi(String prompt) throws PromptException {
     try {
       var aiAnswer =
           chatModel.call(
@@ -149,31 +176,13 @@ public class DocumentService {
       }
 
       System.out.println(aiResponseText);
-      return objectMapper.readValue(aiResponseText, AIFilledDocument.class);
+      return objectMapper.readValue(aiResponseText, DocumentDto.class);
 
     } catch (IOException e) {
       // TODO: We might need cleaner error message for a better prompt tracking
       throw new PromptException(
           "The LLM did not succeed to fill the summary successfully\n" + e.getMessage());
     }
-  }
-
-  public DocumentDto buildAnswer(AIFilledDocument aiAnswer, String url) {
-    // Building the response
-    DocumentDto documentDto = new DocumentDto(aiAnswer, url);
-
-    // Handle Classifiers
-    var newClassifiers =
-        Arrays.stream(aiAnswer.getClassifiers())
-            .filter(classifier -> !classifierService.getAllClassifiers().contains(classifier))
-            .toArray(String[]::new);
-    for (String newClassifier : newClassifiers) {
-      classifierService.addClassifier(newClassifier);
-    }
-
-    // Saving the document
-    documentRepo.save(documentDto);
-    return documentDto;
   }
 
   // TODO: think about moving this method somewhere else
