@@ -40,7 +40,7 @@ public class DocumentController {
   @CrossOrigin(origins = "*")
   @PostMapping("/build")
   public ResponseEntity<String> buildWebsiteSummary(
-      @RequestParam String url, @RequestBody String content) throws IOException {
+      @RequestParam String url, String content) throws IOException {
     url = URLDecoder.decode(url, StandardCharsets.UTF_8);
     System.out.println("Building document summary for " + url);
     var res = buildDocumentSummary(url, content); // false for website
@@ -59,11 +59,6 @@ public class DocumentController {
     if (documentService.getDocumentByUrl(url).isPresent()) {
       return ResponseEntity.status(HttpStatus.CONFLICT)
           .body("A document with this URL already exists.");
-    }
-
-    if ((content == null || content.isEmpty())) {
-      return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-          .body("The 'content' parameter is required and cannot be empty.");
     }
 
     try {
