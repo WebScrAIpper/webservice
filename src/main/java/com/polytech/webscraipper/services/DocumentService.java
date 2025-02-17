@@ -2,6 +2,7 @@ package com.polytech.webscraipper.services;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.polytech.webscraipper.BaseLogger;
 import com.polytech.webscraipper.builders.ISummaryBuilder;
 import com.polytech.webscraipper.dto.DocumentDto;
 import com.polytech.webscraipper.exceptions.PromptException;
@@ -20,7 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class DocumentService {
+public class DocumentService extends BaseLogger {
 
   private final ObjectMapper objectMapper = new ObjectMapper();
 
@@ -57,7 +58,7 @@ public class DocumentService {
             .orElseThrow(
                 () -> new PromptException("No appropriate builder found for the given URL"));
 
-    System.out.println("Using builder: " + builder.getClass().getSimpleName());
+    logger.info("Using builder: " + builder.getClass().getSimpleName());
 
     // 2. Scraping website content
     String scrappedContent = builder.scrapContent(url, content);
@@ -86,7 +87,7 @@ public class DocumentService {
       // Building the response
       var res = builder.polishAnswer(url, documentDto);
 
-      System.out.println(objectMapper.writeValueAsString(res));
+      logger.debug(objectMapper.writeValueAsString(res));
 
       updateDatabase(res);
 

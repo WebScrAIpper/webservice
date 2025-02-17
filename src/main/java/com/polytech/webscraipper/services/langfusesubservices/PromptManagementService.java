@@ -2,6 +2,7 @@ package com.polytech.webscraipper.services.langfusesubservices;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.polytech.webscraipper.BaseLogger;
 import com.polytech.webscraipper.sdk.LangfuseSDK;
 import com.polytech.webscraipper.sdk.responses.PromptResponse;
 import java.util.List;
@@ -10,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PromptManagementService {
+public class PromptManagementService extends BaseLogger {
 
   private static final String PRODUCTION = "production";
 
@@ -32,7 +33,7 @@ public class PromptManagementService {
     try {
       classifiersJson = objectMapper.writeValueAsString(classifiersNames);
     } catch (JsonProcessingException e) {
-      System.out.println(
+      logger.error(
           "Error while writing the classifiers into the prompt, giving an empty list to the model");
       classifiersJson = "[]";
     }
@@ -50,7 +51,7 @@ public class PromptManagementService {
     try {
       classifiersJson = objectMapper.writeValueAsString(classifiersNames);
     } catch (JsonProcessingException e) {
-      System.out.println(
+      logger.error(
           "Error while writing the classifiers into the prompt, giving an empty list to the model");
       classifiersJson = "[]";
     }

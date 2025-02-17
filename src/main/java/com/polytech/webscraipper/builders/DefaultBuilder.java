@@ -1,5 +1,6 @@
 package com.polytech.webscraipper.builders;
 
+import com.polytech.webscraipper.BaseLogger;
 import com.polytech.webscraipper.dto.DocumentDto;
 import com.polytech.webscraipper.exceptions.PromptException;
 import com.polytech.webscraipper.sdk.responses.PromptResponse;
@@ -11,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class DefaultBuilder implements ISummaryBuilder {
+public class DefaultBuilder extends BaseLogger implements ISummaryBuilder {
 
   @Autowired PromptManagementService promptManagementService;
 
@@ -20,8 +21,10 @@ public class DefaultBuilder implements ISummaryBuilder {
   @Override
   public String scrapContent(String url, String pageContent) {
     Document document = Jsoup.parse(pageContent);
-
+    var size = document.text().length();
     document.select("script, style, form, nav, aside, button, svg").remove();
+    var newSize = document.text().length();
+    logger.debug("Removed " + (size - newSize) + " characters from the document");
     // TODO: think about the iframe
     return document.toString();
   }
