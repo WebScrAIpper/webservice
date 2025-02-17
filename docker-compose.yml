@@ -17,6 +17,22 @@ services:
       mongo_db:
         condition: service_healthy
 
+  keycloak:
+    image: quay.io/keycloak/keycloak:latest
+    container_name: keycloak
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    ports:
+      - "8088:8080"
+    command:
+      - start-dev
+      - --import-realm
+    networks:
+      - main-network
+    volumes:
+      - ./realm-export.json:/opt/keycloak/data/import/realm-export.json
+
   mongo_db:
     image: mongo:latest
     container_name: mongo_db
