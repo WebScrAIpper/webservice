@@ -2,10 +2,9 @@ package com.polytech.webscraipper.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
 
 /**
@@ -26,18 +25,16 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable())
-                // Configures authorization rules for different endpoints
+                .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(HttpMethod.POST, "/api/build").authenticated()
-                        .anyRequest().authenticated() // Requires authentication for any other request
+                        .anyRequest().authenticated()
                 )
                 // Configures OAuth2 login settings
                 .oauth2Login(oauth2 -> oauth2
-                        .loginPage("/oauth2/authorization/keycloak") // Sets custom login page for OAuth2 with Keycloak
-                        .defaultSuccessUrl("/api/documents", true) // Redirects to "/menu" after successful login
+                        .loginPage("/oauth2/authorization/keycloak")
+                        .defaultSuccessUrl("http://localhost:8088/realms/webscraipper-realm/account", true)
                 )
-                // Configures logout settings
+                // **(NOT WORKING)** Configures logout settings
                 .logout(logout -> logout
                         .logoutSuccessUrl("/") // Redirects to the root URL on successful logout
                         .invalidateHttpSession(true) // Invalidates session to clear session data

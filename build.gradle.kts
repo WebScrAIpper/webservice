@@ -43,8 +43,6 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
     implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server")
-    implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
-    implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity3:3.0.5.RELEASE")
     implementation("com.google.code.gson:gson:2.10.1")
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
     implementation("org.springframework.boot:spring-boot-starter-web")

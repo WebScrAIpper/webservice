@@ -673,16 +673,15 @@
       "clientId": "webscraipper-client",
       "name": "",
       "description": "",
-      "rootUrl": "http://localhost:8082/",
+      "rootUrl": "http://localhost:8080/",
       "adminUrl": "http://localhost:8080/",
       "baseUrl": "",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
-      "secret": "**********",
+      "secret": "WTrfG64siiXJ565f1GI0MiJbVUpmfvon",
       "redirectUris": [
-        "http://localhost:8080/api/documents",
         "http://localhost:8080/login/oauth2/code/keycloak"
       ],
       "webOrigins": [
