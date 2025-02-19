@@ -36,3 +36,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### Dynamic Pages ###
+**/var/www/html/dynamic_pages/*
