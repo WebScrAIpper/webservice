@@ -39,8 +39,8 @@ public class DocumentController {
 
   @CrossOrigin(origins = "*")
   @PostMapping("/build")
-  public ResponseEntity<String> buildWebsiteSummary(@RequestParam String url, String content)
-      throws IOException {
+  public ResponseEntity<String> buildWebsiteSummary(
+      @RequestParam String url, @RequestBody String content) throws IOException {
     url = URLDecoder.decode(url, StandardCharsets.UTF_8);
     System.out.println("Building document summary for " + url);
     var res = buildDocumentSummary(url, content); // false for website

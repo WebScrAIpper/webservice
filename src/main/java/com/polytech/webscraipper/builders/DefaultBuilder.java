@@ -40,6 +40,8 @@ public class DefaultBuilder implements ISummaryBuilder {
 
   @Override
   public boolean isAnAppropriateBuilder(String url) {
+    // Since it's the default builder, it's selected by default and should during the selection
+    // phase
     return false;
   }
 }
