@@ -2,9 +2,10 @@ package com.polytech.webscraipper.services;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.polytech.webscraipper.builders.DefaultBuilder;
 import com.polytech.webscraipper.builders.ISummaryBuilder;
 import com.polytech.webscraipper.dto.DocumentDto;
-import com.polytech.webscraipper.exceptions.PromptException;
+import com.polytech.webscraipper.exceptions.DocumentException;
 import com.polytech.webscraipper.exceptions.ScrappingException;
 import com.polytech.webscraipper.repositories.DocumentRepository;
 import com.polytech.webscraipper.services.langfusesubservices.TracesManagementService;
@@ -29,14 +30,13 @@ public class DocumentService {
   @Autowired private ChatModel chatModel;
   @Autowired private TracesManagementService tracesManagementService;
 
-  private final List<ISummaryBuilder> builders;
+  @Autowired private List<ISummaryBuilder> builders;
+  @Autowired private DefaultBuilder defaultBuilder;
 
   // current date as an id
   private static final String SESSION_ID = new Date().toString();
 
-  public DocumentService(List<ISummaryBuilder> builders) {
-    this.builders = builders;
-  }
+  public DocumentService() {}
 
   public Optional<DocumentDto> getDocumentByUrl(String url) {
     return documentRepo.findByUrl(url);
@@ -47,18 +47,16 @@ public class DocumentService {
   }
 
   public DocumentDto buildWebsiteSummary(String url, String content)
-      throws PromptException, ScrappingException {
+      throws DocumentException, ScrappingException {
 
     // 1. Choose the Builder
     ISummaryBuilder builder =
         builders.stream()
             .filter(b -> b.isAnAppropriateBuilder(url))
             .findFirst()
-            .orElseThrow(
-                () -> new PromptException("No appropriate builder found for the given URL"));
+            .orElse(defaultBuilder);
 
     System.out.println("Using builder: " + builder.getClass().getSimpleName());
-
     // 2. Scraping website content
     String scrappedContent = builder.scrapContent(url, content);
 
@@ -94,13 +92,19 @@ public class DocumentService {
 
       return res;
     } catch (TimeoutException | InterruptedException | ExecutionException e) {
-      throw new PromptException("The AI request timed out or failed: " + e.getMessage());
+      throw new DocumentException("The AI request timed out or failed: " + e.getMessage());
     } catch (JsonProcessingException e) {
       tracesManagementService.postFailedOutputAILog(prompt, e.getMessage(), url, SESSION_ID);
-      throw new PromptException("The AI response could not be parsed: " + e.getMessage());
+      throw new DocumentException("The AI response could not be parsed: " + e.getMessage());
     }
   }
 
+  /**
+   * Update the database when a summary is built. This function might be replaced by an api call to
+   * the CGI api once it's ready.
+   *
+   * @param res the document to save
+   */
   private void updateDatabase(DocumentDto res) {
     // Handle Classifiers
     var newClassifiers =
