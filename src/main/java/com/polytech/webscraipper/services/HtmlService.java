@@ -20,6 +20,7 @@ public class HtmlService {
         + escapeHtml(content)
         + "\" };\n"
         + "</script>\n"
+        + "<script src=\"/script.js\"></script>\n" 
         + "</body>\n</html>";
   }
 

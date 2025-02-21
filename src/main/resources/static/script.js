@@ -1,0 +1,1 @@
+//window.documentSummary.url and window.documentSummary.content to use the real url and the content
