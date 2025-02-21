@@ -3,6 +3,7 @@ package com.polytech.webscraipper.services.langfusesubservices;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.polytech.webscraipper.BaseLogger;
+import com.polytech.webscraipper.builders.DefaultBuilder;
 import com.polytech.webscraipper.sdk.LangfuseSDK;
 import com.polytech.webscraipper.sdk.responses.PromptResponse;
 import java.util.List;
@@ -11,8 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PromptManagementService extends BaseLogger {
+public class PromptManagementService  {
 
+  private BaseLogger logger = new BaseLogger(DefaultBuilder.class); 
   private static final String PRODUCTION = "production";
 
   private static final String DEFAULT_PROMPT_NAME = "default-prompt";

@@ -1,5 +1,6 @@
 package com.polytech.webscraipper.builders;
 
+import com.fasterxml.jackson.databind.JsonSerializable.Base;
 import com.polytech.webscraipper.BaseLogger;
 import com.polytech.webscraipper.dto.DocumentDto;
 import com.polytech.webscraipper.exceptions.PromptException;
@@ -12,10 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class DefaultBuilder extends BaseLogger implements ISummaryBuilder {
+public class DefaultBuilder implements ISummaryBuilder {
 
   @Autowired PromptManagementService promptManagementService;
 
+  private BaseLogger logger = new BaseLogger(DefaultBuilder.class); 
   public DefaultBuilder() {}
 
   @Override

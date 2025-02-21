@@ -19,11 +19,13 @@ import org.springframework.stereotype.Component;
 
 // TODO
 @Component
-public class YouTubeBuilder extends BaseLogger implements ISummaryBuilder {
+public class YouTubeBuilder implements ISummaryBuilder {
 
   @Autowired PromptManagementService promptManagementService;
   @Autowired private ObjectMapper objectMapper;
 
+  private BaseLogger logger = new BaseLogger(DefaultBuilder.class); 
+  
   @Override
   public String scrapContent(String url, String pageContent) throws ScrappingException {
     try {

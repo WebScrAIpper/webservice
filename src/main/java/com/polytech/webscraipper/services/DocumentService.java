@@ -3,6 +3,7 @@ package com.polytech.webscraipper.services;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.polytech.webscraipper.BaseLogger;
+import com.polytech.webscraipper.builders.DefaultBuilder;
 import com.polytech.webscraipper.builders.ISummaryBuilder;
 import com.polytech.webscraipper.dto.DocumentDto;
 import com.polytech.webscraipper.exceptions.PromptException;
@@ -21,9 +22,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class DocumentService extends BaseLogger {
+public class DocumentService {
 
   private final ObjectMapper objectMapper = new ObjectMapper();
+  private BaseLogger logger = new BaseLogger(DefaultBuilder.class); 
 
   @Autowired private DocumentRepository documentRepo;
   @Autowired private ClassifierService classifierService;

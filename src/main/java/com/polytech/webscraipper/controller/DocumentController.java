@@ -2,6 +2,7 @@ package com.polytech.webscraipper.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.polytech.webscraipper.BaseLogger;
+import com.polytech.webscraipper.builders.DefaultBuilder;
 import com.polytech.webscraipper.dto.DocumentDto;
 import com.polytech.webscraipper.exceptions.PromptException;
 import com.polytech.webscraipper.services.DocumentService;
@@ -17,11 +18,12 @@ import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping("/api")
-public class DocumentController extends BaseLogger {
+public class DocumentController {
 
   @Autowired private DocumentService documentService;
   @Autowired private ObjectMapper objectMapper;
 
+  private BaseLogger logger = new BaseLogger(DefaultBuilder.class); 
   public DocumentController() {}
 
   @GetMapping("/documents")

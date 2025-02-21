@@ -55,33 +55,29 @@ git config core.hooksPath .githooks
 
 ### Logging with SLF4J in the WebScraper Project
 
-In the WebScraper project, we use SLF4J (Simple Logging Facade for Java) for logging. To facilitate consistent logging across the application, we have created an abstract base class `BaseLogger` that initializes the logger.
+In the WebScraper project, we use SLF4J (Simple Logging Facade for Java) for logging. To ensure consistent logging across the application, we use the `BaseLogger` class, which provides a logger instance.
 
+#### Usage
 
-1. **Extend the `BaseLogger` Class**: Whenever you need to use logging in your class, extend the `BaseLogger` class. This will provide you with a `logger` instance that you can use for logging.
-
-2. **Logging Commands**: Use the `logger` instance to log messages at various levels (e.g., `logger.info`, `logger.debug`, `logger.error`).
+1. Create an instance of `BaseLogger` inside your class.
+2. Use the logger instance to log messages at different levels.
 
 #### Example
 
-Here is an example of how to use the `BaseLogger` class in your code:
-
 ```java
-package com.polytech.webscraipper;
+package com.polytech.webscraper;
 
-public class MyClass extends BaseLogger {
+public class MyClass {
+    private final BaseLogger logger = new BaseLogger();
 
     public void myMethod() {
-        // Log an info message
         logger.info("This is an info message.");
-
-        // Log a debug message
         logger.debug("This is a debug message.");
-
-        // Log an error message
         logger.error("This is an error message.");
     }
 }
 ```
 
-All log messages will be output to the console and also written to the file logs/webscraipper.log. This ensures that you can review the logs both in real-time and retrospectively.
+#### Log Output
+
+All log messages are output to the console and written to logs/webscraper.log for real-time and retrospective review.
