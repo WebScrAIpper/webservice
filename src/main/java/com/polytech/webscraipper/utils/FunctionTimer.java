@@ -3,7 +3,9 @@ package com.polytech.webscraipper.utils;
 import java.util.Map;
 import java.util.concurrent.*;
 import java.util.function.Supplier;
-import java.util.logging.Logger;
+
+import com.polytech.webscraipper.BaseLogger;
+import com.polytech.webscraipper.builders.DefaultBuilder;
 
 public class FunctionTimer {
 
@@ -44,11 +46,11 @@ public class FunctionTimer {
 
   private static ScheduledExecutorService startDurationLogger(String taskName) {
     ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-    Logger logger = Logger.getLogger(FunctionTimer.class.getName());
+    BaseLogger logger = new BaseLogger(DefaultBuilder.class); 
     scheduler.scheduleAtFixedRate(
         () -> {
           long timeAtNow = System.currentTimeMillis();
-          logger.warning(
+          logger.warn(
               taskName
                   + " is running for "
                   + (timeAtNow - taskStartTimes.get(taskName)) / 1000
@@ -63,8 +65,8 @@ public class FunctionTimer {
   private static void stopDurationLogger(ScheduledExecutorService scheduler, String taskName) {
     scheduler.shutdown();
     long timeAtEnd = System.currentTimeMillis();
-    Logger logger = Logger.getLogger(FunctionTimer.class.getName());
-    logger.warning(
+    BaseLogger logger = new BaseLogger(DefaultBuilder.class); 
+    logger.warn(
         taskName
             + " completed in "
             + (timeAtEnd - taskStartTimes.get(taskName)) / 1000
