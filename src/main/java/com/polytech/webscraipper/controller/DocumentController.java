@@ -12,8 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping("/api")
@@ -40,8 +40,8 @@ public class DocumentController {
 
   @CrossOrigin(origins = "*")
   @PostMapping("/build")
-  public ResponseEntity<String> buildWebsiteSummary(@RequestParam String url, @RequestBody String content)
-      throws IOException {
+  public ResponseEntity<String> buildWebsiteSummary(
+      @RequestParam String url, @RequestBody String content) throws IOException {
     url = URLDecoder.decode(url, StandardCharsets.UTF_8);
     System.out.println("Building document summary for " + url);
     var res = buildDocumentSummary(url, content); // false for website

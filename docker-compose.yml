@@ -18,7 +18,7 @@ services:
         condition: service_healthy
 
   keycloak:
-    image: quay.io/keycloak/keycloak:latest
+    image: quay.io/keycloak/keycloak:26.1.2-0
     container_name: keycloak
     environment:
       KEYCLOAK_ADMIN: admin
