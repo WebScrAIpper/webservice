@@ -25,7 +25,7 @@ import org.springframework.stereotype.Service;
 public class DocumentService {
 
   private final ObjectMapper objectMapper = new ObjectMapper();
-  private BaseLogger logger = new BaseLogger(DefaultBuilder.class); 
+  private BaseLogger logger = new BaseLogger(DefaultBuilder.class);
 
   @Autowired private DocumentRepository documentRepo;
   @Autowired private ClassifierService classifierService;

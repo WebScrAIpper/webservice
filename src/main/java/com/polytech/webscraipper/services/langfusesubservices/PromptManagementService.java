@@ -12,9 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PromptManagementService  {
+public class PromptManagementService {
 
-  private BaseLogger logger = new BaseLogger(DefaultBuilder.class); 
+  private BaseLogger logger = new BaseLogger(DefaultBuilder.class);
   private static final String PRODUCTION = "production";
 
   private static final String DEFAULT_PROMPT_NAME = "default-prompt";

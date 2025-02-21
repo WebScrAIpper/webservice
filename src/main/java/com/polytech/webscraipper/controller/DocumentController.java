@@ -23,7 +23,8 @@ public class DocumentController {
   @Autowired private DocumentService documentService;
   @Autowired private ObjectMapper objectMapper;
 
-  private BaseLogger logger = new BaseLogger(DefaultBuilder.class); 
+  private BaseLogger logger = new BaseLogger(DefaultBuilder.class);
+
   public DocumentController() {}
 
   @GetMapping("/documents")
