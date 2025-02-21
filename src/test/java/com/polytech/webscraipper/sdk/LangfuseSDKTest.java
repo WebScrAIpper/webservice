@@ -22,7 +22,6 @@ public class LangfuseSDKTest {
   public void shouldFetchAllPromptsSuccessfully() {
     List<PromptsResponse.IndividualPrompt> res = langfuseSDK.prompts.getAllPrompts();
     assertNotNull(res);
-    System.out.println(res);
     assertFalse(res.isEmpty(), "Expected non-empty prompt list");
   }
 
