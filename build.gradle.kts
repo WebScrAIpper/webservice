@@ -40,6 +40,7 @@ extra["springAiVersion"] = "1.0.0-M5"
 val springCloudVersion by extra("2024.0.0")
 
 dependencies {
+    implementation("com.github.ben-manes.caffeine:caffeine:3.1.8")
     implementation("com.google.code.gson:gson:2.10.1")
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
     implementation("org.springframework.boot:spring-boot-starter-web")
