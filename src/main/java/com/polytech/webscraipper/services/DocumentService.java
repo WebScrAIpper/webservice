@@ -46,6 +46,23 @@ public class DocumentService {
     return documentRepo.findAll();
   }
 
+  /**
+   * Build the summary of a website by selecting a {@link ISummaryBuilder} based on the url. If no
+   * builder is found, the {@link DefaultBuilder} is used. The code is then divided into 4 steps: 1.
+   * Scraping the website content. 2. Generating the prompt dynamically. 3. Requesting the AI with
+   * timing and timeout handling. 4. Building an object strictly represented from the AI response
+   * and polishing it. 5. Updating the environment with the new classifiers and saving the document.
+   * <br>
+   * It's recommended to implement a {@link ISummaryBuilder} for any content which is not text based
+   * since the default builder is not built to handle video and audio. Any new builder will
+   * automatically be added
+   *
+   * @param url the url of the website
+   * @param content the content of the website
+   * @return the document summary
+   * @throws DocumentException if the document could not be built
+   * @throws ScrappingException if the website could not be scrapped
+   */
   public DocumentDto buildWebsiteSummary(String url, String content)
       throws DocumentException, ScrappingException {
 
