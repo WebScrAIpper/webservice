@@ -1,7 +1,6 @@
 package com.polytech.webscraipper.builders;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
 import com.polytech.webscraipper.BaseLogger;
 import com.polytech.webscraipper.dto.DocumentDto;
 import com.polytech.webscraipper.exceptions.DocumentException;
@@ -38,7 +37,6 @@ public class YouTubeBuilder implements ISummaryBuilder {
       result.put("metadata", videoInfoJson);
       result.put("transcript", transcript);
 
-      Gson gson = new Gson();
       return objectMapper.writeValueAsString(result);
     } catch (IOException | InterruptedException e) {
       throw new ScrappingException(
