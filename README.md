@@ -6,39 +6,35 @@
 
 ## Environment Setup
 
-### OpenAI Api Key setup
+### OpenAI & Langfuse Api Keys setup
 
-Register the key in your environment variables.
+Register the keys in your environment variables.
 
 Linux and MacOS:
 ```bash
 export OPENAI_API_KEY="sk-XXXXXXXXXXX"
+export LANGFUSE_API_SK="sk-XXXXXXXXXXX"
+export LANGFUSE_API_PK="pk-XXXXXXXXXXX"
 ```
 
 Windows:
 ```cmd
 setx OPENAI_API_KEY "sk-XXXXXXXXXXX"
+setx LANGFUSE_API_SK "sk-XXXXXXXXXXX"
+setx LANGFUSE_API_PK "pk-XXXXXXXXXXX"
 ```
 
 ## Starting the application
+
+### Developper mode
 Run the following command to start the application:
 ```
 ./gradlew bootRun
 ```
 
-### Langfuse setup 
-
-Linux and MacOS:
-```bash
-export LANGFUSE_API_SK="sk-XXXXXXXXXXX"
-export LANGFUSE_API_PK "pk-XXXXXXXXXXX"
-
+### Production mode
 ```
-
-Windows:
-```cmd
-setx LANGFUSE_API_SK "sk-XXXXXXXXXXX"
-setx LANGFUSE_API_PK "pk-XXXXXXXXXXX"
+docker compose up --build -d
 ```
 
 ### Formatting
