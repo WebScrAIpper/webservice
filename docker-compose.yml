@@ -23,10 +23,6 @@ services:
     environment:
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin
-      OAUTH2_CLIENT_ID: webscraipper-client
-      OAUTH2_CLIENT_SECRET: WTrfG64siiXJ565f1GI0MiJbVUpmfvon
-      OAUTH2_REDIRECT_URI: http://localhost:8080/login/oauth2/code/keycloak
-      KEYCLOAK_ISSUER_URI: http://localhost:8088/realms/webscraipper-realm
     ports:
       - "8088:8080"
     command:
