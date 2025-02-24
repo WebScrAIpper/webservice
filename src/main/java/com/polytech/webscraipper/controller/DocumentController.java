@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.polytech.webscraipper.BaseLogger;
 import com.polytech.webscraipper.builders.DefaultBuilder;
 import com.polytech.webscraipper.dto.DocumentDto;
-import com.polytech.webscraipper.exceptions.PromptException;
+import com.polytech.webscraipper.exceptions.DocumentException;
 import com.polytech.webscraipper.services.DocumentService;
 import java.io.IOException;
 import java.net.URLDecoder;
@@ -70,7 +70,7 @@ public class DocumentController {
           .body(
               "The document summary has been successfully built.\n"
                   + objectMapper.writeValueAsString(res));
-    } catch (PromptException e) {
+    } catch (DocumentException e) {
       logger.error("An error occurred while building the document summary.", e);
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
     } catch (Throwable e) {

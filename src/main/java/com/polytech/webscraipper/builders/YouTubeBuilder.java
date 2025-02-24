@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.polytech.webscraipper.BaseLogger;
 import com.polytech.webscraipper.dto.DocumentDto;
-import com.polytech.webscraipper.exceptions.PromptException;
+import com.polytech.webscraipper.exceptions.DocumentException;
 import com.polytech.webscraipper.exceptions.ScrappingException;
 import com.polytech.webscraipper.sdk.responses.PromptResponse;
 import com.polytech.webscraipper.services.langfusesubservices.PromptManagementService;
@@ -17,7 +17,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-// TODO
 @Component
 public class YouTubeBuilder implements ISummaryBuilder {
 
@@ -53,7 +52,7 @@ public class YouTubeBuilder implements ISummaryBuilder {
   }
 
   @Override
-  public DocumentDto polishAnswer(String url, DocumentDto documentDto) throws PromptException {
+  public DocumentDto polishAnswer(String url, DocumentDto documentDto) throws DocumentException {
     documentDto.setUrl(url);
     return documentDto;
   }

@@ -2,7 +2,7 @@ package com.polytech.webscraipper.builders;
 
 import com.polytech.webscraipper.BaseLogger;
 import com.polytech.webscraipper.dto.DocumentDto;
-import com.polytech.webscraipper.exceptions.PromptException;
+import com.polytech.webscraipper.exceptions.DocumentException;
 import com.polytech.webscraipper.sdk.responses.PromptResponse;
 import com.polytech.webscraipper.services.langfusesubservices.PromptManagementService;
 import java.util.List;
@@ -37,7 +37,7 @@ public class DefaultBuilder implements ISummaryBuilder {
   }
 
   @Override
-  public DocumentDto polishAnswer(String url, DocumentDto documentDto) throws PromptException {
+  public DocumentDto polishAnswer(String url, DocumentDto documentDto) throws DocumentException {
 
     documentDto.setUrl(url);
     return documentDto;
@@ -45,6 +45,8 @@ public class DefaultBuilder implements ISummaryBuilder {
 
   @Override
   public boolean isAnAppropriateBuilder(String url) {
-    return !url.startsWith("https://www.youtube.com/watch?");
+    // Since it's the default builder, it's selected by default and should during the selection
+    // phase
+    return false;
   }
 }
