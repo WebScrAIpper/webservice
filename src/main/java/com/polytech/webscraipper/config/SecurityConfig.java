@@ -32,7 +32,7 @@ public class SecurityConfig {
                 oauth2
                     .loginPage("/oauth2/authorization/keycloak")
                     .defaultSuccessUrl(
-                        "http://localhost:8088/realms/webscraipper-realm/account", true))
+                        "http://keycloak:8080/realms/webscraipper-realm/account", true))
         // **(NOT WORKING)** Configures logout settings
         .logout(
             logout ->
