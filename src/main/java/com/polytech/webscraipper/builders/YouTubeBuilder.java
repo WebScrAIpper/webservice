@@ -2,6 +2,7 @@ package com.polytech.webscraipper.builders;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
+import com.polytech.webscraipper.BaseLogger;
 import com.polytech.webscraipper.dto.DocumentDto;
 import com.polytech.webscraipper.exceptions.PromptException;
 import com.polytech.webscraipper.exceptions.ScrappingException;
@@ -22,6 +23,8 @@ public class YouTubeBuilder implements ISummaryBuilder {
 
   @Autowired PromptManagementService promptManagementService;
   @Autowired private ObjectMapper objectMapper;
+
+  private BaseLogger logger = new BaseLogger(DefaultBuilder.class);
 
   @Override
   public String scrapContent(String url, String pageContent) throws ScrappingException {
@@ -88,7 +91,7 @@ public class YouTubeBuilder implements ISummaryBuilder {
       while ((line = errorReader.readLine()) != null) {
         errorOutput.append(line).append("\n");
       }
-      System.out.println(output.toString().trim());
+      logger.debug(output.toString().trim());
       throw new IOException(
           "Error executing Python script " + scriptPath + " : " + errorOutput.toString().trim());
     }
