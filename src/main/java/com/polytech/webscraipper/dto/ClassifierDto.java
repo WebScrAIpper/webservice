@@ -7,6 +7,8 @@ public class ClassifierDto {
 
   private String name;
 
+  private String description;
+
   public ClassifierDto() {}
 
   public ClassifierDto(String name) {
@@ -29,6 +31,14 @@ public class ClassifierDto {
     this.name = name;
   }
 
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
   @Override
   public boolean equals(Object obj) {
     if (this == obj) {
@@ -38,6 +48,6 @@ public class ClassifierDto {
       return false;
     }
     ClassifierDto classifierDto = (ClassifierDto) obj;
-    return name.equals(classifierDto.name);
+    return name.equalsIgnoreCase(classifierDto.name);
   }
 }
