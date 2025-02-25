@@ -3,9 +3,11 @@ package com.polytech.webscraipper.builders;
 import com.polytech.webscraipper.BaseLogger;
 import com.polytech.webscraipper.dto.DocumentDto;
 import com.polytech.webscraipper.exceptions.DocumentException;
+import com.polytech.webscraipper.sdk.LangfuseSDK;
 import com.polytech.webscraipper.sdk.responses.PromptResponse;
 import com.polytech.webscraipper.services.langfusesubservices.PromptManagementService;
 import java.util.List;
+import java.util.Map;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,7 @@ public class DefaultBuilder implements ISummaryBuilder {
   @Autowired PromptManagementService promptManagementService;
 
   private BaseLogger logger = new BaseLogger(DefaultBuilder.class);
+  @Autowired private LangfuseSDK langfuseSDK;
 
   public DefaultBuilder() {}
 
@@ -33,7 +36,11 @@ public class DefaultBuilder implements ISummaryBuilder {
 
   @Override
   public PromptResponse generatePrompt(String scrappedContent, List<String> classifiers) {
-    return promptManagementService.createDefaultProdPrompt(classifiers, scrappedContent);
+    return langfuseSDK.prompts.getCustomizedPrompt(
+        "default-prompt",
+        null,
+        "latest",
+        Map.of("classifiers", classifiers.toString(), "content", scrappedContent));
   }
 
   @Override
