@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class BaseLogger {
-  public Logger logger;
+  private final Logger logger;
 
   public BaseLogger(Class<?> clazz) {
     logger = LoggerFactory.getLogger(clazz);

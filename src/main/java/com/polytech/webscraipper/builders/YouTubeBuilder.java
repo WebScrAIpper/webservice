@@ -22,7 +22,7 @@ public class YouTubeBuilder implements ISummaryBuilder {
   @Autowired PromptManagementService promptManagementService;
   @Autowired private ObjectMapper objectMapper;
 
-  private BaseLogger logger = new BaseLogger(DefaultBuilder.class);
+  private final BaseLogger logger = new BaseLogger(DefaultBuilder.class);
 
   @Override
   public String scrapContent(String url, String pageContent) throws ScrappingException {
