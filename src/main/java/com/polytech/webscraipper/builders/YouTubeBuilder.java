@@ -28,10 +28,10 @@ public class YouTubeBuilder implements ISummaryBuilder {
   public String scrapContent(String url, String pageContent) throws ScrappingException {
     try {
       // Get vod metadata
-      String videoInfoJson = executePythonScript("python/scripts/get_yt_infos.py", url);
+      String videoInfoJson = executePythonScript("src/main/python/scripts/get_yt_infos.py", url);
 
       // Get transcript
-      String transcript = executePythonScript("python/scripts/get_transcript.py", url);
+      String transcript = executePythonScript("src/main/python/scripts/get_transcript.py", url);
 
       Map<String, String> result = new HashMap<>();
       result.put("metadata", videoInfoJson);
@@ -66,9 +66,9 @@ public class YouTubeBuilder implements ISummaryBuilder {
 
     ProcessBuilder pb;
     if (System.getProperty("os.name").contains("Windows")) {
-      pb = new ProcessBuilder("python/.venv/Scripts/python.exe", scriptPath, url);
+      pb = new ProcessBuilder("src/main/python/.venv/Scripts/python.exe", scriptPath, url);
     } else {
-      pb = new ProcessBuilder("python/.venv/bin/python3", scriptPath, url);
+      pb = new ProcessBuilder("src/main/python/.venv/bin/python3", scriptPath, url);
     }
     Process process = pb.start();
 

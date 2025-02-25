@@ -39,3 +39,5 @@ out/
 
 ### Logs ###
 *.log
+
+.venv/

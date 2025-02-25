@@ -24,6 +24,23 @@ setx LANGFUSE_API_SK "sk-XXXXXXXXXXX"
 setx LANGFUSE_API_PK "pk-XXXXXXXXXXX"
 ```
 
+### Setting up python virtual environment
+Linux and MacOS:
+```cmd
+python3 -m venv src/main/python/.venv
+source src/main/python/.venv/bin/activate
+pip install --upgrade pip setuptools
+pip install youtube_transcript_api yt-dlp
+```
+
+Windows:
+```cmd
+python -m venv src\main\python\.venv
+src\main\python\.venv\Scripts\activate
+pip install --upgrade pip setuptools
+pip install youtube_transcript_api yt-dlp
+```
+
 ## Starting the application
 
 ### Developper mode
@@ -47,6 +64,17 @@ We use spotless for formatting. Run the following command to format the code:
 To automatically format the code on push, run the following command:
 ```bash
 git config core.hooksPath .githooks 
+```
+
+### Zscaler Certificate Setup
+
+If your network uses Zscaler for SSL inspection, you must add the Zscaler Root CA certificate to the JDK keystore to ensure secure connections.
+Importing the Certificate
+
+Run the following command to import the certificate into the JDK keystore:
+
+```bash
+keytool -import -alias zscaler -keystore "C:\Program Files\OpenJDK\Jdk-21.0.1\lib\security\cacerts" -file "C:\data\tmp\Zscaler Root CA.crt"
 ```
 
 ### Logging with SLF4J in the WebScraper Project
