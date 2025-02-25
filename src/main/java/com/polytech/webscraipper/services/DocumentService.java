@@ -137,7 +137,7 @@ public class DocumentService {
   private void updateDatabase(DocumentDto res) {
     // Handle Classifiers
     var newClassifiers =
-        res.getClassifiers().stream()
+        Arrays.stream(res.getClassifiers())
             .filter(classifier -> !classifierService.getAllClassifiers().contains(classifier))
             .toArray(String[]::new);
     for (String newClassifier : newClassifiers) {
