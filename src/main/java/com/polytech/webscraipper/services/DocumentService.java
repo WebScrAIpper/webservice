@@ -9,7 +9,7 @@ import com.polytech.webscraipper.dto.DocumentDto;
 import com.polytech.webscraipper.exceptions.DocumentException;
 import com.polytech.webscraipper.exceptions.ScrappingException;
 import com.polytech.webscraipper.repositories.DocumentRepository;
-import com.polytech.webscraipper.services.langfusesubservices.TracesManagementService;
+import com.polytech.webscraipper.sdk.LangfuseSDK;
 import com.polytech.webscraipper.utils.FunctionTimer;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
@@ -25,12 +25,12 @@ import org.springframework.stereotype.Service;
 public class DocumentService {
 
   private final ObjectMapper objectMapper = new ObjectMapper();
-  private BaseLogger logger = new BaseLogger(DefaultBuilder.class);
+  private final BaseLogger logger = new BaseLogger(DefaultBuilder.class);
 
   @Autowired private DocumentRepository documentRepo;
   @Autowired private ClassifierService classifierService;
   @Autowired private ChatModel chatModel;
-  @Autowired private TracesManagementService tracesManagementService;
+  @Autowired private LangfuseSDK langfuseSDK;
 
   @Autowired private List<ISummaryBuilder> builders;
   @Autowired private DefaultBuilder defaultBuilder;
@@ -82,7 +82,9 @@ public class DocumentService {
     // 3. Generating the prompt dynamically
     var prompt = builder.generatePrompt(scrappedContent, classifierService.getAllClassifiers());
 
+    logger.debug("Prompt: " + prompt.prompt);
     DocumentDto documentDto;
+    String aiAnswer = "No answer";
     try {
       // 4. Requesting the AI with timing and timeout handling
       var aiFullAnswer =
@@ -95,8 +97,7 @@ public class DocumentService {
               30,
               TimeUnit.SECONDS);
 
-      var aiAnswer = aiFullAnswer.getResult().getOutput().getText();
-
+      aiAnswer = aiFullAnswer.getResult().getOutput().getText();
       // 5. Build a solid object from the AI response
       documentDto = objectMapper.readValue(aiAnswer, DocumentDto.class);
 
@@ -107,13 +108,22 @@ public class DocumentService {
 
       updateDatabase(res);
 
-      tracesManagementService.postGenericAILog(prompt, res.toString(), url, SESSION_ID);
+      langfuseSDK.traces.postTrace(
+          prompt.prompt, aiAnswer, SESSION_ID, Map.of("url", url), List.of("SUCCESS"), null);
 
       return res;
     } catch (TimeoutException | InterruptedException | ExecutionException e) {
       throw new DocumentException("The AI request timed out or failed: " + e.getMessage());
     } catch (JsonProcessingException e) {
-      tracesManagementService.postFailedOutputAILog(prompt, e.getMessage(), url, SESSION_ID);
+      langfuseSDK.traces.postTrace(
+          prompt.prompt,
+          aiAnswer,
+          SESSION_ID,
+          Map.of("url", url),
+          List.of("ERROR"),
+          e.getMessage());
+
+      logger.error("The AI response could not be parsed: " + aiAnswer);
       throw new DocumentException("The AI response could not be parsed: " + e.getMessage());
     }
   }
@@ -127,7 +137,7 @@ public class DocumentService {
   private void updateDatabase(DocumentDto res) {
     // Handle Classifiers
     var newClassifiers =
-        Arrays.stream(res.getClassifiers())
+        res.getClassifiers().stream()
             .filter(classifier -> !classifierService.getAllClassifiers().contains(classifier))
             .toArray(String[]::new);
     for (String newClassifier : newClassifiers) {
