@@ -20,6 +20,23 @@ Windows:
 setx OPENAI_API_KEY "sk-XXXXXXXXXXX"
 ```
 
+### Setting up python virtual environment
+Linux and MacOS:
+```cmd
+python3 -m venv /python/.venv
+/python/.venv/bin/activate
+pip install --upgrade pip setuptools
+pip install youtube_transcript_api yt-dlp
+```
+
+Windows:
+```cmd
+python -m venv \python\.venv
+\python\.venv\Scripts\activate
+pip install --upgrade pip setuptools
+pip install youtube_transcript_api yt-dlp
+```
+
 ## Starting the application
 Run the following command to start the application:
 ```
