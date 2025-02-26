@@ -2,7 +2,6 @@ package com.polytech.webscraipper.sdk;
 
 import com.polytech.webscraipper.BaseLogger;
 import com.polytech.webscraipper.sdk.responses.TracesResponse;
-
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -22,17 +21,15 @@ public class Traces {
     this.tracesClient = tracesClient;
   }
 
-  
-
   /**
    * Post a trace to the Langfuse API
    *
-   * @param input     the input
-   * @param output    the output
+   * @param input the input
+   * @param output the output
    * @param sessionId the session id
-   * @param metadata  the metadata
-   * @param tags      the tags
-   * @param userId    the user who made the request
+   * @param metadata the metadata
+   * @param tags the tags
+   * @param userId the user who made the request
    * @return the id of the trace
    */
   public String postTrace(
@@ -100,13 +97,14 @@ public class Traces {
   /**
    * Get all traces with optional filters. The limit does not exceed 100.
    *
-   * @param page      the page number
-   * @param limit     the maximum number of traces to return
-   * @param userId    the user id to filter traces
+   * @param page the page number
+   * @param limit the maximum number of traces to return
+   * @param userId the user id to filter traces
    * @param sessionId the session id to filter traces
    * @return a list of traces
    */
-  public List<Map<String, Object>> getAllTraces(Integer page, Integer limit, String userId, String sessionId) {
+  public List<Map<String, Object>> getAllTraces(
+      Integer page, Integer limit, String userId, String sessionId) {
     Map<String, Object> queryParams = new HashMap<>();
     if (page != null) {
       queryParams.put("page", page);
@@ -158,7 +156,10 @@ public class Traces {
     return totalTraces;
   }
 
-  @FeignClient(name = "langfuse-sdk-traces", url = "https://cloud.langfuse.com/api/public/traces", configuration = FeignConfig.class)
+  @FeignClient(
+      name = "langfuse-sdk-traces",
+      url = "https://cloud.langfuse.com/api/public/traces",
+      configuration = FeignConfig.class)
   public interface TracesClient {
     @PostMapping("/")
     String postTrace(@RequestBody Map<String, Object> traceRequest);

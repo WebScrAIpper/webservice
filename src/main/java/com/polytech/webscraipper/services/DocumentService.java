@@ -110,7 +110,13 @@ public class DocumentService {
       updateDatabase(res);
 
       langfuseSDK.traces.postTrace(
-          prompt.prompt, aiAnswer, SESSION_ID, Map.of("url", url), List.of("SUCCESS"), null, siteName);
+          prompt.prompt,
+          aiAnswer,
+          SESSION_ID,
+          Map.of("url", url),
+          List.of("SUCCESS"),
+          null,
+          siteName);
 
       return res;
     } catch (TimeoutException | InterruptedException | ExecutionException e) {

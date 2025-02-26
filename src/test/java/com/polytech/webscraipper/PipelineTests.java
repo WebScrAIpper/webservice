@@ -1,20 +1,19 @@
 package com.polytech.webscraipper;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.polytech.webscraipper.builders.DefaultBuilder;
 import com.polytech.webscraipper.builders.ISummaryBuilder;
 import com.polytech.webscraipper.dto.DocumentDto;
 import com.polytech.webscraipper.exceptions.DocumentException;
 import com.polytech.webscraipper.exceptions.ScrappingException;
+import com.polytech.webscraipper.sdk.LangfuseSDK;
+import com.polytech.webscraipper.sdk.responses.PromptResponse;
 import com.polytech.webscraipper.services.ClassifierService;
 import com.polytech.webscraipper.utils.FunctionTimer;
-import com.polytech.webscraipper.sdk.LangfuseSDK;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.polytech.webscraipper.sdk.responses.PromptResponse;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -26,15 +25,13 @@ import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.openai.OpenAiChatOptions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest(classes = WebScrAIpperApplication.class)
+// @SpringBootTest(classes = WebScrAIpperApplication.class)
 public class PipelineTests {
   private final BaseLogger logger = new BaseLogger(DefaultBuilder.class);
   private final ObjectMapper objectMapper = new ObjectMapper();
@@ -54,13 +51,20 @@ public class PipelineTests {
     Map<String, String> urlToFileMap = new HashMap<>();
     urlToFileMap.put("https://angular.dev/", "src/test/resources/static/Angular.html");
     urlToFileMap.put("https://www.gehealthcare.fr/", "src/test/resources/static/gehealthcare.html");
-    urlToFileMap.put("https://cscalfani.medium.com/goodbye-object-oriented-programming-a59cda4c0e53", "src/test/resources/static/goodbyeOOP.html");
-    urlToFileMap.put("https://www.insimo.com/display-ultrasound/", "src/test/resources/static/insimoDisplay.html");
+    urlToFileMap.put(
+        "https://cscalfani.medium.com/goodbye-object-oriented-programming-a59cda4c0e53",
+        "src/test/resources/static/goodbyeOOP.html");
+    urlToFileMap.put(
+        "https://www.insimo.com/display-ultrasound/",
+        "src/test/resources/static/insimoDisplay.html");
     urlToFileMap.put("https://www.keycloak.org/", "src/test/resources/static/keycloak.html");
     urlToFileMap.put("https://langfuse.com/", "src/test/resources/static/langfuse.html");
-    urlToFileMap.put("https://programmingisterrible.com/post/139222674273/write-code-that-is-easy-to-delete-not-easy-to", "src/test/resources/static/programmingisterrible.html");
+    urlToFileMap.put(
+        "https://programmingisterrible.com/post/139222674273/write-code-that-is-easy-to-delete-not-easy-to",
+        "src/test/resources/static/programmingisterrible.html");
     urlToFileMap.put("https://fr.react.dev/", "src/test/resources/static/react.html");
-    urlToFileMap.put("https://spring.io/projects/spring-boot", "src/test/resources/static/spring-boot.html");
+    urlToFileMap.put(
+        "https://spring.io/projects/spring-boot", "src/test/resources/static/spring-boot.html");
     urlToFileMap.put("https://vuejs.org/", "src/test/resources/static/vuejs.html");
 
     List<DocumentDto> documentDtos = new ArrayList<>();
@@ -87,7 +91,8 @@ public class PipelineTests {
       String scrappedContent = builder.scrapContent(url, content);
 
       // 3. Generating the prompt dynamically
-      PromptResponse prompt = builder.generatePrompt(scrappedContent, classifierService.getAllClassifiers());
+      PromptResponse prompt =
+          builder.generatePrompt(scrappedContent, classifierService.getAllClassifiers());
 
       DocumentDto documentDto;
       String aiAnswer = "No answer";
@@ -96,10 +101,11 @@ public class PipelineTests {
         var aiFullAnswer =
             FunctionTimer.timeExecutionWithTimeout(
                 "AI Summary: " + url,
-                () -> 
+                () ->
                     chatModel.call(
                         new Prompt(
-                            prompt.prompt, OpenAiChatOptions.builder().model("gpt-4o-mini").build())),
+                            prompt.prompt,
+                            OpenAiChatOptions.builder().model("gpt-4o-mini").build())),
                 30,
                 TimeUnit.SECONDS);
 
@@ -111,7 +117,13 @@ public class PipelineTests {
         var res = builder.polishAnswer(url, documentDto);
 
         langfuseSDK.traces.postTrace(
-            prompt.prompt, aiAnswer, SESSION_ID, Map.of("url", url), List.of("SUCCESS"), USER_ID, siteName);
+            prompt.prompt,
+            aiAnswer,
+            SESSION_ID,
+            Map.of("url", url),
+            List.of("SUCCESS"),
+            USER_ID,
+            siteName);
 
         documentDtos.add(res);
       } catch (TimeoutException | InterruptedException | ExecutionException e) {
@@ -143,7 +155,6 @@ public class PipelineTests {
     var traces = langfuseSDK.traces.getAllTraces(null, null, USER_ID, SESSION_ID);
     assertNotNull(traces, "Expected non-null trace list");
     assertEquals(10, traces.size(), "Expected 10 traces for the session");
-
 
     for (DocumentDto documentDto : documentDtos) {
       logger.info("DocumentDto: " + documentDto.getAuthor());

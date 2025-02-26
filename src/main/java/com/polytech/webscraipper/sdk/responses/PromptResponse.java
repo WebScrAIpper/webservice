@@ -3,7 +3,6 @@ package com.polytech.webscraipper.sdk.responses;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -28,7 +27,7 @@ public class PromptResponse {
   public final String commitMessage;
 
   // Jackson requires a no-args constructor to deserialize objects.
-  // Since all fields are final, we must initialize them with default values.  
+  // Since all fields are final, we must initialize them with default values.
   public PromptResponse() {
     this.id = null;
     this.createdAt = null;

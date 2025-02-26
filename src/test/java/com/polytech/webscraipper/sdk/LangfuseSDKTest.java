@@ -68,7 +68,7 @@ public class LangfuseSDKTest {
 
   @Test
   public void getAllTraces() {
-    var res = langfuseSDK.traces.getAllTraces(null, null, null, null );
+    var res = langfuseSDK.traces.getAllTraces(null, null, null, null);
     assertNotNull(res);
   }
 }
