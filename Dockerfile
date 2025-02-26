@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y python3 python3-venv python3-pip
 # Copy .jar from build
 COPY --from=build /build/libs/*.jar app.jar
 
-COPY python/scripts python/scripts
+COPY /src/main/python/scripts /src/main/python/scripts
 
 RUN python3 -m venv /src/main/python/.venv && \
     . /src/main/python/.venv/bin/activate && \
