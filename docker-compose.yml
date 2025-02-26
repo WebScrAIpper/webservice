@@ -11,8 +11,7 @@ services:
       OPENAI_API_KEY : ${OPENAI_API_KEY}
       LANGFUSE_API_SK : ${LANGFUSE_API_SK}
       LANGFUSE_API_PK : ${LANGFUSE_API_PK}
-    networks:
-      - main-network
+    network_mode: "host"
     depends_on:
       mongo_db:
         condition: service_healthy
