@@ -65,4 +65,10 @@ public class LangfuseSDKTest {
             null);
     assertNotNull(res);
   }
+
+  @Test
+  public void getAllTraces() {
+    var res = langfuseSDK.traces.getAllTraces(null, null, null, null );
+    assertNotNull(res);
+  }
 }
