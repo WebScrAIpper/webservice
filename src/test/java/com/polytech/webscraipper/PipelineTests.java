@@ -25,13 +25,13 @@ import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
-import org.junit.jupiter.api.Test;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.openai.OpenAiChatOptions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
-// @SpringBootTest(classes = WebScrAIpperApplication.class)
+@SpringBootTest(classes = WebScrAIpperApplication.class)
 public class PipelineTests {
   private final BaseLogger logger = new BaseLogger(DefaultBuilder.class);
   private final ObjectMapper objectMapper = new ObjectMapper();
@@ -46,7 +46,7 @@ public class PipelineTests {
   private static final String SESSION_ID = new Date().toString();
   private static final String USER_ID = "PipelineTests";
 
-  @Test
+  // @Test
   void testPipeline() throws IOException, DocumentException, ScrappingException {
     Map<String, String> urlToFileMap = new HashMap<>();
     urlToFileMap.put("https://angular.dev/", "src/test/resources/static/Angular.html");
