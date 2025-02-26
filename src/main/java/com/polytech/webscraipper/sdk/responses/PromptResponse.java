@@ -1,6 +1,9 @@
 package com.polytech.webscraipper.sdk.responses;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -24,20 +27,41 @@ public class PromptResponse {
   public final List<String> tags;
   public final String commitMessage;
 
+  // Jackson requires a no-args constructor to deserialize objects.
+  // Since all fields are final, we must initialize them with default values.  
+  public PromptResponse() {
+    this.id = null;
+    this.createdAt = null;
+    this.updatedAt = null;
+    this.projectId = null;
+    this.createdBy = null;
+    this.type = null;
+    this.prompt = null;
+    this.name = null;
+    this.version = 0;
+    this.config = null;
+    this.labels = null;
+    this.tags = null;
+    this.commitMessage = null;
+  }
+
+  // Using @JsonCreator to tell Jackson how to construct this object when deserializing.
+  // Each @JsonProperty ensures that the JSON key is correctly mapped to the constructor parameter.
+  @JsonCreator
   public PromptResponse(
-      String id,
-      LocalDateTime createdAt,
-      LocalDateTime updatedAt,
-      String projectId,
-      String createdBy,
-      String type,
-      String prompt,
-      String name,
-      int version,
-      Object config,
-      List<String> labels,
-      List<String> tags,
-      String commitMessage) {
+      @JsonProperty("id") String id,
+      @JsonProperty("createdAt") LocalDateTime createdAt,
+      @JsonProperty("updatedAt") LocalDateTime updatedAt,
+      @JsonProperty("projectId") String projectId,
+      @JsonProperty("createdBy") String createdBy,
+      @JsonProperty("type") String type,
+      @JsonProperty("prompt") String prompt,
+      @JsonProperty("name") String name,
+      @JsonProperty("version") int version,
+      @JsonProperty("config") Object config,
+      @JsonProperty("labels") List<String> labels,
+      @JsonProperty("tags") List<String> tags,
+      @JsonProperty("commitMessage") String commitMessage) {
     this.id = id;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;

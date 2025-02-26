@@ -86,7 +86,7 @@ public class WebScrAIpperTests {
       String scrappedContent = builder.scrapContent(url, content);
 
       // 3. Generating the prompt dynamically
-      var prompt = builder.generatePrompt(scrappedContent, classifierService.getAllClassifiers());
+      PromptResponse prompt = builder.generatePrompt(scrappedContent, classifierService.getAllClassifiers());
       logger.info("Prompt: " + prompt.prompt);
 
       DocumentDto documentDto;
