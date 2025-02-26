@@ -1,0 +1,900 @@
+<html style="color-scheme: light;" class="light" dir="ltr">
+ <head>
+  <meta charset="utf-8" data-next-head="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" data-next-head="">
+  <meta name="theme-color" content="#000" data-next-head="">
+  <meta property="og:url" content="https://langfuse.com/" data-next-head="">
+  <meta http-equiv="Content-Language" content="en" data-next-head="">
+  <meta name="description" content="Traces, evals, prompt management and metrics to debug and improve your LLM application. Integrates with Langchain, OpenAI, LlamaIndex, LiteLLM, and more." data-next-head="">
+  <meta property="og:description" content="Traces, evals, prompt management and metrics to debug and improve your LLM application. Integrates with Langchain, OpenAI, LlamaIndex, LiteLLM, and more." data-next-head="">
+  <meta property="og:image" content="https://langfuse.com/api/og?title=Langfuse%20-%20Open%20Source%20LLM%20Engineering%20Platform&amp;description=Traces%2C%20evals%2C%20prompt%20management%20and%20metrics%20to%20debug%20and%20improve%20your%20LLM%20application.%20Integrates%20with%20Langchain%2C%20OpenAI%2C%20LlamaIndex%2C%20LiteLLM%2C%20and%20more.&amp;section=" data-next-head="">
+  <meta property="twitter:image" content="https://langfuse.com/api/og?title=Langfuse%20-%20Open%20Source%20LLM%20Engineering%20Platform&amp;description=Traces%2C%20evals%2C%20prompt%20management%20and%20metrics%20to%20debug%20and%20improve%20your%20LLM%20application.%20Integrates%20with%20Langchain%2C%20OpenAI%2C%20LlamaIndex%2C%20LiteLLM%2C%20and%20more.&amp;section=" data-next-head="">
+  <meta name="twitter:card" content="summary_large_image" data-next-head="">
+  <meta name="twitter:site:domain" content="langfuse.com" data-next-head="">
+  <meta name="twitter:url" content="https://langfuse.com" data-next-head="">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" data-next-head="">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" data-next-head="">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" data-next-head="">
+  <title data-next-head="">Langfuse</title>
+  <link rel="preload" href="/_next/static/media/66f30814ff6d7cdf.p.woff2" as="font" type="font/woff2" crossorigin="anonymous" data-next-font="">
+  <link rel="preload" href="/_next/static/media/e11418ac562b8ac1-s.p.woff2" as="font" type="font/woff2" crossorigin="anonymous" data-next-font="size-adjust">
+  <link rel="preload" href="/_next/static/css/071b8a06d4e9a553.css" as="style">
+  <link rel="stylesheet" href="/_next/static/css/071b8a06d4e9a553.css" data-n-g="">
+  <noscript data-n-css=""></noscript>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="true">
+  <link rel="preconnect" href="https://customer-xnej9vqjtgxpafyk.cloudflarestream.com" crossorigin="true">
+  <link as="script" rel="prefetch" href="/_next/static/chunks/pages/careers-2494e842f5fbc241.js">
+  <link as="script" rel="prefetch" href="/_next/static/chunks/pages/docs-da6908be327b4c9f.js">
+  <link as="script" rel="prefetch" href="/_next/static/chunks/6093-b67338525baaad5d.js">
+  <link as="script" rel="prefetch" href="/_next/static/chunks/pages/pricing-dbe34bd8c4cca662.js">
+  <link as="script" rel="prefetch" href="/_next/static/chunks/pages/changelog-21d1f9c86279d0cb.js">
+  <link as="script" rel="prefetch" href="/_next/static/chunks/pages/blog-255483bab9b8c495.js">
+  <link as="script" rel="prefetch" href="/_next/static/chunks/pages/watch-demo-8c8f05a25ca997a0.js">
+  <link as="script" rel="prefetch" href="/_next/static/chunks/pages/docs/tracing-a22a5ba95a743fc0.js">
+  <link as="script" rel="prefetch" href="/_next/static/chunks/pages/docs/scores/overview-de77a49f4df1494e.js">
+  <link as="script" rel="prefetch" href="/_next/static/chunks/88898-47299c83aac54c5a.js">
+  <link as="script" rel="prefetch" href="/_next/static/chunks/23978-cc50d8f845778b13.js">
+  <link as="script" rel="prefetch" href="/_next/static/chunks/pages/docs/prompts/get-started-b32b196b66c5bb06.js">
+  <link as="script" rel="prefetch" href="/_next/static/chunks/pages/docs/analytics/overview-123b34ba2570ad79.js">
+  <link as="script" rel="prefetch" href="/_next/static/chunks/573f1d60-a25b49d47bdd9810.js">
+  <link as="script" rel="prefetch" href="/_next/static/chunks/36339-47ba6b4d22177642.js">
+  <link as="script" rel="prefetch" href="/_next/static/chunks/16179-f34e199bb52a0ff1.js">
+  <link as="script" rel="prefetch" href="/_next/static/chunks/1021-ff06fee419c18ab3.js">
+  <link as="script" rel="prefetch" href="/_next/static/chunks/pages/docs/demo-7aeaa4f319d15532.js">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net/npm/hls.js@^1.0.0/dist/hls.min.js" crossorigin="true">
+ </head>
+ <body>
+  <div id="termly-code-snippet-support" dir="ltr">
+   <div style="--termly-theme-background-color: #686868; --termly-theme-button-background-color: #ffffff; --termly-theme-button-text-color: #686868; --termly-theme-color: #ffffff; --termly-theme-font-family: Roboto, &quot;Open Sans&quot;, Arial, Helvetica; --termly-theme-font-size: 12px; --termly-z-index: var(--termly-override-z-index, 999999);">
+    <div aria-label="Cookie Consent Prompt" class="termly-styles-root-b0aebb termly-styles-tooltip-d3b548 termly-styles-termly-tooltip-c26ee2 termly-styles-standard-b726f8 termly-styles-bottom_right-e3477a t-consentPrompt" role="dialog" style="font-family: Roboto, &quot;Open Sans&quot;, Arial, Helvetica; font-size: 12px; color: rgb(255, 255, 255); background: rgb(104, 104, 104);">
+     <div class="termly-styles-main-bf5ef8">
+      <div class="termly-styles-content-fcefe4">
+       <div class="termly-styles-message-e9e76f termly-styles-message-d6c726">
+        We use essential cookies to make our site work. With your consent, we may also use non-essential cookies to improve user experience and analyze website traffic. By clicking “Accept,” you agree to our website's cookie use as described in our <span class="termly-styles-root-d5f974" role="link" tabindex="0" data-testid="cookie-policy-link">Cookie Policy</span>. You can change your cookie settings at any time by clicking “<span class="termly-styles-root-d5f974" role="link" tabindex="0" data-testid="preferences-link">Preferences</span>.”
+       </div>
+       <div class="termly-styles-buttons-bb7ad2" style="background: rgb(104, 104, 104);"></div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <div id="__next">
+   <div class="__variable_3a0388 font-sans __variable_c1e5c9">
+    <div dir="ltr">
+     <div class="nextra-banner-container max-md:_sticky _top-0 _z-20 _flex _items-center _h-[var(--nextra-banner-height)] [body.nextra-banner-hidden_&amp;]:_hidden _text-slate-50 dark:_text-white _bg-neutral-900 dark:_bg-[linear-gradient(1deg,#383838,#212121)] _px-2 _ps-10 print:_hidden">
+      <div class="_w-full _truncate _text-center _font-medium _text-sm">
+       <a href="https://lu.ma/s22z25ed"><span class="sm:hidden">Wednesday: Langfuse Community Hour →</span><span class="hidden sm:inline">Wednesday: Langfuse Community Hour, 10am PT / 7pm CET →</span></a>
+      </div>
+     </div>
+     <div class="nextra-nav-container _sticky _top-0 _z-20 _w-full _bg-transparent print:_hidden">
+      <div class="nextra-nav-container-blur"></div>
+     </div>
+     <div class="_mx-auto _flex">
+      <div class="[transition:background-color_1.5s_ease] _bg-transparent"></div>
+      <div id="reach-skip-nav"></div>
+      <div class="_w-full _break-words">
+       <main class="relative overflow-hidden w-full">
+        <section class="py-20 lg:py-32 mx-auto max-w-7xl px-5 sm:px-7 xl:px-10 first:pt-10 last:pb-40 last:lg:pb-52">
+         <div class="flex flex-col items-start justify-center gap-3 md:min-h-[calc(min(calc(60vh-100px),60vw))] pb-12 lg:py-20">
+          <h1 class="text-4xl sm:text-7xl lg:text-8xl font-bold font-mono">Open Source<br>
+           LLM Engineering Platform</h1><span class="mt-2 text-primary/70 text-2xl sm:text-3xl lg:text-4xl md:text-balance font-semibold tracking-wide"><a class="underline" href="/docs/tracing">Traces</a>,<!-- --> <a class="underline" href="/docs/scores/overview">evals</a>,<!-- --> <a class="underline" href="/docs/prompts/get-started">prompt management</a> <!-- -->and<!-- --> <a class="underline" href="/docs/analytics/overview">metrics</a> <!-- -->to debug and improve your LLM application.</span>
+          <div class="flex gap-4 flex-wrap items-center justify-center my-4">
+           <a class="inline-flex items-center justify-center rounded text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 text-white bg-[linear-gradient(to_right,theme(colors.pink.400),theme(colors.orange.400),theme(colors.pink.400))] bg-[length:200%_auto] animate-gradient hover:scale-105 transition-transform duration-300 h-11 px-5" href="/docs/demo">Try demo</a><a class="inline-flex items-center justify-center rounded text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-secondary text-secondary-foreground hover:bg-secondary/80 h-11 px-5" href="/docs">View docs</a>
+          </div>
+         </div>
+         <div class="grid grid-cols-2 md:grid-cols-4 gap-y-5 gap-x-4 items-center justify-items-center my-10 flex-wrap">
+          <a href="https://github.com/langfuse/langfuse"><img alt="Langfuse Github stars" src="https://img.shields.io/github/stars/langfuse/langfuse?label=langfuse&amp;style=social"></a><a href="https://www.ycombinator.com/companies/langfuse" class="flex flex-col sm:flex-row items-center gap-x-2 gap-y-1" target="_blank" rel="noopener noreferrer">
+           <div class="text-primary/70 text-sm">
+            Backed by
+           </div></a><a href="https://www.producthunt.com/golden-kitty-awards/hall-of-fame" target="_blank" rel="noopener noreferrer"><img alt="Langfuse won #1 Golden Kitty in AI Infra Category" loading="lazy" width="122" height="37" decoding="async" data-nimg="1" class="block dark:hidden" style="color:transparent" src="/_next/static/media/ph_gke_ai_infra.0802cdcd.svg"><img alt="Langfuse won #1 Golden Kitty in AI Infra Category" loading="lazy" width="122" height="37" decoding="async" data-nimg="1" class="hidden dark:block" style="color:transparent" src="/_next/static/media/ph_gke_ai_infra_white.e2058228.svg"></a>
+          <div class="max-w-full w-52 px-1">
+           <a href="https://www.producthunt.com/posts/langfuse-2-0?utm_source=badge-top-post-badge&amp;utm_medium=badge&amp;utm_souce=badge-langfuse" target="_blank"><img alt="Product Hunt - Product of the Day" loading="lazy" width="250" height="54" decoding="async" data-nimg="1" class="block dark:hidden" style="color:transparent" srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fph_product_of_the_day_light.78658049.png&amp;w=256&amp;q=75 1x, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fph_product_of_the_day_light.78658049.png&amp;w=640&amp;q=75 2x" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fph_product_of_the_day_light.78658049.png&amp;w=640&amp;q=75"><img alt="Product Hunt - Product of the Day" loading="lazy" width="250" height="54" decoding="async" data-nimg="1" class="hidden dark:block" style="color:transparent" srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fph_product_of_the_day_dark.5463e03e.png&amp;w=256&amp;q=75 1x, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fph_product_of_the_day_dark.5463e03e.png&amp;w=640&amp;q=75 2x" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fph_product_of_the_day_dark.5463e03e.png&amp;w=640&amp;q=75"></a>
+          </div>
+         </div>
+         <div>
+          <media-player style="--media-aspect-ratio: 1.7778; --media-width: 1200px; --media-height: 675px;" class="my-4 overflow-hidden rounded-lg shadow-lg ring-1 ring-slate-700 bg-cover object-cover" mk-h="" mk-d="" tabindex="0" role="region" aria-label="Video Player" data-orientation="landscape" aria-busy="true" aspect-ratio="1.7777777777777777" data-can-seek="true" data-media-type="video" data-paused="true" data-stream-type="unknown" data-view-type="video" data-bp-x="lg" data-bp-y="lg" data-can-fullscreen="true">
+           <shadow-root></shadow-root>
+           <div class="group cursor-pointer absolute inset-0 z-10 flex flex-col justify-center items-center bg-cover" style="background-image:url(https://customer-xnej9vqjtgxpafyk.cloudflarestream.com/283c0c6812251552c3997c7b62af269e/thumbnails/thumbnail.gif?time=86s)">
+            <div class="p-3 md:p-6 rounded-full bg-black/80 group-hover:bg-black/90 group-hover:ring-8 ring-black/20 transition flex"></div>
+            <div class="mt-3 md:mt-6 transition-opacity duration-300">
+             <span class="flex gap-2 text-xs md:text-sm font-semibold bg-black/80 group-hover:bg-black/90 transition-all text-white py-1 px-3 rounded-full"><span>Langfuse Walkthrough</span></span>
+            </div>
+           </div>
+           <media-outlet mk-h="" mk-d="" keep-alive="">
+            <shadow-root>
+             <!--$-->
+             <video src="https://customer-xnej9vqjtgxpafyk.cloudflarestream.com/283c0c6812251552c3997c7b62af269e/manifest/video.m3u8" preload="none" aria-hidden="true"></video><!--/$--><!--$$-->
+            </shadow-root>
+           </media-outlet>
+          </media-player>
+         </div>
+        </section>
+        <section class="py-20 lg:py-32 mx-auto max-w-7xl px-5 sm:px-7 xl:px-10 first:pt-10 last:pb-40 last:lg:pb-52 pt-2 sm:pt-2 lg:pt-2 xl:pt-2">
+         <div class="py-14">
+          <h2 class="text-center text-lg font-semibold leading-8 mb-8">Teams building complex LLM apps rely on Langfuse</h2>
+          <div class="flex flex-col gap-8">
+           <div class="relative">
+            <div class="flex flex-wrap xl:flex-nowrap justify-between">
+             <a href="https://www.samsara.com" class="overflow-hidden w-1/2 md:w-1/4 xl:w-[12%] h-16 hover:opacity-80 transition py-4 px-3" target="_blank" rel="noopener noreferrer"><img alt="Samsara" loading="lazy" width="1500" height="357" decoding="async" data-nimg="1" class="object-contain h-full w-full hidden dark:block" style="color:transparent" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 20vw" srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsamsara_light.ffd4b6d4.png&amp;w=128&amp;q=75 128w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsamsara_light.ffd4b6d4.png&amp;w=256&amp;q=75 256w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsamsara_light.ffd4b6d4.png&amp;w=384&amp;q=75 384w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsamsara_light.ffd4b6d4.png&amp;w=640&amp;q=75 640w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsamsara_light.ffd4b6d4.png&amp;w=750&amp;q=75 750w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsamsara_light.ffd4b6d4.png&amp;w=828&amp;q=75 828w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsamsara_light.ffd4b6d4.png&amp;w=1080&amp;q=75 1080w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsamsara_light.ffd4b6d4.png&amp;w=1200&amp;q=75 1200w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsamsara_light.ffd4b6d4.png&amp;w=1920&amp;q=75 1920w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsamsara_light.ffd4b6d4.png&amp;w=2048&amp;q=75 2048w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsamsara_light.ffd4b6d4.png&amp;w=3840&amp;q=75 3840w" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsamsara_light.ffd4b6d4.png&amp;w=3840&amp;q=75"><img alt="Samsara" loading="lazy" width="1500" height="357" decoding="async" data-nimg="1" class="object-contain h-full w-full dark:hidden" style="color:transparent" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 20vw" srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsamsara_dark.a4f7623b.png&amp;w=128&amp;q=75 128w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsamsara_dark.a4f7623b.png&amp;w=256&amp;q=75 256w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsamsara_dark.a4f7623b.png&amp;w=384&amp;q=75 384w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsamsara_dark.a4f7623b.png&amp;w=640&amp;q=75 640w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsamsara_dark.a4f7623b.png&amp;w=750&amp;q=75 750w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsamsara_dark.a4f7623b.png&amp;w=828&amp;q=75 828w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsamsara_dark.a4f7623b.png&amp;w=1080&amp;q=75 1080w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsamsara_dark.a4f7623b.png&amp;w=1200&amp;q=75 1200w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsamsara_dark.a4f7623b.png&amp;w=1920&amp;q=75 1920w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsamsara_dark.a4f7623b.png&amp;w=2048&amp;q=75 2048w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsamsara_dark.a4f7623b.png&amp;w=3840&amp;q=75 3840w" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsamsara_dark.a4f7623b.png&amp;w=3840&amp;q=75"></a><a href="https://www.twilio.com" class="overflow-hidden w-1/2 md:w-1/4 xl:w-[12%] h-16 hover:opacity-80 transition py-4 px-3" target="_blank" rel="noopener noreferrer"><img alt="Twilio" loading="lazy" width="871" height="263" decoding="async" data-nimg="1" class="object-contain h-full w-full hidden dark:block" style="color:transparent" src="/_next/static/media/twilio_light.160c9dd0.svg"><img alt="Twilio" loading="lazy" width="871" height="263" decoding="async" data-nimg="1" class="object-contain h-full w-full dark:hidden" style="color:transparent" src="/_next/static/media/twilio_dark.76f1b1b3.svg"></a><a href="https://sumup.com" class="overflow-hidden w-1/2 md:w-1/4 xl:w-[12%] h-16 hover:opacity-80 transition py-4 px-3" target="_blank" rel="noopener noreferrer"><img alt="SumUp" loading="lazy" width="1024" height="309" decoding="async" data-nimg="1" class="object-contain h-full w-full hidden dark:block" style="color:transparent" src="/_next/static/media/sumup_light.0e3f7d8e.svg"><img alt="SumUp" loading="lazy" width="1024" height="309" decoding="async" data-nimg="1" class="object-contain h-full w-full dark:hidden" style="color:transparent" src="/_next/static/media/sumup_dark.122254a6.svg"></a><a href="https://www.khanacademy.org" class="overflow-hidden w-1/2 md:w-1/4 xl:w-[12%] h-16 hover:opacity-80 transition py-4 px-3" target="_blank" rel="noopener noreferrer"><img alt="Khan Academy" loading="lazy" width="911" height="149" decoding="async" data-nimg="1" class="object-contain h-full w-full hidden dark:block" style="color:transparent" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 20vw" srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fkhanacademy_light.31775563.png&amp;w=128&amp;q=75 128w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fkhanacademy_light.31775563.png&amp;w=256&amp;q=75 256w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fkhanacademy_light.31775563.png&amp;w=384&amp;q=75 384w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fkhanacademy_light.31775563.png&amp;w=640&amp;q=75 640w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fkhanacademy_light.31775563.png&amp;w=750&amp;q=75 750w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fkhanacademy_light.31775563.png&amp;w=828&amp;q=75 828w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fkhanacademy_light.31775563.png&amp;w=1080&amp;q=75 1080w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fkhanacademy_light.31775563.png&amp;w=1200&amp;q=75 1200w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fkhanacademy_light.31775563.png&amp;w=1920&amp;q=75 1920w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fkhanacademy_light.31775563.png&amp;w=2048&amp;q=75 2048w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fkhanacademy_light.31775563.png&amp;w=3840&amp;q=75 3840w" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fkhanacademy_light.31775563.png&amp;w=3840&amp;q=75"><img alt="Khan Academy" loading="lazy" width="911" height="149" decoding="async" data-nimg="1" class="object-contain h-full w-full dark:hidden" style="color:transparent" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 20vw" srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fkhanacademy_dark.849674d7.png&amp;w=128&amp;q=75 128w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fkhanacademy_dark.849674d7.png&amp;w=256&amp;q=75 256w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fkhanacademy_dark.849674d7.png&amp;w=384&amp;q=75 384w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fkhanacademy_dark.849674d7.png&amp;w=640&amp;q=75 640w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fkhanacademy_dark.849674d7.png&amp;w=750&amp;q=75 750w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fkhanacademy_dark.849674d7.png&amp;w=828&amp;q=75 828w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fkhanacademy_dark.849674d7.png&amp;w=1080&amp;q=75 1080w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fkhanacademy_dark.849674d7.png&amp;w=1200&amp;q=75 1200w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fkhanacademy_dark.849674d7.png&amp;w=1920&amp;q=75 1920w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fkhanacademy_dark.849674d7.png&amp;w=2048&amp;q=75 2048w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fkhanacademy_dark.849674d7.png&amp;w=3840&amp;q=75 3840w" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fkhanacademy_dark.849674d7.png&amp;w=3840&amp;q=75"></a><a href="https://pigment.com" class="overflow-hidden w-1/2 md:w-1/4 xl:w-[12%] h-16 hover:opacity-80 transition py-4 px-3" target="_blank" rel="noopener noreferrer"><img alt="Pigment" loading="lazy" width="696" height="128" decoding="async" data-nimg="1" class="object-contain h-full w-full hidden dark:block" style="color:transparent" src="/_next/static/media/pigment_light.0689140d.svg"><img alt="Pigment" loading="lazy" width="696" height="128" decoding="async" data-nimg="1" class="object-contain h-full w-full dark:hidden" style="color:transparent" src="/_next/static/media/pigment_dark.90d0d6d3.svg"></a><a href="https://forto.com" class="overflow-hidden w-1/2 md:w-1/4 xl:w-[12%] h-16 hover:opacity-80 transition py-4 px-3" target="_blank" rel="noopener noreferrer"><img alt="Forto" loading="lazy" width="525" height="127" decoding="async" data-nimg="1" class="object-contain h-full w-full hidden dark:block" style="color:transparent" src="/_next/static/media/forto_light.9ffc6d6a.svg"><img alt="Forto" loading="lazy" width="525" height="127" decoding="async" data-nimg="1" class="object-contain h-full w-full dark:hidden" style="color:transparent" src="/_next/static/media/forto_dark.0b26ff4e.svg"></a><a href="https://juicebox.ai/" class="overflow-hidden w-1/2 md:w-1/4 xl:w-[12%] h-16 hover:opacity-80 transition py-4 px-3" target="_blank" rel="noopener noreferrer"><img alt="Juicebox" loading="lazy" width="121" height="28" decoding="async" data-nimg="1" class="object-contain h-full w-full hidden dark:block" style="color:transparent" src="/_next/static/media/juicebox_light.69e01465.svg"><img alt="Juicebox" loading="lazy" width="121" height="28" decoding="async" data-nimg="1" class="object-contain h-full w-full dark:hidden" style="color:transparent" src="/_next/static/media/juicebox_dark.f602e88d.svg"></a><a href="https://circleback.ai" class="overflow-hidden w-1/2 md:w-1/4 xl:w-[12%] h-16 hover:opacity-80 transition py-4 px-3" target="_blank" rel="noopener noreferrer"><img alt="Circleback" loading="lazy" width="500" height="93" decoding="async" data-nimg="1" class="object-contain h-full w-full hidden dark:block" style="color:transparent" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 20vw" srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcircleback_light.5dc91ff3.png&amp;w=128&amp;q=75 128w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcircleback_light.5dc91ff3.png&amp;w=256&amp;q=75 256w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcircleback_light.5dc91ff3.png&amp;w=384&amp;q=75 384w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcircleback_light.5dc91ff3.png&amp;w=640&amp;q=75 640w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcircleback_light.5dc91ff3.png&amp;w=750&amp;q=75 750w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcircleback_light.5dc91ff3.png&amp;w=828&amp;q=75 828w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcircleback_light.5dc91ff3.png&amp;w=1080&amp;q=75 1080w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcircleback_light.5dc91ff3.png&amp;w=1200&amp;q=75 1200w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcircleback_light.5dc91ff3.png&amp;w=1920&amp;q=75 1920w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcircleback_light.5dc91ff3.png&amp;w=2048&amp;q=75 2048w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcircleback_light.5dc91ff3.png&amp;w=3840&amp;q=75 3840w" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcircleback_light.5dc91ff3.png&amp;w=3840&amp;q=75"><img alt="Circleback" loading="lazy" width="500" height="93" decoding="async" data-nimg="1" class="object-contain h-full w-full dark:hidden" style="color:transparent" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 20vw" srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcircleback_dark.9a54dd94.png&amp;w=128&amp;q=75 128w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcircleback_dark.9a54dd94.png&amp;w=256&amp;q=75 256w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcircleback_dark.9a54dd94.png&amp;w=384&amp;q=75 384w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcircleback_dark.9a54dd94.png&amp;w=640&amp;q=75 640w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcircleback_dark.9a54dd94.png&amp;w=750&amp;q=75 750w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcircleback_dark.9a54dd94.png&amp;w=828&amp;q=75 828w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcircleback_dark.9a54dd94.png&amp;w=1080&amp;q=75 1080w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcircleback_dark.9a54dd94.png&amp;w=1200&amp;q=75 1200w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcircleback_dark.9a54dd94.png&amp;w=1920&amp;q=75 1920w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcircleback_dark.9a54dd94.png&amp;w=2048&amp;q=75 2048w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcircleback_dark.9a54dd94.png&amp;w=3840&amp;q=75 3840w" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcircleback_dark.9a54dd94.png&amp;w=3840&amp;q=75"></a>
+            </div>
+           </div>
+           <div class="flex flex-row justify-around sm:justify-center sm:gap-10">
+            <div class="text-center">
+             <p class="text-xl sm:text-2xl font-bold text-primary/80 font-mono"><span class="inline-block tabular-nums tracking-wider"></span><span class="ml-1 hidden sm:inline">+</span></p>
+             <p class="mt-2 text-xs sm:text-sm text-primary/70">SDK installs / month</p>
+            </div>
+            <div class="text-center">
+             <p class="text-xl sm:text-2xl font-bold text-primary/80 font-mono"><span class="inline-block tabular-nums tracking-wider"></span><span class="ml-1 hidden sm:inline">+</span></p>
+             <p class="mt-2 text-xs sm:text-sm text-primary/70">GitHub stars</p>
+            </div>
+            <div class="text-center">
+             <p class="text-xl sm:text-2xl font-bold text-primary/80 font-mono"><span class="inline-block tabular-nums tracking-wider"></span><span class="ml-1 hidden sm:inline">+</span></p>
+             <p class="mt-2 text-xs sm:text-sm text-primary/70">Docker pulls</p>
+            </div>
+           </div>
+          </div>
+         </div>
+        </section>
+        <section class="py-20 lg:py-32 mx-auto max-w-7xl px-5 sm:px-7 xl:px-10 first:pt-10 last:pb-40 last:lg:pb-52">
+         <div class="mx-auto max-w-4xl text-center mb-12 text-balance">
+          <h2 class="mt-2 text-4xl font-bold tracking-tight sm:text-7xl text-balance font-mono">Tools for the full development workflow</h2>
+          <p class="mt-6 text-2xl leading-8 font-medium tracking-wide text-primary/70">All Langfuse features are tightly integrated with Langfuse Tracing.</p>
+          <div class="mt-6 flex flex-row gap-2 justify-center flex-wrap">
+           <a class="inline-flex items-center justify-center rounded text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/10 hover:text-accent-foreground h-10 px-4 py-2" href="/docs">Explore docs </a>
+          </div>
+         </div>
+         <div class="grid w-full auto-rows-[13rem] grid-cols-3 gap-3">
+          <a class="group relative col-span-3 flex flex-col justify-between overflow-hidden rounded border bg-white transform-gpu dark:bg-transparent dark:backdrop-blur-md md:row-start-1 md:row-end-4 md:col-start-2 md:col-end-2" href="/docs/tracing"><img alt="Tracing" loading="lazy" decoding="async" data-nimg="fill" class="opacity-30 top-0 right-0 dark:hidden hidden md:block" style="position: absolute; height: 100%; width: 100%; inset: 0px; object-fit: contain; object-position: right top; color: transparent; mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 15%, rgb(0, 0, 0));" sizes="(min-width: 1024px) 33vw, 100vw" srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_trace.9fbc29ab.png&amp;w=256&amp;q=75 256w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_trace.9fbc29ab.png&amp;w=384&amp;q=75 384w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_trace.9fbc29ab.png&amp;w=640&amp;q=75 640w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_trace.9fbc29ab.png&amp;w=750&amp;q=75 750w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_trace.9fbc29ab.png&amp;w=828&amp;q=75 828w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_trace.9fbc29ab.png&amp;w=1080&amp;q=75 1080w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_trace.9fbc29ab.png&amp;w=1200&amp;q=75 1200w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_trace.9fbc29ab.png&amp;w=1920&amp;q=75 1920w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_trace.9fbc29ab.png&amp;w=2048&amp;q=75 2048w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_trace.9fbc29ab.png&amp;w=3840&amp;q=75 3840w" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_trace.9fbc29ab.png&amp;w=3840&amp;q=75"><img alt="Tracing" loading="lazy" decoding="async" data-nimg="fill" class="opacity-30 top-0 right-0 hidden dark:md:block" style="position: absolute; height: 100%; width: 100%; inset: 0px; object-fit: contain; object-position: right top; color: transparent; mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 15%, rgb(0, 0, 0));" sizes="(min-width: 1024px) 33vw, 100vw" srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_trace_dark.4a7cd731.png&amp;w=256&amp;q=75 256w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_trace_dark.4a7cd731.png&amp;w=384&amp;q=75 384w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_trace_dark.4a7cd731.png&amp;w=640&amp;q=75 640w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_trace_dark.4a7cd731.png&amp;w=750&amp;q=75 750w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_trace_dark.4a7cd731.png&amp;w=828&amp;q=75 828w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_trace_dark.4a7cd731.png&amp;w=1080&amp;q=75 1080w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_trace_dark.4a7cd731.png&amp;w=1200&amp;q=75 1200w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_trace_dark.4a7cd731.png&amp;w=1920&amp;q=75 1920w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_trace_dark.4a7cd731.png&amp;w=2048&amp;q=75 2048w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_trace_dark.4a7cd731.png&amp;w=3840&amp;q=75 3840w" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_trace_dark.4a7cd731.png&amp;w=3840&amp;q=75">
+           <div></div>
+           <div class="pointer-events-none z-10 flex transform-gpu flex-col gap-1 p-6 transition-all duration-300 group-hover:-translate-y-10">
+            <h3 class="text-xl font-semibold text-neutral-700 dark:text-neutral-300">Tracing</h3>
+            <p class="max-w-lg dark:text-neutral-400 text-neutral-500">Detailed production traces to debug LLM applications faster.</p>
+           </div>
+           <div class="pointer-events-none absolute bottom-0 flex w-full translate-y-10 transform-gpu flex-row items-center p-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100"></div>
+           <div class="pointer-events-none absolute inset-0 transform-gpu transition-all duration-300 group-hover:bg-black/[.03] group-hover:dark:bg-neutral-800/20"></div></a><a class="group relative col-span-3 flex flex-col justify-between overflow-hidden rounded border bg-white transform-gpu dark:bg-transparent dark:backdrop-blur-md md:col-start-1 md:col-end-2 md:row-start-1 md:row-end-3" href="/docs/prompts/get-started"><img alt="Prompt Management" loading="lazy" decoding="async" data-nimg="fill" class="opacity-30 top-0 right-0 dark:hidden hidden md:block" style="position: absolute; height: 100%; width: 100%; inset: 0px; object-fit: contain; object-position: right top; color: transparent; mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 15%, rgb(0, 0, 0));" sizes="(min-width: 1024px) 33vw, 100vw" srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_prompt_management.7462f047.png&amp;w=256&amp;q=75 256w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_prompt_management.7462f047.png&amp;w=384&amp;q=75 384w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_prompt_management.7462f047.png&amp;w=640&amp;q=75 640w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_prompt_management.7462f047.png&amp;w=750&amp;q=75 750w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_prompt_management.7462f047.png&amp;w=828&amp;q=75 828w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_prompt_management.7462f047.png&amp;w=1080&amp;q=75 1080w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_prompt_management.7462f047.png&amp;w=1200&amp;q=75 1200w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_prompt_management.7462f047.png&amp;w=1920&amp;q=75 1920w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_prompt_management.7462f047.png&amp;w=2048&amp;q=75 2048w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_prompt_management.7462f047.png&amp;w=3840&amp;q=75 3840w" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_prompt_management.7462f047.png&amp;w=3840&amp;q=75"><img alt="Prompt Management" loading="lazy" decoding="async" data-nimg="fill" class="opacity-30 top-0 right-0 hidden dark:md:block" style="position: absolute; height: 100%; width: 100%; inset: 0px; object-fit: contain; object-position: right top; color: transparent; mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 15%, rgb(0, 0, 0));" sizes="(min-width: 1024px) 33vw, 100vw" srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_prompt_management_dark.77d8ec01.png&amp;w=256&amp;q=75 256w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_prompt_management_dark.77d8ec01.png&amp;w=384&amp;q=75 384w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_prompt_management_dark.77d8ec01.png&amp;w=640&amp;q=75 640w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_prompt_management_dark.77d8ec01.png&amp;w=750&amp;q=75 750w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_prompt_management_dark.77d8ec01.png&amp;w=828&amp;q=75 828w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_prompt_management_dark.77d8ec01.png&amp;w=1080&amp;q=75 1080w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_prompt_management_dark.77d8ec01.png&amp;w=1200&amp;q=75 1200w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_prompt_management_dark.77d8ec01.png&amp;w=1920&amp;q=75 1920w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_prompt_management_dark.77d8ec01.png&amp;w=2048&amp;q=75 2048w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_prompt_management_dark.77d8ec01.png&amp;w=3840&amp;q=75 3840w" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_prompt_management_dark.77d8ec01.png&amp;w=3840&amp;q=75">
+           <div></div>
+           <div class="pointer-events-none z-10 flex transform-gpu flex-col gap-1 p-6 transition-all duration-300 group-hover:-translate-y-10">
+            <h3 class="text-xl font-semibold text-neutral-700 dark:text-neutral-300">Prompt Management</h3>
+            <p class="max-w-lg dark:text-neutral-400 text-neutral-500">Version and deploy prompts collaboratively and retrieve them with low latency.</p>
+           </div>
+           <div class="pointer-events-none absolute bottom-0 flex w-full translate-y-10 transform-gpu flex-row items-center p-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100"></div>
+           <div class="pointer-events-none absolute inset-0 transform-gpu transition-all duration-300 group-hover:bg-black/[.03] group-hover:dark:bg-neutral-800/20"></div></a><a class="group relative col-span-3 flex flex-col justify-between overflow-hidden rounded border bg-white transform-gpu dark:bg-transparent dark:backdrop-blur-md md:col-start-1 md:col-end-2 md:row-start-3 md:row-end-4" href="/docs/playground">
+           <div></div>
+           <div class="pointer-events-none z-10 flex transform-gpu flex-col gap-1 p-6 transition-all duration-300 group-hover:-translate-y-10">
+            <h3 class="text-xl font-semibold text-neutral-700 dark:text-neutral-300">Playground</h3>
+            <p class="max-w-lg dark:text-neutral-400 text-neutral-500">Test different prompts and models right in the Langfuse UI.</p>
+           </div>
+           <div class="pointer-events-none absolute bottom-0 flex w-full translate-y-10 transform-gpu flex-row items-center p-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100"></div>
+           <div class="pointer-events-none absolute inset-0 transform-gpu transition-all duration-300 group-hover:bg-black/[.03] group-hover:dark:bg-neutral-800/20"></div></a><a class="group relative col-span-3 flex flex-col justify-between overflow-hidden rounded border bg-white transform-gpu dark:bg-transparent dark:backdrop-blur-md md:col-start-3 md:col-end-3 md:row-start-1 md:row-end-2" href="/docs/scores/overview">
+           <div></div>
+           <div class="pointer-events-none z-10 flex transform-gpu flex-col gap-1 p-6 transition-all duration-300 group-hover:-translate-y-10">
+            <h3 class="text-xl font-semibold text-neutral-700 dark:text-neutral-300">Evaluation</h3>
+            <p class="max-w-lg dark:text-neutral-400 text-neutral-500">Collect user feedback, annotate in Langfuse, and run evaluation functions in Langfuse.</p>
+           </div>
+           <div class="pointer-events-none absolute bottom-0 flex w-full translate-y-10 transform-gpu flex-row items-center p-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100"></div>
+           <div class="pointer-events-none absolute inset-0 transform-gpu transition-all duration-300 group-hover:bg-black/[.03] group-hover:dark:bg-neutral-800/20"></div></a><a class="group relative col-span-3 flex flex-col justify-between overflow-hidden rounded border bg-white transform-gpu dark:bg-transparent dark:backdrop-blur-md md:col-start-3 md:col-end-3 md:row-start-2 md:row-end-3" href="/docs/datasets/overview">
+           <div></div>
+           <div class="pointer-events-none z-10 flex transform-gpu flex-col gap-1 p-6 transition-all duration-300 group-hover:-translate-y-10">
+            <h3 class="text-xl font-semibold text-neutral-700 dark:text-neutral-300">Datasets</h3>
+            <p class="max-w-lg dark:text-neutral-400 text-neutral-500">Derive datasets from production data to fine-tune models and test your LLM application.</p>
+           </div>
+           <div class="pointer-events-none absolute bottom-0 flex w-full translate-y-10 transform-gpu flex-row items-center p-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100"></div>
+           <div class="pointer-events-none absolute inset-0 transform-gpu transition-all duration-300 group-hover:bg-black/[.03] group-hover:dark:bg-neutral-800/20"></div></a><a class="group relative col-span-3 flex flex-col justify-between overflow-hidden rounded border bg-white transform-gpu dark:bg-transparent dark:backdrop-blur-md md:col-start-3 md:col-end-3 md:row-start-3 md:row-end-4" href="/docs/analytics"><img alt="Metrics" loading="lazy" decoding="async" data-nimg="fill" class="opacity-30 top-0 right-0 dark:hidden hidden md:block" style="position: absolute; height: 100%; width: 100%; inset: 0px; object-fit: contain; object-position: right top; color: transparent; mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 15%, rgb(0, 0, 0));" sizes="(min-width: 1024px) 33vw, 100vw" srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_metrics.59aed9f4.png&amp;w=256&amp;q=75 256w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_metrics.59aed9f4.png&amp;w=384&amp;q=75 384w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_metrics.59aed9f4.png&amp;w=640&amp;q=75 640w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_metrics.59aed9f4.png&amp;w=750&amp;q=75 750w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_metrics.59aed9f4.png&amp;w=828&amp;q=75 828w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_metrics.59aed9f4.png&amp;w=1080&amp;q=75 1080w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_metrics.59aed9f4.png&amp;w=1200&amp;q=75 1200w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_metrics.59aed9f4.png&amp;w=1920&amp;q=75 1920w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_metrics.59aed9f4.png&amp;w=2048&amp;q=75 2048w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_metrics.59aed9f4.png&amp;w=3840&amp;q=75 3840w" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_metrics.59aed9f4.png&amp;w=3840&amp;q=75"><img alt="Metrics" loading="lazy" decoding="async" data-nimg="fill" class="opacity-30 top-0 right-0 hidden dark:md:block" style="position: absolute; height: 100%; width: 100%; inset: 0px; object-fit: contain; object-position: right top; color: transparent; mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 15%, rgb(0, 0, 0));" sizes="(min-width: 1024px) 33vw, 100vw" srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_metrics_dark.95efdd68.png&amp;w=256&amp;q=75 256w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_metrics_dark.95efdd68.png&amp;w=384&amp;q=75 384w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_metrics_dark.95efdd68.png&amp;w=640&amp;q=75 640w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_metrics_dark.95efdd68.png&amp;w=750&amp;q=75 750w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_metrics_dark.95efdd68.png&amp;w=828&amp;q=75 828w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_metrics_dark.95efdd68.png&amp;w=1080&amp;q=75 1080w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_metrics_dark.95efdd68.png&amp;w=1200&amp;q=75 1200w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_metrics_dark.95efdd68.png&amp;w=1920&amp;q=75 1920w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_metrics_dark.95efdd68.png&amp;w=2048&amp;q=75 2048w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_metrics_dark.95efdd68.png&amp;w=3840&amp;q=75 3840w" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbento_metrics_dark.95efdd68.png&amp;w=3840&amp;q=75">
+           <div></div>
+           <div class="pointer-events-none z-10 flex transform-gpu flex-col gap-1 p-6 transition-all duration-300 group-hover:-translate-y-10">
+            <h3 class="text-xl font-semibold text-neutral-700 dark:text-neutral-300">Metrics</h3>
+            <p class="max-w-lg dark:text-neutral-400 text-neutral-500">Track cost, latency, and quality.</p>
+           </div>
+           <div class="pointer-events-none absolute bottom-0 flex w-full translate-y-10 transform-gpu flex-row items-center p-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100"></div>
+           <div class="pointer-events-none absolute inset-0 transform-gpu transition-all duration-300 group-hover:bg-black/[.03] group-hover:dark:bg-neutral-800/20"></div></a>
+         </div>
+        </section>
+        <section class="py-20 lg:py-32 mx-auto max-w-7xl px-5 sm:px-7 xl:px-10 first:pt-10 last:pb-40 last:lg:pb-52">
+         <div class="mx-auto max-w-4xl text-center mb-12 text-balance">
+          <h2 class="mt-2 text-4xl font-bold tracking-tight sm:text-7xl text-balance font-mono">Works with any LLM app and model</h2>
+          <p class="mt-6 text-2xl leading-8 font-medium tracking-wide text-primary/70">SDKs for Python &amp; JS/TS, native integrations for popular libraries and support for OpenTelemetry</p>
+          <div class="mt-6 flex flex-row gap-2 justify-center flex-wrap">
+           <a class="inline-flex items-center justify-center rounded text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/10 hover:text-accent-foreground h-10 px-4 py-2" href="/docs/integrations/overview">Integration overview </a><a class="inline-flex items-center justify-center rounded text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/10 hover:text-accent-foreground h-10 px-4 py-2" href="/ideas">Request new integration </a>
+          </div>
+         </div>
+         <div class="relative w-full mx-auto max-w-2xl rounded border bg-card overflow-hidden">
+          <div class="grid grid-cols-5 divide-x divide-y divide-border [&amp;>*:nth-child(-n+5)]:border-t [&amp;>*:nth-child(5n+1)]:border-l">
+           <div class="relative flex items-center justify-center">
+            <a class="group relative aspect-square w-full" href="/docs/sdk/python">
+             <div class="flex h-full flex-col items-center justify-center gap-y-1 sm:gap-y-2 p-2 sm:p-4">
+              <div class="size-8 sm:size-12 flex items-center justify-center perspective-1000">
+               <div class="relative w-full h-full transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                <div class="absolute inset-0 flex items-center justify-center [backface-visibility:hidden] scale-75 sm:scale-100"></div>
+                <div class="absolute inset-0 flex items-center justify-center [transform:rotateY(180deg)] [backface-visibility:hidden]"></div>
+               </div>
+              </div><span class="text-center text-xs sm:text-sm text-muted-foreground line-clamp-2">Python SDK</span>
+             </div></a>
+           </div>
+           <div class="relative flex items-center justify-center">
+            <a class="group relative aspect-square w-full" href="/docs/sdk/typescript/guide">
+             <div class="flex h-full flex-col items-center justify-center gap-y-1 sm:gap-y-2 p-2 sm:p-4">
+              <div class="size-8 sm:size-12 flex items-center justify-center perspective-1000">
+               <div class="relative w-full h-full transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                <div class="absolute inset-0 flex items-center justify-center [backface-visibility:hidden] scale-75 sm:scale-100"></div>
+                <div class="absolute inset-0 flex items-center justify-center [transform:rotateY(180deg)] [backface-visibility:hidden]"></div>
+               </div>
+              </div><span class="text-center text-xs sm:text-sm text-muted-foreground line-clamp-2">JS/TS SDK</span>
+             </div></a>
+           </div>
+           <div class="relative flex items-center justify-center">
+            <a class="group relative aspect-square w-full" href="/docs/api">
+             <div class="flex h-full flex-col items-center justify-center gap-y-1 sm:gap-y-2 p-2 sm:p-4">
+              <div class="size-8 sm:size-12 flex items-center justify-center perspective-1000">
+               <div class="relative w-full h-full transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                <div class="absolute inset-0 flex items-center justify-center [backface-visibility:hidden] scale-75 sm:scale-100"></div>
+                <div class="absolute inset-0 flex items-center justify-center [transform:rotateY(180deg)] [backface-visibility:hidden]"></div>
+               </div>
+              </div><span class="text-center text-xs sm:text-sm text-muted-foreground line-clamp-2">API</span>
+             </div></a>
+           </div>
+           <div class="relative flex items-center justify-center">
+            <a class="group relative aspect-square w-full" href="/docs/opentelemetry/get-started">
+             <div class="flex h-full flex-col items-center justify-center gap-y-1 sm:gap-y-2 p-2 sm:p-4">
+              <div class="size-8 sm:size-12 flex items-center justify-center perspective-1000">
+               <div class="relative w-full h-full transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                <div class="absolute inset-0 flex items-center justify-center [backface-visibility:hidden] scale-75 sm:scale-100">
+                 <img alt="OpenTelemetry Icon" loading="lazy" width="36" height="36" decoding="async" data-nimg="1" style="color: transparent;" src="/_next/static/media/opentelemetry_icon.adc01449.svg">
+                </div>
+                <div class="absolute inset-0 flex items-center justify-center [transform:rotateY(180deg)] [backface-visibility:hidden]"></div>
+               </div>
+              </div><span class="text-center text-xs sm:text-sm text-muted-foreground line-clamp-2">Open​Telemetry</span>
+             </div></a>
+           </div>
+           <div class="relative flex items-center justify-center">
+            <a class="group relative aspect-square w-full" href="/docs/integrations/openai/get-started">
+             <div class="flex h-full flex-col items-center justify-center gap-y-1 sm:gap-y-2 p-2 sm:p-4">
+              <div class="size-8 sm:size-12 flex items-center justify-center perspective-1000">
+               <div class="relative w-full h-full transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                <div class="absolute inset-0 flex items-center justify-center [backface-visibility:hidden] scale-75 sm:scale-100"></div>
+                <div class="absolute inset-0 flex items-center justify-center [transform:rotateY(180deg)] [backface-visibility:hidden]"></div>
+               </div>
+              </div><span class="text-center text-xs sm:text-sm text-muted-foreground line-clamp-2">OpenAI SDK</span>
+             </div></a>
+           </div>
+           <div class="relative flex items-center justify-center">
+            <a class="group relative aspect-square w-full" href="/docs/integrations/langchain/tracing">
+             <div class="flex h-full flex-col items-center justify-center gap-y-1 sm:gap-y-2 p-2 sm:p-4">
+              <div class="size-8 sm:size-12 flex items-center justify-center perspective-1000">
+               <div class="relative w-full h-full transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                <div class="absolute inset-0 flex items-center justify-center [backface-visibility:hidden] scale-75 sm:scale-100">
+                 <img alt="Langchain Icon" loading="lazy" width="40" height="40" decoding="async" data-nimg="1" class="dark:invert dark:saturate-0 dark:brightness-0" style="color: transparent;" srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flangchain_icon.36f03c30.png&amp;w=48&amp;q=75 1x, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flangchain_icon.36f03c30.png&amp;w=96&amp;q=75 2x" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flangchain_icon.36f03c30.png&amp;w=96&amp;q=75">
+                </div>
+                <div class="absolute inset-0 flex items-center justify-center [transform:rotateY(180deg)] [backface-visibility:hidden]"></div>
+               </div>
+              </div><span class="text-center text-xs sm:text-sm text-muted-foreground line-clamp-2">LangChain, LangGraph</span>
+             </div></a>
+           </div>
+           <div class="relative flex items-center justify-center">
+            <a class="group relative aspect-square w-full" href="/docs/integrations/llama-index/get-started">
+             <div class="flex h-full flex-col items-center justify-center gap-y-1 sm:gap-y-2 p-2 sm:p-4">
+              <div class="size-8 sm:size-12 flex items-center justify-center perspective-1000">
+               <div class="relative w-full h-full transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                <div class="absolute inset-0 flex items-center justify-center [backface-visibility:hidden] scale-75 sm:scale-100">
+                 <img alt="Llama-index Icon" loading="lazy" width="35" height="35" decoding="async" data-nimg="1" style="color: transparent;" srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fllamaindex_icon.316a1578.png&amp;w=48&amp;q=75 1x, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fllamaindex_icon.316a1578.png&amp;w=96&amp;q=75 2x" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fllamaindex_icon.316a1578.png&amp;w=96&amp;q=75">
+                </div>
+                <div class="absolute inset-0 flex items-center justify-center [transform:rotateY(180deg)] [backface-visibility:hidden]"></div>
+               </div>
+              </div><span class="text-center text-xs sm:text-sm text-muted-foreground line-clamp-2">Llama-Index</span>
+             </div></a>
+           </div>
+           <div class="relative flex items-center justify-center">
+            <a class="group relative aspect-square w-full" href="/docs/integrations/crewai">
+             <div class="flex h-full flex-col items-center justify-center gap-y-1 sm:gap-y-2 p-2 sm:p-4">
+              <div class="size-8 sm:size-12 flex items-center justify-center perspective-1000">
+               <div class="relative w-full h-full transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                <div class="absolute inset-0 flex items-center justify-center [backface-visibility:hidden] scale-75 sm:scale-100">
+                 <img alt="CrewAI Icon" loading="lazy" width="60" height="40" decoding="async" data-nimg="1" style="color: transparent;" src="/_next/static/media/crewai_icon.a921e827.svg">
+                </div>
+                <div class="absolute inset-0 flex items-center justify-center [transform:rotateY(180deg)] [backface-visibility:hidden]"></div>
+               </div>
+              </div><span class="text-center text-xs sm:text-sm text-muted-foreground line-clamp-2">CrewAI</span>
+             </div></a>
+           </div>
+           <div class="relative flex items-center justify-center">
+            <a class="group relative aspect-square w-full" href="/docs/integrations/litellm">
+             <div class="flex h-full flex-col items-center justify-center gap-y-1 sm:gap-y-2 p-2 sm:p-4">
+              <div class="size-8 sm:size-12 flex items-center justify-center perspective-1000">
+               <div class="relative w-full h-full transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                <div class="absolute inset-0 flex items-center justify-center [backface-visibility:hidden] scale-75 sm:scale-100">
+                 <img alt="LiteLLM Icon" loading="lazy" width="40" height="40" decoding="async" data-nimg="1" style="color: transparent;" srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flitellm_icon.948f2665.png&amp;w=48&amp;q=75 1x, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flitellm_icon.948f2665.png&amp;w=96&amp;q=75 2x" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flitellm_icon.948f2665.png&amp;w=96&amp;q=75">
+                </div>
+                <div class="absolute inset-0 flex items-center justify-center [transform:rotateY(180deg)] [backface-visibility:hidden]"></div>
+               </div>
+              </div><span class="text-center text-xs sm:text-sm text-muted-foreground line-clamp-2">LiteLLM</span>
+             </div></a>
+           </div>
+           <div class="relative flex items-center justify-center">
+            <a class="group relative aspect-square w-full" href="/docs/integrations/vercel-ai-sdk">
+             <div class="flex h-full flex-col items-center justify-center gap-y-1 sm:gap-y-2 p-2 sm:p-4">
+              <div class="size-8 sm:size-12 flex items-center justify-center perspective-1000">
+               <div class="relative w-full h-full transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                <div class="absolute inset-0 flex items-center justify-center [backface-visibility:hidden] scale-75 sm:scale-100">
+                 <span class="text-sm font-medium whitespace-nowrap font-mono">npm i ai</span>
+                </div>
+                <div class="absolute inset-0 flex items-center justify-center [transform:rotateY(180deg)] [backface-visibility:hidden]"></div>
+               </div>
+              </div><span class="text-center text-xs sm:text-sm text-muted-foreground line-clamp-2">AI SDK</span>
+             </div></a>
+           </div>
+           <div class="relative flex items-center justify-center">
+            <a class="group relative aspect-square w-full" href="/docs/integrations/haystack">
+             <div class="flex h-full flex-col items-center justify-center gap-y-1 sm:gap-y-2 p-2 sm:p-4">
+              <div class="size-8 sm:size-12 flex items-center justify-center perspective-1000">
+               <div class="relative w-full h-full transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                <div class="absolute inset-0 flex items-center justify-center [backface-visibility:hidden] scale-75 sm:scale-100">
+                 <img alt="Haystack Icon" loading="lazy" width="28" height="28" decoding="async" data-nimg="1" style="color: transparent;" srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fhaystack_icon.7c824868.png&amp;w=32&amp;q=75 1x, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fhaystack_icon.7c824868.png&amp;w=64&amp;q=75 2x" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fhaystack_icon.7c824868.png&amp;w=64&amp;q=75">
+                </div>
+                <div class="absolute inset-0 flex items-center justify-center [transform:rotateY(180deg)] [backface-visibility:hidden]"></div>
+               </div>
+              </div><span class="text-center text-xs sm:text-sm text-muted-foreground line-clamp-2">Haystack</span>
+             </div></a>
+           </div>
+           <div class="relative flex items-center justify-center">
+            <a class="group relative aspect-square w-full" href="/docs/integrations/instructor">
+             <div class="flex h-full flex-col items-center justify-center gap-y-1 sm:gap-y-2 p-2 sm:p-4">
+              <div class="size-8 sm:size-12 flex items-center justify-center perspective-1000">
+               <div class="relative w-full h-full transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                <div class="absolute inset-0 flex items-center justify-center [backface-visibility:hidden] scale-75 sm:scale-100">
+                 <img alt="Instructor Icon" loading="lazy" width="36" height="36" decoding="async" data-nimg="1" class="dark:invert" style="color: transparent;" src="/_next/static/media/instructor_icon.c8b9034f.svg">
+                </div>
+                <div class="absolute inset-0 flex items-center justify-center [transform:rotateY(180deg)] [backface-visibility:hidden]"></div>
+               </div>
+              </div><span class="text-center text-xs sm:text-sm text-muted-foreground line-clamp-2">Instructor</span>
+             </div></a>
+           </div>
+           <div class="relative flex items-center justify-center">
+            <a class="group relative aspect-square w-full" href="/docs/integrations/semantic-kernel">
+             <div class="flex h-full flex-col items-center justify-center gap-y-1 sm:gap-y-2 p-2 sm:p-4">
+              <div class="size-8 sm:size-12 flex items-center justify-center perspective-1000">
+               <div class="relative w-full h-full transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                <div class="absolute inset-0 flex items-center justify-center [backface-visibility:hidden] scale-75 sm:scale-100">
+                 <img alt="Semantic Kernel Icon" loading="lazy" width="36" height="36" decoding="async" data-nimg="1" style="color: transparent;" src="/_next/static/media/microsoft_icon.61e534e0.svg">
+                </div>
+                <div class="absolute inset-0 flex items-center justify-center [transform:rotateY(180deg)] [backface-visibility:hidden]"></div>
+               </div>
+              </div><span class="text-center text-xs sm:text-sm text-muted-foreground line-clamp-2">Semantic Kernel</span>
+             </div></a>
+           </div>
+           <div class="relative flex items-center justify-center">
+            <a class="group relative aspect-square w-full" href="/docs/integrations/dspy">
+             <div class="flex h-full flex-col items-center justify-center gap-y-1 sm:gap-y-2 p-2 sm:p-4">
+              <div class="size-8 sm:size-12 flex items-center justify-center perspective-1000">
+               <div class="relative w-full h-full transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                <div class="absolute inset-0 flex items-center justify-center [backface-visibility:hidden] scale-75 sm:scale-100">
+                 <img alt="DSPy Icon" loading="lazy" width="36" height="36" decoding="async" data-nimg="1" style="color: transparent;" srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdspy_icon.233e0d2c.png&amp;w=48&amp;q=75 1x, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdspy_icon.233e0d2c.png&amp;w=96&amp;q=75 2x" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdspy_icon.233e0d2c.png&amp;w=96&amp;q=75">
+                </div>
+                <div class="absolute inset-0 flex items-center justify-center [transform:rotateY(180deg)] [backface-visibility:hidden]"></div>
+               </div>
+              </div><span class="text-center text-xs sm:text-sm text-muted-foreground line-clamp-2">DSPy</span>
+             </div></a>
+           </div>
+           <div class="relative flex items-center justify-center">
+            <a class="group relative aspect-square w-full" href="/docs/integrations/smolagents">
+             <div class="flex h-full flex-col items-center justify-center gap-y-1 sm:gap-y-2 p-2 sm:p-4">
+              <div class="size-8 sm:size-12 flex items-center justify-center perspective-1000">
+               <div class="relative w-full h-full transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                <div class="absolute inset-0 flex items-center justify-center [backface-visibility:hidden] scale-75 sm:scale-100">
+                 <img alt="Smolagents Icon" loading="lazy" width="36" height="36" decoding="async" data-nimg="1" style="color: transparent;" src="/_next/static/media/huggingface_icon.3ff04845.svg">
+                </div>
+                <div class="absolute inset-0 flex items-center justify-center [transform:rotateY(180deg)] [backface-visibility:hidden]"></div>
+               </div>
+              </div><span class="text-center text-xs sm:text-sm text-muted-foreground line-clamp-2">Smolagents</span>
+             </div></a>
+           </div>
+           <div class="relative flex items-center justify-center">
+            <a class="group relative aspect-square w-full" href="/docs/integrations/pydantic-ai">
+             <div class="flex h-full flex-col items-center justify-center gap-y-1 sm:gap-y-2 p-2 sm:p-4">
+              <div class="size-8 sm:size-12 flex items-center justify-center perspective-1000">
+               <div class="relative w-full h-full transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                <div class="absolute inset-0 flex items-center justify-center [backface-visibility:hidden] scale-75 sm:scale-100">
+                 <img alt="Pydantic AI Icon" loading="lazy" width="36" height="36" decoding="async" data-nimg="1" style="color: transparent;" src="/_next/static/media/pydantic-ai_icon.3125a704.svg">
+                </div>
+                <div class="absolute inset-0 flex items-center justify-center [transform:rotateY(180deg)] [backface-visibility:hidden]"></div>
+               </div>
+              </div><span class="text-center text-xs sm:text-sm text-muted-foreground line-clamp-2">Pydantic AI</span>
+             </div></a>
+           </div>
+           <div class="relative flex items-center justify-center">
+            <a class="group relative aspect-square w-full" href="/docs/integrations/autogen">
+             <div class="flex h-full flex-col items-center justify-center gap-y-1 sm:gap-y-2 p-2 sm:p-4">
+              <div class="size-8 sm:size-12 flex items-center justify-center perspective-1000">
+               <div class="relative w-full h-full transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                <div class="absolute inset-0 flex items-center justify-center [backface-visibility:hidden] scale-75 sm:scale-100">
+                 <img alt="AutoGen Icon" loading="lazy" width="36" height="36" decoding="async" data-nimg="1" style="color: transparent;" src="/_next/static/media/autogen_icon.71b3acc3.svg">
+                </div>
+                <div class="absolute inset-0 flex items-center justify-center [transform:rotateY(180deg)] [backface-visibility:hidden]"></div>
+               </div>
+              </div><span class="text-center text-xs sm:text-sm text-muted-foreground line-clamp-2">AutoGen</span>
+             </div></a>
+           </div>
+           <div class="relative flex items-center justify-center">
+            <a class="group relative aspect-square w-full" href="/docs/integrations/amazon-bedrock">
+             <div class="flex h-full flex-col items-center justify-center gap-y-1 sm:gap-y-2 p-2 sm:p-4">
+              <div class="size-8 sm:size-12 flex items-center justify-center perspective-1000">
+               <div class="relative w-full h-full transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                <div class="absolute inset-0 flex items-center justify-center [backface-visibility:hidden] scale-75 sm:scale-100">
+                 <img alt="Bedrock Icon" loading="lazy" width="36" height="36" decoding="async" data-nimg="1" style="color: transparent;" srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbedrock_icon.cce0cb00.png&amp;w=48&amp;q=75 1x, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbedrock_icon.cce0cb00.png&amp;w=96&amp;q=75 2x" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbedrock_icon.cce0cb00.png&amp;w=96&amp;q=75">
+                </div>
+                <div class="absolute inset-0 flex items-center justify-center [transform:rotateY(180deg)] [backface-visibility:hidden]"></div>
+               </div>
+              </div><span class="text-center text-xs sm:text-sm text-muted-foreground line-clamp-2">Amazon Bedrock</span>
+             </div></a>
+           </div>
+           <div class="relative flex items-center justify-center">
+            <a class="group relative aspect-square w-full" href="/docs/integrations/google-vertex-ai">
+             <div class="flex h-full flex-col items-center justify-center gap-y-1 sm:gap-y-2 p-2 sm:p-4">
+              <div class="size-8 sm:size-12 flex items-center justify-center perspective-1000">
+               <div class="relative w-full h-full transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                <div class="absolute inset-0 flex items-center justify-center [backface-visibility:hidden] scale-75 sm:scale-100">
+                 <img alt="Google Gemini Icon" loading="lazy" width="36" height="36" decoding="async" data-nimg="1" style="color: transparent;" src="/_next/static/media/google_gemini.cb778bb8.svg">
+                </div>
+                <div class="absolute inset-0 flex items-center justify-center [transform:rotateY(180deg)] [backface-visibility:hidden]"></div>
+               </div>
+              </div><span class="text-center text-xs sm:text-sm text-muted-foreground line-clamp-2">Google Vertex/Gemini</span>
+             </div></a>
+           </div>
+           <div class="relative flex items-center justify-center">
+            <a class="group relative aspect-square w-full" href="/docs/integrations/ollama">
+             <div class="flex h-full flex-col items-center justify-center gap-y-1 sm:gap-y-2 p-2 sm:p-4">
+              <div class="size-8 sm:size-12 flex items-center justify-center perspective-1000">
+               <div class="relative w-full h-full transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                <div class="absolute inset-0 flex items-center justify-center [backface-visibility:hidden] scale-75 sm:scale-100">
+                 <img alt="Ollama Icon" loading="lazy" width="30" height="30" decoding="async" data-nimg="1" class="dark:invert" style="color: transparent;" srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Follama_icon.057c635f.png&amp;w=32&amp;q=75 1x, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Follama_icon.057c635f.png&amp;w=64&amp;q=75 2x" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Follama_icon.057c635f.png&amp;w=64&amp;q=75">
+                </div>
+                <div class="absolute inset-0 flex items-center justify-center [transform:rotateY(180deg)] [backface-visibility:hidden]"></div>
+               </div>
+              </div><span class="text-center text-xs sm:text-sm text-muted-foreground line-clamp-2">Ollama</span>
+             </div></a>
+           </div>
+           <div class="relative flex items-center justify-center">
+            <a class="group relative aspect-square w-full" href="/docs/integrations/flowise">
+             <div class="flex h-full flex-col items-center justify-center gap-y-1 sm:gap-y-2 p-2 sm:p-4">
+              <div class="size-8 sm:size-12 flex items-center justify-center perspective-1000">
+               <div class="relative w-full h-full transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                <div class="absolute inset-0 flex items-center justify-center [backface-visibility:hidden] scale-75 sm:scale-100">
+                 <img alt="Flowise Logo" loading="lazy" width="50" height="36" decoding="async" data-nimg="1" style="color: transparent;" srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fflowise_logo.8fb64300.png&amp;w=64&amp;q=75 1x, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fflowise_logo.8fb64300.png&amp;w=128&amp;q=75 2x" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fflowise_logo.8fb64300.png&amp;w=128&amp;q=75">
+                </div>
+                <div class="absolute inset-0 flex items-center justify-center [transform:rotateY(180deg)] [backface-visibility:hidden]"></div>
+               </div>
+              </div><span class="text-center text-xs sm:text-sm text-muted-foreground line-clamp-2">Flowise</span>
+             </div></a>
+           </div>
+           <div class="relative flex items-center justify-center">
+            <a class="group relative aspect-square w-full" href="/docs/integrations/langflow">
+             <div class="flex h-full flex-col items-center justify-center gap-y-1 sm:gap-y-2 p-2 sm:p-4">
+              <div class="size-8 sm:size-12 flex items-center justify-center perspective-1000">
+               <div class="relative w-full h-full transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                <div class="absolute inset-0 flex items-center justify-center [backface-visibility:hidden] scale-75 sm:scale-100">
+                 <img alt="Langflow Icon" loading="lazy" width="36" height="36" decoding="async" data-nimg="1" class="dark:invert" style="color: transparent;" src="/_next/static/media/langflow_icon.f5698f05.svg">
+                </div>
+                <div class="absolute inset-0 flex items-center justify-center [transform:rotateY(180deg)] [backface-visibility:hidden]"></div>
+               </div>
+              </div><span class="text-center text-xs sm:text-sm text-muted-foreground line-clamp-2">Langflow</span>
+             </div></a>
+           </div>
+           <div class="relative flex items-center justify-center">
+            <a class="group relative aspect-square w-full" href="/docs/integrations/dify">
+             <div class="flex h-full flex-col items-center justify-center gap-y-1 sm:gap-y-2 p-2 sm:p-4">
+              <div class="size-8 sm:size-12 flex items-center justify-center perspective-1000">
+               <div class="relative w-full h-full transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                <div class="absolute inset-0 flex items-center justify-center [backface-visibility:hidden] scale-75 sm:scale-100">
+                 <img alt="Dify Icon" loading="lazy" width="36" height="36" decoding="async" data-nimg="1" style="color: transparent;" srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdify_icon.bad7fc2d.png&amp;w=48&amp;q=75 1x, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdify_icon.bad7fc2d.png&amp;w=96&amp;q=75 2x" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdify_icon.bad7fc2d.png&amp;w=96&amp;q=75">
+                </div>
+                <div class="absolute inset-0 flex items-center justify-center [transform:rotateY(180deg)] [backface-visibility:hidden]"></div>
+               </div>
+              </div><span class="text-center text-xs sm:text-sm text-muted-foreground line-clamp-2">Dify</span>
+             </div></a>
+           </div>
+           <div class="relative flex items-center justify-center">
+            <a class="group relative aspect-square w-full" href="/docs/integrations/openwebui">
+             <div class="flex h-full flex-col items-center justify-center gap-y-1 sm:gap-y-2 p-2 sm:p-4">
+              <div class="size-8 sm:size-12 flex items-center justify-center perspective-1000">
+               <div class="relative w-full h-full transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                <div class="absolute inset-0 flex items-center justify-center [backface-visibility:hidden] scale-75 sm:scale-100">
+                 <img alt="OpenWeb UI Icon" loading="lazy" width="36" height="36" decoding="async" data-nimg="1" class="dark:invert" style="color: transparent;" srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fopenwebui_icon.6ff0cb6c.png&amp;w=48&amp;q=75 1x, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fopenwebui_icon.6ff0cb6c.png&amp;w=96&amp;q=75 2x" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fopenwebui_icon.6ff0cb6c.png&amp;w=96&amp;q=75">
+                </div>
+                <div class="absolute inset-0 flex items-center justify-center [transform:rotateY(180deg)] [backface-visibility:hidden]"></div>
+               </div>
+              </div><span class="text-center text-xs sm:text-sm text-muted-foreground line-clamp-2">OpenWeb UI</span>
+             </div></a>
+           </div>
+           <div class="relative flex items-center justify-center">
+            <a class="group relative aspect-square w-full" href="/docs/integrations/overview">
+             <div class="flex h-full flex-col items-center justify-center gap-y-1 sm:gap-y-2 p-2 sm:p-4">
+              <div class="size-8 sm:size-12 flex items-center justify-center perspective-1000">
+               <div class="relative w-full h-full transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                <div class="absolute inset-0 flex items-center justify-center [backface-visibility:hidden] scale-75 sm:scale-100"></div>
+                <div class="absolute inset-0 flex items-center justify-center [transform:rotateY(180deg)] [backface-visibility:hidden]"></div>
+               </div>
+              </div><span class="text-center text-xs sm:text-sm text-muted-foreground line-clamp-2">More</span>
+             </div></a>
+           </div>
+          </div>
+         </div>
+        </section>
+        <section class="py-20 lg:py-32 mx-auto max-w-7xl px-5 sm:px-7 xl:px-10 first:pt-10 last:pb-40 last:lg:pb-52 flex flex-col items-center">
+         <div class="mx-auto max-w-4xl text-center text-balance mb-0">
+          <h2 class="mt-2 text-4xl font-bold tracking-tight sm:text-7xl text-balance font-mono">Proudly Open Source</h2>
+          <p class="mt-6 text-2xl leading-8 font-medium tracking-wide text-primary/70"><span>Langfuse is committed to open source. You can also run it <a class="underline" href="/self-hosting/local">locally</a> or <a class="underline" href="/self-hosting">self-hosted</a>.</span></p>
+         </div><a href="https://github.com/langfuse/langfuse"></a>
+         <div class="rounded border p-5 max-w-lg mx-5 sm:mx-auto bg-card mt-14" role="region" aria-labelledby="changelog-heading">
+          <div class="px-5 py-2 text-center -mt-5 -mx-5 mb-5 border-b font-medium">
+           <h3 id="changelog-heading">Changelog</h3>
+          </div>
+          <div role="list" class="space-y-6 max-h-52 lg:max-h-96 overflow-y-scroll" aria-label="Recent changelog entries">
+           <a class="relative flex gap-x-4 group" role="listitem" aria-label="Changelog entry for Claude 3.7 Sonnet support" href="/changelog/2025-02-25-claude-3-7-support">
+            <div class="-bottom-6 absolute left-0 top-0 flex w-6 justify-center">
+             <div class="w-px bg-secondary"></div>
+            </div>
+            <div class="relative flex h-6 w-6 flex-none items-center justify-center bg-card">
+             <div class="h-1.5 w-1.5 rounded-full bg-secondary ring-1 ring-primary/80 opacity-60 group-hover:opacity-100"></div>
+            </div><p class="flex-auto py-0.5 text-sm leading-5 text-primary/70 opacity-80 group-hover:opacity-100"><span class="font-medium text-primary">Claude 3.7 Sonnet support</span> by Hassieb</p><time datetime="2025-02-25T00:00:00.000Z" class="flex-none py-0.5 text-sm leading-5 text-primary/70 opacity-80 group-hover:opacity-100" aria-label="Date: 1 days ago">1 days ago</time></a><a class="relative flex gap-x-4 group" role="listitem" aria-label="Changelog entry for Google AI Studio support" href="/changelog/2025-02-25-google-ai-studio-support">
+            <div class="-bottom-6 absolute left-0 top-0 flex w-6 justify-center">
+             <div class="w-px bg-secondary"></div>
+            </div>
+            <div class="relative flex h-6 w-6 flex-none items-center justify-center bg-card">
+             <div class="h-1.5 w-1.5 rounded-full bg-secondary ring-1 ring-primary/80 opacity-60 group-hover:opacity-100"></div>
+            </div><p class="flex-auto py-0.5 text-sm leading-5 text-primary/70 opacity-80 group-hover:opacity-100"><span class="font-medium text-primary">Google AI Studio support</span> by Hassieb</p><time datetime="2025-02-25T00:00:00.000Z" class="flex-none py-0.5 text-sm leading-5 text-primary/70 opacity-80 group-hover:opacity-100" aria-label="Date: 1 days ago">1 days ago</time></a><a class="relative flex gap-x-4 group" role="listitem" aria-label="Changelog entry for Execute LLM-as-a-judge evaluations on existing data" href="/changelog/2025-02-20-model-based-evals-on-history">
+            <div class="-bottom-6 absolute left-0 top-0 flex w-6 justify-center">
+             <div class="w-px bg-secondary"></div>
+            </div>
+            <div class="relative flex h-6 w-6 flex-none items-center justify-center bg-card">
+             <div class="h-1.5 w-1.5 rounded-full bg-secondary ring-1 ring-primary/80 opacity-60 group-hover:opacity-100"></div>
+            </div><p class="flex-auto py-0.5 text-sm leading-5 text-primary/70 opacity-80 group-hover:opacity-100"><span class="font-medium text-primary">Execute LLM-as-a-judge evaluations on existing data</span> by Max</p><time datetime="2025-02-20T00:00:00.000Z" class="flex-none py-0.5 text-sm leading-5 text-primary/70 opacity-80 group-hover:opacity-100" aria-label="Date: 6 days ago">6 days ago</time></a><a class="relative flex gap-x-4 group" role="listitem" aria-label="Changelog entry for Model Context Protocol Prompt Server" href="/changelog/2025-02-16-mcp-server-update">
+            <div class="-bottom-6 absolute left-0 top-0 flex w-6 justify-center">
+             <div class="w-px bg-secondary"></div>
+            </div>
+            <div class="relative flex h-6 w-6 flex-none items-center justify-center bg-card">
+             <div class="h-1.5 w-1.5 rounded-full bg-secondary ring-1 ring-primary/80 opacity-60 group-hover:opacity-100"></div>
+            </div><p class="flex-auto py-0.5 text-sm leading-5 text-primary/70 opacity-80 group-hover:opacity-100"><span class="font-medium text-primary">Model Context Protocol Prompt Server</span> by Marc</p><time datetime="2025-02-16T00:00:00.000Z" class="flex-none py-0.5 text-sm leading-5 text-primary/70 opacity-80 group-hover:opacity-100" aria-label="Date: 10 days ago">10 days ago</time></a><a class="relative flex gap-x-4 group" role="listitem" aria-label="Changelog entry for OpenTelemetry Tracing Support" href="/changelog/2025-02-14-opentelemetry-tracing">
+            <div class="-bottom-6 absolute left-0 top-0 flex w-6 justify-center">
+             <div class="w-px bg-secondary"></div>
+            </div>
+            <div class="relative flex h-6 w-6 flex-none items-center justify-center bg-card">
+             <div class="h-1.5 w-1.5 rounded-full bg-secondary ring-1 ring-primary/80 opacity-60 group-hover:opacity-100"></div>
+            </div><p class="flex-auto py-0.5 text-sm leading-5 text-primary/70 opacity-80 group-hover:opacity-100"><span class="font-medium text-primary">OpenTelemetry Tracing Support</span> by Steffen</p><time datetime="2025-02-14T00:00:00.000Z" class="flex-none py-0.5 text-sm leading-5 text-primary/70 opacity-80 group-hover:opacity-100" aria-label="Date: 12 days ago">12 days ago</time></a><a class="relative flex gap-x-4 group" role="listitem" aria-label="Changelog entry for Open Source LLMOps Stack" href="/changelog/2025-02-14-oss-llmops-stack">
+            <div class="-bottom-6 absolute left-0 top-0 flex w-6 justify-center">
+             <div class="w-px bg-secondary"></div>
+            </div>
+            <div class="relative flex h-6 w-6 flex-none items-center justify-center bg-card">
+             <div class="h-1.5 w-1.5 rounded-full bg-secondary ring-1 ring-primary/80 opacity-60 group-hover:opacity-100"></div>
+            </div><p class="flex-auto py-0.5 text-sm leading-5 text-primary/70 opacity-80 group-hover:opacity-100"><span class="font-medium text-primary">Open Source LLMOps Stack</span> by Marc</p><time datetime="2025-02-14T00:00:00.000Z" class="flex-none py-0.5 text-sm leading-5 text-primary/70 opacity-80 group-hover:opacity-100" aria-label="Date: 12 days ago">12 days ago</time></a><a class="relative flex gap-x-4 group" role="listitem" aria-label="Changelog entry for Graph view for LangGraph traces" href="/changelog/2025-02-14-trace-graph-view">
+            <div class="-bottom-6 absolute left-0 top-0 flex w-6 justify-center">
+             <div class="w-px bg-secondary"></div>
+            </div>
+            <div class="relative flex h-6 w-6 flex-none items-center justify-center bg-card">
+             <div class="h-1.5 w-1.5 rounded-full bg-secondary ring-1 ring-primary/80 opacity-60 group-hover:opacity-100"></div>
+            </div><p class="flex-auto py-0.5 text-sm leading-5 text-primary/70 opacity-80 group-hover:opacity-100"><span class="font-medium text-primary">Graph view for LangGraph traces</span> by Hassieb</p><time datetime="2025-02-14T00:00:00.000Z" class="flex-none py-0.5 text-sm leading-5 text-primary/70 opacity-80 group-hover:opacity-100" aria-label="Date: 12 days ago">12 days ago</time></a><a class="relative flex gap-x-4 group" role="listitem" aria-label="Changelog entry for Select all items in tables with a single click" href="/changelog/2025-02-11-tables-select-all">
+            <div class="-bottom-6 absolute left-0 top-0 flex w-6 justify-center">
+             <div class="w-px bg-secondary"></div>
+            </div>
+            <div class="relative flex h-6 w-6 flex-none items-center justify-center bg-card">
+             <div class="h-1.5 w-1.5 rounded-full bg-secondary ring-1 ring-primary/80 opacity-60 group-hover:opacity-100"></div>
+            </div><p class="flex-auto py-0.5 text-sm leading-5 text-primary/70 opacity-80 group-hover:opacity-100"><span class="font-medium text-primary">Select all items in tables with a single click</span> by Marlies</p><time datetime="2025-02-11T00:00:00.000Z" class="flex-none py-0.5 text-sm leading-5 text-primary/70 opacity-80 group-hover:opacity-100" aria-label="Date: 11 févr. 2025">11 févr. 2025</time></a><a class="relative flex gap-x-4 group" role="listitem" aria-label="Changelog entry for Trace UI filtered view by log-level" href="/changelog/2025-02-10-trace-log-level-filter">
+            <div class="-bottom-6 absolute left-0 top-0 flex w-6 justify-center">
+             <div class="w-px bg-secondary"></div>
+            </div>
+            <div class="relative flex h-6 w-6 flex-none items-center justify-center bg-card">
+             <div class="h-1.5 w-1.5 rounded-full bg-secondary ring-1 ring-primary/80 opacity-60 group-hover:opacity-100"></div>
+            </div><p class="flex-auto py-0.5 text-sm leading-5 text-primary/70 opacity-80 group-hover:opacity-100"><span class="font-medium text-primary">Trace UI filtered view by log-level</span> by Hassieb</p><time datetime="2025-02-10T00:00:00.000Z" class="flex-none py-0.5 text-sm leading-5 text-primary/70 opacity-80 group-hover:opacity-100" aria-label="Date: 10 févr. 2025">10 févr. 2025</time></a><a class="relative flex gap-x-4 group" role="listitem" aria-label="Changelog entry for Gemini 2.0 support for playground and cost tracking" href="/changelog/2025-02-06-gemini-2-support">
+            <div class="-bottom-6 absolute left-0 top-0 flex w-6 justify-center">
+             <div class="w-px bg-secondary"></div>
+            </div>
+            <div class="relative flex h-6 w-6 flex-none items-center justify-center bg-card">
+             <div class="h-1.5 w-1.5 rounded-full bg-secondary ring-1 ring-primary/80 opacity-60 group-hover:opacity-100"></div>
+            </div><p class="flex-auto py-0.5 text-sm leading-5 text-primary/70 opacity-80 group-hover:opacity-100"><span class="font-medium text-primary">Gemini 2.0 support for playground and cost tracking</span> by Marlies</p><time datetime="2025-02-06T00:00:00.000Z" class="flex-none py-0.5 text-sm leading-5 text-primary/70 opacity-80 group-hover:opacity-100" aria-label="Date: 6 févr. 2025">6 févr. 2025</time></a><a class="relative flex gap-x-4 group" role="listitem" aria-label="Changelog entry for Use JsonPath to select from Input, Output, or Metadata values in LLM as a Judge" href="/changelog/2025-02-06-llm-as-a-judge-jsonpath">
+            <div class="-bottom-6 absolute left-0 top-0 flex w-6 justify-center">
+             <div class="w-px bg-secondary"></div>
+            </div>
+            <div class="relative flex h-6 w-6 flex-none items-center justify-center bg-card">
+             <div class="h-1.5 w-1.5 rounded-full bg-secondary ring-1 ring-primary/80 opacity-60 group-hover:opacity-100"></div>
+            </div><p class="flex-auto py-0.5 text-sm leading-5 text-primary/70 opacity-80 group-hover:opacity-100"><span class="font-medium text-primary">Use JsonPath to select from Input, Output, or Metadata values in LLM as a Judge</span> by Max</p><time datetime="2025-02-06T00:00:00.000Z" class="flex-none py-0.5 text-sm leading-5 text-primary/70 opacity-80 group-hover:opacity-100" aria-label="Date: 6 févr. 2025">6 févr. 2025</time></a><a class="relative flex gap-x-4 group" role="listitem" aria-label="Changelog entry for Typed public API client in SDKs" href="/changelog/2025-02-05-public-api-wrapper-sdks">
+            <div class="-bottom-6 absolute left-0 top-0 flex w-6 justify-center">
+             <div class="w-px bg-secondary"></div>
+            </div>
+            <div class="relative flex h-6 w-6 flex-none items-center justify-center bg-card">
+             <div class="h-1.5 w-1.5 rounded-full bg-secondary ring-1 ring-primary/80 opacity-60 group-hover:opacity-100"></div>
+            </div><p class="flex-auto py-0.5 text-sm leading-5 text-primary/70 opacity-80 group-hover:opacity-100"><span class="font-medium text-primary">Typed public API client in SDKs</span> by Hassieb</p><time datetime="2025-02-05T00:00:00.000Z" class="flex-none py-0.5 text-sm leading-5 text-primary/70 opacity-80 group-hover:opacity-100" aria-label="Date: 5 févr. 2025">5 févr. 2025</time></a><a class="relative flex gap-x-4 group" role="listitem" aria-label="Changelog entry for OpenAI o3-mini support for playground and cost tracking" href="/changelog/2025-01-31-o3-mini-support">
+            <div class="-bottom-6 absolute left-0 top-0 flex w-6 justify-center">
+             <div class="w-px bg-secondary"></div>
+            </div>
+            <div class="relative flex h-6 w-6 flex-none items-center justify-center bg-card">
+             <div class="h-1.5 w-1.5 rounded-full bg-secondary ring-1 ring-primary/80 opacity-60 group-hover:opacity-100"></div>
+            </div><p class="flex-auto py-0.5 text-sm leading-5 text-primary/70 opacity-80 group-hover:opacity-100"><span class="font-medium text-primary">OpenAI o3-mini support for playground and cost tracking</span> by Marc</p><time datetime="2025-01-31T00:00:00.000Z" class="flex-none py-0.5 text-sm leading-5 text-primary/70 opacity-80 group-hover:opacity-100" aria-label="Date: 31 janv. 2025">31 janv. 2025</time></a><a class="relative flex gap-x-4 group" role="listitem" aria-label="Changelog entry for Cmd+K Menu" href="/changelog/2025-01-30-cmd-k-menu">
+            <div class="-bottom-6 absolute left-0 top-0 flex w-6 justify-center">
+             <div class="w-px bg-secondary"></div>
+            </div>
+            <div class="relative flex h-6 w-6 flex-none items-center justify-center bg-card">
+             <div class="h-1.5 w-1.5 rounded-full bg-secondary ring-1 ring-primary/80 opacity-60 group-hover:opacity-100"></div>
+            </div><p class="flex-auto py-0.5 text-sm leading-5 text-primary/70 opacity-80 group-hover:opacity-100"><span class="font-medium text-primary">Cmd+K Menu</span> by Marc</p><time datetime="2025-01-30T00:00:00.000Z" class="flex-none py-0.5 text-sm leading-5 text-primary/70 opacity-80 group-hover:opacity-100" aria-label="Date: 30 janv. 2025">30 janv. 2025</time></a><a class="relative flex gap-x-4 group" role="listitem" aria-label="Changelog entry for Project-level Data Retention Policies" href="/changelog/2025-01-30-data-retention">
+            <div class="-bottom-6 absolute left-0 top-0 flex w-6 justify-center">
+             <div class="w-px bg-secondary"></div>
+            </div>
+            <div class="relative flex h-6 w-6 flex-none items-center justify-center bg-card">
+             <div class="h-1.5 w-1.5 rounded-full bg-secondary ring-1 ring-primary/80 opacity-60 group-hover:opacity-100"></div>
+            </div><p class="flex-auto py-0.5 text-sm leading-5 text-primary/70 opacity-80 group-hover:opacity-100"><span class="font-medium text-primary">Project-level Data Retention Policies</span> by Steffen</p><time datetime="2025-01-30T00:00:00.000Z" class="flex-none py-0.5 text-sm leading-5 text-primary/70 opacity-80 group-hover:opacity-100" aria-label="Date: 30 janv. 2025">30 janv. 2025</time></a><a class="relative flex gap-x-4 group" role="listitem" aria-label="Changelog entry for New API Reference" href="/changelog/2025-01-30-new-api-reference">
+            <div class="-bottom-6 absolute left-0 top-0 flex w-6 justify-center">
+             <div class="w-px bg-secondary"></div>
+            </div>
+            <div class="relative flex h-6 w-6 flex-none items-center justify-center bg-card">
+             <div class="h-1.5 w-1.5 rounded-full bg-secondary ring-1 ring-primary/80 opacity-60 group-hover:opacity-100"></div>
+            </div><p class="flex-auto py-0.5 text-sm leading-5 text-primary/70 opacity-80 group-hover:opacity-100"><span class="font-medium text-primary">New API Reference</span> by Marc</p><time datetime="2025-01-30T00:00:00.000Z" class="flex-none py-0.5 text-sm leading-5 text-primary/70 opacity-80 group-hover:opacity-100" aria-label="Date: 30 janv. 2025">30 janv. 2025</time></a><a class="relative flex gap-x-4 group" role="listitem" aria-label="Changelog entry for New Prompt Editor" href="/changelog/2025-01-30-new-prompt-editor">
+            <div class="-bottom-6 absolute left-0 top-0 flex w-6 justify-center">
+             <div class="w-px bg-secondary"></div>
+            </div>
+            <div class="relative flex h-6 w-6 flex-none items-center justify-center bg-card">
+             <div class="h-1.5 w-1.5 rounded-full bg-secondary ring-1 ring-primary/80 opacity-60 group-hover:opacity-100"></div>
+            </div><p class="flex-auto py-0.5 text-sm leading-5 text-primary/70 opacity-80 group-hover:opacity-100"><span class="font-medium text-primary">New Prompt Editor</span> by Marc</p><time datetime="2025-01-30T00:00:00.000Z" class="flex-none py-0.5 text-sm leading-5 text-primary/70 opacity-80 group-hover:opacity-100" aria-label="Date: 30 janv. 2025">30 janv. 2025</time></a><a class="relative flex gap-x-4 group" role="listitem" aria-label="Changelog entry for JS/TS SDK supports trace sampling" href="/changelog/2025-01-30-sampling-js-ts-sdk">
+            <div class="-bottom-6 absolute left-0 top-0 flex w-6 justify-center">
+             <div class="w-px bg-secondary"></div>
+            </div>
+            <div class="relative flex h-6 w-6 flex-none items-center justify-center bg-card">
+             <div class="h-1.5 w-1.5 rounded-full bg-secondary ring-1 ring-primary/80 opacity-60 group-hover:opacity-100"></div>
+            </div><p class="flex-auto py-0.5 text-sm leading-5 text-primary/70 opacity-80 group-hover:opacity-100"><span class="font-medium text-primary">JS/TS SDK supports trace sampling</span> by Hassieb</p><time datetime="2025-01-30T00:00:00.000Z" class="flex-none py-0.5 text-sm leading-5 text-primary/70 opacity-80 group-hover:opacity-100" aria-label="Date: 30 janv. 2025">30 janv. 2025</time></a><a class="relative flex gap-x-4 group" role="listitem" aria-label="Changelog entry for Commit Messages on Prompt Versions" href="/changelog/2025-01-28-prompt-commit-messages">
+            <div class="-bottom-6 absolute left-0 top-0 flex w-6 justify-center">
+             <div class="w-px bg-secondary"></div>
+            </div>
+            <div class="relative flex h-6 w-6 flex-none items-center justify-center bg-card">
+             <div class="h-1.5 w-1.5 rounded-full bg-secondary ring-1 ring-primary/80 opacity-60 group-hover:opacity-100"></div>
+            </div><p class="flex-auto py-0.5 text-sm leading-5 text-primary/70 opacity-80 group-hover:opacity-100"><span class="font-medium text-primary">Commit Messages on Prompt Versions</span> by Marlies</p><time datetime="2025-01-28T00:00:00.000Z" class="flex-none py-0.5 text-sm leading-5 text-primary/70 opacity-80 group-hover:opacity-100" aria-label="Date: 28 janv. 2025">28 janv. 2025</time></a><a class="relative flex gap-x-4 group" role="listitem" aria-label="Changelog entry for Dataset CSV upload" href="/changelog/2025-01-27-Dataset-Items-csv-upload">
+            <div class="-bottom-6 absolute left-0 top-0 flex w-6 justify-center">
+             <div class="w-px bg-secondary"></div>
+            </div>
+            <div class="relative flex h-6 w-6 flex-none items-center justify-center bg-card">
+             <div class="h-1.5 w-1.5 rounded-full bg-secondary ring-1 ring-primary/80 opacity-60 group-hover:opacity-100"></div>
+            </div><p class="flex-auto py-0.5 text-sm leading-5 text-primary/70 opacity-80 group-hover:opacity-100"><span class="font-medium text-primary">Dataset CSV upload</span> by Marlies</p><time datetime="2025-01-27T00:00:00.000Z" class="flex-none py-0.5 text-sm leading-5 text-primary/70 opacity-80 group-hover:opacity-100" aria-label="Date: 27 janv. 2025">27 janv. 2025</time></a>
+          </div><a class="relative flex gap-x-4 group" role="button" aria-label="Read the full changelog" href="/changelog">
+           <div class="h-6 absolute left-0 top-0 flex w-6 justify-center">
+            <div class="w-px bg-secondary"></div>
+           </div>
+           <div class="relative flex h-6 w-6 flex-none items-center justify-center bg-card">
+            <div class="h-1.5 w-1.5 rounded-full bg-secondary ring-1 ring-primary/80 opacity-60 group-hover:opacity-100"></div>
+           </div><p class="flex-auto py-0.5 text-sm leading-5 text-primary/60 opacity-80 group-hover:opacity-100"><span class="font-medium text-primary">Read the full changelog ...</span></p></a>
+         </div>
+        </section>
+        <section class="py-20 lg:py-32 mx-auto max-w-7xl px-5 sm:px-7 xl:px-10 first:pt-10 last:pb-40 last:lg:pb-52 flex flex-col items-center">
+         <div class="mx-auto max-w-4xl text-center text-balance mb-0">
+          <h2 class="mt-2 text-4xl font-bold tracking-tight sm:text-7xl text-balance font-mono">Enterprise Security</h2>
+          <p class="mt-6 text-2xl leading-8 font-medium tracking-wide text-primary/70"><span>Langfuse is built with security in mind. Langfuse Cloud is SOC 2 Type II and ISO 27001 certified and GDPR compliant.</span></p>
+          <div class="mt-6 flex flex-row gap-2 justify-center flex-wrap">
+           <a class="inline-flex items-center justify-center rounded text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/10 hover:text-accent-foreground h-10 px-4 py-2" href="/docs/data-security-privacy">Security<!-- --> </a><a class="inline-flex items-center justify-center rounded text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/10 hover:text-accent-foreground h-10 px-4 py-2" href="/enterprise">Enterprise FAQ<!-- --> </a>
+          </div>
+         </div>
+         <div class="flex flex-row gap-10 md:gap-20 mt-10">
+          <img alt="ISO 27001" loading="lazy" width="100" height="100" decoding="async" data-nimg="1" class="invert dark:invert-0" style="color:transparent" src="/_next/static/media/iso27001.e3c0ad66.svg"><img alt="SOC 2" loading="lazy" width="100" height="100" decoding="async" data-nimg="1" class="invert dark:invert-0" style="color:transparent" src="/_next/static/media/soc2.4bb529b5.svg"><img alt="GDPR" loading="lazy" width="80" height="80" decoding="async" data-nimg="1" class="invert dark:invert-0" style="color:transparent" src="/_next/static/media/gdpr.1ce6e473.svg">
+         </div>
+        </section>
+        <section class="py-20 lg:py-32 mx-auto max-w-7xl px-5 sm:px-7 xl:px-10 first:pt-10 last:pb-40 last:lg:pb-52">
+         <div class="isolate overflow-hidden">
+          <div class="flow-root pb-16 lg:pb-0">
+           <div class="mx-auto max-w-7xl">
+            <div class="mx-auto max-w-4xl text-center mb-12 text-balance">
+             <h1 class="mt-2 text-4xl font-bold tracking-tight sm:text-7xl text-balance font-mono">Pricing</h1>
+             <p class="mt-6 text-2xl leading-8 font-medium tracking-wide text-primary/70">Get started on the Hobby plan for free. No credit card required.</p>
+            </div>
+            <div dir="ltr" data-orientation="horizontal" class="mt-4 flex justify-center">
+             <div role="tablist" aria-orientation="horizontal" class="inline-flex h-10 items-center justify-center rounded bg-muted p-1 text-muted-foreground" tabindex="0" data-orientation="horizontal" style="outline: none;"></div>
+            </div>
+            <div class="mt-12 grid sm:grid-cols-2 gap-y-6 gap-x-6 md:gap-x-2 lg:gap-x-6 lg:items-stretch md:grid-cols-4">
+             <div class="rounded-lg border bg-card text-card-foreground shadow-sm relative h-full flex flex-col">
+              <div class="flex flex-col space-y-1.5 p-4 lg:p-6 text-left">
+               <div class="tracking-tight text-lg text-foreground font-semibold">
+                Hobby
+               </div>
+               <div class="text-sm text-muted-foreground text-left md:min-h-20 lg:min-h-16">
+                Get started, no credit card required. Great for hobby projects and POCs.
+               </div>
+              </div>
+              <div class="p-0 px-4 lg:px-6 mb-4">
+               <a class="inline-flex items-center justify-center rounded text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background/30 hover:bg-accent/70 hover:text-accent-foreground h-10 px-4 py-2 w-full" href="https://cloud.langfuse.com">Sign up</a>
+              </div>
+              <div class="flex p-4 lg:p-6 flex-col items-start gap-2">
+               <div>
+                <span class="font-bold text-3xl">Free</span>
+               </div>
+               <ul class="mt-3 space-y-2.5 text-sm">
+                <li class="flex space-x-2"><span class="text-muted-foreground">All platform features (with limits)</span></li>
+                <li class="flex space-x-2"><span class="text-muted-foreground">50k observations / month included</span></li>
+                <li class="flex space-x-2"><span class="text-muted-foreground">30 days data access</span></li>
+                <li class="flex space-x-2"><span class="text-muted-foreground">2 users</span></li>
+                <li class="flex space-x-2"><span class="text-muted-foreground">Community support (Discord &amp; GitHub)</span></li>
+               </ul>
+              </div>
+             </div>
+             <div class="rounded-lg border bg-card text-card-foreground shadow-sm border-primary relative h-full flex flex-col">
+              <div class="flex flex-col space-y-1.5 p-4 lg:p-6 text-left">
+               <div class="tracking-tight text-lg text-foreground font-semibold">
+                Pro
+               </div>
+               <div class="text-sm text-muted-foreground text-left md:min-h-20 lg:min-h-16">
+                For production projects. Includes access to full history and higher usage.
+               </div>
+              </div>
+              <div class="p-0 px-4 lg:px-6 mb-4">
+               <a class="inline-flex items-center justify-center rounded text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/80 h-10 px-4 py-2 w-full" href="https://cloud.langfuse.com">Sign up</a>
+              </div>
+              <div class="flex p-4 lg:p-6 flex-col items-start gap-2">
+               <div>
+                <span class="font-bold text-3xl">$59</span><span class="text-sm leading-4 mt-2">/ month</span>
+               </div>
+               <ul class="mt-3 space-y-2.5 text-sm">
+                <li class="flex space-x-2"><span class="text-muted-foreground">Everything in Hobby</span></li>
+                <li class="flex space-x-2"><span class="text-muted-foreground">100k observations / month included, additional: $10 / 100k observations</span></li>
+                <li class="flex space-x-2"><span class="text-muted-foreground">Unlimited data access</span></li>
+                <li class="flex space-x-2"><span class="text-muted-foreground">Unlimited users</span></li>
+                <li class="flex space-x-2"><span class="text-muted-foreground">Unlimited evaluators</span></li>
+                <li class="flex space-x-2"><span class="text-muted-foreground">Support via Email/Chat</span></li>
+               </ul>
+              </div>
+             </div>
+             <div class="rounded-lg border bg-card text-card-foreground shadow-sm relative h-full flex flex-col">
+              <div class="flex flex-col space-y-1.5 p-4 lg:p-6 text-left">
+               <div class="tracking-tight text-lg text-foreground font-semibold">
+                Team
+               </div>
+               <div class="text-sm text-muted-foreground text-left md:min-h-20 lg:min-h-16">
+                Dedicated support, and security controls for larger teams.
+               </div>
+              </div>
+              <div class="p-0 px-4 lg:px-6 mb-4">
+               <a class="inline-flex items-center justify-center rounded text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background/30 hover:bg-accent/70 hover:text-accent-foreground h-10 px-4 py-2 w-full" href="https://cloud.langfuse.com">Sign up</a>
+              </div>
+              <div class="flex p-4 lg:p-6 flex-col items-start gap-2">
+               <div>
+                <span class="font-bold text-3xl">$499</span><span class="text-sm leading-4 mt-2">/ month</span>
+               </div>
+               <ul class="mt-3 space-y-2.5 text-sm">
+                <li class="flex space-x-2"><span class="text-muted-foreground">Everything in Pro</span></li>
+                <li class="flex space-x-2"><span class="text-muted-foreground">100k observations / month included, additional: $10 / 100k observations</span></li>
+                <li class="flex space-x-2"><span class="text-muted-foreground">Custom SSO, SSO enforcement</span></li>
+                <li class="flex space-x-2"><span class="text-muted-foreground">Fine-grained RBAC</span></li>
+                <li class="flex space-x-2"><span class="text-muted-foreground">SOC2, ISO27001</span></li>
+                <li class="flex space-x-2"><span class="text-muted-foreground">Support via Slack</span></li>
+               </ul>
+              </div>
+             </div>
+             <div class="rounded-lg border bg-card text-card-foreground shadow-sm relative h-full flex flex-col">
+              <div class="flex flex-col space-y-1.5 p-4 lg:p-6 text-left">
+               <div class="tracking-tight text-lg text-foreground font-semibold">
+                Enterprise
+               </div>
+               <div class="text-sm text-muted-foreground text-left md:min-h-20 lg:min-h-16">
+                Enterprise-grade support and security features.
+               </div>
+              </div>
+              <div class="p-0 px-4 lg:px-6 mb-4">
+               <a class="inline-flex items-center justify-center rounded text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background/30 hover:bg-accent/70 hover:text-accent-foreground h-10 px-4 py-2 w-full" href="/schedule-demo">Talk to sales</a>
+              </div>
+              <div class="flex p-4 lg:p-6 flex-col items-start gap-2">
+               <div>
+                <span class="font-bold text-3xl">Custom</span>
+               </div>
+               <ul class="mt-3 space-y-2.5 text-sm">
+                <li class="flex space-x-2"><span class="text-muted-foreground">Everything in Team</span></li>
+                <li class="flex space-x-2"><span class="text-muted-foreground">Uptime SLA</span></li>
+                <li class="flex space-x-2"><span class="text-muted-foreground">Support SLA</span></li>
+                <li class="flex space-x-2"><span class="text-muted-foreground">Custom Terms &amp; DPA</span></li>
+                <li class="flex space-x-2"><span class="text-muted-foreground">Dedicated support engineer</span></li>
+                <li class="flex space-x-2"><span class="text-muted-foreground">Architecture reviews</span></li>
+                <li class="flex space-x-2"><span class="text-muted-foreground">Billing via AWS Marketplace</span></li>
+               </ul>
+              </div>
+             </div>
+            </div>
+           </div>
+          </div>
+          <div class="text-center mt-10">
+           For a detailed comparison and FAQ, see our <a class="underline" href="/pricing">pricing page</a>.
+          </div>
+         </div>
+        </section>
+       </main>
+       <div class="absolute top-0 bottom-0 left-0 right-0 -z-50"></div>
+      </div>
+     </div>
+     <footer class="_bg-gray-100 _pb-[env(safe-area-inset-bottom)] dark:_bg-neutral-900 print:_bg-transparent">
+      <div class="_mx-auto _flex _max-w-[90rem] _gap-2 _py-2 _px-4 _flex"></div>
+      <hr class="dark:_border-neutral-800">
+      <div class="_mx-auto _flex _max-w-[90rem] _justify-center _py-12 _text-gray-600 dark:_text-gray-400 md:_justify-start _pl-[max(env(safe-area-inset-left),1.5rem)] _pr-[max(env(safe-area-inset-right),1.5rem)]">
+       <div class="w-full">
+        <div class="grid grid-cols-2 md:grid-cols-5 text-base gap-y-8 gap-x-2">
+         <div>
+          <p class="pb-4 font-mono font-bold text-primary">Platform</p>
+          <ul class="flex flex-col gap-3 items-start">
+           <li class="relative flex gap-1"><a class="text-sm hover:text-primary/80" href="/docs/tracing">LLM Tracing</a></li>
+           <li class="relative flex gap-1"><a class="text-sm hover:text-primary/80" href="/docs/prompts/get-started">Prompt Management</a></li>
+           <li class="relative flex gap-1"><a class="text-sm hover:text-primary/80" href="/docs/scores/overview">Evaluation</a></li>
+           <li class="relative flex gap-1"><a class="text-sm hover:text-primary/80" href="/docs/scores/annotation">Manual Annotation</a></li>
+           <li class="relative flex gap-1"><a class="text-sm hover:text-primary/80" href="/docs/datasets/overview">Datasets</a></li>
+           <li class="relative flex gap-1"><a class="text-sm hover:text-primary/80" href="/docs/analytics">Metrics</a></li>
+           <li class="relative flex gap-1"><a class="text-sm hover:text-primary/80" href="/docs/playground">Playground</a></li>
+          </ul>
+         </div>
+         <div>
+          <p class="pb-4 font-mono font-bold text-primary">Integrations</p>
+          <ul class="flex flex-col gap-3 items-start">
+           <li class="relative flex gap-1"><a class="text-sm hover:text-primary/80" href="/docs/sdk/python">Python SDK</a></li>
+           <li class="relative flex gap-1"><a class="text-sm hover:text-primary/80" href="/docs/sdk/typescript/guide">JS/TS SDK</a></li>
+           <li class="relative flex gap-1"><a class="text-sm hover:text-primary/80" href="/docs/integrations/openai/get-started">OpenAI SDK</a></li>
+           <li class="relative flex gap-1"><a class="text-sm hover:text-primary/80" href="/docs/integrations/langchain/tracing">Langchain</a></li>
+           <li class="relative flex gap-1"><a class="text-sm hover:text-primary/80" href="/docs/integrations/llama-index/get-started">Llama-Index</a></li>
+           <li class="relative flex gap-1"><a class="text-sm hover:text-primary/80" href="/docs/integrations/litellm">Litellm</a></li>
+           <li class="relative flex gap-1"><a class="text-sm hover:text-primary/80" href="/docs/integrations/dify">Dify</a></li>
+           <li class="relative flex gap-1"><a class="text-sm hover:text-primary/80" href="/docs/integrations/flowise">Flowise</a></li>
+           <li class="relative flex gap-1"><a class="text-sm hover:text-primary/80" href="/docs/integrations/langflow">Langflow</a></li>
+           <li class="relative flex gap-1"><a class="text-sm hover:text-primary/80" href="/docs/integrations/vercel-ai-sdk">Vercel AI SDK</a></li>
+           <li class="relative flex gap-1"><a class="text-sm hover:text-primary/80" href="/docs/integrations/instructor">Instructor</a></li>
+           <li class="relative flex gap-1"><a class="text-sm hover:text-primary/80" href="/docs/integrations/mirascope">Mirascope</a></li>
+           <li class="relative flex gap-1"><a class="text-sm hover:text-primary/80" href="/docs/api">API</a></li>
+          </ul>
+         </div>
+         <div>
+          <p class="pb-4 font-mono font-bold text-primary">Resources</p>
+          <ul class="flex flex-col gap-3 items-start">
+           <li class="relative flex gap-1"><a class="text-sm hover:text-primary/80" href="/docs">Documentation</a></li>
+           <li class="relative flex gap-1"><a class="text-sm hover:text-primary/80" href="/demo">Interactive Demo</a></li>
+           <li class="relative flex gap-1"><a class="text-sm hover:text-primary/80" href="/watch-demo">Video demo (10 min)</a></li>
+           <li class="relative flex gap-1"><a class="text-sm hover:text-primary/80" href="/changelog">Changelog</a></li>
+           <li class="relative flex gap-1"><a class="text-sm hover:text-primary/80" href="/docs/roadmap">Roadmap</a></li>
+           <li class="relative flex gap-1"><a class="text-sm hover:text-primary/80" href="/pricing">Pricing</a></li>
+           <li class="relative flex gap-1"><a class="text-sm hover:text-primary/80" href="/enterprise">Enterprise</a></li>
+           <li class="relative flex gap-1"><a class="text-sm hover:text-primary/80" href="/self-hosting">Self-hosting</a></li>
+           <li class="relative flex gap-1"><a class="text-sm hover:text-primary/80" href="/docs/open-source">Open Source</a></li>
+           <li class="relative flex gap-1"><a class="text-sm hover:text-primary/80" href="/why">Why Langfuse?</a></li>
+           <li class="relative flex gap-1"><a class="text-sm hover:text-primary/80" href="https://status.langfuse.com">Status</a></li>
+           <li class="relative flex gap-1"><a class="text-sm hover:text-primary/80" href="/jp">🇯🇵 Japanese</a></li>
+           <li class="relative flex gap-1"><a class="text-sm hover:text-primary/80" href="/kr">🇰🇷 Korean</a></li>
+           <li class="relative flex gap-1"><a class="text-sm hover:text-primary/80" href="/cn">🇨🇳 Chinese</a></li>
+          </ul>
+         </div>
+         <div>
+          <p class="pb-4 font-mono font-bold text-primary">About</p>
+          <ul class="flex flex-col gap-3 items-start">
+           <li class="relative flex gap-1"><a class="text-sm hover:text-primary/80" href="/blog">Blog</a></li>
+           <li class="relative flex gap-1"><a class="text-sm hover:text-primary/80" href="/careers">Careers</a><span class="transform -translate-y-1/4 bg-primary text-primary-foreground rounded-full h-3 w-3 text-[0.6rem] flex items-center justify-center">4</span></li>
+           <li class="relative flex gap-1"><a class="text-sm hover:text-primary/80" href="/about">About us</a></li>
+           <li class="relative flex gap-1"><a class="text-sm hover:text-primary/80" href="/support">Support</a></li>
+           <li class="relative flex gap-1"><a class="text-sm hover:text-primary/80" href="/schedule-demo">Schedule Demo</a></li>
+           <li class="relative flex gap-1"><a class="text-sm hover:text-primary/80" href="/oss-friends">OSS Friends</a></li>
+           <li class="relative flex gap-1"><a class="text-sm hover:text-primary/80" href="https://x.com/langfuse">Twitter</a></li>
+           <li class="relative flex gap-1"><a class="text-sm hover:text-primary/80" href="https://www.linkedin.com/company/langfuse/">LinkedIn</a></li>
+          </ul>
+         </div>
+         <div>
+          <p class="pb-4 font-mono font-bold text-primary">Legal</p>
+          <ul class="flex flex-col gap-3 items-start">
+           <li class="relative flex gap-1"><a class="text-sm hover:text-primary/80" href="/security">Security</a></li>
+           <li class="relative flex gap-1"><a class="text-sm hover:text-primary/80" href="/imprint">Imprint</a></li>
+           <li class="relative flex gap-1"><a class="text-sm hover:text-primary/80" href="/terms">Terms</a></li>
+           <li class="relative flex gap-1"><a class="text-sm hover:text-primary/80" href="/privacy">Privacy</a></li>
+          </ul>
+         </div>
+         <div></div>
+        </div>
+        <div class="my-8 font-mono text-sm">
+         © 2022-<!-- -->2025<!-- --> Langfuse GmbH / Finto Technologies Inc.
+        </div>
+        <div class="w-20">
+         <div id="inkeep-shadow:r8:" style="display: contents;"></div>
+        </div>
+       </div>
+      </div>
+     </footer>
+    </div><!--$--><!--/$-->
+   </div>
+  </div><next-route-announcer>
+   <p aria-live="assertive" id="__next-route-announcer__" role="alert" style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; top: 0px; width: 1px; white-space: nowrap; overflow-wrap: normal;"></p>
+  </next-route-announcer><inkeep-portal>
+   <div id="inkeep-shadow:r9:"></div>
+  </inkeep-portal><inkeep-portal>
+   <div id="inkeep-shadow:ra:"></div>
+  </inkeep-portal><inkeep-portal>
+   <div id="inkeep-shadow:rb:"></div>
+  </inkeep-portal><textarea tabindex="-1" aria-hidden="true" style="min-height: 0px !important; max-height: none !important; height: 0px !important; visibility: hidden !important; overflow: hidden !important; position: absolute !important; z-index: -1000 !important; top: 0px !important; right: 0px !important; border-width: 2px; box-sizing: content-box; font-family: monospace; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: normal; line-height: normal; padding: 2px; tab-size: 4; text-indent: 0px; text-rendering: optimizelegibility; text-transform: none; width: auto; word-break: normal;"></textarea>
+ </body>
+</html>

@@ -34,7 +34,9 @@ public class Traces {
       String sessionId,
       Map<String, Object> metadata,
       List<String> tags,
-      String userId) {
+      String userId,
+      String name
+      ) {
     Map<String, Object> reqMap = new HashMap<>();
     if (input != null) {
       reqMap.put("input", input);
@@ -54,6 +56,9 @@ public class Traces {
     if (userId != null) {
       reqMap.put("userId", userId);
     }
+    if (name != null) {
+      reqMap.put("name", name);
+    }
 
     var res = tracesClient.postTrace(reqMap);
     logger.info(
@@ -70,20 +75,20 @@ public class Traces {
       String sessionId,
       Map<String, Object> metadata,
       List<String> tags) {
-    return postTrace(input, output, sessionId, metadata, tags, null);
+    return postTrace(input, output, sessionId, metadata, tags, null, null);
   }
 
   public String postTrace(
       String input, String output, String sessionId, Map<String, Object> metadata) {
-    return postTrace(input, output, sessionId, metadata, null, null);
+    return postTrace(input, output, sessionId, metadata, null, null, null);
   }
 
   public String postTrace(String input, String output, String sessionId) {
-    return postTrace(input, output, sessionId, null, null, null);
+    return postTrace(input, output, sessionId, null, null, null, null);
   }
 
   public String postTrace(String input, String output) {
-    return postTrace(input, output, null, null, null, null);
+    return postTrace(input, output, null, null, null, null, null);
   }
 
   @FeignClient(

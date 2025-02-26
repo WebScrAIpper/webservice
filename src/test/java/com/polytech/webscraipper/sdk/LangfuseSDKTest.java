@@ -61,7 +61,8 @@ public class LangfuseSDKTest {
             "TEST_SESSION",
             Map.of("test_key", "test_value"),
             List.of("test_tag"),
-            "TEST_USER");
+            "TEST_USER",
+            null);
     assertNotNull(res);
   }
 }

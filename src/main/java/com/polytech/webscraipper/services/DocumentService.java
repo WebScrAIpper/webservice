@@ -82,7 +82,6 @@ public class DocumentService {
     // 3. Generating the prompt dynamically
     var prompt = builder.generatePrompt(scrappedContent, classifierService.getAllClassifiers());
 
-    logger.debug("Prompt: " + prompt.prompt);
     DocumentDto documentDto;
     String aiAnswer = "No answer";
     try {
@@ -109,7 +108,7 @@ public class DocumentService {
       updateDatabase(res);
 
       langfuseSDK.traces.postTrace(
-          prompt.prompt, aiAnswer, SESSION_ID, Map.of("url", url), List.of("SUCCESS"), null);
+          prompt.prompt, aiAnswer, SESSION_ID, Map.of("url", url), List.of("SUCCESS"), null, null);
 
       return res;
     } catch (TimeoutException | InterruptedException | ExecutionException e) {
@@ -121,7 +120,8 @@ public class DocumentService {
           SESSION_ID,
           Map.of("url", url),
           List.of("ERROR"),
-          e.getMessage());
+          e.getMessage(),
+          null);
 
       logger.error("The AI response could not be parsed: " + aiAnswer);
       throw new DocumentException("The AI response could not be parsed: " + e.getMessage());
