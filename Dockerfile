@@ -18,8 +18,8 @@ COPY --from=build /build/libs/*.jar app.jar
 
 COPY python/scripts python/scripts
 
-RUN python3 -m venv /python/.venv && \
-    . /python/.venv/bin/activate && \
+RUN python3 -m venv /src/main/python/.venv && \
+    . /src/main/python/.venv/bin/activate && \
     pip install --upgrade pip setuptools && \
     pip install youtube_transcript_api yt-dlp
 
