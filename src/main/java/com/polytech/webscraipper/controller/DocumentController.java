@@ -1,8 +1,10 @@
 package com.polytech.webscraipper.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.polytech.webscraipper.BaseLogger;
+import com.polytech.webscraipper.builders.DefaultBuilder;
 import com.polytech.webscraipper.dto.DocumentDto;
-import com.polytech.webscraipper.exceptions.PromptException;
+import com.polytech.webscraipper.exceptions.DocumentException;
 import com.polytech.webscraipper.services.DocumentService;
 import java.io.IOException;
 import java.net.URLDecoder;
@@ -21,6 +23,8 @@ public class DocumentController {
 
   @Autowired private DocumentService documentService;
   @Autowired private ObjectMapper objectMapper;
+
+  private BaseLogger logger = new BaseLogger(DefaultBuilder.class);
 
   public DocumentController() {}
 
@@ -43,21 +47,20 @@ public class DocumentController {
   public ResponseEntity<String> buildWebsiteSummary(
       @RequestParam String url, @RequestBody String content) throws IOException {
     url = URLDecoder.decode(url, StandardCharsets.UTF_8);
-    System.out.println("Building document summary for " + url);
+    logger.info("Building document summary for " + url);
     var res = buildDocumentSummary(url, content); // false for website
-    if (res.getStatusCode() != HttpStatus.OK) {
-      System.out.println("Error while building document summary for " + url + "\n" + res.getBody());
-    }
     return res;
   }
 
   private ResponseEntity<String> buildDocumentSummary(String url, String content) {
     if (url == null || url.isEmpty()) {
+      logger.error("Tried to build document summary without URL.");
       return ResponseEntity.status(HttpStatus.BAD_REQUEST)
           .body("The 'url' parameter is required and cannot be empty.");
     }
 
     if (documentService.getDocumentByUrl(url).isPresent()) {
+      logger.error("Tried to build document summary for an already existing document.");
       return ResponseEntity.status(HttpStatus.CONFLICT)
           .body("A document with this URL already exists.");
     }
@@ -68,11 +71,11 @@ public class DocumentController {
           .body(
               "The document summary has been successfully built.\n"
                   + objectMapper.writeValueAsString(res));
-    } catch (PromptException e) {
+    } catch (DocumentException e) {
+      logger.error("An error occurred while building the document summary.", e);
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
     } catch (Throwable e) {
-      System.out.println(
-          "An unexpected error occurred while building the document summary.\n" + e.getMessage());
+      logger.error("An unexpected error occurred while building the document summary.", e);
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
           .body("An unexpected error occurred while building the document summary.");
     }

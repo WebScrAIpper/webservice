@@ -22,7 +22,6 @@ public class LangfuseSDKTest {
   public void shouldFetchAllPromptsSuccessfully() {
     List<PromptsResponse.IndividualPrompt> res = langfuseSDK.prompts.getAllPrompts();
     assertNotNull(res);
-    System.out.println(res);
     assertFalse(res.isEmpty(), "Expected non-empty prompt list");
   }
 
@@ -55,12 +54,14 @@ public class LangfuseSDKTest {
 
   @Test
   public void postATrace() {
-    langfuseSDK.traces.postTrace(
-        Map.of(
-            "name", "LLM Request",
-            "url", "none",
-            "prompt", "default-prompt",
-            "response", "Hello, how are you doing today?",
-            "sessionId", "Test Session"));
+    var res =
+        langfuseSDK.traces.postTrace(
+            "TEST INPUT",
+            "TEST OUTPUT",
+            "TEST_SESSION",
+            Map.of("test_key", "test_value"),
+            List.of("test_tag"),
+            "TEST_USER");
+    assertNotNull(res);
   }
 }

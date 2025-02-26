@@ -53,6 +53,7 @@ services:
       MONGO_INITDB_DATABASE: database
     volumes:
       - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      - ~/mongo/data:/data/db
     networks:
       - main-network
     healthcheck:

@@ -1,9 +1,9 @@
 package com.polytech.webscraipper.builders;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
+import com.polytech.webscraipper.BaseLogger;
 import com.polytech.webscraipper.dto.DocumentDto;
-import com.polytech.webscraipper.exceptions.PromptException;
+import com.polytech.webscraipper.exceptions.DocumentException;
 import com.polytech.webscraipper.exceptions.ScrappingException;
 import com.polytech.webscraipper.sdk.responses.PromptResponse;
 import com.polytech.webscraipper.services.langfusesubservices.PromptManagementService;
@@ -16,27 +16,27 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-// TODO
 @Component
 public class YouTubeBuilder implements ISummaryBuilder {
 
   @Autowired PromptManagementService promptManagementService;
   @Autowired private ObjectMapper objectMapper;
 
+  private final BaseLogger logger = new BaseLogger(DefaultBuilder.class);
+
   @Override
   public String scrapContent(String url, String pageContent) throws ScrappingException {
     try {
       // Get vod metadata
-      String videoInfoJson = executePythonScript("python/scripts/get_yt_infos.py", url);
+      String videoInfoJson = executePythonScript("src/main/python/scripts/get_yt_infos.py", url);
 
       // Get transcript
-      String transcript = executePythonScript("python/scripts/get_transcript.py", url);
+      String transcript = executePythonScript("src/main/python/scripts/get_transcript.py", url);
 
       Map<String, String> result = new HashMap<>();
       result.put("metadata", videoInfoJson);
       result.put("transcript", transcript);
 
-      Gson gson = new Gson();
       return objectMapper.writeValueAsString(result);
     } catch (IOException | InterruptedException e) {
       throw new ScrappingException(
@@ -50,7 +50,7 @@ public class YouTubeBuilder implements ISummaryBuilder {
   }
 
   @Override
-  public DocumentDto polishAnswer(String url, DocumentDto documentDto) throws PromptException {
+  public DocumentDto polishAnswer(String url, DocumentDto documentDto) throws DocumentException {
     documentDto.setUrl(url);
     return documentDto;
   }
@@ -66,9 +66,9 @@ public class YouTubeBuilder implements ISummaryBuilder {
 
     ProcessBuilder pb;
     if (System.getProperty("os.name").contains("Windows")) {
-      pb = new ProcessBuilder("python/.venv/Scripts/python.exe", scriptPath, url);
+      pb = new ProcessBuilder("src/main/python/.venv/Scripts/python.exe", scriptPath, url);
     } else {
-      pb = new ProcessBuilder("python/.venv/bin/python3", scriptPath, url);
+      pb = new ProcessBuilder("src/main/python/.venv/bin/python3", scriptPath, url);
     }
     Process process = pb.start();
 
@@ -88,7 +88,7 @@ public class YouTubeBuilder implements ISummaryBuilder {
       while ((line = errorReader.readLine()) != null) {
         errorOutput.append(line).append("\n");
       }
-      System.out.println(output.toString().trim());
+      logger.debug(output.toString().trim());
       throw new IOException(
           "Error executing Python script " + scriptPath + " : " + errorOutput.toString().trim());
     }
