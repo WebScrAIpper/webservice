@@ -67,10 +67,7 @@ public class DocumentController {
 
     try {
       var res = documentService.buildWebsiteSummary(url, content);
-      return ResponseEntity.status(HttpStatus.OK)
-          .body(
-              "The document summary has been successfully built.\n"
-                  + objectMapper.writeValueAsString(res));
+      return ResponseEntity.status(HttpStatus.OK).body(objectMapper.writeValueAsString(res));
     } catch (DocumentException e) {
       logger.error("An error occurred while building the document summary.", e);
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
