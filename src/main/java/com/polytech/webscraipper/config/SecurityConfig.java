@@ -55,6 +55,7 @@ public class SecurityConfig {
 
     return http.build();
   }
+
   public static class CustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
     private BaseLogger logger = new BaseLogger(SecurityConfig.class);
 
@@ -93,7 +94,9 @@ public class SecurityConfig {
 
       // Check if user is already authenticated
       Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-      logger.debug("(Internal Filter) User is connected: " + (authentication != null && authentication.isAuthenticated()));
+      logger.debug(
+          "(Internal Filter) User is connected: "
+              + (authentication != null && authentication.isAuthenticated()));
       if (authentication != null && authentication.isAuthenticated()) {
         filterChain.doFilter(request, response);
         return;
