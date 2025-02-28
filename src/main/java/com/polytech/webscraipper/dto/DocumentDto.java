@@ -68,11 +68,11 @@ public class DocumentDto {
     this.url = url;
   }
 
-  public String getEn_title() {
+  public String getEnTitle() {
     return en_title;
   }
 
-  public void setEn_title(String en_title) {
+  public void setEnTitle(String en_title) {
     this.en_title = en_title;
   }
 
@@ -108,20 +108,28 @@ public class DocumentDto {
     this.imageIndex = imageIndex;
   }
 
-  public String getEn_description() {
+  public String getEnDescription() {
     return en_description;
   }
 
-  public void setEn_description(String en_description) {
+  public void setEnDescription(String en_description) {
     this.en_description = en_description;
   }
 
-  public String getFr_title() {
+  public String getFrTitle() {
     return fr_title;
   }
 
-  public void setFr_title(String fr_title) {
+  public void setFrTitle(String fr_title) {
     this.fr_title = fr_title;
+  }
+
+  public String getFrDescription() {
+    return fr_description;
+  }
+
+  public void setFrDescription(String fr_description) {
+    this.fr_description = fr_description;
   }
 
   public CONTENT_TYPE getContent_type() {
