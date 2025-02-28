@@ -19,7 +19,11 @@ public class Document {
 
   protected String author;
   protected String date;
+
+  @JsonProperty("image_urls")
   protected List<String> imageUrls;
+
+  @JsonProperty("image_index")
   protected int imageIndex;
 
   @JsonProperty("en_description")

@@ -15,7 +15,11 @@ public class DocumentDto {
 
   public String author;
   public String date;
+
+  @JsonProperty("image_urls")
   public List<String> imageUrls;
+
+  @JsonProperty("image_index")
   public int imageIndex;
 
   @JsonProperty("en_description")
