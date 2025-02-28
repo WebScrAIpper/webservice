@@ -82,7 +82,7 @@ public class DocumentService {
     // 3. Generating the prompt dynamically
     var prompt = builder.generatePrompt(scrappedContent, classifierService.getAllClassifiers());
 
-    logger.debug("Prompt: " + prompt.prompt);
+    logger.debug("Prompt size: " + prompt.prompt.length());
     DocumentDto documentDto;
     String aiAnswer = "No answer";
     try {
