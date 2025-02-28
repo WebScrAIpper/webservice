@@ -1,0 +1,2054 @@
+<html lang="en" data-rh="lang">
+ <head>
+  <title>Goodbye, Object Oriented Programming | by Charles Scalfani | Medium</title>
+  <meta data-rh="true" charset="utf-8">
+  <meta data-rh="true" name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,maximum-scale=1">
+  <meta data-rh="true" name="theme-color" content="#000000">
+  <meta data-rh="true" name="twitter:app:name:iphone" content="Medium">
+  <meta data-rh="true" name="twitter:app:id:iphone" content="828256236">
+  <meta data-rh="true" property="al:ios:app_name" content="Medium">
+  <meta data-rh="true" property="al:ios:app_store_id" content="828256236">
+  <meta data-rh="true" property="al:android:package" content="com.medium.reader">
+  <meta data-rh="true" property="fb:app_id" content="542599432471018">
+  <meta data-rh="true" property="og:site_name" content="Medium">
+  <meta data-rh="true" property="og:type" content="article">
+  <meta data-rh="true" property="article:published_time" content="2021-06-13T19:48:51.774Z">
+  <meta data-rh="true" name="title" content="Goodbye, Object Oriented Programming | by Charles Scalfani | Medium">
+  <meta data-rh="true" property="og:title" content="Goodbye, Object Oriented Programming">
+  <meta data-rh="true" property="al:android:url" content="medium://p/a59cda4c0e53">
+  <meta data-rh="true" property="al:ios:url" content="medium://p/a59cda4c0e53">
+  <meta data-rh="true" property="al:android:app_name" content="Medium">
+  <meta data-rh="true" name="description" content="I’ve been programming in Object Oriented languages for decades. The first OO language I used was C++ and then Smalltalk and finally .NET and Java. I was gung-ho to leverage the benefits of…">
+  <meta data-rh="true" property="og:description" content="I’ve been programming in Object Oriented languages for decades. The first OO language I used was C++ and then Smalltalk and finally .NET…">
+  <meta data-rh="true" property="og:url" content="https://cscalfani.medium.com/goodbye-object-oriented-programming-a59cda4c0e53">
+  <meta data-rh="true" property="al:web:url" content="https://cscalfani.medium.com/goodbye-object-oriented-programming-a59cda4c0e53">
+  <meta data-rh="true" property="og:image" content="https://miro.medium.com/v2/resize:fit:590/1*cBFSQ9Ytv_D0jwGtpuL5WA.png">
+  <meta data-rh="true" property="article:author" content="https://cscalfani.medium.com">
+  <meta data-rh="true" name="author" content="Charles Scalfani">
+  <meta data-rh="true" name="robots" content="index,noarchive,follow,max-image-preview:large">
+  <meta data-rh="true" name="referrer" content="unsafe-url">
+  <meta data-rh="true" property="twitter:title" content="Goodbye, Object Oriented Programming">
+  <meta data-rh="true" name="twitter:site" content="@Medium">
+  <meta data-rh="true" name="twitter:app:url:iphone" content="medium://p/a59cda4c0e53">
+  <meta data-rh="true" property="twitter:description" content="I’ve been programming in Object Oriented languages for decades. The first OO language I used was C++ and then Smalltalk and finally .NET…">
+  <meta data-rh="true" name="twitter:image:src" content="https://miro.medium.com/v2/resize:fit:590/1*cBFSQ9Ytv_D0jwGtpuL5WA.png">
+  <meta data-rh="true" name="twitter:card" content="summary_large_image">
+  <meta data-rh="true" name="twitter:creator" content="@cscalfani">
+  <meta data-rh="true" name="twitter:label1" content="Reading time">
+  <meta data-rh="true" name="twitter:data1" content="10 min read">
+  <link data-rh="true" rel="icon" href="https://miro.medium.com/v2/5d8de952517e8160e40ef9841c781cdc14a5db313057fa3c3de41c6f5b494b19">
+  <link data-rh="true" rel="search" type="application/opensearchdescription+xml" title="Medium" href="/osd.xml">
+  <link data-rh="true" rel="preconnect" href="https://glyph.medium.com" crossorigin="">
+  <link data-rh="true" id="glyph_preload_link" rel="preload" as="style" type="text/css" href="https://glyph.medium.com/css/unbound.css">
+  <link data-rh="true" id="glyph_link" rel="stylesheet" type="text/css" href="https://glyph.medium.com/css/unbound.css">
+  <link data-rh="true" rel="author" href="https://cscalfani.medium.com">
+  <link data-rh="true" rel="canonical" href="https://cscalfani.medium.com/goodbye-object-oriented-programming-a59cda4c0e53">
+  <link data-rh="true" rel="alternate" href="android-app://com.medium.reader/https/medium.com/p/a59cda4c0e53">
+  <link rel="apple-touch-icon" sizes="152x152" href="https://miro.medium.com/v2/resize:fill:152:152/10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156" data-rh="true">
+  <link rel="apple-touch-icon" sizes="120x120" href="https://miro.medium.com/v2/resize:fill:120:120/10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156" data-rh="true">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://miro.medium.com/v2/resize:fill:76:76/10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156" data-rh="true">
+  <link rel="apple-touch-icon" sizes="60x60" href="https://miro.medium.com/v2/resize:fill:60:60/10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156" data-rh="true">
+  <link rel="mask-icon" href="https://miro.medium.com/v2/resize:fill:500:500/7*GAOKVe--MXbEJmV9230oOQ.png" color="#171717" data-rh="true">
+ </head>
+ <body>
+  <div id="root">
+   <div class="a b c">
+    <div class="d e f g h i j k"></div>
+    <div></div>
+    <div class="l c">
+     <div class="l m n o c" style="transform: translateY(0px);">
+      <div class="p q r s t u v w x i d y z">
+       <a class="du ag dv bf ak b am an ao ap aq ar as at s u w i d q dw z" href="https://rsci.app.link/?%24canonical_url=https%3A%2F%2Fmedium.com%2Fp%2Fa59cda4c0e53&amp;%7Efeature=LoOpenInAppButton&amp;%7Echannel=ShowPostUnderUser&amp;source=---top_nav_layout_nav-----------------------------------------" rel="noopener follow">Open in app</a>
+       <div class="ab q">
+        <p class="bf b dx dy dz ea eb ec ed ee ef eg du"><span></span></p>
+        <div class="ax l">
+         <p class="bf b dx dy dz ea eb ec ed ee ef eg du"><span><a class="af ag ah ai aj ak al am an ao ap aq ar as at" data-testid="headerSignInButton" href="https://medium.com/m/signin?operation=login&amp;redirect=https%3A%2F%2Fcscalfani.medium.com%2Fgoodbye-object-oriented-programming-a59cda4c0e53&amp;source=post_page---top_nav_layout_nav-----------------------global_nav------------------" rel="noopener follow">Sign in</a></span></p>
+        </div>
+       </div>
+      </div>
+      <div class="p q r ab ac">
+       <div class="ab q ae">
+        <a class="af ag ah ai aj ak al am an ao ap aq ar as at ab" aria-label="Homepage" data-testid="headerMediumLogo" href="https://medium.com/?source=---top_nav_layout_nav-----------------------------------------" rel="noopener follow"></a>
+        <div class="ax h">
+         <div class="ab ay az ba bb q bc bd">
+          <div class="bm" aria-hidden="false" aria-describedby="searchResults" aria-labelledby="searchResults"></div>
+          <div class="bn bo ab"></div><input role="combobox" aria-controls="searchResults" aria-expanded="false" aria-label="search" data-testid="headerSearchInput" tabindex="0" class="ay be bf bg z bh bi bj bk bl" placeholder="Search" value="">
+         </div>
+        </div>
+       </div>
+       <div class="h k w fg fh">
+        <div class="fi ab">
+         <span><a class="af ag ah ai aj ak al am an ao ap aq ar as at" data-testid="headerWriteButton" href="https://medium.com/m/signin?operation=register&amp;redirect=https%3A%2F%2Fmedium.com%2Fnew-story&amp;source=---top_nav_layout_nav-----------------------new_post_topnav------------------" rel="noopener follow">
+           <div class="bf b bg z du fj fk ab q fl fm">
+            <div class="dt l">
+             Write
+            </div>
+           </div></a></span>
+        </div>
+       </div>
+       <div class="k j i d">
+        <div class="fi ab">
+         <a class="af ag ah ai aj ak al am an ao ap aq ar as at" data-testid="headerSearchButton" href="https://medium.com/search?source=---top_nav_layout_nav-----------------------------------------" rel="noopener follow">
+          <div class="bf b bg z du fj fk ab q fl fm"></div></a>
+        </div>
+       </div>
+       <div class="fi h k j">
+        <div class="ab q">
+         <p class="bf b dx dy dz ea eb ec ed ee ef eg du"><span></span></p>
+         <div class="ax l">
+          <p class="bf b dx dy dz ea eb ec ed ee ef eg du"><span><a class="af ag ah ai aj ak al am an ao ap aq ar as at" data-testid="headerSignInButton" href="https://medium.com/m/signin?operation=login&amp;redirect=https%3A%2F%2Fcscalfani.medium.com%2Fgoodbye-object-oriented-programming-a59cda4c0e53&amp;source=post_page---top_nav_layout_nav-----------------------global_nav------------------" rel="noopener follow">Sign in</a></span></p>
+         </div>
+        </div>
+       </div>
+       <div class="l" aria-hidden="false"></div>
+      </div>
+     </div>
+     <div class="l">
+      <div class="qz" role="dialog" aria-modal="true" tabindex="-1">
+       <div class="wt wu bh dw un wv uj ao ww gm wx" aria-hidden="true" role="presentation"></div>
+       <div class="wy un wz xa xb wt dw fd xc xd xe lc xf xg uo xh xi xj xk xl xm xn ab co xo" aria-hidden="true">
+        <div class="xp gh"></div>
+       </div>
+      </div>
+      <div class="fu fv fw fx fy l">
+       <div class="ab cb">
+        <div class="ci bh fz ga gb gc"></div>
+       </div>
+       <article>
+        <div class="l">
+         <div class="l">
+          <span class="l"></span>
+          <section>
+           <div>
+            <div class="fs gi xq gk gl gm"></div>
+            <div class="mh mi aib fj">
+             <div class="speechify-ignore l h g f e"></div>
+            </div>
+            <div class="gn go gp gq gr">
+             <div class="ab cb">
+              <div class="ci bh fz ga gb gc">
+               <div>
+                <h1 id="48a2" class="pw-post-title gs gt gu bf gv gw gx gy gz ha hb hc hd he hf hg hh hi hj hk hl hm hn ho hp hq hr hs ht hu bk" data-testid="storyTitle" data-selectable-paragraph="">Goodbye, Object Oriented Programming</h1>
+                <div>
+                 <div class="speechify-ignore ab cp">
+                  <div class="speechify-ignore bh l">
+                   <div class="hv hw hx hy hz ab">
+                    <div>
+                     <div class="ab ia">
+                      <div>
+                       <div class="bm" aria-hidden="false" aria-describedby="1" aria-labelledby="1">
+                        <a rel="noopener follow" href="/?source=post_page---byline--a59cda4c0e53---------------------------------------">
+                         <div class="l ib ic by id ie">
+                          <div class="l fj">
+                           <img alt="Charles Scalfani" class="l fd by dd de cx" src="https://miro.medium.com/v2/resize:fill:88:88/0*XOZ4wHBtPeFuMZFH." width="44" height="44" loading="lazy" data-testid="authorPhoto">
+                           <div class="if by l dd de fs n ig ft"></div>
+                          </div>
+                         </div></a>
+                       </div>
+                      </div>
+                     </div>
+                    </div>
+                    <div class="bn bh l">
+                     <div class="ab">
+                      <div style="flex:1">
+                       <span class="bf b bg z bk">
+                        <div class="ih ab q">
+                         <div class="ab q ii">
+                          <div class="ab q">
+                           <div>
+                            <div class="bm" aria-hidden="false" aria-describedby="2" aria-labelledby="2">
+                             <p class="bf b ij ik bk"><a class="af ag ah ai aj ak al am an ao ap aq ar il" data-testid="authorName" rel="noopener follow" href="/?source=post_page---byline--a59cda4c0e53---------------------------------------">Charles Scalfani</a></p>
+                            </div>
+                           </div>
+                          </div><span class="im in" aria-hidden="true"><span class="bf b bg z du">·</span></span>
+                          <p class="bf b ij ik du"><span><a class="io ip ah ai aj ak al am an ao ap aq ar ex iq ir" href="https://medium.com/m/signin?actionUrl=https%3A%2F%2Fmedium.com%2F_%2Fsubscribe%2Fuser%2F85310ec460ee&amp;operation=register&amp;redirect=https%3A%2F%2Fcscalfani.medium.com%2Fgoodbye-object-oriented-programming-a59cda4c0e53&amp;user=Charles+Scalfani&amp;userId=85310ec460ee&amp;source=post_page-85310ec460ee--byline--a59cda4c0e53---------------------post_header------------------" rel="noopener follow">Follow</a></span></p>
+                         </div>
+                        </div></span>
+                      </div>
+                     </div>
+                     <div class="l is">
+                      <span class="bf b bg z du">
+                       <div class="ab cn it iu iv">
+                        <span class="bf b bg z du">
+                         <div class="ab ae">
+                          <span data-testid="storyReadTime">10 min read</span>
+                          <div class="iw ix l" aria-hidden="true">
+                           <span class="l" aria-hidden="true"><span class="bf b bg z du">·</span></span>
+                          </div><span data-testid="storyPublishDate">Jul 23, 2016</span>
+                         </div></span>
+                       </div></span>
+                     </div>
+                    </div>
+                   </div>
+                   <div class="ab cp iy iz ja jb jc jd je jf jg jh ji jj jk jl jm jn">
+                    <div class="h k w fg fh q">
+                     <div class="kd l">
+                      <div class="ab q ke kf">
+                       <div class="pw-multi-vote-icon fj kg kh ki kj">
+                        <span><a class="af ag ah ai aj ak al am an ao ap aq ar as at" data-testid="headerClapButton" href="https://medium.com/m/signin?actionUrl=https%3A%2F%2Fmedium.com%2F_%2Fvote%2Fp%2Fa59cda4c0e53&amp;operation=register&amp;redirect=https%3A%2F%2Fcscalfani.medium.com%2Fgoodbye-object-oriented-programming-a59cda4c0e53&amp;user=Charles+Scalfani&amp;userId=85310ec460ee&amp;source=---header_actions--a59cda4c0e53---------------------clap_footer------------------" rel="noopener follow">
+                          <div>
+                           <div class="bm" aria-hidden="false" aria-describedby="3" aria-labelledby="3">
+                            <div class="kk ao kl km kn ko am kp kq kr kj"></div>
+                           </div>
+                          </div></a></span>
+                       </div>
+                       <div class="pw-multi-vote-count l ks kt ku kv kw kx ky">
+                        <div>
+                         <div class="bm" aria-hidden="false" aria-describedby="56" aria-labelledby="56">
+                          <p class="bf b dv z du"></p>
+                         </div>
+                        </div>
+                       </div>
+                      </div>
+                     </div>
+                     <div>
+                      <div class="bm" aria-hidden="false" aria-describedby="4" aria-labelledby="4"></div>
+                     </div>
+                    </div>
+                    <div class="ab q jo jp jq jr js jt ju jv jw jx jy jz ka kb kc">
+                     <div class="lg k j i d"></div>
+                     <div class="h k">
+                      <div>
+                       <div class="bm" aria-hidden="false" aria-describedby="5" aria-labelledby="5">
+                        <span><a class="af ag ah ai aj ak al am an ao ap aq ar as at" data-testid="headerBookmarkButton" href="https://medium.com/m/signin?actionUrl=https%3A%2F%2Fmedium.com%2F_%2Fbookmark%2Fp%2Fa59cda4c0e53&amp;operation=register&amp;redirect=https%3A%2F%2Fcscalfani.medium.com%2Fgoodbye-object-oriented-programming-a59cda4c0e53&amp;source=---header_actions--a59cda4c0e53---------------------bookmark_footer------------------" rel="noopener follow"></a></span>
+                       </div>
+                      </div>
+                     </div>
+                     <div class="fd li cn">
+                      <div class="l ae">
+                       <div class="ab cb">
+                        <div class="lj lk ll lm ln lo ci bh">
+                         <div class="ab">
+                          <span><a class="af ag ah ai aj ak al am an ao ap aq ar as at" href="https://medium.com/m/signin?actionUrl=https%3A%2F%2Fmedium.com%2Fplans%3Fdimension%3Dpost_audio_button%26postId%3Da59cda4c0e53&amp;operation=register&amp;redirect=https%3A%2F%2Fcscalfani.medium.com%2Fgoodbye-object-oriented-programming-a59cda4c0e53&amp;source=---header_actions--a59cda4c0e53---------------------post_audio_button------------------" rel="noopener follow">
+                            <div>
+                             <div class="bm" aria-hidden="false" aria-describedby="59" aria-labelledby="59"></div>
+                            </div></a></span>
+                         </div>
+                        </div>
+                       </div>
+                      </div>
+                     </div>
+                     <div class="bm" aria-hidden="false" aria-describedby="postFooterSocialMenu" aria-labelledby="postFooterSocialMenu">
+                      <div>
+                       <div class="bm" aria-hidden="false" aria-describedby="7" aria-labelledby="7"></div>
+                      </div>
+                     </div>
+                    </div>
+                   </div>
+                  </div>
+                 </div>
+                </div>
+               </div>
+               <figure class="mk ml mm mn mo mp mh mi paragraph-image">
+                <div class="mh mi mj">
+                 <picture>
+                  <source srcset="https://miro.medium.com/v2/resize:fit:640/format:webp/1*cBFSQ9Ytv_D0jwGtpuL5WA.png 640w, https://miro.medium.com/v2/resize:fit:720/format:webp/1*cBFSQ9Ytv_D0jwGtpuL5WA.png 720w, https://miro.medium.com/v2/resize:fit:750/format:webp/1*cBFSQ9Ytv_D0jwGtpuL5WA.png 750w, https://miro.medium.com/v2/resize:fit:786/format:webp/1*cBFSQ9Ytv_D0jwGtpuL5WA.png 786w, https://miro.medium.com/v2/resize:fit:828/format:webp/1*cBFSQ9Ytv_D0jwGtpuL5WA.png 828w, https://miro.medium.com/v2/resize:fit:1100/format:webp/1*cBFSQ9Ytv_D0jwGtpuL5WA.png 1100w, https://miro.medium.com/v2/resize:fit:1180/format:webp/1*cBFSQ9Ytv_D0jwGtpuL5WA.png 1180w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 590px" type="image/webp">
+                  <source data-testid="og" srcset="https://miro.medium.com/v2/resize:fit:640/1*cBFSQ9Ytv_D0jwGtpuL5WA.png 640w, https://miro.medium.com/v2/resize:fit:720/1*cBFSQ9Ytv_D0jwGtpuL5WA.png 720w, https://miro.medium.com/v2/resize:fit:750/1*cBFSQ9Ytv_D0jwGtpuL5WA.png 750w, https://miro.medium.com/v2/resize:fit:786/1*cBFSQ9Ytv_D0jwGtpuL5WA.png 786w, https://miro.medium.com/v2/resize:fit:828/1*cBFSQ9Ytv_D0jwGtpuL5WA.png 828w, https://miro.medium.com/v2/resize:fit:1100/1*cBFSQ9Ytv_D0jwGtpuL5WA.png 1100w, https://miro.medium.com/v2/resize:fit:1180/1*cBFSQ9Ytv_D0jwGtpuL5WA.png 1180w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 590px">
+                  <img alt="" class="bh lo mq c" width="590" height="462" loading="eager" role="presentation" src="https://miro.medium.com/v2/resize:fit:590/1*cBFSQ9Ytv_D0jwGtpuL5WA.png">
+                 </picture>
+                </div>
+               </figure>
+               <p id="dcad" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">I’ve been programming in Object Oriented languages for decades. The first OO language I used was C++ and then Smalltalk and finally .NET and Java.</p>
+               <p id="6aa5" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">I was gung-ho to leverage the benefits of <strong class="mt gv"><em class="np">Inheritance</em></strong>, <strong class="mt gv"><em class="np">Encapsulation</em></strong>, and <strong class="mt gv"><em class="np">Polymorphism</em></strong>. The Three Pillars of the Paradigm.</p>
+               <p id="8f85" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">I was eager to gain the promise of Reuse and leverage the wisdom gained by those who came before me in this new and exciting landscape.</p>
+               <p id="01c7" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">I couldn’t contain my excitement at the thought of mapping my real-world objects into their Classes and expected the whole world to fall neatly into place.</p>
+               <p id="2edd" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph=""><strong class="mt gv">I couldn’t have been more wrong.</strong></p>
+               <h1 id="11a3" class="nq nr gu bf ns nt nu nv nw nx ny nz oa ob oc od oe of og oh oi oj ok ol om on bk" data-selectable-paragraph="">Inheritance, the First Pillar to Fall</h1>
+               <figure class="op oq or os ot mp mh mi paragraph-image">
+                <div class="mh mi oo">
+                 <picture>
+                  <source srcset="https://miro.medium.com/v2/resize:fit:640/format:webp/1*T2x8IApyIXIs4nNexGryEw.png 640w, https://miro.medium.com/v2/resize:fit:720/format:webp/1*T2x8IApyIXIs4nNexGryEw.png 720w, https://miro.medium.com/v2/resize:fit:750/format:webp/1*T2x8IApyIXIs4nNexGryEw.png 750w, https://miro.medium.com/v2/resize:fit:786/format:webp/1*T2x8IApyIXIs4nNexGryEw.png 786w, https://miro.medium.com/v2/resize:fit:828/format:webp/1*T2x8IApyIXIs4nNexGryEw.png 828w, https://miro.medium.com/v2/resize:fit:1100/format:webp/1*T2x8IApyIXIs4nNexGryEw.png 1100w, https://miro.medium.com/v2/resize:fit:1296/format:webp/1*T2x8IApyIXIs4nNexGryEw.png 1296w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 648px" type="image/webp">
+                  <source data-testid="og" srcset="https://miro.medium.com/v2/resize:fit:640/1*T2x8IApyIXIs4nNexGryEw.png 640w, https://miro.medium.com/v2/resize:fit:720/1*T2x8IApyIXIs4nNexGryEw.png 720w, https://miro.medium.com/v2/resize:fit:750/1*T2x8IApyIXIs4nNexGryEw.png 750w, https://miro.medium.com/v2/resize:fit:786/1*T2x8IApyIXIs4nNexGryEw.png 786w, https://miro.medium.com/v2/resize:fit:828/1*T2x8IApyIXIs4nNexGryEw.png 828w, https://miro.medium.com/v2/resize:fit:1100/1*T2x8IApyIXIs4nNexGryEw.png 1100w, https://miro.medium.com/v2/resize:fit:1296/1*T2x8IApyIXIs4nNexGryEw.png 1296w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 648px">
+                  <img alt="" class="bh lo mq c" width="648" height="357" loading="lazy" role="presentation" src="https://miro.medium.com/v2/resize:fit:648/1*T2x8IApyIXIs4nNexGryEw.png">
+                 </picture>
+                </div>
+               </figure>
+               <p id="4a37" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">At first glance, Inheritance appears to be the biggest benefit of the Object Oriented Paradigm. All the simplistic examples of shape hierarchies that are paraded out as examples to the newly indoctrinated seem to make logical sense.</p>
+               <figure class="op oq or os ot mp mh mi paragraph-image">
+                <div class="mh mi ou">
+                 <picture>
+                  <source srcset="https://miro.medium.com/v2/resize:fit:640/format:webp/1*o-Mdcrd9B5hTrrQKhcP8yA.png 640w, https://miro.medium.com/v2/resize:fit:720/format:webp/1*o-Mdcrd9B5hTrrQKhcP8yA.png 720w, https://miro.medium.com/v2/resize:fit:750/format:webp/1*o-Mdcrd9B5hTrrQKhcP8yA.png 750w, https://miro.medium.com/v2/resize:fit:786/format:webp/1*o-Mdcrd9B5hTrrQKhcP8yA.png 786w, https://miro.medium.com/v2/resize:fit:828/format:webp/1*o-Mdcrd9B5hTrrQKhcP8yA.png 828w, https://miro.medium.com/v2/resize:fit:1100/format:webp/1*o-Mdcrd9B5hTrrQKhcP8yA.png 1100w, https://miro.medium.com/v2/resize:fit:1000/format:webp/1*o-Mdcrd9B5hTrrQKhcP8yA.png 1000w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 500px" type="image/webp">
+                  <source data-testid="og" srcset="https://miro.medium.com/v2/resize:fit:640/1*o-Mdcrd9B5hTrrQKhcP8yA.png 640w, https://miro.medium.com/v2/resize:fit:720/1*o-Mdcrd9B5hTrrQKhcP8yA.png 720w, https://miro.medium.com/v2/resize:fit:750/1*o-Mdcrd9B5hTrrQKhcP8yA.png 750w, https://miro.medium.com/v2/resize:fit:786/1*o-Mdcrd9B5hTrrQKhcP8yA.png 786w, https://miro.medium.com/v2/resize:fit:828/1*o-Mdcrd9B5hTrrQKhcP8yA.png 828w, https://miro.medium.com/v2/resize:fit:1100/1*o-Mdcrd9B5hTrrQKhcP8yA.png 1100w, https://miro.medium.com/v2/resize:fit:1000/1*o-Mdcrd9B5hTrrQKhcP8yA.png 1000w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 500px">
+                  <img alt="" class="bh lo mq c" width="500" height="408" loading="lazy" role="presentation" src="https://miro.medium.com/v2/resize:fit:500/1*o-Mdcrd9B5hTrrQKhcP8yA.png">
+                 </picture>
+                </div>
+               </figure>
+               <p id="5461" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">And Reuse is the word of the day. No… make that the year and perhaps evermore.</p>
+               <p id="fe1d" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">I swallowed this whole and rushed out into the world with my newfound insight.</p>
+               <h2 id="4925" class="ov nr gu bf ns ow ox dy nw oy oz ea oa nc pa pb pc ng pd pe pf nk pg ph pi pj bk" data-selectable-paragraph="">Banana Monkey Jungle Problem</h2>
+               <p id="2b1c" class="pw-post-body-paragraph mr ms gu mt b mu pk mw mx my pl na nb nc pm ne nf ng pn ni nj nk po nm nn no gn bk" data-selectable-paragraph="">With religion in my heart and problems to solve, I started building Class Hierarchies and writing code. And all was right with the world.</p>
+               <p id="2c22" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">I’ll never forget that day when I was ready to cash in on the promise of Reuse by inheriting from an existing class. This was the moment I had been waiting for.</p>
+               <p id="bdda" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">A new project came along and I thought back to that Class that I was so fond of in my last project.</p>
+               <p id="a73c" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">No problem. Reuse to the rescue. All I gotta do is simply grab that Class from the other project and use it.</p>
+               <p id="eea1" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">Well… actually… not just that Class. We’re gonna need the parent Class. But… But that’s it.</p>
+               <p id="95d4" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">Ugh… Wait… Looks like we gonna also need the parent’s parent too... And then… We’re going to need ALL of the parents. Okay… Okay… I handle this. No problem.</p>
+               <p id="535e" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">And great. Now it won’t compile. Why?? Oh, I see… <strong class="mt gv"><em class="np">This</em></strong> object contains <strong class="mt gv"><em class="np">this other</em></strong> object. So I’m gonna need that too. No problem.</p>
+               <p id="b3f1" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">Wait… I don’t just need <strong class="mt gv"><em class="np">that</em></strong> object. I need the object’s parent and its parent’s parent and so on and so on with every contained object and ALL the parents of what those contain along with their parent’s, parent’s, parent’s…</p>
+               <p id="2be9" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">Ugh.</p>
+               <p id="9ecb" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">There’s a great quote by <strong class="mt gv"><em class="np">Joe Armstrong</em></strong>, the creator of Erlang:</p>
+               <blockquote class="pp pq pr">
+                <p id="ee6d" class="mr ms np mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph=""><mark class="acr acs ao">The problem with object-oriented languages is they’ve got all this implicit environment that they carry around with them. You wanted a banana but what you got was a gorilla holding the banana and the entire jungle.</mark></p>
+               </blockquote>
+               <h2 id="fd15" class="ov nr gu bf ns ow ox dy nw oy oz ea oa nc pa pb pc ng pd pe pf nk pg ph pi pj bk" data-selectable-paragraph="">Banana Monkey Jungle Solution</h2>
+               <p id="e35b" class="pw-post-body-paragraph mr ms gu mt b mu pk mw mx my pl na nb nc pm ne nf ng pn ni nj nk po nm nn no gn bk" data-selectable-paragraph="">I can tame this problem by not creating hierarchies that are too deep. But if Inheritance is the key to Reuse, then any limits I place on that mechanism will surely limit the benefits of Reuse. Right?</p>
+               <p id="9edd" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">Right.</p>
+               <p id="87ca" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">So what’s a poor Object Oriented Programmer, who’s had a healthy helping of the Kool-aid, to do?</p>
+               <p id="4459" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">Contain and Delegate. More on this later.</p>
+               <h2 id="721b" class="ov nr gu bf ns ow ox dy nw oy oz ea oa nc pa pb pc ng pd pe pf nk pg ph pi pj bk" data-selectable-paragraph="">The Diamond Problem</h2>
+               <p id="d38a" class="pw-post-body-paragraph mr ms gu mt b mu pk mw mx my pl na nb nc pm ne nf ng pn ni nj nk po nm nn no gn bk" data-selectable-paragraph="">Sooner or later, the following problem will rear its ugly and, depending on the language, unsolvable head.</p>
+               <figure class="op oq or os ot mp mh mi paragraph-image">
+                <div class="mh mi ps">
+                 <picture>
+                  <source srcset="https://miro.medium.com/v2/resize:fit:640/format:webp/1*88yGno_LfU7P26RAHLGHCw.png 640w, https://miro.medium.com/v2/resize:fit:720/format:webp/1*88yGno_LfU7P26RAHLGHCw.png 720w, https://miro.medium.com/v2/resize:fit:750/format:webp/1*88yGno_LfU7P26RAHLGHCw.png 750w, https://miro.medium.com/v2/resize:fit:786/format:webp/1*88yGno_LfU7P26RAHLGHCw.png 786w, https://miro.medium.com/v2/resize:fit:828/format:webp/1*88yGno_LfU7P26RAHLGHCw.png 828w, https://miro.medium.com/v2/resize:fit:1100/format:webp/1*88yGno_LfU7P26RAHLGHCw.png 1100w, https://miro.medium.com/v2/resize:fit:574/format:webp/1*88yGno_LfU7P26RAHLGHCw.png 574w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 287px" type="image/webp">
+                  <source data-testid="og" srcset="https://miro.medium.com/v2/resize:fit:640/1*88yGno_LfU7P26RAHLGHCw.png 640w, https://miro.medium.com/v2/resize:fit:720/1*88yGno_LfU7P26RAHLGHCw.png 720w, https://miro.medium.com/v2/resize:fit:750/1*88yGno_LfU7P26RAHLGHCw.png 750w, https://miro.medium.com/v2/resize:fit:786/1*88yGno_LfU7P26RAHLGHCw.png 786w, https://miro.medium.com/v2/resize:fit:828/1*88yGno_LfU7P26RAHLGHCw.png 828w, https://miro.medium.com/v2/resize:fit:1100/1*88yGno_LfU7P26RAHLGHCw.png 1100w, https://miro.medium.com/v2/resize:fit:574/1*88yGno_LfU7P26RAHLGHCw.png 574w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 287px">
+                  <img alt="" class="bh lo mq c" width="287" height="213" loading="lazy" role="presentation" src="https://miro.medium.com/v2/resize:fit:287/1*88yGno_LfU7P26RAHLGHCw.png">
+                 </picture>
+                </div>
+               </figure>
+               <p id="2fd9" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">Most OO languages do not support this, even though this <strong class="mt gv"><em class="np">seems</em></strong> to make logical sense. What’s so difficult about supporting this in OO languages?</p>
+               <p id="2a6f" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">Well, imagine the following pseudocode:</p>
+               <pre class="op oq or os ot pt pu pv pw ay px bk"><span id="9c7f" class="ov nr gu pu b ij py pz l qa qb" data-selectable-paragraph="">Class PoweredDevice {<br>}</span><span id="4801" class="ov nr gu pu b ij qc pz l qa qb" data-selectable-paragraph="">Class Scanner inherits from PoweredDevice {<br>  function start() {<br>  }<br>}</span><span id="6329" class="ov nr gu pu b ij qc pz l qa qb" data-selectable-paragraph="">Class Printer inherits from PoweredDevice {<br>  function start() {<br>  }<br>}</span><span id="20fd" class="ov nr gu pu b ij qc pz l qa qb" data-selectable-paragraph="">Class Copier inherits from Scanner, Printer {<br>}</span></pre>
+               <p id="259d" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">Notice that both the <em class="np">Scanner</em> class and the <em class="np">Printer</em> class implement a function called <em class="np">start</em>.</p>
+               <p id="3553" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">So which start function does the <em class="np">Copier</em> class inherit? The <em class="np">Scanner</em> one? The <em class="np">Printer</em> one? It can’t be both.</p>
+               <h2 id="406a" class="ov nr gu bf ns ow ox dy nw oy oz ea oa nc pa pb pc ng pd pe pf nk pg ph pi pj bk" data-selectable-paragraph="">The Diamond Solution</h2>
+               <p id="726a" class="pw-post-body-paragraph mr ms gu mt b mu pk mw mx my pl na nb nc pm ne nf ng pn ni nj nk po nm nn no gn bk" data-selectable-paragraph="">The solution is simple. Don’t do that.</p>
+               <p id="ce88" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">Yes that’s right. Most OO languages don’t let you do this.</p>
+               <p id="193a" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">But, but… what if I have to model this? I want my Reuse!</p>
+               <p id="0097" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">Then you must <strong class="mt gv">Contain and Delegate</strong>.</p>
+               <pre class="op oq or os ot pt pu pv pw ay px bk"><span id="e0d9" class="ov nr gu pu b ij py pz l qa qb" data-selectable-paragraph="">Class PoweredDevice {<br>}</span><span id="13aa" class="ov nr gu pu b ij qc pz l qa qb" data-selectable-paragraph="">Class Scanner inherits from PoweredDevice {<br>  function start() {<br>  }<br>}</span><span id="41ad" class="ov nr gu pu b ij qc pz l qa qb" data-selectable-paragraph="">Class Printer inherits from PoweredDevice {<br>  function start() {<br>  }<br>}</span><span id="4719" class="ov nr gu pu b ij qc pz l qa qb" data-selectable-paragraph="">Class Copier {<br>  Scanner scanner<br>  Printer printer<br>  function start() {<br>    printer.start()<br>  }<br>}</span></pre>
+               <p id="f084" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">Notice here that the <em class="np">Copier</em> class now contains an instance of a <em class="np">Printer</em> and of a <em class="np">Scanner</em>. It delegates the <em class="np">start</em> function to the <em class="np">Printer</em> class’s implementation. It could just as easily delegated to the <em class="np">Scanner</em>.</p>
+               <p id="8226" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">This problem is yet another crack in the Inheritance pillar.</p>
+               <h2 id="7e72" class="ov nr gu bf ns ow ox dy nw oy oz ea oa nc pa pb pc ng pd pe pf nk pg ph pi pj bk" data-selectable-paragraph="">The Fragile Base Class Problem</h2>
+               <p id="c26f" class="pw-post-body-paragraph mr ms gu mt b mu pk mw mx my pl na nb nc pm ne nf ng pn ni nj nk po nm nn no gn bk" data-selectable-paragraph="">So I’m making my hierarchies shallow and keeping them from being cyclical. No diamonds for me.</p>
+               <p id="36cd" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">And all was right with the world. That is until…</p>
+               <p id="06fe" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">One day, my code works and the next day it stops working. Here’s the kicker. <strong class="mt gv">I didn’t change my code</strong>.</p>
+               <p id="e914" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">Well, maybe it’s a bug… But wait… <strong class="mt gv">Something did change</strong>…</p>
+               <p id="a3a4" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph=""><strong class="mt gv">But it wasn’t in my code</strong>. Turns out the change was in the class that I inherited from.</p>
+               <p id="7aec" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">How could a change in the Base class break my code??</p>
+               <p id="3e81" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">This is how…</p>
+               <p id="5e32" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">Imagine the following Base class (It’s written in Java, but it should be easy to understand if you don’t know Java):</p>
+               <pre class="op oq or os ot pt pu pv pw ay px bk"><span id="bf29" class="ov nr gu pu b ij py pz l qa qb" data-selectable-paragraph="">import java.util.ArrayList;<br> <br>public class Array<br>{<br>  private ArrayList&lt;Object&gt; a = new ArrayList&lt;Object&gt;();<br> <br>  public void add(Object element)<br>  {<br>    a.add(element);<br>  }<br> <br>  public void addAll(Object elements[])<br>  {<br>    for (int i = 0; i &lt; elements.length; ++i)<br>      <strong class="pu gv">a.add(elements[i]); // this line is going to be changed</strong><br>  }<br>}</span></pre>
+               <p id="db42" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph=""><strong class="mt gv">IMPORTANT</strong>: Notice the commented line of code. This line is going to be changed later which will break things.</p>
+               <p id="146d" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">This class has 2 functions on its interface, <strong class="mt gv"><em class="np">add()</em></strong> and <strong class="mt gv"><em class="np">addAll()</em></strong>. The <strong class="mt gv"><em class="np">add()</em></strong> function will add a single element and <strong class="mt gv"><em class="np">addAll()</em></strong> will add multiple elements <strong class="mt gv">by calling the add function</strong>.</p>
+               <p id="b243" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">And here’s the Derived class:</p>
+               <pre class="op oq or os ot pt pu pv pw ay px bk"><span id="37b2" class="ov nr gu pu b ij py pz l qa qb" data-selectable-paragraph="">public class ArrayCount extends Array<br>{<br>  private int count = 0;<br> <br>  <a class="af qd" href="http://twitter.com/Override" rel="noopener ugc nofollow" target="_blank">@Override</a><br>  public void add(Object element)<br>  {<br>    super.add(element);<br>    ++count;<br>  }<br> <br>  <a class="af qd" href="http://twitter.com/Override" rel="noopener ugc nofollow" target="_blank">@Override</a><br>  public void addAll(Object elements[])<br>  {<br>    super.addAll(elements);<br>    count += elements.length;<br>  }<br>}</span></pre>
+               <p id="5473" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">The <strong class="mt gv"><em class="np">ArrayCount</em></strong> class is a specialization of the general <strong class="mt gv"><em class="np">Array</em></strong> class. The <strong class="mt gv">only</strong> behavioral difference is that the <strong class="mt gv"><em class="np">ArrayCount</em></strong> keeps a <strong class="mt gv"><em class="np">count</em></strong> of the number of elements.</p>
+               <p id="2019" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">Let’s look at both of these classes in detail.</p>
+               <p id="7113" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">The <strong class="mt gv"><em class="np">Array</em></strong> <strong class="mt gv"><em class="np">add()</em></strong> adds an element to a local <strong class="mt gv"><em class="np">ArrayList</em></strong>.<br>
+                The <strong class="mt gv"><em class="np">Array</em></strong> <strong class="mt gv"><em class="np">addAll()</em></strong> calls the local <strong class="mt gv">ArrayList</strong> add for each element.</p>
+               <p id="2ed5" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">The <strong class="mt gv"><em class="np">ArrayCount</em></strong><em class="np"> </em><strong class="mt gv"><em class="np">add()</em></strong> calls its parent’s <strong class="mt gv"><em class="np">add()</em></strong> and then increments the <strong class="mt gv"><em class="np">count</em></strong>.<br>
+                The <strong class="mt gv">ArrayCount</strong> <strong class="mt gv"><em class="np">addAll()</em></strong> calls its parent’s <strong class="mt gv"><em class="np">addAll()</em></strong> and then increments the <strong class="mt gv"><em class="np">count</em></strong> by the number of elements.</p>
+               <p id="9a6c" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">And all works fine.</p>
+               <p id="84fb" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">Now for the <strong class="mt gv">breaking change</strong>. The commented line of code in the Base class is changed to the following:</p>
+               <pre class="op oq or os ot pt pu pv pw ay px bk"><span id="5c4c" class="ov nr gu pu b ij py pz l qa qb" data-selectable-paragraph="">  public void addAll(Object elements[])<br>  {<br>    for (int i = 0; i &lt; elements.length; ++i)<br>      <strong class="pu gv">add(elements[i]); // this line was changed</strong><br>  }</span></pre>
+               <p id="5ee1" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">As far as the owner of the Base class is concerned, it still functions as advertised. <strong class="mt gv">And all of the automated tests still pass</strong>.</p>
+               <p id="d520" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">But the owner is oblivious to the Derived class. And the owner of Derived class is in for a rude awakening.</p>
+               <p id="c875" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">Now <strong class="mt gv"><em class="np">ArrayCount addAll()</em></strong> calls its parent’s <strong class="mt gv"><em class="np">addAll()</em></strong> which <strong class="mt gv">internally</strong> calls the <strong class="mt gv"><em class="np">add()</em></strong> which has been <strong class="mt gv">OVERRIDEN</strong> by the <strong class="mt gv">Derived</strong> class.</p>
+               <p id="d59e" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">This causes the <strong class="mt gv"><em class="np">count</em></strong> to be incremented each time the <strong class="mt gv">Derived</strong> class’s <strong class="mt gv"><em class="np">add()</em></strong> is called and then it’s <strong class="mt gv">incremented</strong> <strong class="mt gv">AGAIN</strong> by the number of elements that were added in the <strong class="mt gv">Derived</strong> class’s <strong class="mt gv"><em class="np">addAll()</em></strong>.</p>
+               <p id="1551" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph=""><strong class="mt gv">IT’S COUNTED TWICE.</strong></p>
+               <p id="5365" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">If this can happen, and it does, the author of the Derived class must KNOW how the Base class has been implemented. And they must be informed about every change in the Base class since it could break their Derived class in unpredictable ways.</p>
+               <p id="dc1c" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">Ugh! This huge crack is forever threatening the stability of precious Inheritance pillar.</p>
+               <h2 id="ed67" class="ov nr gu bf ns ow ox dy nw oy oz ea oa nc pa pb pc ng pd pe pf nk pg ph pi pj bk" data-selectable-paragraph="">The Fragile Base Class Solution</h2>
+               <p id="d4a0" class="pw-post-body-paragraph mr ms gu mt b mu pk mw mx my pl na nb nc pm ne nf ng pn ni nj nk po nm nn no gn bk" data-selectable-paragraph="">Once again Contain and Delegate to the rescue.</p>
+               <p id="395d" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">By using Contain and Delegate, we go from White Box programming to Black Box programming. With White Box programming, we have to look at the implementation of the base class.</p>
+               <p id="ee15" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">With Black Box programming, we can be completely ignorant of the implementation since we cannot inject code into the Base class by overriding one of its functions. We only have to concern ourselves with the Interface.</p>
+               <p id="78d2" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">This trend is disturbing…</p>
+               <p id="9a5a" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">Inheritance was supposed to be a huge win for Reuse.</p>
+               <p id="1fa7" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">Object Oriented languages don’t make Contain and Delegate easy to do. They were designed to make Inheritance easy.</p>
+               <p id="e547" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">If you’re like me, you’re starting to wonder about this Inheritance thing. But more important, this should shake your confidence in the power of Classification via Hierarchies.</p>
+               <h2 id="c4dd" class="ov nr gu bf ns ow ox dy nw oy oz ea oa nc pa pb pc ng pd pe pf nk pg ph pi pj bk" data-selectable-paragraph="">The Hierarchy Problem</h2>
+               <p id="f317" class="pw-post-body-paragraph mr ms gu mt b mu pk mw mx my pl na nb nc pm ne nf ng pn ni nj nk po nm nn no gn bk" data-selectable-paragraph="">Every time I start at a new company, I struggle with the problem when I’m creating a place to put my Company Documents, e.g. the Employee Handbook.</p>
+               <p id="31dd" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">Do I create a folder called Documents and then create a folder called Company in that?</p>
+               <p id="40e1" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">Or do I create a folder called Company and then create a folder called Documents in that?</p>
+               <p id="3c6e" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">Both work. But which is right? Which is best?</p>
+               <p id="100d" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">The idea of Categorical Hierarchies was that there were Base Classes (parents) that were more general and that Derived Classes (children) were more specialized versions of those classes. And even more specialized as we make our way down the inheritance chain. (See the Shape Hierarchy above)</p>
+               <p id="53c3" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">But if a parent and child could arbitrarily switch places, then clearly something is wrong with this model.</p>
+               <h2 id="e326" class="ov nr gu bf ns ow ox dy nw oy oz ea oa nc pa pb pc ng pd pe pf nk pg ph pi pj bk" data-selectable-paragraph="">The Hierarchy Solution</h2>
+               <p id="2806" class="pw-post-body-paragraph mr ms gu mt b mu pk mw mx my pl na nb nc pm ne nf ng pn ni nj nk po nm nn no gn bk" data-selectable-paragraph="">What’s wrong is…</p>
+               <p id="3fbc" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph=""><strong class="mt gv">Categorical Hierarchies don’t work</strong>.</p>
+               <p id="ad0e" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">So what are hierarchies good for?</p>
+               <p id="40dc" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph=""><strong class="mt gv">Containment</strong>.</p>
+               <p id="80c6" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">If you look at the real world, you’ll see Containment (or Exclusive Ownership) Hierarchies everywhere.</p>
+               <p id="b887" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">What you won’t find is Categorical Hierarchies. Let that sink in for a moment. The Object Oriented Paradigm was predicated upon the real world, one filled with Objects. But then it uses a broken model, viz. Categorical Hierarchies, where there is no real-world analogy.</p>
+               <p id="4c86" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">But the real world is filled with Containment Hierarchies. A great example of a Containment Hierarchy is your socks. They are in a sock drawer which is contained in one drawer in your dresser which is contained in your bedroom which is contained in your house, etc.</p>
+               <p id="ca30" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">Directories on your hard drive are another example of a Containment Hierarchy. They contains files.</p>
+               <p id="0cba" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">So how do we categorize then?</p>
+               <p id="bf33" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">Well, if you think of the Company Documents, it pretty much doesn’t matter where I put them. I can put them in a folder of Documents or a folder called Stuff.</p>
+               <p id="47c3" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">The way I categorize it is with tags. I tag the file with the following tags:</p>
+               <pre class="op oq or os ot pt pu pv pw ay px bk"><span id="0777" class="ov nr gu pu b ij py pz l qa qb" data-selectable-paragraph="">Document<br>Company<br>Handbook</span></pre>
+               <p id="9ab8" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">Tags have no order or hierarchy. (This solves the Diamond Problem too.)</p>
+               <p id="b53a" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">Tags are analogous to interfaces since you can have multiple types associated with the document.</p>
+               <p id="894c" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">But with so many cracks, it looks like the Inheritance pillar has fallen.</p>
+               <p id="6be5" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph=""><strong class="mt gv">Goodbye, Inheritance.</strong></p>
+               <h1 id="f107" class="nq nr gu bf ns nt nu nv nw nx ny nz oa ob oc od oe of og oh oi oj ok ol om on bk" data-selectable-paragraph="">Encapsulation, the Second Pillar to Fall</h1>
+               <figure class="op oq or os ot mp mh mi paragraph-image">
+                <div class="mh mi oo">
+                 <picture>
+                  <source srcset="https://miro.medium.com/v2/resize:fit:640/format:webp/1*ta9gcTzwC_RxZxvD7EhlAw.png 640w, https://miro.medium.com/v2/resize:fit:720/format:webp/1*ta9gcTzwC_RxZxvD7EhlAw.png 720w, https://miro.medium.com/v2/resize:fit:750/format:webp/1*ta9gcTzwC_RxZxvD7EhlAw.png 750w, https://miro.medium.com/v2/resize:fit:786/format:webp/1*ta9gcTzwC_RxZxvD7EhlAw.png 786w, https://miro.medium.com/v2/resize:fit:828/format:webp/1*ta9gcTzwC_RxZxvD7EhlAw.png 828w, https://miro.medium.com/v2/resize:fit:1100/format:webp/1*ta9gcTzwC_RxZxvD7EhlAw.png 1100w, https://miro.medium.com/v2/resize:fit:1296/format:webp/1*ta9gcTzwC_RxZxvD7EhlAw.png 1296w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 648px" type="image/webp">
+                  <source data-testid="og" srcset="https://miro.medium.com/v2/resize:fit:640/1*ta9gcTzwC_RxZxvD7EhlAw.png 640w, https://miro.medium.com/v2/resize:fit:720/1*ta9gcTzwC_RxZxvD7EhlAw.png 720w, https://miro.medium.com/v2/resize:fit:750/1*ta9gcTzwC_RxZxvD7EhlAw.png 750w, https://miro.medium.com/v2/resize:fit:786/1*ta9gcTzwC_RxZxvD7EhlAw.png 786w, https://miro.medium.com/v2/resize:fit:828/1*ta9gcTzwC_RxZxvD7EhlAw.png 828w, https://miro.medium.com/v2/resize:fit:1100/1*ta9gcTzwC_RxZxvD7EhlAw.png 1100w, https://miro.medium.com/v2/resize:fit:1296/1*ta9gcTzwC_RxZxvD7EhlAw.png 1296w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 648px">
+                  <img alt="" class="bh lo mq c" width="648" height="357" loading="lazy" role="presentation" src="https://miro.medium.com/v2/resize:fit:648/1*ta9gcTzwC_RxZxvD7EhlAw.png">
+                 </picture>
+                </div>
+               </figure>
+               <p id="5453" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">At first glance, Encapsulation appears to be second biggest benefit of Object Oriented Programming.</p>
+               <p id="5630" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">Object state variables are protected from outside access, i.e. they’re Encapsulated in the Object.</p>
+               <p id="05a5" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">No longer will we have to worry about global variables that are being accessed by who-knows-who.</p>
+               <p id="117d" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">Encapsulation is a Safe for your variables.</p>
+               <p id="cbe6" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">This Encapsulation thing is INCREDIBLE!!</p>
+               <p id="ffad" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">Long live Encapsulation…</p>
+               <p id="7c16" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">That is until…</p>
+               <h2 id="fc04" class="ov nr gu bf ns ow ox dy nw oy oz ea oa nc pa pb pc ng pd pe pf nk pg ph pi pj bk" data-selectable-paragraph="">The Reference Problem</h2>
+               <p id="d5ad" class="pw-post-body-paragraph mr ms gu mt b mu pk mw mx my pl na nb nc pm ne nf ng pn ni nj nk po nm nn no gn bk" data-selectable-paragraph="">For efficiency sake, Objects are passed to functions NOT by their value but by reference.</p>
+               <p id="adcd" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">What that means is that functions will not pass the Object, but instead pass a <strong class="mt gv"><em class="np">reference</em></strong> or pointer to the Object.</p>
+               <p id="15ce" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">If an Object is passed by reference to an Object Constructor, the constructor can put that Object reference in a private variable which is protected by Encapsulation.</p>
+               <p id="b0f0" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">But the passed <strong class="mt gv">Object is NOT safe!</strong></p>
+               <p id="34a8" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">Why not? Because some other piece of code has a pointer to the Object, viz. the code that called the Constructor. It MUST have a reference to the Object otherwise it couldn’t pass it to the Constructor?</p>
+               <h2 id="472b" class="ov nr gu bf ns ow ox dy nw oy oz ea oa nc pa pb pc ng pd pe pf nk pg ph pi pj bk" data-selectable-paragraph="">The Reference Solution</h2>
+               <p id="5199" class="pw-post-body-paragraph mr ms gu mt b mu pk mw mx my pl na nb nc pm ne nf ng pn ni nj nk po nm nn no gn bk" data-selectable-paragraph="">The Constructor will have to Clone the passed in Object. And not a shallow clone but a deep clone, i.e. every object that is contained in the passed in Object and every object in those objects and so on and so on.</p>
+               <p id="670b" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">So much for efficiency.</p>
+               <p id="516f" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">And here’s the kicker. Not all objects can be Cloned. Some have Operating System resources associated with them making cloning useless at best or at worst impossible.</p>
+               <p id="db7c" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">And <strong class="mt gv">EVERY</strong> single mainstream <strong class="mt gv">OO language</strong> has this problem.</p>
+               <p id="1766" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph=""><strong class="mt gv">Goodbye, Encapsulation.</strong></p>
+               <h1 id="a790" class="nq nr gu bf ns nt nu nv nw nx ny nz oa ob oc od oe of og oh oi oj ok ol om on bk" data-selectable-paragraph="">Polymorphism, the Third Pillar to Fall</h1>
+               <figure class="op oq or os ot mp mh mi paragraph-image">
+                <div role="button" tabindex="0" class="qf qg fj qh bh qi">
+                 <div class="mh mi qe">
+                  <picture>
+                   <source srcset="https://miro.medium.com/v2/resize:fit:640/format:webp/1*PgDq0T-0PpSd-huvTaZxkw.png 640w, https://miro.medium.com/v2/resize:fit:720/format:webp/1*PgDq0T-0PpSd-huvTaZxkw.png 720w, https://miro.medium.com/v2/resize:fit:750/format:webp/1*PgDq0T-0PpSd-huvTaZxkw.png 750w, https://miro.medium.com/v2/resize:fit:786/format:webp/1*PgDq0T-0PpSd-huvTaZxkw.png 786w, https://miro.medium.com/v2/resize:fit:828/format:webp/1*PgDq0T-0PpSd-huvTaZxkw.png 828w, https://miro.medium.com/v2/resize:fit:1100/format:webp/1*PgDq0T-0PpSd-huvTaZxkw.png 1100w, https://miro.medium.com/v2/resize:fit:1400/format:webp/1*PgDq0T-0PpSd-huvTaZxkw.png 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px" type="image/webp">
+                   <source data-testid="og" srcset="https://miro.medium.com/v2/resize:fit:640/1*PgDq0T-0PpSd-huvTaZxkw.png 640w, https://miro.medium.com/v2/resize:fit:720/1*PgDq0T-0PpSd-huvTaZxkw.png 720w, https://miro.medium.com/v2/resize:fit:750/1*PgDq0T-0PpSd-huvTaZxkw.png 750w, https://miro.medium.com/v2/resize:fit:786/1*PgDq0T-0PpSd-huvTaZxkw.png 786w, https://miro.medium.com/v2/resize:fit:828/1*PgDq0T-0PpSd-huvTaZxkw.png 828w, https://miro.medium.com/v2/resize:fit:1100/1*PgDq0T-0PpSd-huvTaZxkw.png 1100w, https://miro.medium.com/v2/resize:fit:1400/1*PgDq0T-0PpSd-huvTaZxkw.png 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px">
+                   <img alt="" class="bh lo mq c" width="700" height="467" loading="lazy" role="presentation" src="https://miro.medium.com/v2/resize:fit:700/1*PgDq0T-0PpSd-huvTaZxkw.png">
+                  </picture>
+                 </div>
+                </div>
+               </figure>
+               <p id="31e6" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">Polymorphism was the redheaded stepchild of the Object Oriented Trinity.</p>
+               <p id="79d9" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">It’s sort of the Larry Fine of the group.</p>
+               <p id="6922" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">Everywhere they went he was there, but he was just a supporting character.</p>
+               <p id="d363" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">It’s not that Polymorphism isn’t great, it’s just that you don’t need an Object Oriented language to get this.</p>
+               <p id="405b" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">Interfaces will give you this. And without all of the baggage of OO.</p>
+               <p id="14e3" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">And with Interfaces, there isn’t a limit to how many different behaviors you can mix in.</p>
+               <p id="8ef2" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">So without much ado, we say goodbye to <strong class="mt gv">OO</strong> Polymorphism and hello to <strong class="mt gv">interface-based</strong> Polymorphism.</p>
+               <h1 id="4965" class="nq nr gu bf ns nt nu nv nw nx ny nz oa ob oc od oe of og oh oi oj ok ol om on bk" data-selectable-paragraph="">Broken Promises</h1>
+               <figure class="op oq or os ot mp mh mi paragraph-image">
+                <div class="mh mi oo">
+                 <picture>
+                  <source srcset="https://miro.medium.com/v2/resize:fit:640/format:webp/1*BKqtA-ynElomtJ7v6n5FHw.png 640w, https://miro.medium.com/v2/resize:fit:720/format:webp/1*BKqtA-ynElomtJ7v6n5FHw.png 720w, https://miro.medium.com/v2/resize:fit:750/format:webp/1*BKqtA-ynElomtJ7v6n5FHw.png 750w, https://miro.medium.com/v2/resize:fit:786/format:webp/1*BKqtA-ynElomtJ7v6n5FHw.png 786w, https://miro.medium.com/v2/resize:fit:828/format:webp/1*BKqtA-ynElomtJ7v6n5FHw.png 828w, https://miro.medium.com/v2/resize:fit:1100/format:webp/1*BKqtA-ynElomtJ7v6n5FHw.png 1100w, https://miro.medium.com/v2/resize:fit:1296/format:webp/1*BKqtA-ynElomtJ7v6n5FHw.png 1296w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 648px" type="image/webp">
+                  <source data-testid="og" srcset="https://miro.medium.com/v2/resize:fit:640/1*BKqtA-ynElomtJ7v6n5FHw.png 640w, https://miro.medium.com/v2/resize:fit:720/1*BKqtA-ynElomtJ7v6n5FHw.png 720w, https://miro.medium.com/v2/resize:fit:750/1*BKqtA-ynElomtJ7v6n5FHw.png 750w, https://miro.medium.com/v2/resize:fit:786/1*BKqtA-ynElomtJ7v6n5FHw.png 786w, https://miro.medium.com/v2/resize:fit:828/1*BKqtA-ynElomtJ7v6n5FHw.png 828w, https://miro.medium.com/v2/resize:fit:1100/1*BKqtA-ynElomtJ7v6n5FHw.png 1100w, https://miro.medium.com/v2/resize:fit:1296/1*BKqtA-ynElomtJ7v6n5FHw.png 1296w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 648px">
+                  <img alt="" class="bh lo mq c" width="648" height="357" loading="lazy" role="presentation" src="https://miro.medium.com/v2/resize:fit:648/1*BKqtA-ynElomtJ7v6n5FHw.png">
+                 </picture>
+                </div>
+               </figure>
+               <p id="56db" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">Well, OO sure promised a lot in the early days. And these promises are still being made to naive programmers sitting in classrooms, reading blogs and taking online courses.</p>
+               <p id="a01d" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">It’s taken me years to realize how OO lied to me. I too was wide-eyed and inexperienced and trusting.</p>
+               <p id="e9fc" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">And I got burned.</p>
+               <p id="2d7b" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph=""><strong class="mt gv">Good-bye, Object Oriented Programming.</strong></p>
+               <h1 id="89de" class="nq nr gu bf ns nt nu nv nw nx ny nz oa ob oc od oe of og oh oi oj ok ol om on bk" data-selectable-paragraph="">So then what?</h1>
+               <p id="72ba" class="pw-post-body-paragraph mr ms gu mt b mu pk mw mx my pl na nb nc pm ne nf ng pn ni nj nk po nm nn no gn bk" data-selectable-paragraph="">Hello, <strong class="mt gv">Functional Programming</strong>. It’s been so nice to work with you over the past few years.</p>
+               <p id="d716" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">Just so you know, I’m NOT taking any of your promises at face value. I’m going to have to see it to believe it.</p>
+               <p id="5142" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph=""><strong class="mt gv">Once burned, twice shy and all.</strong></p>
+               <p id="bef1" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">You understand.</p>
+               <p id="a477" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph=""><em class="np">If you liked this, click the💚 below so other people will see this here on Medium.</em></p>
+               <p id="5019" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">Update circa 2021: I have a book that will free you from the Object-oriented quagmire, <a class="af qd" href="https://leanpub.com/fp-made-easier" rel="noopener ugc nofollow" target="_blank"><strong class="mt gv"><em class="np">Functional Programming Made Easier: A Step-by-Step Guide</em></strong></a>.</p>
+               <p id="8285" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">If you want to join a community of web developers learning and helping each other to develop web apps using Functional Programming in Elm please check out my Facebook Group, <strong class="mt gv"><em class="np">Learn Elm Programming</em></strong> <a class="af qd" href="https://www.facebook.com/groups/learnelm/" rel="noopener ugc nofollow" target="_blank">https://www.facebook.com/groups/learnelm/</a></p>
+               <p id="61a9" class="pw-post-body-paragraph mr ms gu mt b mu mv mw mx my mz na nb nc nd ne nf ng nh ni nj nk nl nm nn no gn bk" data-selectable-paragraph="">My Twitter: <a class="af qd" href="https://twitter.com/cscalfani" rel="noopener ugc nofollow" target="_blank">@cscalfani</a></p>
+              </div>
+             </div>
+            </div>
+           </div>
+          </section>
+         </div>
+        </div>
+       </article>
+      </div>
+      <div class="ab cb">
+       <div class="ci bh fz ga gb gc">
+        <div class="qj qk ab iv">
+         <div class="ql ab">
+          <a class="qm ay am ao" href="https://medium.com/tag/programming?source=post_page-----a59cda4c0e53---------------------------------------" rel="noopener follow">
+           <div class="qn fj cx qo ge qp qq bf b bg z bk qr">
+            Programming
+           </div></a>
+         </div>
+         <div class="ql ab">
+          <a class="qm ay am ao" href="https://medium.com/tag/javascript?source=post_page-----a59cda4c0e53---------------------------------------" rel="noopener follow">
+           <div class="qn fj cx qo ge qp qq bf b bg z bk qr">
+            JavaScript
+           </div></a>
+         </div>
+         <div class="ql ab">
+          <a class="qm ay am ao" href="https://medium.com/tag/function?source=post_page-----a59cda4c0e53---------------------------------------" rel="noopener follow">
+           <div class="qn fj cx qo ge qp qq bf b bg z bk qr">
+            Function
+           </div></a>
+         </div>
+         <div class="ql ab">
+          <a class="qm ay am ao" href="https://medium.com/tag/tech?source=post_page-----a59cda4c0e53---------------------------------------" rel="noopener follow">
+           <div class="qn fj cx qo ge qp qq bf b bg z bk qr">
+            Tech
+           </div></a>
+         </div>
+         <div class="ql ab">
+          <a class="qm ay am ao" href="https://medium.com/tag/technology?source=post_page-----a59cda4c0e53---------------------------------------" rel="noopener follow">
+           <div class="qn fj cx qo ge qp qq bf b bg z bk qr">
+            Technology
+           </div></a>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="l"></div>
+      <footer class="qs qt qu qv qw ab q qx qy c">
+       <div class="l ae">
+        <div class="ab cb">
+         <div class="ci bh fz ga gb gc">
+          <div class="ab cp qz">
+           <div class="ab q ke">
+            <div class="ra l">
+             <span class="l rb rc rd e d">
+              <div class="ab q ke kf">
+               <div class="pw-multi-vote-icon fj kg kh ki kj">
+                <span><a class="af ag ah ai aj ak al am an ao ap aq ar as at" data-testid="footerClapButton" href="https://medium.com/m/signin?actionUrl=https%3A%2F%2Fmedium.com%2F_%2Fvote%2Fp%2Fa59cda4c0e53&amp;operation=register&amp;redirect=https%3A%2F%2Fcscalfani.medium.com%2Fgoodbye-object-oriented-programming-a59cda4c0e53&amp;user=Charles+Scalfani&amp;userId=85310ec460ee&amp;source=---footer_actions--a59cda4c0e53---------------------clap_footer------------------" rel="noopener follow">
+                  <div>
+                   <div class="bm" aria-hidden="false" aria-describedby="8" aria-labelledby="8">
+                    <div class="kk ao kl km kn ko am kp kq kr kj"></div>
+                   </div>
+                  </div></a></span>
+               </div>
+               <div class="pw-multi-vote-count l ks kt ku kv kw kx ky">
+                <div>
+                 <div class="bm" aria-hidden="false" aria-describedby="62" aria-labelledby="62">
+                  <p class="bf b dv z du"></p>
+                 </div>
+                </div>
+               </div>
+              </div></span><span class="l h g f re rf">
+              <div class="ab q ke kf">
+               <div class="pw-multi-vote-icon fj kg kh ki kj">
+                <span><a class="af ag ah ai aj ak al am an ao ap aq ar as at" data-testid="footerClapButton" href="https://medium.com/m/signin?actionUrl=https%3A%2F%2Fmedium.com%2F_%2Fvote%2Fp%2Fa59cda4c0e53&amp;operation=register&amp;redirect=https%3A%2F%2Fcscalfani.medium.com%2Fgoodbye-object-oriented-programming-a59cda4c0e53&amp;user=Charles+Scalfani&amp;userId=85310ec460ee&amp;source=---footer_actions--a59cda4c0e53---------------------clap_footer------------------" rel="noopener follow">
+                  <div>
+                   <div class="bm" aria-hidden="false" aria-describedby="9" aria-labelledby="9">
+                    <div class="kk ao kl km kn ko am kp kq kr kj"></div>
+                   </div>
+                  </div></a></span>
+               </div>
+               <div class="pw-multi-vote-count l ks kt ku kv kw kx ky">
+                <div>
+                 <div class="bm" aria-hidden="false" aria-describedby="64" aria-labelledby="64">
+                  <p class="bf b dv z du"></p>
+                 </div>
+                </div>
+               </div>
+              </div></span>
+            </div>
+            <div class="bq ab">
+             <div>
+              <div class="bm" aria-hidden="false" aria-describedby="10" aria-labelledby="10"></div>
+             </div>
+            </div>
+           </div>
+           <div class="ab q">
+            <div class="rg l is">
+             <div>
+              <div class="bm" aria-hidden="false" aria-describedby="11" aria-labelledby="11">
+               <span><a class="af ag ah ai aj ak al am an ao ap aq ar as at" data-testid="footerBookmarkButton" href="https://medium.com/m/signin?actionUrl=https%3A%2F%2Fmedium.com%2F_%2Fbookmark%2Fp%2Fa59cda4c0e53&amp;operation=register&amp;redirect=https%3A%2F%2Fcscalfani.medium.com%2Fgoodbye-object-oriented-programming-a59cda4c0e53&amp;source=---footer_actions--a59cda4c0e53---------------------bookmark_footer------------------" rel="noopener follow"></a></span>
+              </div>
+             </div>
+            </div>
+            <div class="rg l is">
+             <div class="bm" aria-hidden="false" aria-describedby="postFooterSocialMenu" aria-labelledby="postFooterSocialMenu">
+              <div>
+               <div class="bm" aria-hidden="false" aria-describedby="12" aria-labelledby="12"></div>
+              </div>
+             </div>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </footer>
+      <div class="rh l">
+       <div class="ab cb">
+        <div class="ci bh fz ga gb gc">
+         <div class="ab ri rj rk iu it">
+          <div class="rl rm rn ro rp rq rr rs rt ru ab cp">
+           <div class="h k">
+            <a tabindex="0" rel="noopener follow" href="/?source=post_page---post_author_info--a59cda4c0e53---------------------------------------">
+             <div class="l fj">
+              <img alt="Charles Scalfani" class="l fd by ic ib cx" src="https://miro.medium.com/v2/resize:fill:96:96/0*XOZ4wHBtPeFuMZFH." width="48" height="48" loading="lazy">
+              <div class="fr by l ic ib fs n ay rv"></div>
+             </div></a>
+           </div>
+           <div class="j i d">
+            <a tabindex="0" rel="noopener follow" href="/?source=post_page---post_author_info--a59cda4c0e53---------------------------------------">
+             <div class="l fj">
+              <img alt="Charles Scalfani" class="l fd by rw rx cx" src="https://miro.medium.com/v2/resize:fill:128:128/0*XOZ4wHBtPeFuMZFH." width="64" height="64" loading="lazy">
+              <div class="fr by l rw rx fs n ay rv"></div>
+             </div></a>
+           </div>
+           <div class="j i d ry is">
+            <div class="ab">
+             <span></span>
+            </div>
+           </div>
+          </div>
+          <div class="ab co si">
+           <div class="sj sk sl sm sn l">
+            <a class="af ag ah aj ak al am an ao ap aq ar as at ab q" rel="noopener follow" href="/?source=post_page---post_author_info--a59cda4c0e53---------------------------------------"><h2 class="pw-author-name bf sp sq sr ss st su sv nc pb pc ng pe pf nk ph pi bk"><span class="gn so">Written by <!-- -->Charles Scalfani</span></h2></a>
+            <div class="ql ab ia">
+             <div class="l is">
+              <span class="pw-follower-count bf b bg z du"><a class="af ag ah ai aj ak al am an ao ap aq ar il" rel="noopener follow" href="/followers?source=post_page---post_author_info--a59cda4c0e53---------------------------------------">24K Followers</a></span>
+             </div>
+             <div class="bf b bg z du ab qa">
+              <span class="im l" aria-hidden="true"><span class="bf b bg z du">·</span></span><a class="af ag ah ai aj ak al am an ao ap aq ar il" rel="noopener follow" href="/following?source=post_page---post_author_info--a59cda4c0e53---------------------------------------">22 Following</a>
+             </div>
+            </div>
+            <div class="sw l">
+             <p class="bf b bg z bk"><span class="gn">Software Engineer and Architect, Teacher, Writer, Filmmaker, Photographer, Artist…</span></p>
+            </div>
+           </div>
+          </div>
+          <div class="h k">
+           <div class="ab">
+            <span></span>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="sx sy sz ta tb l">
+       <div class="tc bh r rh"></div>
+       <div class="ab cb">
+        <div class="ci bh fz ga gb gc">
+         <div class="ab q cp">
+          <h2 class="bf sp nt nv nw nx nz oa ob od oe of oh oi oj ol om bk">Responses (<!-- -->1125<!-- -->)</h2>
+          <div class="ab td">
+           <div>
+            <div class="bm" aria-hidden="false" aria-describedby="13" aria-labelledby="13">
+             <a class="te tf" href="https://policy.medium.com/medium-rules-30e5502c4eb4?source=post_page---post_responses--a59cda4c0e53---------------------------------------" rel="noopener follow" target="_blank"></a>
+            </div>
+           </div>
+          </div>
+         </div>
+         <div class="tg th ti tj tk tl tm l">
+          <div>
+           <div class="bf b bg z bk">
+            <div class="ik">
+             <div class="yc l">
+              <div class="xa xu bp ab co xv xw xx">
+               <div class="ab co fj">
+                <span><a class="af ag ah ai aj ak al am an ao ap aq ar as at" href="https://medium.com/m/signin?operation=register&amp;redirect=https%3A%2F%2Fcscalfani.medium.com%2Fgoodbye-object-oriented-programming-a59cda4c0e53&amp;source=---post_responses--a59cda4c0e53---------------------respond_sidebar------------------" rel="noopener follow">
+                  <div class="yd l">
+                   <p class="bf b bg z du">What are your thoughts?</p>
+                  </div></a></span>
+                <div class="cp abf du ab xs ww xt">
+                 <span class="bf b bg z du">
+                  <div class="ab">
+                   <div>
+                    <div class="bm" aria-hidden="false" aria-describedby="69" aria-labelledby="69">
+                     <span class="abh abi abj abk bp li cb abl abm"></span>
+                    </div>
+                   </div>
+                   <div>
+                    <div class="bm" aria-hidden="false" aria-describedby="70" aria-labelledby="70">
+                     <span class="abh abi abj abk bp li cb abl abm"></span>
+                    </div>
+                   </div>
+                  </div></span>
+                 <div class="xr ry ab xs ww xt">
+                  <div class="abe"></div>
+                 </div>
+                </div>
+                <div class="xz ya fs gm lc yb"></div>
+               </div>
+              </div>
+              <div class="abg ab xs ww xt">
+               <span role="checkbox" aria-checked="false" tabindex="0"><label class="ab q">
+                 <div class="qm yu yv ab wi is fj">
+                  <input class="ye yf yg fs ww yh yi yj yk yl ym yn" type="checkbox" disabled><span class="q px yo fb fc yp fd rz yq ab sa xp cb yr ys" data-checkbox="true"></span>
+                 </div>
+                 <div class="l">
+                  <p class="bf b dv z du">Also publish to my profile</p>
+                 </div></label></span>
+              </div>
+             </div>
+            </div>
+           </div>
+          </div>
+         </div>
+         <div class="th l">
+          <div class="bh dw">
+           <div class="abn abo l">
+            <div class="ab cp">
+             <div class="ab q">
+              <div>
+               <div class="bm" aria-hidden="false" aria-describedby="93" aria-labelledby="93">
+                <a class="af ag ah ai aj ak al am an ao ap aq ar as at" href="https://medium.com/@codezeilen?source=post_page---post_responses--a59cda4c0e53----0-----------------------------------" rel="noopener follow">
+                 <div class="l fj">
+                  <div class="l fj">
+                   <img alt="Patrick R" class="l fd by bz ca cx" src="https://miro.medium.com/v2/resize:fill:32:32/0*GwHB5Og57tWZxfmY.jpeg" width="32" height="32" loading="lazy">
+                   <div class="fr by l bz ca fs n ay ft"></div>
+                  </div>
+                 </div></a>
+               </div>
+              </div>
+              <div class="abp l">
+               <div class="ab q">
+                <div>
+                 <div class="bm" aria-hidden="false" aria-describedby="94" aria-labelledby="94">
+                  <a class="af ag ah ai aj ak al am an ao ap aq ar as at ab q abq abr" href="https://medium.com/@codezeilen?source=post_page---post_responses--a59cda4c0e53----0-----------------------------------" rel="noopener follow">
+                   <div class="ab ia abq">
+                    <p class="bf b bg z abs abt abu abv abw abx aby abz bk">Patrick R</p>
+                   </div></a>
+                 </div>
+                </div>
+               </div><a class="af ag ah ai aj ak al am an ao ap aq ar as at" href="https://medium.com/@codezeilen/can-you-please-elaborate-more-on-this-1c207440d9ee?source=post_page---post_responses--a59cda4c0e53----0-----------------------------------" rel="noopener follow"><p class="bf b dv z du"><span>Jul 24, 2016</span></p></a>
+              </div>
+             </div>
+             <div class="bm" aria-hidden="false"></div>
+            </div>
+            <div role="button" tabindex="0" class="aca acb acc acd ace acf ao c">
+             <p id="embedded-quote-793af4913ae7-b0f0" class="pw-post-body-paragraph acg ach gu mt b mu aci my acj ack acl acm acn aco acp no gn acq bk" data-selectable-paragraph=""><mark class="acr acs ao">But the passed Object is NOT safe!</mark></p>
+            </div>
+            <div class="act l gn">
+             <pre class="qa">
+              <div class="acu l">
+               <div class="bf b bg z bk">
+                <div class="ik">Can you please elaborate more on this? I do not see an issue with this yet. Encapsulation is not for safety or security but for distinguishing between the implementation details and the public interface of an object. As far as I can know, OO…
+                </div>
+               </div>
+              </div></pre>
+            </div>
+            <div class="abg ab q ke cp">
+             <div class="ab q acv">
+              <div class="ab q ke kf">
+               <div class="pw-multi-vote-icon fj kg kh ki kj">
+                <span><a class="af ag ah ai aj ak al am an ao ap aq ar as at" href="https://medium.com/m/signin?actionUrl=https%3A%2F%2Fmedium.com%2F_%2Fvote%2Fp%2F1c207440d9ee&amp;operation=register&amp;redirect=https%3A%2F%2Fmedium.com%2F%40codezeilen%2Fcan-you-please-elaborate-more-on-this-1c207440d9ee&amp;user=Patrick+R&amp;userId=2e571410a4ad&amp;source=---post_responses--1c207440d9ee----0-----------------respond_sidebar------------------" rel="noopener follow">
+                  <div class="kk ao kl km kn ko am kp kq kr kj"></div></a></span>
+               </div>
+               <div class="pw-multi-vote-count l ks kt ku kv kw kx ky">
+                <p class="bf b dv z du">2.2K</p>
+               </div>
+              </div>
+              <p class="bf b dv z bk"></p>
+             </div>
+            </div>
+           </div>
+          </div>
+         </div>
+         <div class="th l">
+          <div class="bh dw">
+           <div class="abn abo l">
+            <div class="ab cp">
+             <div class="ab q">
+              <div>
+               <div class="bm" aria-hidden="false" aria-describedby="95" aria-labelledby="95">
+                <a class="af ag ah ai aj ak al am an ao ap aq ar as at" href="https://richardeng.medium.com/?source=post_page---post_responses--a59cda4c0e53----1-----------------------------------" rel="noopener follow">
+                 <div class="l fj">
+                  <div class="l fj">
+                   <img alt="Richard Kenneth Eng" class="l fd by bz ca cx" src="https://miro.medium.com/v2/resize:fill:32:32/0*dSrA2u02KEYOfFqe.jpg" width="32" height="32" loading="lazy">
+                   <div class="fr by l bz ca fs n ay ft"></div>
+                  </div>
+                 </div></a>
+               </div>
+              </div>
+              <div class="abp l">
+               <div class="ab q">
+                <div>
+                 <div class="bm" aria-hidden="false" aria-describedby="96" aria-labelledby="96">
+                  <a class="af ag ah ai aj ak al am an ao ap aq ar as at ab q abq abr" href="https://richardeng.medium.com/?source=post_page---post_responses--a59cda4c0e53----1-----------------------------------" rel="noopener follow">
+                   <div class="ab ia abq">
+                    <p class="bf b bg z abs abt abu abv abw abx aby abz bk">Richard Kenneth Eng</p>
+                   </div></a>
+                 </div>
+                </div>
+               </div><a class="af ag ah ai aj ak al am an ao ap aq ar as at" href="https://richardeng.medium.com/i-think-you-vastly-overstate-the-issues-surrounding-oop-291c4e4dcea4?source=post_page---post_responses--a59cda4c0e53----1-----------------------------------" rel="noopener follow"><p class="bf b dv z du"><span>Jul 24, 2016</span></p></a>
+              </div>
+             </div>
+             <div class="bm" aria-hidden="false"></div>
+            </div>
+            <div class="act l gn">
+             <pre class="qa">
+              <div class="acu l">
+               <div class="bf b bg z bk">
+                <div class="ik">I think you vastly overstate the issues surrounding OOP. After all, it has been used assiduously for over three decades in the enterprise. OOP is easily the most popular paradigm in the IT industry. Nearly all of the major IT languages are…
+                </div>
+               </div>
+              </div></pre>
+            </div>
+            <div class="abg ab q ke cp">
+             <div class="ab q acv">
+              <div class="ab q ke kf">
+               <div class="pw-multi-vote-icon fj kg kh ki kj">
+                <span><a class="af ag ah ai aj ak al am an ao ap aq ar as at" href="https://medium.com/m/signin?actionUrl=https%3A%2F%2Fmedium.com%2F_%2Fvote%2Fp%2F291c4e4dcea4&amp;operation=register&amp;redirect=https%3A%2F%2Frichardeng.medium.com%2Fi-think-you-vastly-overstate-the-issues-surrounding-oop-291c4e4dcea4&amp;user=Richard+Kenneth+Eng&amp;userId=b151c1fa01cb&amp;source=---post_responses--291c4e4dcea4----1-----------------respond_sidebar------------------" rel="noopener follow">
+                  <div class="kk ao kl km kn ko am kp kq kr kj"></div></a></span>
+               </div>
+               <div class="pw-multi-vote-count l ks kt ku kv kw kx ky">
+                <p class="bf b dv z du">1.6K</p>
+               </div>
+              </div>
+              <p class="bf b dv z bk"></p>
+             </div>
+            </div>
+           </div>
+          </div>
+         </div>
+         <div class="th l">
+          <div class="bh dw">
+           <div class="abn abo l">
+            <div class="ab cp">
+             <div class="ab q">
+              <div>
+               <div class="bm" aria-hidden="false" aria-describedby="97" aria-labelledby="97">
+                <a class="af ag ah ai aj ak al am an ao ap aq ar as at" href="https://medium.com/@vulgrin?source=post_page---post_responses--a59cda4c0e53----2-----------------------------------" rel="noopener follow">
+                 <div class="l fj">
+                  <div class="l fj">
+                   <img alt="Dave" class="l fd by bz ca cx" src="https://miro.medium.com/v2/resize:fill:32:32/0*0YNB_OCVR0P7JF9w.png" width="32" height="32" loading="lazy">
+                   <div class="fr by l bz ca fs n ay ft"></div>
+                  </div>
+                 </div></a>
+               </div>
+              </div>
+              <div class="abp l">
+               <div class="ab q">
+                <div>
+                 <div class="bm" aria-hidden="false" aria-describedby="98" aria-labelledby="98">
+                  <a class="af ag ah ai aj ak al am an ao ap aq ar as at ab q abq abr" href="https://medium.com/@vulgrin?source=post_page---post_responses--a59cda4c0e53----2-----------------------------------" rel="noopener follow">
+                   <div class="ab ia abq">
+                    <p class="bf b bg z abs abt abu abv abw abx aby abz bk">Dave</p>
+                   </div></a>
+                 </div>
+                </div>
+               </div><a class="af ag ah ai aj ak al am an ao ap aq ar as at" href="https://medium.com/@vulgrin/it-would-be-a-good-followup-article-to-see-how-elm-or-other-fp-solves-these-problems-for-you-7d5b51103b7a?source=post_page---post_responses--a59cda4c0e53----2-----------------------------------" rel="noopener follow"><p class="bf b dv z du"><span>Jul 25, 2016</span></p></a>
+              </div>
+             </div>
+             <div class="bm" aria-hidden="false"></div>
+            </div>
+            <div class="act l gn">
+             <pre class="qa">
+              <div class="acu l">
+               <div class="bf b bg z bk">
+                <div class="ik">It would be a good followup article to see how Elm (or other FP) solves these problems for you.
+                </div>
+               </div>
+              </div>
+              <div class="acu l">
+               <div class="bf b bg z bk">
+                <div class="ik">One critique is that a lot of your examples are “coder” problems, not OOP problems. As in, its not a fundamental flaw in OOP, but a problem with how its…
+                </div>
+               </div>
+              </div></pre>
+            </div>
+            <div class="abg ab q ke cp">
+             <div class="ab q acv">
+              <div class="ab q ke kf">
+               <div class="pw-multi-vote-icon fj kg kh ki kj">
+                <span><a class="af ag ah ai aj ak al am an ao ap aq ar as at" href="https://medium.com/m/signin?actionUrl=https%3A%2F%2Fmedium.com%2F_%2Fvote%2Fp%2F7d5b51103b7a&amp;operation=register&amp;redirect=https%3A%2F%2Fmedium.com%2F%40vulgrin%2Fit-would-be-a-good-followup-article-to-see-how-elm-or-other-fp-solves-these-problems-for-you-7d5b51103b7a&amp;user=Dave&amp;userId=6706aaa5b157&amp;source=---post_responses--7d5b51103b7a----2-----------------respond_sidebar------------------" rel="noopener follow">
+                  <div class="kk ao kl km kn ko am kp kq kr kj"></div></a></span>
+               </div>
+               <div class="pw-multi-vote-count l ks kt ku kv kw kx ky">
+                <p class="bf b dv z du">1.6K</p>
+               </div>
+              </div>
+              <p class="bf b dv z bk"></p>
+             </div>
+            </div>
+           </div>
+          </div>
+         </div>
+         <div class="tn l"></div>
+        </div>
+       </div>
+      </div>
+      <div class="tz ua ub uc ud l bx">
+       <div class="ab cb">
+        <div class="ci bh fz ga gb gc">
+         <div class="acw acx dm dn do sw l">
+          <h2 class="bf sp nt nv nw nx nz oa ob od oe of oh oi oj ol om bk">More from Charles Scalfani</h2>
+         </div>
+         <div class="wi ab ke iv acy acz ada adb adc add ade adf adg adh adi adj adk adl adm">
+          <div class="adn ado adp sn adq adr ads sm adt adu adv adw zx adx ady adz zy aea aeb aec aed">
+           <div class="aee aef aeg aeh aei dw l">
+            <article class="dw">
+             <div class="dw qw l">
+              <div class="bh dw">
+               <div class="dw l">
+                <div class="fj dw aej aek ael aem aen aeo aep aeq aer aes aet aeu aev" role="link" data-href="https://cscalfani.medium.com/so-you-want-to-be-a-functional-programmer-part-1-1f15e387e536" tabindex="0">
+                 <div class="aew">
+                  <div aria-label="So You Want to be a Functional Programmer (Part 1)">
+                   <div class="aey aez afa afb afc">
+                    <img alt="So You Want to be a Functional Programmer (Part 1)" class="bh yp afd afe aff bx" src="https://miro.medium.com/v2/resize:fit:679/1*AM83LP9sGGjIul3c5hIsWg.png" loading="lazy">
+                   </div>
+                  </div>
+                 </div>
+                 <div class="aex ab cb co">
+                  <div class="ab co xp bh afg afh afi afj">
+                   <div class="afk afl afm afn afo ab q">
+                    <div class="qm l">
+                     <div>
+                      <div class="l" aria-hidden="false" aria-describedby="132" aria-labelledby="132">
+                       <a tabindex="-1" rel="noopener follow" href="/?source=post_page---author_recirc--a59cda4c0e53----0---------------------a8af0146_9fff_40eb_abe4_2c2ae795ee4d--------------">
+                        <div class="l fj">
+                         <img alt="Charles Scalfani" class="l fd by afp afq cx" src="https://miro.medium.com/v2/resize:fill:20:20/0*XOZ4wHBtPeFuMZFH." width="20" height="20" loading="lazy">
+                         <div class="fr by l afp afq fs n ay ft"></div>
+                        </div></a>
+                      </div>
+                     </div>
+                    </div>
+                    <div>
+                     <div class="l" aria-hidden="false" aria-describedby="133" aria-labelledby="133">
+                      <a class="af ag ah ai aj ak al am an ao ap aq ar il ab q" rel="noopener follow" href="/?source=post_page---author_recirc--a59cda4c0e53----0---------------------a8af0146_9fff_40eb_abe4_2c2ae795ee4d--------------"><p class="bf b dv z abs abt abu abv abw abx aby abz bk">Charles Scalfani</p></a>
+                     </div>
+                    </div>
+                   </div>
+                   <div class="afr l afs aft afu afv afw gn">
+                    <div class="afx afy afz aga agb agc agd age">
+                     <a class="af ag ah ai aj ak al am an ao ap aq ar as at" rel="noopener follow" href="/so-you-want-to-be-a-functional-programmer-part-1-1f15e387e536?source=post_page---author_recirc--a59cda4c0e53----0---------------------a8af0146_9fff_40eb_abe4_2c2ae795ee4d--------------">
+                      <div title="">
+                       <h2 class="bf gv nt nv agf agg nw nx nz agh agi oa nc pb agj agk pc ng pe agl agm pf nk ph agn ago pi abs abu abv abx abz bk">So You Want to be a Functional Programmer (Part 1)</h2>
+                      </div>
+                      <div class="agp l">
+                       <h3 class="bf b ij z abs agq abu abv agr abx abz du">Taking that first step to understanding Functional Programming concepts is the most important and sometimes the most difficult step. But it…</h3>
+                      </div></a>
+                    </div>
+                   </div><span class="bf b dv z du">
+                    <div class="ic ab cp ae">
+                     <div class="ab q agu">
+                      <span>Sep 3, 2016</span>
+                      <div class="">
+                       <div class="fj ags dh ab q">
+                        <div class="fs ww agt ab q agu">
+                         <div class="ax dh dj l cx"></div>
+                        </div><a class="fs lc agt ab q agu" tabindex="-1" rel="noopener follow" href="/so-you-want-to-be-a-functional-programmer-part-1-1f15e387e536?source=post_page---author_recirc--a59cda4c0e53----0---------------------a8af0146_9fff_40eb_abe4_2c2ae795ee4d--------------">
+                         <div>
+                          <div class="ab" aria-hidden="false" aria-describedby="277" aria-labelledby="277">
+                           <div class="ab q abq">
+                            <span>42K</span>
+                           </div>
+                          </div>
+                         </div>
+                         <div>
+                          <div class="ab" aria-hidden="false" aria-describedby="134" aria-labelledby="134">
+                           <div class="ab q abq">
+                            <span>147</span>
+                           </div>
+                          </div>
+                         </div></a>
+                       </div>
+                      </div>
+                     </div>
+                     <div class="ab q agv agw">
+                      <div class="">
+                       <div>
+                        <div class="bm" aria-hidden="false" aria-describedby="135" aria-labelledby="135">
+                         <span><a class="af ag ah ai aj ak al am an ao ap aq ar as at" href="https://medium.com/m/signin?actionUrl=https%3A%2F%2Fmedium.com%2F_%2Fbookmark%2Fp%2F1f15e387e536&amp;operation=register&amp;redirect=https%3A%2F%2Fcscalfani.medium.com%2Fso-you-want-to-be-a-functional-programmer-part-1-1f15e387e536&amp;source=---author_recirc--a59cda4c0e53----0-----------------bookmark_preview----a8af0146_9fff_40eb_abe4_2c2ae795ee4d--------------" rel="noopener follow"></a></span>
+                        </div>
+                       </div>
+                      </div>
+                     </div>
+                    </div></span>
+                   <div class="j i d">
+                    <div class="tc bh ue lb"></div>
+                   </div>
+                  </div>
+                 </div>
+                </div>
+               </div>
+              </div>
+             </div>
+            </article>
+           </div>
+          </div>
+          <div class="adn ado adp sn adq adr ads sm adt adu adv adw zx adx ady adz zy aea aeb aec aed">
+           <div class="aee aef aeg aeh aei dw l">
+            <article class="dw">
+             <div class="dw qw l">
+              <div class="bh dw">
+               <div class="dw l">
+                <div class="fj dw aej aek ael aem aen aeo aep aeq aer aes aet aeu aev" role="link" data-href="https://cscalfani.medium.com/so-you-want-to-be-a-functional-programmer-part-2-7005682cec4a" tabindex="0">
+                 <div class="aew">
+                  <div aria-label="So You Want to be a Functional Programmer (Part 2)">
+                   <div class="aey aez afa afb afc">
+                    <img alt="So You Want to be a Functional Programmer (Part 2)" class="bh yp afd afe aff bx" src="https://miro.medium.com/v2/resize:fit:679/1*AM83LP9sGGjIul3c5hIsWg.png" loading="lazy">
+                   </div>
+                  </div>
+                 </div>
+                 <div class="aex ab cb co">
+                  <div class="ab co xp bh afg afh afi afj">
+                   <div class="afk afl afm afn afo ab q">
+                    <div class="qm l">
+                     <div>
+                      <div class="l" aria-hidden="false" aria-describedby="136" aria-labelledby="136">
+                       <a tabindex="-1" rel="noopener follow" href="/?source=post_page---author_recirc--a59cda4c0e53----1---------------------a8af0146_9fff_40eb_abe4_2c2ae795ee4d--------------">
+                        <div class="l fj">
+                         <img alt="Charles Scalfani" class="l fd by afp afq cx" src="https://miro.medium.com/v2/resize:fill:20:20/0*XOZ4wHBtPeFuMZFH." width="20" height="20" loading="lazy">
+                         <div class="fr by l afp afq fs n ay ft"></div>
+                        </div></a>
+                      </div>
+                     </div>
+                    </div>
+                    <div>
+                     <div class="l" aria-hidden="false" aria-describedby="137" aria-labelledby="137">
+                      <a class="af ag ah ai aj ak al am an ao ap aq ar il ab q" rel="noopener follow" href="/?source=post_page---author_recirc--a59cda4c0e53----1---------------------a8af0146_9fff_40eb_abe4_2c2ae795ee4d--------------"><p class="bf b dv z abs abt abu abv abw abx aby abz bk">Charles Scalfani</p></a>
+                     </div>
+                    </div>
+                   </div>
+                   <div class="afr l afs aft afu afv afw gn">
+                    <div class="afx afy afz aga agb agc agd age">
+                     <a class="af ag ah ai aj ak al am an ao ap aq ar as at" rel="noopener follow" href="/so-you-want-to-be-a-functional-programmer-part-2-7005682cec4a?source=post_page---author_recirc--a59cda4c0e53----1---------------------a8af0146_9fff_40eb_abe4_2c2ae795ee4d--------------">
+                      <div title="">
+                       <h2 class="bf gv nt nv agf agg nw nx nz agh agi oa nc pb agj agk pc ng pe agl agm pf nk ph agn ago pi abs abu abv abx abz bk">So You Want to be a Functional Programmer (Part 2)</h2>
+                      </div>
+                      <div class="agp l">
+                       <h3 class="bf b ij z abs agq abu abv agr abx abz du">Taking that first step to understanding Functional Programming concepts is the most important and sometimes the most difficult step. But it…</h3>
+                      </div></a>
+                    </div>
+                   </div><span class="bf b dv z du">
+                    <div class="ic ab cp ae">
+                     <div class="ab q agu">
+                      <span>Sep 10, 2016</span>
+                      <div class="">
+                       <div class="fj ags dh ab q">
+                        <div class="fs ww agt ab q agu">
+                         <div class="ax dh dj l cx"></div>
+                        </div><a class="fs lc agt ab q agu" tabindex="-1" rel="noopener follow" href="/so-you-want-to-be-a-functional-programmer-part-2-7005682cec4a?source=post_page---author_recirc--a59cda4c0e53----1---------------------a8af0146_9fff_40eb_abe4_2c2ae795ee4d--------------">
+                         <div>
+                          <div class="ab" aria-hidden="false" aria-describedby="279" aria-labelledby="279">
+                           <div class="ab q abq">
+                            <span>14.8K</span>
+                           </div>
+                          </div>
+                         </div>
+                         <div>
+                          <div class="ab" aria-hidden="false" aria-describedby="138" aria-labelledby="138">
+                           <div class="ab q abq">
+                            <span>44</span>
+                           </div>
+                          </div>
+                         </div></a>
+                       </div>
+                      </div>
+                     </div>
+                     <div class="ab q agv agw">
+                      <div class="">
+                       <div>
+                        <div class="bm" aria-hidden="false" aria-describedby="139" aria-labelledby="139">
+                         <span><a class="af ag ah ai aj ak al am an ao ap aq ar as at" href="https://medium.com/m/signin?actionUrl=https%3A%2F%2Fmedium.com%2F_%2Fbookmark%2Fp%2F7005682cec4a&amp;operation=register&amp;redirect=https%3A%2F%2Fcscalfani.medium.com%2Fso-you-want-to-be-a-functional-programmer-part-2-7005682cec4a&amp;source=---author_recirc--a59cda4c0e53----1-----------------bookmark_preview----a8af0146_9fff_40eb_abe4_2c2ae795ee4d--------------" rel="noopener follow"></a></span>
+                        </div>
+                       </div>
+                      </div>
+                     </div>
+                    </div></span>
+                   <div class="j i d">
+                    <div class="tc bh ue lb"></div>
+                   </div>
+                  </div>
+                 </div>
+                </div>
+               </div>
+              </div>
+             </div>
+            </article>
+           </div>
+          </div>
+          <div class="adn ado adp sn adq adr ads sm adt adu adv adw zx adx ady adz zy aea aeb aec aed">
+           <div class="aee aef aeg aeh aei dw l">
+            <article class="dw">
+             <div class="dw qw l">
+              <div class="bh dw">
+               <div class="dw l">
+                <div class="fj dw aej aek ael aem aen aeo aep aeq aer aes aet aeu aev" role="link" data-href="https://cscalfani.medium.com/so-you-want-to-be-a-functional-programmer-part-4-18fbe3ea9e49" tabindex="0">
+                 <div class="aew">
+                  <div aria-label="So You Want to be a Functional Programmer (Part 4)">
+                   <div class="aey aez afa afb afc">
+                    <img alt="So You Want to be a Functional Programmer (Part 4)" class="bh yp afd afe aff bx" src="https://miro.medium.com/v2/resize:fit:679/1*AM83LP9sGGjIul3c5hIsWg.png" loading="lazy">
+                   </div>
+                  </div>
+                 </div>
+                 <div class="aex ab cb co">
+                  <div class="ab co xp bh afg afh afi afj">
+                   <div class="afk afl afm afn afo ab q">
+                    <div class="qm l">
+                     <div>
+                      <div class="l" aria-hidden="false" aria-describedby="140" aria-labelledby="140">
+                       <a tabindex="-1" rel="noopener follow" href="/?source=post_page---author_recirc--a59cda4c0e53----2---------------------a8af0146_9fff_40eb_abe4_2c2ae795ee4d--------------">
+                        <div class="l fj">
+                         <img alt="Charles Scalfani" class="l fd by afp afq cx" src="https://miro.medium.com/v2/resize:fill:20:20/0*XOZ4wHBtPeFuMZFH." width="20" height="20" loading="lazy">
+                         <div class="fr by l afp afq fs n ay ft"></div>
+                        </div></a>
+                      </div>
+                     </div>
+                    </div>
+                    <div>
+                     <div class="l" aria-hidden="false" aria-describedby="141" aria-labelledby="141">
+                      <a class="af ag ah ai aj ak al am an ao ap aq ar il ab q" rel="noopener follow" href="/?source=post_page---author_recirc--a59cda4c0e53----2---------------------a8af0146_9fff_40eb_abe4_2c2ae795ee4d--------------"><p class="bf b dv z abs abt abu abv abw abx aby abz bk">Charles Scalfani</p></a>
+                     </div>
+                    </div>
+                   </div>
+                   <div class="afr l afs aft afu afv afw gn">
+                    <div class="afx afy afz aga agb agc agd age">
+                     <a class="af ag ah ai aj ak al am an ao ap aq ar as at" rel="noopener follow" href="/so-you-want-to-be-a-functional-programmer-part-4-18fbe3ea9e49?source=post_page---author_recirc--a59cda4c0e53----2---------------------a8af0146_9fff_40eb_abe4_2c2ae795ee4d--------------">
+                      <div title="">
+                       <h2 class="bf gv nt nv agf agg nw nx nz agh agi oa nc pb agj agk pc ng pe agl agm pf nk ph agn ago pi abs abu abv abx abz bk">So You Want to be a Functional Programmer (Part 4)</h2>
+                      </div>
+                      <div class="agp l">
+                       <h3 class="bf b ij z abs agq abu abv agr abx abz du">Taking that first step to understanding Functional Programming concepts is the most important and sometimes the most difficult step. But it…</h3>
+                      </div></a>
+                    </div>
+                   </div><span class="bf b dv z du">
+                    <div class="ic ab cp ae">
+                     <div class="ab q agu">
+                      <span>Sep 24, 2016</span>
+                      <div class="">
+                       <div class="fj ags dh ab q">
+                        <div class="fs ww agt ab q agu">
+                         <div class="ax dh dj l cx"></div>
+                        </div><a class="fs lc agt ab q agu" tabindex="-1" rel="noopener follow" href="/so-you-want-to-be-a-functional-programmer-part-4-18fbe3ea9e49?source=post_page---author_recirc--a59cda4c0e53----2---------------------a8af0146_9fff_40eb_abe4_2c2ae795ee4d--------------">
+                         <div>
+                          <div class="ab" aria-hidden="false" aria-describedby="281" aria-labelledby="281">
+                           <div class="ab q abq">
+                            <span>7.5K</span>
+                           </div>
+                          </div>
+                         </div>
+                         <div>
+                          <div class="ab" aria-hidden="false" aria-describedby="142" aria-labelledby="142">
+                           <div class="ab q abq">
+                            <span>26</span>
+                           </div>
+                          </div>
+                         </div></a>
+                       </div>
+                      </div>
+                     </div>
+                     <div class="ab q agv agw">
+                      <div class="">
+                       <div>
+                        <div class="bm" aria-hidden="false" aria-describedby="143" aria-labelledby="143">
+                         <span><a class="af ag ah ai aj ak al am an ao ap aq ar as at" href="https://medium.com/m/signin?actionUrl=https%3A%2F%2Fmedium.com%2F_%2Fbookmark%2Fp%2F18fbe3ea9e49&amp;operation=register&amp;redirect=https%3A%2F%2Fcscalfani.medium.com%2Fso-you-want-to-be-a-functional-programmer-part-4-18fbe3ea9e49&amp;source=---author_recirc--a59cda4c0e53----2-----------------bookmark_preview----a8af0146_9fff_40eb_abe4_2c2ae795ee4d--------------" rel="noopener follow"></a></span>
+                        </div>
+                       </div>
+                      </div>
+                     </div>
+                    </div></span>
+                   <div class="j i d">
+                    <div class="tc bh ue lb"></div>
+                   </div>
+                  </div>
+                 </div>
+                </div>
+               </div>
+              </div>
+             </div>
+            </article>
+           </div>
+          </div>
+          <div class="adn ado adp sn adq adr ads sm adt adu adv adw zx adx ady adz zy aea aeb aec aed">
+           <div class="aee aef aeg aeh aei dw l">
+            <article class="dw">
+             <div class="dw qw l">
+              <div class="bh dw">
+               <div class="dw l">
+                <div class="fj dw aej aek ael aem aen aeo aep aeq aer aes aet aeu aev" role="link" data-href="https://cscalfani.medium.com/so-you-want-to-be-a-functional-programmer-part-3-1b0fd14eb1a7" tabindex="0">
+                 <div class="aew">
+                  <div aria-label="So You Want to be a Functional Programmer (Part 3)">
+                   <div class="aey aez afa afb afc">
+                    <img alt="So You Want to be a Functional Programmer (Part 3)" class="bh yp afd afe aff bx" src="https://miro.medium.com/v2/resize:fit:679/1*AM83LP9sGGjIul3c5hIsWg.png" loading="lazy">
+                   </div>
+                  </div>
+                 </div>
+                 <div class="aex ab cb co">
+                  <div class="ab co xp bh afg afh afi afj">
+                   <div class="afk afl afm afn afo ab q">
+                    <div class="qm l">
+                     <div>
+                      <div class="l" aria-hidden="false" aria-describedby="144" aria-labelledby="144">
+                       <a tabindex="-1" rel="noopener follow" href="/?source=post_page---author_recirc--a59cda4c0e53----3---------------------a8af0146_9fff_40eb_abe4_2c2ae795ee4d--------------">
+                        <div class="l fj">
+                         <img alt="Charles Scalfani" class="l fd by afp afq cx" src="https://miro.medium.com/v2/resize:fill:20:20/0*XOZ4wHBtPeFuMZFH." width="20" height="20" loading="lazy">
+                         <div class="fr by l afp afq fs n ay ft"></div>
+                        </div></a>
+                      </div>
+                     </div>
+                    </div>
+                    <div>
+                     <div class="l" aria-hidden="false" aria-describedby="145" aria-labelledby="145">
+                      <a class="af ag ah ai aj ak al am an ao ap aq ar il ab q" rel="noopener follow" href="/?source=post_page---author_recirc--a59cda4c0e53----3---------------------a8af0146_9fff_40eb_abe4_2c2ae795ee4d--------------"><p class="bf b dv z abs abt abu abv abw abx aby abz bk">Charles Scalfani</p></a>
+                     </div>
+                    </div>
+                   </div>
+                   <div class="afr l afs aft afu afv afw gn">
+                    <div class="afx afy afz aga agb agc agd age">
+                     <a class="af ag ah ai aj ak al am an ao ap aq ar as at" rel="noopener follow" href="/so-you-want-to-be-a-functional-programmer-part-3-1b0fd14eb1a7?source=post_page---author_recirc--a59cda4c0e53----3---------------------a8af0146_9fff_40eb_abe4_2c2ae795ee4d--------------">
+                      <div title="">
+                       <h2 class="bf gv nt nv agf agg nw nx nz agh agi oa nc pb agj agk pc ng pe agl agm pf nk ph agn ago pi abs abu abv abx abz bk">So You Want to be a Functional Programmer (Part 3)</h2>
+                      </div>
+                      <div class="agp l">
+                       <h3 class="bf b ij z abs agq abu abv agr abx abz du">Taking that first step to understanding Functional Programming concepts is the most important and sometimes the most difficult step. But it…</h3>
+                      </div></a>
+                    </div>
+                   </div><span class="bf b dv z du">
+                    <div class="ic ab cp ae">
+                     <div class="ab q agu">
+                      <span>Sep 17, 2016</span>
+                      <div class="">
+                       <div class="fj ags dh ab q">
+                        <div class="fs ww agt ab q agu">
+                         <div class="ax dh dj l cx"></div>
+                        </div><a class="fs lc agt ab q agu" tabindex="-1" rel="noopener follow" href="/so-you-want-to-be-a-functional-programmer-part-3-1b0fd14eb1a7?source=post_page---author_recirc--a59cda4c0e53----3---------------------a8af0146_9fff_40eb_abe4_2c2ae795ee4d--------------">
+                         <div>
+                          <div class="ab" aria-hidden="false" aria-describedby="283" aria-labelledby="283">
+                           <div class="ab q abq">
+                            <span>8.5K</span>
+                           </div>
+                          </div>
+                         </div>
+                         <div>
+                          <div class="ab" aria-hidden="false" aria-describedby="146" aria-labelledby="146">
+                           <div class="ab q abq">
+                            <span>34</span>
+                           </div>
+                          </div>
+                         </div></a>
+                       </div>
+                      </div>
+                     </div>
+                     <div class="ab q agv agw">
+                      <div class="">
+                       <div>
+                        <div class="bm" aria-hidden="false" aria-describedby="147" aria-labelledby="147">
+                         <span><a class="af ag ah ai aj ak al am an ao ap aq ar as at" href="https://medium.com/m/signin?actionUrl=https%3A%2F%2Fmedium.com%2F_%2Fbookmark%2Fp%2F1b0fd14eb1a7&amp;operation=register&amp;redirect=https%3A%2F%2Fcscalfani.medium.com%2Fso-you-want-to-be-a-functional-programmer-part-3-1b0fd14eb1a7&amp;source=---author_recirc--a59cda4c0e53----3-----------------bookmark_preview----a8af0146_9fff_40eb_abe4_2c2ae795ee4d--------------" rel="noopener follow"></a></span>
+                        </div>
+                       </div>
+                      </div>
+                     </div>
+                    </div></span>
+                  </div>
+                 </div>
+                </div>
+               </div>
+              </div>
+             </div>
+            </article>
+           </div>
+          </div>
+         </div>
+         <div class="tc bh ue dk dl agy agz aha"></div>
+         <div class="ab it iu rk rj ri">
+          <a class="bf b bg z bk qn to tp tq lh le se ev ew ex tr ts tt fa tu tv tw tx ty fb fc fd bm fe ff" rel="noopener follow" href="/?source=post_page---author_recirc--a59cda4c0e53---------------------------------------">
+           <div class="l ff">
+            See all from Charles Scalfani
+           </div></a>
+         </div>
+        </div>
+       </div>
+       <div class="tc bh ue ahb ahc ahd ahe ahf"></div>
+       <div class="ab cb">
+        <div class="ci bh fz ga gb gc">
+         <div class="ahg ahh l">
+          <h2 class="bf sp nt nv nw nx nz oa ob od oe of oh oi oj ol om bk">Recommended from Medium</h2>
+          <div class="op oq or os ot l">
+           <div class="wi ab ke iv acy acz ada adb adc add ade adf adg adh adi adj adk adl adm">
+            <div class="adn ado adp sn adq adr ads sm adt adu adv adw zx adx ady adz zy aea aeb aec aed">
+             <div class="aee aef aeg aeh aei dw l">
+              <article class="dw">
+               <div class="dw qw l">
+                <div class="bh dw">
+                 <div class="dw l">
+                  <div class="fj dw aej aek ael aem aen aeo aep aeq aer aes aet aeu aev" role="link" data-href="https://zonito.medium.com/system-design-blueprint-the-ultimate-guide-e27b914bf8f1" tabindex="0">
+                   <div class="aew">
+                    <div aria-label="System Design Blueprint: The Ultimate Guide">
+                     <div class="aey aez afa afb afc">
+                      <img alt="System Design Blueprint: The Ultimate Guide" class="bh yp afd afe aff bx" src="https://miro.medium.com/v2/resize:fit:679/1*c3K7xY4VI1KYFiMFXbRFMg.png" loading="lazy">
+                     </div>
+                    </div>
+                   </div>
+                   <div class="aex ab cb co">
+                    <div class="ab co xp bh afg afh afi afj">
+                     <div class="afk afl afm afn afo ab q">
+                      <div class="qm l">
+                       <div>
+                        <div class="l" aria-hidden="false" aria-describedby="148" aria-labelledby="148">
+                         <a href="https://medium.com/bytebytego-system-design-alliance?source=post_page---read_next_recirc--a59cda4c0e53----0---------------------f8ecbb15_d10a_4903_947b_98e3e4c4a4ae--------------" rel="noopener follow">
+                          <div class="fj ab">
+                           <img alt="ByteByteGo System Design Alliance" class="yp afq afp cx" src="https://miro.medium.com/v2/resize:fill:20:20/1*AsAIboLH6BD8cLdE9oMPhA.png" width="20" height="20" loading="lazy">
+                           <div class="yp l afp afq fs n fr ft"></div>
+                          </div></a>
+                        </div>
+                       </div>
+                      </div>
+                      <div class="so l">
+                       <p class="bf b dv z du">In</p>
+                      </div>
+                      <div class="l">
+                       <div>
+                        <div class="l" aria-hidden="false" aria-describedby="149" aria-labelledby="149">
+                         <a class="af ag ah ai aj ak al am an ao ap aq ar il ab q" href="https://medium.com/bytebytego-system-design-alliance?source=post_page---read_next_recirc--a59cda4c0e53----0---------------------f8ecbb15_d10a_4903_947b_98e3e4c4a4ae--------------" rel="noopener follow"><p class="bf b dv z abs abt abu abv abw abx aby abz bk">ByteByteGo System Design Alliance</p></a>
+                        </div>
+                       </div>
+                      </div>
+                      <div class="ahi l">
+                       <p class="bf b dv z du">by</p>
+                      </div>
+                      <div>
+                       <div class="l" aria-hidden="false" aria-describedby="150" aria-labelledby="150">
+                        <a class="af ag ah ai aj ak al am an ao ap aq ar il ab q" href="https://zonito.medium.com/?source=post_page---read_next_recirc--a59cda4c0e53----0---------------------f8ecbb15_d10a_4903_947b_98e3e4c4a4ae--------------" rel="noopener follow"><p class="bf b dv z abs abt abu abv abw abx aby abz bk">Love Sharma</p></a>
+                       </div>
+                      </div>
+                     </div>
+                     <div class="afr l afs aft afu afv afw gn">
+                      <div class="afx afy afz aga agb agc agd age">
+                       <a class="af ag ah ai aj ak al am an ao ap aq ar as at" href="https://zonito.medium.com/system-design-blueprint-the-ultimate-guide-e27b914bf8f1?source=post_page---read_next_recirc--a59cda4c0e53----0---------------------f8ecbb15_d10a_4903_947b_98e3e4c4a4ae--------------" rel="noopener follow">
+                        <div title="">
+                         <h2 class="bf gv nt nv agf agg nw nx nz agh agi oa nc pb agj agk pc ng pe agl agm pf nk ph agn ago pi abs abu abv abx abz bk">System Design Blueprint: The Ultimate Guide</h2>
+                        </div>
+                        <div class="agp l">
+                         <h3 class="bf b ij z abs agq abu abv agr abx abz du">Developing a robust, scalable, and efficient system can be daunting. However, understanding the key concepts and components can make the…</h3>
+                        </div></a>
+                      </div>
+                     </div><span class="bf b dv z du">
+                      <div class="ic ab cp ae">
+                       <div class="ab q agu">
+                        <div class="qw ab">
+                         <div class="bm" aria-hidden="false" aria-describedby="151" aria-labelledby="151"></div>
+                        </div><span>Sep 17, 2023</span>
+                        <div class="">
+                         <div class="fj ags dh ab q">
+                          <div class="fs ww agt ab q agu">
+                           <div class="ax dh dj l cx"></div>
+                          </div><a class="fs lc agt ab q agu" tabindex="-1" href="https://zonito.medium.com/system-design-blueprint-the-ultimate-guide-e27b914bf8f1?source=post_page---read_next_recirc--a59cda4c0e53----0---------------------f8ecbb15_d10a_4903_947b_98e3e4c4a4ae--------------" rel="noopener follow">
+                           <div>
+                            <div class="ab" aria-hidden="false" aria-describedby="285" aria-labelledby="285">
+                             <div class="ab q abq">
+                              <span>9.1K</span>
+                             </div>
+                            </div>
+                           </div>
+                           <div>
+                            <div class="ab" aria-hidden="false" aria-describedby="153" aria-labelledby="153">
+                             <div class="ab q abq">
+                              <span>57</span>
+                             </div>
+                            </div>
+                           </div></a>
+                         </div>
+                        </div>
+                       </div>
+                       <div class="ab q agv agw">
+                        <div class="">
+                         <div>
+                          <div class="bm" aria-hidden="false" aria-describedby="154" aria-labelledby="154">
+                           <span><a class="af ag ah ai aj ak al am an ao ap aq ar as at" href="https://medium.com/m/signin?actionUrl=https%3A%2F%2Fmedium.com%2F_%2Fbookmark%2Fp%2Fe27b914bf8f1&amp;operation=register&amp;redirect=https%3A%2F%2Fmedium.com%2Fbytebytego-system-design-alliance%2Fsystem-design-blueprint-the-ultimate-guide-e27b914bf8f1&amp;source=---read_next_recirc--a59cda4c0e53----0-----------------bookmark_preview----f8ecbb15_d10a_4903_947b_98e3e4c4a4ae--------------" rel="noopener follow"></a></span>
+                          </div>
+                         </div>
+                        </div>
+                       </div>
+                      </div></span>
+                     <div class="j i d">
+                      <div class="tc bh ue lb"></div>
+                     </div>
+                    </div>
+                   </div>
+                  </div>
+                 </div>
+                </div>
+               </div>
+              </article>
+             </div>
+            </div>
+            <div class="adn ado adp sn adq adr ads sm adt adu adv adw zx adx ady adz zy aea aeb aec aed">
+             <div class="aee aef aeg aeh aei dw l">
+              <article class="dw">
+               <div class="dw qw l">
+                <div class="bh dw">
+                 <div class="dw l">
+                  <div class="fj dw aej aek ael aem aen aeo aep aeq aer aes aet aeu aev" role="link" data-href="https://jacob.blog/the-5-paid-subscriptions-i-actually-use-in-2025-as-a-staff-software-engineer-98033c94566e" tabindex="0">
+                   <div class="aew">
+                    <div aria-label="The 5 paid subscriptions I actually use in 2025 as a Staff Software Engineer">
+                     <div class="aey aez afa afb afc">
+                      <img alt="The 5 paid subscriptions I actually use in 2025 as a Staff Software Engineer" class="bh yp afd afe aff bx" src="https://miro.medium.com/v2/resize:fit:679/1*3XS-8r8adjnRoNH4YjKXpw.png" loading="lazy">
+                     </div>
+                    </div>
+                   </div>
+                   <div class="aex ab cb co">
+                    <div class="ab co xp bh afg afh afi afj">
+                     <div class="afk afl afm afn afo ab q">
+                      <div class="qm l">
+                       <div>
+                        <div class="l" aria-hidden="false" aria-describedby="155" aria-labelledby="155">
+                         <a href="https://levelup.gitconnected.com/?source=post_page---read_next_recirc--a59cda4c0e53----1---------------------f8ecbb15_d10a_4903_947b_98e3e4c4a4ae--------------" rel="noopener follow">
+                          <div class="fj ab">
+                           <img alt="Level Up Coding" class="yp afq afp cx" src="https://miro.medium.com/v2/resize:fill:20:20/1*5D9oYBd58pyjMkV_5-zXXQ.jpeg" width="20" height="20" loading="lazy">
+                           <div class="yp l afp afq fs n fr ft"></div>
+                          </div></a>
+                        </div>
+                       </div>
+                      </div>
+                      <div class="so l">
+                       <p class="bf b dv z du">In</p>
+                      </div>
+                      <div class="l">
+                       <div>
+                        <div class="l" aria-hidden="false" aria-describedby="156" aria-labelledby="156">
+                         <a class="af ag ah ai aj ak al am an ao ap aq ar il ab q" href="https://levelup.gitconnected.com/?source=post_page---read_next_recirc--a59cda4c0e53----1---------------------f8ecbb15_d10a_4903_947b_98e3e4c4a4ae--------------" rel="noopener follow"><p class="bf b dv z abs abt abu abv abw abx aby abz bk">Level Up Coding</p></a>
+                        </div>
+                       </div>
+                      </div>
+                      <div class="ahi l">
+                       <p class="bf b dv z du">by</p>
+                      </div>
+                      <div>
+                       <div class="l" aria-hidden="false" aria-describedby="157" aria-labelledby="157">
+                        <a class="af ag ah ai aj ak al am an ao ap aq ar il ab q" href="https://jacob.blog/?source=post_page---read_next_recirc--a59cda4c0e53----1---------------------f8ecbb15_d10a_4903_947b_98e3e4c4a4ae--------------" rel="noopener follow"><p class="bf b dv z abs abt abu abv abw abx aby abz bk">Jacob Bennett</p></a>
+                       </div>
+                      </div>
+                     </div>
+                     <div class="afr l afs aft afu afv afw gn">
+                      <div class="afx afy afz aga agb agc agd age">
+                       <a class="af ag ah ai aj ak al am an ao ap aq ar as at" href="https://jacob.blog/the-5-paid-subscriptions-i-actually-use-in-2025-as-a-staff-software-engineer-98033c94566e?source=post_page---read_next_recirc--a59cda4c0e53----1---------------------f8ecbb15_d10a_4903_947b_98e3e4c4a4ae--------------" rel="noopener follow">
+                        <div title="The 5 paid subscriptions I actually use in 2025 as a Staff Software Engineer">
+                         <h2 class="bf gv nt nv agf agg nw nx nz agh agi oa nc pb agj agk pc ng pe agl agm pf nk ph agn ago pi abs abu abv abx abz bk">The 5 paid subscriptions I actually use in 2025 as a Staff Software Engineer</h2>
+                        </div>
+                        <div class="agp l">
+                         <h3 class="bf b ij z abs agq abu abv agr abx abz du">Tools I use that are cheaper than Netflix</h3>
+                        </div></a>
+                      </div>
+                     </div><span class="bf b dv z du">
+                      <div class="ic ab cp ae">
+                       <div class="ab q agu">
+                        <div class="qw ab">
+                         <div class="bm" aria-hidden="false" aria-describedby="158" aria-labelledby="158"></div>
+                        </div><span>Jan 7</span>
+                        <div class="">
+                         <div class="fj ags dh ab q">
+                          <div class="fs ww agt ab q agu">
+                           <div class="ax dh dj l cx"></div>
+                          </div><a class="fs lc agt ab q agu" tabindex="-1" href="https://jacob.blog/the-5-paid-subscriptions-i-actually-use-in-2025-as-a-staff-software-engineer-98033c94566e?source=post_page---read_next_recirc--a59cda4c0e53----1---------------------f8ecbb15_d10a_4903_947b_98e3e4c4a4ae--------------" rel="noopener follow">
+                           <div>
+                            <div class="ab" aria-hidden="false" aria-describedby="287" aria-labelledby="287">
+                             <div class="ab q abq">
+                              <span>9.7K</span>
+                             </div>
+                            </div>
+                           </div>
+                           <div>
+                            <div class="ab" aria-hidden="false" aria-describedby="160" aria-labelledby="160">
+                             <div class="ab q abq">
+                              <span>217</span>
+                             </div>
+                            </div>
+                           </div></a>
+                         </div>
+                        </div>
+                       </div>
+                       <div class="ab q agv agw">
+                        <div class="">
+                         <div>
+                          <div class="bm" aria-hidden="false" aria-describedby="161" aria-labelledby="161">
+                           <span><a class="af ag ah ai aj ak al am an ao ap aq ar as at" href="https://medium.com/m/signin?actionUrl=https%3A%2F%2Fmedium.com%2F_%2Fbookmark%2Fp%2F98033c94566e&amp;operation=register&amp;redirect=https%3A%2F%2Flevelup.gitconnected.com%2Fthe-5-paid-subscriptions-i-actually-use-in-2025-as-a-staff-software-engineer-98033c94566e&amp;source=---read_next_recirc--a59cda4c0e53----1-----------------bookmark_preview----f8ecbb15_d10a_4903_947b_98e3e4c4a4ae--------------" rel="noopener follow"></a></span>
+                          </div>
+                         </div>
+                        </div>
+                       </div>
+                      </div></span>
+                    </div>
+                   </div>
+                  </div>
+                 </div>
+                </div>
+               </div>
+              </article>
+             </div>
+            </div>
+           </div>
+          </div>
+          <div class="tc bh ue ahj"></div>
+          <h2 class="bf sp ij z gt bk">Lists</h2>
+          <div class="tn l">
+           <div class="cn ab ke iv acy acz ada adb adc add ade adf adg adh adi adj adk adl adm">
+            <div class="adn ado adp sn adq adr ads sm adt adu adv adw zx adx ady adz zy aea aeb aec aed">
+             <a class="af ag ah ai aj ak al am an ao ap aq ar as at ab cl cn" href="https://eddiebarth.medium.com/list/general-coding-knowledge-f2d429d4f0cd?source=post_page---read_next_recirc--a59cda4c0e53---------------------------------------" rel="noopener follow">
+              <div class="ahp ahq abs ab is fj">
+               <div class="fj yp ahl bx ahm">
+                <div class="yp ic abs l">
+                 <img alt="" class="" src="https://miro.medium.com/v2/resize:fill:48:48/1*zPtGTCNOwu1p3kzn_sZFVQ.png" width="48" height="48" loading="lazy" role="presentation">
+                </div>
+               </div>
+               <div class="fj yp ahl bx kf ahn">
+                <div class="yp ic abs l">
+                 <img alt="" class="" src="https://miro.medium.com/v2/da:true/resize:fill:48:48/0*kQIvhDkl0ixPpv4z" width="48" height="48" loading="lazy" role="presentation">
+                </div>
+               </div>
+               <div class="fj yp bx qy aho">
+                <div class="yp ic abs l">
+                 <img alt="" class="" src="https://miro.medium.com/v2/resize:fill:48:48/1*ERYx0IB1pN-5ZX98cKAoUw.png" width="48" height="48" loading="lazy" role="presentation">
+                </div>
+               </div>
+              </div>
+              <div class="ax l">
+               <h2 class="bf sp ij z abs agq abu abv agr abx abz gt bk">General Coding Knowledge</h2>
+               <div class="bf b dv z du ab ahk">
+                20 stories<span class="im l" aria-hidden="true"><span class="bf b bg z du">·</span></span>1929 saves
+               </div>
+              </div></a>
+            </div>
+            <div class="adn ado adp sn adq adr ads sm adt adu adv adw zx adx ady adz zy aea aeb aec aed">
+             <a class="af ag ah ai aj ak al am an ao ap aq ar as at ab cl cn" href="https://medium.com/@MediumStaff/list/stories-to-help-you-grow-as-a-software-developer-b1d913188c20?source=post_page---read_next_recirc--a59cda4c0e53---------------------------------------" rel="noopener follow">
+              <div class="ahp ahq abs ab is fj">
+               <div class="fj yp ahl bx ahm">
+                <div class="yp ic abs l">
+                 <img alt="" class="" src="https://miro.medium.com/v2/resize:fill:48:48/1*yr2O5U-a0-rfY34C6yOXMw.jpeg" width="48" height="48" loading="lazy" role="presentation">
+                </div>
+               </div>
+               <div class="fj yp ahl bx kf ahn">
+                <div class="yp ic abs l">
+                 <div class="ic ib l ahr">
+                  <div class="by dw bh l ahs"></div>
+                 </div>
+                </div>
+               </div>
+               <div class="fj yp bx qy aho">
+                <div class="yp ic abs l">
+                 <img alt="" class="" src="https://miro.medium.com/v2/resize:fill:48:48/1*_3WdkzQRqIq8tt3Wh-WhbA.jpeg" width="48" height="48" loading="lazy" role="presentation">
+                </div>
+               </div>
+              </div>
+              <div class="ax l">
+               <h2 class="bf sp ij z abs agq abu abv agr abx abz gt bk">Stories to Help You Grow as a Software Developer</h2>
+               <div class="bf b dv z du ab ahk">
+                19 stories<span class="im l" aria-hidden="true"><span class="bf b bg z du">·</span></span>1608 saves
+               </div>
+              </div></a>
+            </div>
+            <div class="adn ado adp sn adq adr ads sm adt adu adv adw zx adx ady adz zy aea aeb aec aed">
+             <a class="af ag ah ai aj ak al am an ao ap aq ar as at ab cl cn" href="https://medium.com/@jscribes/list/coding-development-e360d380bb82?source=post_page---read_next_recirc--a59cda4c0e53---------------------------------------" rel="noopener follow">
+              <div class="ahp ahq abs ab is fj">
+               <div class="fj yp ahl bx ahm">
+                <div class="yp ic abs l">
+                 <img alt="" class="" src="https://miro.medium.com/v2/da:true/resize:fill:48:48/0*gzCeWxDtGmD23QR5" width="48" height="48" loading="lazy" role="presentation">
+                </div>
+               </div>
+               <div class="fj yp ahl bx kf ahn">
+                <div class="yp ic abs l">
+                 <img alt="" class="" src="https://miro.medium.com/v2/resize:fill:48:48/1*di4WDrnS1F6_p9GWnxvPmg.png" width="48" height="48" loading="lazy" role="presentation">
+                </div>
+               </div>
+               <div class="fj yp bx qy aho">
+                <div class="yp ic abs l">
+                 <img alt="" class="" src="https://miro.medium.com/v2/resize:fill:48:48/1*PzJLbFrFtNkqPsxielO8zA.jpeg" width="48" height="48" loading="lazy" role="presentation">
+                </div>
+               </div>
+              </div>
+              <div class="ax l">
+               <h2 class="bf sp ij z abs agq abu abv agr abx abz gt bk">Coding &amp; Development</h2>
+               <div class="bf b dv z du ab ahk">
+                11 stories<span class="im l" aria-hidden="true"><span class="bf b bg z du">·</span></span>1017 saves
+               </div>
+              </div></a>
+            </div>
+            <div class="adn ado adp sn adq adr ads sm adt adu adv adw zx adx ady adz zy aea aeb aec aed">
+             <a class="af ag ah ai aj ak al am an ao ap aq ar as at ab cl cn" href="https://medium.com/@nicholas.michael.janulewicz/list/chatgpt-prompts-b4c47b8e12ee?source=post_page---read_next_recirc--a59cda4c0e53---------------------------------------" rel="noopener follow">
+              <div class="ahp ahq abs ab is fj">
+               <div class="fj yp ahl bx ahm">
+                <div class="yp ic abs l">
+                 <img alt="" class="" src="https://miro.medium.com/v2/resize:fill:48:48/1*rex1OZ5_KcxK2QrsZr3Cgw.jpeg" width="48" height="48" loading="lazy" role="presentation">
+                </div>
+               </div>
+               <div class="fj yp ahl bx kf ahn">
+                <div class="yp ic abs l">
+                 <img alt="" class="" src="https://miro.medium.com/v2/resize:fill:48:48/1*I2o9__q4g1dzbcH9XRqcRg.png" width="48" height="48" loading="lazy" role="presentation">
+                </div>
+               </div>
+               <div class="fj yp bx qy aho">
+                <div class="yp ic abs l">
+                 <img alt="" class="" src="https://miro.medium.com/v2/resize:fill:48:48/0*F6q2BN7oddumBDGY.png" width="48" height="48" loading="lazy" role="presentation">
+                </div>
+               </div>
+              </div>
+              <div class="ax l">
+               <h2 class="bf sp ij z abs agq abu abv agr abx abz gt bk">ChatGPT prompts</h2>
+               <div class="bf b dv z du ab ahk">
+                51 stories<span class="im l" aria-hidden="true"><span class="bf b bg z du">·</span></span>2600 saves
+               </div>
+              </div></a>
+            </div>
+           </div>
+          </div>
+          <div class="tc bh ue aht dk ahu dl ahv ahw ahx ahy ahz aia"></div>
+          <div class="wi ab ke iv acy acz ada adb adc add ade adf adg adh adi adj adk adl adm">
+           <div class="adn ado adp sn adq adr ads sm adt adu adv adw zx adx ady adz zy aea aeb aec aed">
+            <div class="aee aef aeg aeh aei dw l">
+             <article class="dw">
+              <div class="dw qw l">
+               <div class="bh dw">
+                <div class="dw l">
+                 <div class="fj dw aej aek ael aem aen aeo aep aeq aer aes aet aeu aev" role="link" data-href="https://medium.com/@nidhijain23/7-productivity-hacks-i-stole-from-a-principal-software-engineer-6a8825157198" tabindex="0">
+                  <div class="aew">
+                   <div aria-label="7 Productivity Hacks I Stole From a Principal Software Engineer">
+                    <div class="aey aez afa afb afc">
+                     <img alt="7 Productivity Hacks I Stole From a Principal Software Engineer" class="bh yp afd afe aff bx" src="https://miro.medium.com/v2/resize:fit:679/1*s3aLPx2uW1ZPb0LkBAO1hg.jpeg" loading="lazy">
+                    </div>
+                   </div>
+                  </div>
+                  <div class="aex ab cb co">
+                   <div class="ab co xp bh afg afh afi afj">
+                    <div class="afk afl afm afn afo ab q">
+                     <div class="qm l">
+                      <div>
+                       <div class="l" aria-hidden="false" aria-describedby="162" aria-labelledby="162">
+                        <a href="https://code.likeagirl.io/?source=post_page---read_next_recirc--a59cda4c0e53----0---------------------f8ecbb15_d10a_4903_947b_98e3e4c4a4ae--------------" rel="noopener follow">
+                         <div class="fj ab">
+                          <img alt="Code Like A Girl" class="yp afq afp cx" src="https://miro.medium.com/v2/resize:fill:20:20/1*rt1mE2Q0rmKsUcJX2ewFoA.png" width="20" height="20" loading="lazy">
+                          <div class="yp l afp afq fs n fr ft"></div>
+                         </div></a>
+                       </div>
+                      </div>
+                     </div>
+                     <div class="so l">
+                      <p class="bf b dv z du">In</p>
+                     </div>
+                     <div class="l">
+                      <div>
+                       <div class="l" aria-hidden="false" aria-describedby="163" aria-labelledby="163">
+                        <a class="af ag ah ai aj ak al am an ao ap aq ar il ab q" href="https://code.likeagirl.io/?source=post_page---read_next_recirc--a59cda4c0e53----0---------------------f8ecbb15_d10a_4903_947b_98e3e4c4a4ae--------------" rel="noopener follow"><p class="bf b dv z abs abt abu abv abw abx aby abz bk">Code Like A Girl</p></a>
+                       </div>
+                      </div>
+                     </div>
+                     <div class="ahi l">
+                      <p class="bf b dv z du">by</p>
+                     </div>
+                     <div>
+                      <div class="l" aria-hidden="false" aria-describedby="164" aria-labelledby="164">
+                       <a class="af ag ah ai aj ak al am an ao ap aq ar il ab q" href="https://medium.com/@nidhijain23?source=post_page---read_next_recirc--a59cda4c0e53----0---------------------f8ecbb15_d10a_4903_947b_98e3e4c4a4ae--------------" rel="noopener follow"><p class="bf b dv z abs abt abu abv abw abx aby abz bk">Nidhi Jain 👩‍💻</p></a>
+                      </div>
+                     </div>
+                    </div>
+                    <div class="afr l afs aft afu afv afw gn">
+                     <div class="afx afy afz aga agb agc agd age">
+                      <a class="af ag ah ai aj ak al am an ao ap aq ar as at" href="https://medium.com/@nidhijain23/7-productivity-hacks-i-stole-from-a-principal-software-engineer-6a8825157198?source=post_page---read_next_recirc--a59cda4c0e53----0---------------------f8ecbb15_d10a_4903_947b_98e3e4c4a4ae--------------" rel="noopener follow">
+                       <div title="">
+                        <h2 class="bf gv nt nv agf agg nw nx nz agh agi oa nc pb agj agk pc ng pe agl agm pf nk ph agn ago pi abs abu abv abx abz bk">7 Productivity Hacks I Stole From a Principal Software Engineer</h2>
+                       </div>
+                       <div class="agp l">
+                        <h3 class="bf b ij z abs agq abu abv agr abx abz du">Golden tips and tricks that can make you unstoppable</h3>
+                       </div></a>
+                     </div>
+                    </div><span class="bf b dv z du">
+                     <div class="ic ab cp ae">
+                      <div class="ab q agu">
+                       <div class="qw ab">
+                        <div class="bm" aria-hidden="false" aria-describedby="165" aria-labelledby="165"></div>
+                       </div><span>Oct 15, 2024</span>
+                       <div class="">
+                        <div class="fj ags dh ab q">
+                         <div class="fs ww agt ab q agu">
+                          <div class="ax dh dj l cx"></div>
+                         </div><a class="fs lc agt ab q agu" tabindex="-1" href="https://medium.com/@nidhijain23/7-productivity-hacks-i-stole-from-a-principal-software-engineer-6a8825157198?source=post_page---read_next_recirc--a59cda4c0e53----0---------------------f8ecbb15_d10a_4903_947b_98e3e4c4a4ae--------------" rel="noopener follow">
+                          <div>
+                           <div class="ab" aria-hidden="false" aria-describedby="289" aria-labelledby="289">
+                            <div class="ab q abq">
+                             <span>6K</span>
+                            </div>
+                           </div>
+                          </div>
+                          <div>
+                           <div class="ab" aria-hidden="false" aria-describedby="167" aria-labelledby="167">
+                            <div class="ab q abq">
+                             <span>126</span>
+                            </div>
+                           </div>
+                          </div></a>
+                        </div>
+                       </div>
+                      </div>
+                      <div class="ab q agv agw">
+                       <div class="">
+                        <div>
+                         <div class="bm" aria-hidden="false" aria-describedby="168" aria-labelledby="168">
+                          <span><a class="af ag ah ai aj ak al am an ao ap aq ar as at" href="https://medium.com/m/signin?actionUrl=https%3A%2F%2Fmedium.com%2F_%2Fbookmark%2Fp%2F6a8825157198&amp;operation=register&amp;redirect=https%3A%2F%2Fcode.likeagirl.io%2F7-productivity-hacks-i-stole-from-a-principal-software-engineer-6a8825157198&amp;source=---read_next_recirc--a59cda4c0e53----0-----------------bookmark_preview----f8ecbb15_d10a_4903_947b_98e3e4c4a4ae--------------" rel="noopener follow"></a></span>
+                         </div>
+                        </div>
+                       </div>
+                      </div>
+                     </div></span>
+                    <div class="j i d">
+                     <div class="tc bh ue lb"></div>
+                    </div>
+                   </div>
+                  </div>
+                 </div>
+                </div>
+               </div>
+              </div>
+             </article>
+            </div>
+           </div>
+           <div class="adn ado adp sn adq adr ads sm adt adu adv adw zx adx ady adz zy aea aeb aec aed">
+            <div class="aee aef aeg aeh aei dw l">
+             <article class="dw">
+              <div class="dw qw l">
+               <div class="bh dw">
+                <div class="dw l">
+                 <div class="fj dw aej aek ael aem aen aeo aep aeq aer aes aet aeu aev" role="link" data-href="https://medium.com/@thecodingdiaries/why-experienced-programmers-fail-coding-interviews-b22210ba343" tabindex="0">
+                  <div class="aew">
+                   <div aria-label="Why Experienced Programmers Fail Coding Interviews">
+                    <div class="aey aez afa afb afc">
+                     <img alt="Why Experienced Programmers Fail Coding Interviews" class="bh yp afd afe aff bx" src="https://miro.medium.com/v2/resize:fit:679/1*oF53_AT1RJuKJ3glp1Ctkg@2x.jpeg" loading="lazy">
+                    </div>
+                   </div>
+                  </div>
+                  <div class="aex ab cb co">
+                   <div class="ab co xp bh afg afh afi afj">
+                    <div class="afk afl afm afn afo ab q">
+                     <div class="qm l">
+                      <div>
+                       <div class="l" aria-hidden="false" aria-describedby="169" aria-labelledby="169">
+                        <a href="https://medium.com/the-coding-diaries?source=post_page---read_next_recirc--a59cda4c0e53----1---------------------f8ecbb15_d10a_4903_947b_98e3e4c4a4ae--------------" rel="noopener follow">
+                         <div class="fj ab">
+                          <img alt="The Coding Diaries" class="yp afq afp cx" src="https://miro.medium.com/v2/resize:fill:20:20/1*RFPmOlEZoQ4HOMO9xdFuKA.jpeg" width="20" height="20" loading="lazy">
+                          <div class="yp l afp afq fs n fr ft"></div>
+                         </div></a>
+                       </div>
+                      </div>
+                     </div>
+                     <div class="so l">
+                      <p class="bf b dv z du">In</p>
+                     </div>
+                     <div class="l">
+                      <div>
+                       <div class="l" aria-hidden="false" aria-describedby="170" aria-labelledby="170">
+                        <a class="af ag ah ai aj ak al am an ao ap aq ar il ab q" href="https://medium.com/the-coding-diaries?source=post_page---read_next_recirc--a59cda4c0e53----1---------------------f8ecbb15_d10a_4903_947b_98e3e4c4a4ae--------------" rel="noopener follow"><p class="bf b dv z abs abt abu abv abw abx aby abz bk">The Coding Diaries</p></a>
+                       </div>
+                      </div>
+                     </div>
+                     <div class="ahi l">
+                      <p class="bf b dv z du">by</p>
+                     </div>
+                     <div>
+                      <div class="l" aria-hidden="false" aria-describedby="171" aria-labelledby="171">
+                       <a class="af ag ah ai aj ak al am an ao ap aq ar il ab q" href="https://medium.com/@thecodingdiaries?source=post_page---read_next_recirc--a59cda4c0e53----1---------------------f8ecbb15_d10a_4903_947b_98e3e4c4a4ae--------------" rel="noopener follow"><p class="bf b dv z abs abt abu abv abw abx aby abz bk">The Coding Diaries</p></a>
+                      </div>
+                     </div>
+                    </div>
+                    <div class="afr l afs aft afu afv afw gn">
+                     <div class="afx afy afz aga agb agc agd age">
+                      <a class="af ag ah ai aj ak al am an ao ap aq ar as at" href="https://medium.com/@thecodingdiaries/why-experienced-programmers-fail-coding-interviews-b22210ba343?source=post_page---read_next_recirc--a59cda4c0e53----1---------------------f8ecbb15_d10a_4903_947b_98e3e4c4a4ae--------------" rel="noopener follow">
+                       <div title="">
+                        <h2 class="bf gv nt nv agf agg nw nx nz agh agi oa nc pb agj agk pc ng pe agl agm pf nk ph agn ago pi abs abu abv abx abz bk">Why Experienced Programmers Fail Coding Interviews</h2>
+                       </div>
+                       <div class="agp l">
+                        <h3 class="bf b ij z abs agq abu abv agr abx abz du">A friend of mine recently joined a FAANG company as an engineering manager, and found themselves in the position of recruiting for…</h3>
+                       </div></a>
+                     </div>
+                    </div><span class="bf b dv z du">
+                     <div class="ic ab cp ae">
+                      <div class="ab q agu">
+                       <div class="qw ab">
+                        <div class="bm" aria-hidden="false" aria-describedby="172" aria-labelledby="172"></div>
+                       </div><span>Nov 2, 2022</span>
+                       <div class="">
+                        <div class="fj ags dh ab q">
+                         <div class="fs ww agt ab q agu">
+                          <div class="ax dh dj l cx"></div>
+                         </div><a class="fs lc agt ab q agu" tabindex="-1" href="https://medium.com/@thecodingdiaries/why-experienced-programmers-fail-coding-interviews-b22210ba343?source=post_page---read_next_recirc--a59cda4c0e53----1---------------------f8ecbb15_d10a_4903_947b_98e3e4c4a4ae--------------" rel="noopener follow">
+                          <div>
+                           <div class="ab" aria-hidden="false" aria-describedby="291" aria-labelledby="291">
+                            <div class="ab q abq">
+                             <span>11.5K</span>
+                            </div>
+                           </div>
+                          </div>
+                          <div>
+                           <div class="ab" aria-hidden="false" aria-describedby="174" aria-labelledby="174">
+                            <div class="ab q abq">
+                             <span>236</span>
+                            </div>
+                           </div>
+                          </div></a>
+                        </div>
+                       </div>
+                      </div>
+                      <div class="ab q agv agw">
+                       <div class="">
+                        <div>
+                         <div class="bm" aria-hidden="false" aria-describedby="175" aria-labelledby="175">
+                          <span><a class="af ag ah ai aj ak al am an ao ap aq ar as at" href="https://medium.com/m/signin?actionUrl=https%3A%2F%2Fmedium.com%2F_%2Fbookmark%2Fp%2Fb22210ba343&amp;operation=register&amp;redirect=https%3A%2F%2Fmedium.com%2Fthe-coding-diaries%2Fwhy-experienced-programmers-fail-coding-interviews-b22210ba343&amp;source=---read_next_recirc--a59cda4c0e53----1-----------------bookmark_preview----f8ecbb15_d10a_4903_947b_98e3e4c4a4ae--------------" rel="noopener follow"></a></span>
+                         </div>
+                        </div>
+                       </div>
+                      </div>
+                     </div></span>
+                    <div class="j i d">
+                     <div class="tc bh ue lb"></div>
+                    </div>
+                   </div>
+                  </div>
+                 </div>
+                </div>
+               </div>
+              </div>
+             </article>
+            </div>
+           </div>
+           <div class="adn ado adp sn adq adr ads sm adt adu adv adw zx adx ady adz zy aea aeb aec aed">
+            <div class="aee aef aeg aeh aei dw l">
+             <article class="dw">
+              <div class="dw qw l">
+               <div class="bh dw">
+                <div class="dw l">
+                 <div class="fj dw aej aek ael aem aen aeo aep aeq aer aes aet aeu aev" role="link" data-href="https://entrylevelrebel.medium.com/jeff-bezos-says-the-1-hour-rule-makes-him-smarter-new-neuroscience-says-hes-right-84bf0a6755cf" tabindex="0">
+                  <div class="aew">
+                   <div aria-label="Jeff Bezos Says the 1-Hour Rule Makes Him Smarter. New Neuroscience Says He’s Right">
+                    <div class="aey aez afa afb afc">
+                     <img alt="Jeff Bezos Says the 1-Hour Rule Makes Him Smarter. New Neuroscience Says He’s Right" class="bh yp afd afe aff bx" src="https://miro.medium.com/v2/resize:fit:679/1*h-Y6W5VfM8lath9myNS5tQ.jpeg" loading="lazy">
+                    </div>
+                   </div>
+                  </div>
+                  <div class="aex ab cb co">
+                   <div class="ab co xp bh afg afh afi afj">
+                    <div class="afk afl afm afn afo ab q">
+                     <div class="qm l">
+                      <div>
+                       <div class="l" aria-hidden="false" aria-describedby="176" aria-labelledby="176">
+                        <a tabindex="-1" href="https://entrylevelrebel.medium.com/?source=post_page---read_next_recirc--a59cda4c0e53----2---------------------f8ecbb15_d10a_4903_947b_98e3e4c4a4ae--------------" rel="noopener follow">
+                         <div class="l fj">
+                          <img alt="Jessica Stillman" class="l fd by afp afq cx" src="https://miro.medium.com/v2/resize:fill:20:20/2*WCWpog6WqKnaXo5lhsRLZA.jpeg" width="20" height="20" loading="lazy">
+                          <div class="fr by l afp afq fs n ay ft"></div>
+                         </div></a>
+                       </div>
+                      </div>
+                     </div>
+                     <div>
+                      <div class="l" aria-hidden="false" aria-describedby="177" aria-labelledby="177">
+                       <a class="af ag ah ai aj ak al am an ao ap aq ar il ab q" href="https://entrylevelrebel.medium.com/?source=post_page---read_next_recirc--a59cda4c0e53----2---------------------f8ecbb15_d10a_4903_947b_98e3e4c4a4ae--------------" rel="noopener follow"><p class="bf b dv z abs abt abu abv abw abx aby abz bk">Jessica Stillman</p></a>
+                      </div>
+                     </div>
+                    </div>
+                    <div class="afr l afs aft afu afv afw gn">
+                     <div class="afx afy afz aga agb agc agd age">
+                      <a class="af ag ah ai aj ak al am an ao ap aq ar as at" href="https://entrylevelrebel.medium.com/jeff-bezos-says-the-1-hour-rule-makes-him-smarter-new-neuroscience-says-hes-right-84bf0a6755cf?source=post_page---read_next_recirc--a59cda4c0e53----2---------------------f8ecbb15_d10a_4903_947b_98e3e4c4a4ae--------------" rel="noopener follow">
+                       <div title="Jeff Bezos Says the 1-Hour Rule Makes Him Smarter. New Neuroscience Says He’s Right">
+                        <h2 class="bf gv nt nv agf agg nw nx nz agh agi oa nc pb agj agk pc ng pe agl agm pf nk ph agn ago pi abs abu abv abx abz bk">Jeff Bezos Says the 1-Hour Rule Makes Him Smarter. New Neuroscience Says He’s Right</h2>
+                       </div>
+                       <div class="agp l">
+                        <h3 class="bf b ij z abs agq abu abv agr abx abz du">Jeff Bezos’s morning routine has long included the one-hour rule. New neuroscience says yours probably should too.</h3>
+                       </div></a>
+                     </div>
+                    </div><span class="bf b dv z du">
+                     <div class="ic ab cp ae">
+                      <div class="ab q agu">
+                       <div class="qw ab">
+                        <div class="bm" aria-hidden="false" aria-describedby="178" aria-labelledby="178"></div>
+                       </div><span>Oct 30, 2024</span>
+                       <div class="">
+                        <div class="fj ags dh ab q">
+                         <div class="fs ww agt ab q agu">
+                          <div class="ax dh dj l cx"></div>
+                         </div><a class="fs lc agt ab q agu" tabindex="-1" href="https://entrylevelrebel.medium.com/jeff-bezos-says-the-1-hour-rule-makes-him-smarter-new-neuroscience-says-hes-right-84bf0a6755cf?source=post_page---read_next_recirc--a59cda4c0e53----2---------------------f8ecbb15_d10a_4903_947b_98e3e4c4a4ae--------------" rel="noopener follow">
+                          <div>
+                           <div class="ab" aria-hidden="false" aria-describedby="293" aria-labelledby="293">
+                            <div class="ab q abq">
+                             <span>24K</span>
+                            </div>
+                           </div>
+                          </div>
+                          <div>
+                           <div class="ab" aria-hidden="false" aria-describedby="180" aria-labelledby="180">
+                            <div class="ab q abq">
+                             <span>675</span>
+                            </div>
+                           </div>
+                          </div></a>
+                        </div>
+                       </div>
+                      </div>
+                      <div class="ab q agv agw">
+                       <div class="">
+                        <div>
+                         <div class="bm" aria-hidden="false" aria-describedby="181" aria-labelledby="181">
+                          <span><a class="af ag ah ai aj ak al am an ao ap aq ar as at" href="https://medium.com/m/signin?actionUrl=https%3A%2F%2Fmedium.com%2F_%2Fbookmark%2Fp%2F84bf0a6755cf&amp;operation=register&amp;redirect=https%3A%2F%2Fentrylevelrebel.medium.com%2Fjeff-bezos-says-the-1-hour-rule-makes-him-smarter-new-neuroscience-says-hes-right-84bf0a6755cf&amp;source=---read_next_recirc--a59cda4c0e53----2-----------------bookmark_preview----f8ecbb15_d10a_4903_947b_98e3e4c4a4ae--------------" rel="noopener follow"></a></span>
+                         </div>
+                        </div>
+                       </div>
+                      </div>
+                     </div></span>
+                    <div class="j i d">
+                     <div class="tc bh ue lb"></div>
+                    </div>
+                   </div>
+                  </div>
+                 </div>
+                </div>
+               </div>
+              </div>
+             </article>
+            </div>
+           </div>
+           <div class="adn ado adp sn adq adr ads sm adt adu adv adw zx adx ady adz zy aea aeb aec aed">
+            <div class="aee aef aeg aeh aei dw l">
+             <article class="dw">
+              <div class="dw qw l">
+               <div class="bh dw">
+                <div class="dw l">
+                 <div class="fj dw aej aek ael aem aen aeo aep aeq aer aes aet aeu aev" role="link" data-href="https://medium.com/@rabinarayandev/why-1-1-is-true-but-128-128-is-false-in-java-4ea544e83eef" tabindex="0">
+                  <div class="aew">
+                   <div aria-label="Why 1==1 is true but 128==128 is false in Java">
+                    <div class="aey aez afa afb afc">
+                     <img alt="Why 1==1 is true but 128==128 is false in Java" class="bh yp afd afe aff bx" src="https://miro.medium.com/v2/resize:fit:679/1*5O4q1ZakwpnNKlOg0MkI3w.jpeg" loading="lazy">
+                    </div>
+                   </div>
+                  </div>
+                  <div class="aex ab cb co">
+                   <div class="ab co xp bh afg afh afi afj">
+                    <div class="afk afl afm afn afo ab q">
+                     <div class="qm l">
+                      <div>
+                       <div class="l" aria-hidden="false" aria-describedby="182" aria-labelledby="182">
+                        <a tabindex="-1" href="https://medium.com/@rabinarayandev?source=post_page---read_next_recirc--a59cda4c0e53----3---------------------f8ecbb15_d10a_4903_947b_98e3e4c4a4ae--------------" rel="noopener follow">
+                         <div class="l fj">
+                          <img alt="Rabinarayan Patra" class="l fd by afp afq cx" src="https://miro.medium.com/v2/resize:fill:20:20/1*KNZIrBbdz_Ptcwg7vyqdjw@2x.jpeg" width="20" height="20" loading="lazy">
+                          <div class="fr by l afp afq fs n ay ft"></div>
+                         </div></a>
+                       </div>
+                      </div>
+                     </div>
+                     <div>
+                      <div class="l" aria-hidden="false" aria-describedby="183" aria-labelledby="183">
+                       <a class="af ag ah ai aj ak al am an ao ap aq ar il ab q" href="https://medium.com/@rabinarayandev?source=post_page---read_next_recirc--a59cda4c0e53----3---------------------f8ecbb15_d10a_4903_947b_98e3e4c4a4ae--------------" rel="noopener follow"><p class="bf b dv z abs abt abu abv abw abx aby abz bk">Rabinarayan Patra</p></a>
+                      </div>
+                     </div>
+                    </div>
+                    <div class="afr l afs aft afu afv afw gn">
+                     <div class="afx afy afz aga agb agc agd age">
+                      <a class="af ag ah ai aj ak al am an ao ap aq ar as at" href="https://medium.com/@rabinarayandev/why-1-1-is-true-but-128-128-is-false-in-java-4ea544e83eef?source=post_page---read_next_recirc--a59cda4c0e53----3---------------------f8ecbb15_d10a_4903_947b_98e3e4c4a4ae--------------" rel="noopener follow">
+                       <div title="">
+                        <h2 class="bf gv nt nv agf agg nw nx nz agh agi oa nc pb agj agk pc ng pe agl agm pf nk ph agn ago pi abs abu abv abx abz bk">Why 1==1 is true but 128==128 is false in Java</h2>
+                       </div>
+                       <div class="agp l">
+                        <h3 class="bf b ij z abs agq abu abv agr abx abz du">Ever wondered why comparing 1==1 returns true, but 128==128 returns false in Java? Let’s dive into the magic of Integer caching to find…</h3>
+                       </div></a>
+                     </div>
+                    </div><span class="bf b dv z du">
+                     <div class="ic ab cp ae">
+                      <div class="ab q agu">
+                       <div class="qw ab">
+                        <div class="bm" aria-hidden="false" aria-describedby="184" aria-labelledby="184"></div>
+                       </div><span>Sep 11, 2024</span>
+                       <div class="">
+                        <div class="fj ags dh ab q">
+                         <div class="fs ww agt ab q agu">
+                          <div class="ax dh dj l cx"></div>
+                         </div><a class="fs lc agt ab q agu" tabindex="-1" href="https://medium.com/@rabinarayandev/why-1-1-is-true-but-128-128-is-false-in-java-4ea544e83eef?source=post_page---read_next_recirc--a59cda4c0e53----3---------------------f8ecbb15_d10a_4903_947b_98e3e4c4a4ae--------------" rel="noopener follow">
+                          <div>
+                           <div class="ab" aria-hidden="false" aria-describedby="295" aria-labelledby="295">
+                            <div class="ab q abq">
+                             <span>3.2K</span>
+                            </div>
+                           </div>
+                          </div>
+                          <div>
+                           <div class="ab" aria-hidden="false" aria-describedby="186" aria-labelledby="186">
+                            <div class="ab q abq">
+                             <span>69</span>
+                            </div>
+                           </div>
+                          </div></a>
+                        </div>
+                       </div>
+                      </div>
+                      <div class="ab q agv agw">
+                       <div class="">
+                        <div>
+                         <div class="bm" aria-hidden="false" aria-describedby="187" aria-labelledby="187">
+                          <span><a class="af ag ah ai aj ak al am an ao ap aq ar as at" href="https://medium.com/m/signin?actionUrl=https%3A%2F%2Fmedium.com%2F_%2Fbookmark%2Fp%2F4ea544e83eef&amp;operation=register&amp;redirect=https%3A%2F%2Fmedium.com%2F%40rabinarayandev%2Fwhy-1-1-is-true-but-128-128-is-false-in-java-4ea544e83eef&amp;source=---read_next_recirc--a59cda4c0e53----3-----------------bookmark_preview----f8ecbb15_d10a_4903_947b_98e3e4c4a4ae--------------" rel="noopener follow"></a></span>
+                         </div>
+                        </div>
+                       </div>
+                      </div>
+                     </div></span>
+                   </div>
+                  </div>
+                 </div>
+                </div>
+               </div>
+              </div>
+             </article>
+            </div>
+           </div>
+          </div>
+          <div class="tc bh ue dk dl agy agz aha"></div><a class="bf b bg z bk qn to tp tq lh le se ev ew ex tr ts tt fa tu tv tw tx ty fb fc fd bm fe ff" href="https://medium.com/?source=post_page---read_next_recirc--a59cda4c0e53---------------------------------------" rel="noopener follow">
+           <div class="l ff">
+            See more recommendations
+           </div></a>
+         </div>
+        </div>
+       </div>
+       <div class="h k j">
+        <div class="tc bh ue uf"></div>
+        <div class="ab cb">
+         <div class="ci bh fz ga gb gc">
+          <div class="ug ab ke iv">
+           <div class="uh ui l">
+            <a class="af ag ah ai aj ak al am an ao ap aq ar as at" href="https://help.medium.com/hc/en-us?source=post_page-----a59cda4c0e53---------------------------------------" rel="noopener follow"><p class="bf b dv z du">Help</p></a>
+           </div>
+           <div class="uh ui l">
+            <a class="af ag ah ai aj ak al am an ao ap aq ar as at" href="https://medium.statuspage.io/?source=post_page-----a59cda4c0e53---------------------------------------" rel="noopener follow"><p class="bf b dv z du">Status</p></a>
+           </div>
+           <div class="uh ui l">
+            <a class="af ag ah ai aj ak al am an ao ap aq ar as at" href="https://medium.com/about?autoplay=1&amp;source=post_page-----a59cda4c0e53---------------------------------------" rel="noopener follow"><p class="bf b dv z du">About</p></a>
+           </div>
+           <div class="uh ui l">
+            <a class="af ag ah ai aj ak al am an ao ap aq ar as at" href="https://medium.com/jobs-at-medium/work-at-medium-959d1a85284e?source=post_page-----a59cda4c0e53---------------------------------------" rel="noopener follow"><p class="bf b dv z du">Careers</p></a>
+           </div>
+           <div class="uh ui l">
+            <a class="af ag ah ai aj ak al am an ao ap aq ar as at" href="mailto:pressinquiries@medium.com" rel="noopener follow"><p class="bf b dv z du">Press</p></a>
+           </div>
+           <div class="uh ui l">
+            <a class="af ag ah ai aj ak al am an ao ap aq ar as at" href="https://blog.medium.com/?source=post_page-----a59cda4c0e53---------------------------------------" rel="noopener follow"><p class="bf b dv z du">Blog</p></a>
+           </div>
+           <div class="uh ui l">
+            <a class="af ag ah ai aj ak al am an ao ap aq ar as at" href="https://policy.medium.com/medium-privacy-policy-f03bf92035c9?source=post_page-----a59cda4c0e53---------------------------------------" rel="noopener follow"><p class="bf b dv z du">Privacy</p></a>
+           </div>
+           <div class="uh ui l">
+            <a class="af ag ah ai aj ak al am an ao ap aq ar as at" href="https://policy.medium.com/medium-terms-of-service-9db0094a1e0f?source=post_page-----a59cda4c0e53---------------------------------------" rel="noopener follow"><p class="bf b dv z du">Terms</p></a>
+           </div>
+           <div class="uh ui l">
+            <a class="af ag ah ai aj ak al am an ao ap aq ar as at" href="https://speechify.com/medium?source=post_page-----a59cda4c0e53---------------------------------------" rel="noopener follow"><p class="bf b dv z du">Text to speech</p></a>
+           </div>
+           <div class="uh l">
+            <a class="af ag ah ai aj ak al am an ao ap aq ar as at" href="https://medium.com/business?source=post_page-----a59cda4c0e53---------------------------------------" rel="noopener follow"><p class="bf b dv z du">Teams</p></a>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div> <iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: medium; visibility: hidden;"></iframe>
+  <div>
+   <div class="un n yy yz sw za zb zc zd ze zf zg zh zi zj ch bp zk zl zm lc zn zo">
+    <div class="bf b dv z rz">
+     <div class="ab cp zp zq">
+      <div class="l" role="alert">
+       To make Medium work, we log user data. By using Medium, you agree to our <a class="af ag ah ai aj ak al am an ao ap zr zs qd" href="https://policy.medium.com/medium-privacy-policy-f03bf92035c9" rel="noopener follow" target="_blank">Privacy Policy</a>, including cookie policy.
+      </div>
+      <div class="zt zu zv zw zx zy l zz is aba">
+       <div class="l fj n ve"></div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <div>
+   <div class="grecaptcha-badge" data-style="bottomright" style="width: 256px; height: 60px; display: block; transition: right 0.3s; position: fixed; bottom: 14px; right: -186px; box-shadow: gray 0px 0px 5px; border-radius: 2px; overflow: hidden;">
+    <div class="grecaptcha-logo">
+     <iframe title="reCAPTCHA" width="256" height="60" role="presentation" name="a-dj55kdva3xr9" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox allow-storage-access-by-user-activation" src="https://www.google.com/recaptcha/enterprise/anchor?ar=1&amp;k=6Le-uGgpAAAAAPprRaokM8AKthQ9KNGdoxaGUvVp&amp;co=aHR0cHM6Ly9jc2NhbGZhbmkubWVkaXVtLmNvbTo0NDM.&amp;hl=fr&amp;v=rW64dpMGAGrjU7JJQr9xxPl8&amp;size=invisible&amp;cb=jnh3nuhrg80r"></iframe>
+    </div>
+    <div class="grecaptcha-error"></div><textarea id="g-recaptcha-response-100000" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea>
+   </div><iframe style="display: none;"></iframe>
+  </div>
+ </body>
+</html>

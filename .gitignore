@@ -25,6 +25,7 @@ bin/
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+**.salive
 
 ### NetBeans ###
 /nbproject/private/
@@ -35,3 +36,8 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### Logs ###
+*.log
+
+.venv/

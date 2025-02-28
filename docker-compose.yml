@@ -1,13 +1,65 @@
 services:
 
-  mongo:
-    image: mongo:latest
-    restart: always
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: app
+    environment:
+      OPENAI_API_KEY : ${OPENAI_API_KEY}
+      LANGFUSE_API_SK : ${LANGFUSE_API_SK}
+      LANGFUSE_API_PK : ${LANGFUSE_API_PK}
+    network_mode: "host"
+    depends_on:
+      mongo_db:
+        condition: service_healthy
+      keycloak:
+        condition: service_healthy
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.1.2-0
+    container_name: keycloak
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
     ports:
-      - 27017:27017
+      - "8088:8080"
+    command:
+      - start-dev
+      - --import-realm
+    networks:
+      - main-network
+    volumes:
+      - ./realm-export.json:/opt/keycloak/data/import/realm-export.json
+    # Keycloak Image does not contain curl anymore so we just sleep to make things easier
+    healthcheck:
+      test: [ "CMD", "sleep", "50" ]
+      start_period: 1s
+      retries: 1
+      interval: 1s
+      timeout: 60s
+
+  mongo_db:
+    image: mongo:latest
+    container_name: mongo_db
+    ports:
+      - "27017:27017"
     environment:
       MONGO_INITDB_ROOT_USERNAME: polytech
       MONGO_INITDB_ROOT_PASSWORD: polytech
       MONGO_INITDB_DATABASE: database
     volumes:
       - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      - ~/mongo/data:/data/db
+    networks:
+      - main-network
+    healthcheck:
+      test: [ "CMD", "mongosh", "--username", "polytech", "--password", "polytech", "--authenticationDatabase", "admin", "--eval", "db.runCommand('ping').ok" ]
+      interval: 5s
+      timeout: 2s
+      retries: 5
+      start_period: 5s
+
+
+networks:
+  main-network:

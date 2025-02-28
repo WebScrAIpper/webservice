@@ -1,127 +1,197 @@
 package com.polytech.webscraipper.services;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.polytech.webscraipper.dto.AIFilledDocument;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
+import com.polytech.webscraipper.BaseLogger;
+import com.polytech.webscraipper.builders.DefaultBuilder;
+import com.polytech.webscraipper.builders.ISummaryBuilder;
+import com.polytech.webscraipper.dto.DocumentDto;
+import com.polytech.webscraipper.exceptions.DocumentException;
+import com.polytech.webscraipper.exceptions.ScrappingException;
+import com.polytech.webscraipper.models.Classifier;
+import com.polytech.webscraipper.models.Document;
+import com.polytech.webscraipper.repositories.DocumentRepository;
+import com.polytech.webscraipper.sdk.LangfuseSDK;
+import com.polytech.webscraipper.utils.FunctionTimer;
+import java.util.*;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.openai.OpenAiChatOptions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.List;
-
 @Service
 public class DocumentService {
 
-    private ObjectMapper objectMapper = new ObjectMapper();
+  private final ObjectMapper objectMapper = new ObjectMapper();
+  private final BaseLogger logger = new BaseLogger(DefaultBuilder.class);
 
-    @Autowired
-    private ClassifierService classifierService;
-    @Autowired
-    private ChatModel chatModel;
+  @Autowired private DocumentRepository documentRepo;
+  @Autowired private ClassifierService classifierService;
+  @Autowired private ChatModel chatModel;
+  @Autowired private LangfuseSDK langfuseSDK;
 
-    public DocumentService() {
+  @Autowired private List<ISummaryBuilder> builders;
+  @Autowired private DefaultBuilder defaultBuilder;
+
+  // current date as an id
+  private static final String SESSION_ID = new Date().toString();
+
+  public DocumentService() {}
+
+  public Optional<Document> getDocumentByUrl(String url) {
+    return documentRepo.findByUrl(url);
+  }
+
+  public List<Document> getAllDocuments() {
+    return documentRepo.findAll();
+  }
+
+  /**
+   * Build the summary of a website by selecting a {@link ISummaryBuilder} based on the url. If no
+   * builder is found, the {@link DefaultBuilder} is used. The code is then divided into 4 steps: 1.
+   * Scraping the website content. 2. Generating the prompt dynamically. 3. Requesting the AI with
+   * timing and timeout handling. 4. Building an object strictly represented from the AI response
+   * and polishing it. 5. Updating the environment with the new classifiers and saving the document.
+   * <br>
+   * It's recommended to implement a {@link ISummaryBuilder} for any content which is not text based
+   * since the default builder is not built to handle video and audio. Any new builder will
+   * automatically be added
+   *
+   * @param url the url of the website
+   * @param content the content of the website
+   * @return the document summary
+   * @throws DocumentException if the document could not be built
+   * @throws ScrappingException if the website could not be scrapped
+   */
+  public DocumentDto buildWebsiteSummary(String url, String content)
+      throws DocumentException, ScrappingException {
+
+    // 1. Choose the Builder
+    ISummaryBuilder builder =
+        builders.stream()
+            .filter(b -> b.isAnAppropriateBuilder(url))
+            .findFirst()
+            .orElse(defaultBuilder);
+
+    logger.info("Using builder: " + builder.getClass().getSimpleName());
+    // 2. Scraping website content
+    String scrappedContent = builder.scrapContent(url, content);
+
+    String siteName = getSiteName(url);
+
+    // 3. Generating the prompt dynamically
+    var prompt =
+        builder.generatePrompt(scrappedContent, classifierService.getAllClassifiersNames());
+
+    DocumentDto documentDto;
+    String aiAnswer = "No answer";
+    try {
+      // 4. Requesting the AI with timing and timeout handling
+      var aiFullAnswer =
+          FunctionTimer.timeExecutionWithTimeout(
+              "AI Summary: " + url,
+              () ->
+                  chatModel.call(
+                      new Prompt(
+                          prompt.prompt, OpenAiChatOptions.builder().model("gpt-4o-mini").build())),
+              30,
+              TimeUnit.SECONDS);
+
+      aiAnswer = aiFullAnswer.getResult().getOutput().getText();
+      // 5. Build a solid object from the AI response
+      documentDto = objectMapper.readValue(aiAnswer, DocumentDto.class);
+
+      // Building the response
+      var res = builder.polishAnswer(url, documentDto);
+
+      logger.debug(objectMapper.writeValueAsString(res));
+
+      updateDatabase(res);
+
+      langfuseSDK.traces.postTrace(
+          prompt.prompt,
+          aiAnswer,
+          SESSION_ID,
+          Map.of("url", url),
+          List.of("SUCCESS"),
+          null,
+          siteName);
+
+      return res;
+    } catch (TimeoutException | InterruptedException | ExecutionException e) {
+      throw new DocumentException("The AI request timed out or failed: " + e.getMessage());
+    } catch (JsonProcessingException e) {
+      langfuseSDK.traces.postTrace(
+          prompt.prompt,
+          aiAnswer,
+          SESSION_ID,
+          Map.of("url", url),
+          List.of("ERROR"),
+          e.getMessage(),
+          siteName);
+
+      logger.error("The AI response could not be parsed: " + aiAnswer);
+      throw new DocumentException("The AI response could not be parsed: " + e.getMessage());
+    }
+  }
+
+  /**
+   * Update the database when a summary is built. This function might be replaced by an api call to
+   * the CGI api once it's ready.
+   *
+   * @param res the document to save
+   */
+  private void updateDatabase(DocumentDto res) {
+    List<String> newClassifiers = new ArrayList<>();
+
+    var currentlyExisingClassifiers = classifierService.getAllClassifiers();
+    // Handle Classifiers
+    for (String classifier : res.classifiers) {
+      if (currentlyExisingClassifiers.stream().noneMatch(c -> c.name.equals(classifier))) {
+        newClassifiers.add(classifier);
+      }
     }
 
-
-    public String generatePrompt(
-            String content
-    ) {
-        try {
-            List<String> exampleInputLines = Files.readAllLines(Paths.get("src/main/resources/static/pageExample.html"));
-            String inputExample = String.join("\n", exampleInputLines);
-
-            String resultExample = """
-                {
-                    "title": "Write code that is easy to delete, not easy to extend",
-                    "author": "programming is terrible",
-                    "date": "2016-02-13",
-                    "image": null,
-                    "description": "This document discusses the importance of writing disposable code to reduce maintenance costs, emphasizing practices like intentional code duplication to minimize dependencies and the strategic layering and separation of code components.",
-                    "content_type": "DOCUMENT",
-                    "language": "ENGLISH",
-                    "classifiers": ["Software Architecture", "Design Patterns"]
-                }
-                """.stripIndent();
-
-            return """
-            Your role is to extract most important information's from a webpage.
-           \s
-            For instance, given the following HTML content:
-            ```html
-            %s
-            ```
-           \s
-            You should return a JSON object with the following structure:
-            ```json
-            %s
-            ```
-           \s
-            YOu should ALWAYS write the content of your summary in English even if the original content is in another language.
-           \s
-            The exact structure required by the json object is this one:
-            - title: the title of the document
-            - author: the author of the document
-            - date: the date of the document
-            - image: the image that best represents the document. The image should be a URL, if there is no image, on the website, it might be null.
-            - description: a short description of the document
-            - content_type: the type of content (can take the values ARTICLE | VIDEO | AUDIO)
-            - language: the language of the document
-            - classifiers: a list of topics that the document covers. Can go anywhere from 3 to 6. It's recommended for most of the classifiers of this list: %s. However, you may use other classifiers if you think they are more relevant. You should anyway never use a classifier that is not related to the topic of the document.
-           \s
-           \s
-           Here is the webpage you have to scrape:
-           ```html
-           %s
-           ```
-           \s
-           Do not wrap the response in a
-           ```json
-           ...
-           ```
-              block, just return the JSON object.
-           \s""".stripIndent().formatted(inputExample, resultExample, classifierService.getAllClassifiers(), content);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    // Handle new classifiers
+    for (String newClassifier : newClassifiers) {
+      // Handle classifiers requested by the AI
+      classifierService.addClassifier(newClassifier);
     }
 
-    public AIFilledDocument requestToAi(String prompt) {
-        int MAX_TRIES = 3;
-        int tries = 0;
+    List<Classifier> classifiersOfTheDocument = new ArrayList<>();
 
-        while (tries < MAX_TRIES) {
-            try {
-                var aiAnswer = chatModel.call(
-                        new Prompt(
-                                prompt,
-                                OpenAiChatOptions.builder()
-                                        .model("gpt-4o-mini")
-                                        .build()
-                        )
-                );
-                System.out.println(aiAnswer.getResult().getOutput().getText());
-                return objectMapper.readValue(aiAnswer.getResult().getOutput().getText(), AIFilledDocument.class);
+    List<Classifier> updatedExistingClassifiers = classifierService.getAllClassifiers();
+    for (String classifier : res.classifiers) {
 
-            } catch (IOException e) {
-                System.out.println("An error occurred while processing the AI request. Retrying...");
-                System.out.println(e.getMessage());
-                tries++;
-            }
-        }
-        return null;
+      var classifierObj =
+          updatedExistingClassifiers.stream().filter(c -> c.name.equals(classifier)).findFirst();
+      if (classifierObj.isEmpty()) {
+        logger.warn(
+            "The classifier " + classifier + " was not found in the database, might be a bug");
+        continue;
+      }
+      classifiersOfTheDocument.add(classifierObj.get());
     }
 
-    public String scrapContent(String content) {
-        Document document = Jsoup.parse(content);
+    Document document = new Document(res, classifiersOfTheDocument);
 
-        document.select("script, style, form, nav, aside, button, svg").remove();
-        //TODO: think about the iframe
-        return document.text();
+    // Saving the document
+    documentRepo.save(document);
+  }
+
+  private String getSiteName(String url) {
+    if (url == null || url.isEmpty()) {
+      return "Unknown";
     }
+    String[] parts = url.split("//");
+    if (parts.length > 1) {
+      String domain = parts[1].split("/")[0];
+      return domain.replace("www.", "");
+    }
+    return url;
+  }
 }

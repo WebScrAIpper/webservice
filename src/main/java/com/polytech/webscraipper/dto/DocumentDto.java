@@ -1,30 +1,68 @@
 package com.polytech.webscraipper.dto;
 
-public class DocumentDto extends AIFilledDocument {
-    private String url;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import java.util.List;
 
-    public DocumentDto() {
-    }
+public class DocumentDto {
+  public String url;
 
-    public DocumentDto(String url, String title, String author, String date, String image, String description, CONTENT_TYPE content_type, SUPPORTED_LANGUAGES language, String[] classifiers) {
-        super(title, author, date, image, description, content_type, language, classifiers);
-        this.url = url;
-    }
+  @JsonProperty("en_title")
+  public String enTitle;
 
-    public DocumentDto(AIFilledDocument dto, String url) {
-        super(dto.getTitle(), dto.getAuthor(), dto.getDate(), dto.getImage(), dto.getDescription(), dto.getContent_type(), dto.getLanguage(), dto.getClassifiers());
-        this.url = url;
-    }
+  @JsonProperty("fr_title")
+  public String frTitle;
 
-    public String getUrl() {
-        return url;
-    }
+  public String author;
+  public String date;
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
+  @JsonProperty("image_urls")
+  public List<String> imageUrls;
 
+  @JsonProperty("image_index")
+  public int imageIndex;
 
+  @JsonProperty("en_description")
+  public String enDescription;
 
+  @JsonProperty("fr_description")
+  public String frDescription;
 
+  @JsonProperty("content_type")
+  public CONTENT_TYPE contentType;
+
+  @JsonDeserialize(using = SupportedLanguagesDeserializer.class)
+  @JsonProperty("language_of_the_document")
+  public SUPPORTED_LANGUAGES languageOfTheDocument;
+
+  public List<String> classifiers;
+
+  public DocumentDto() {}
+
+  public DocumentDto(
+      String url,
+      String enTitle,
+      String frTitle,
+      String author,
+      String date,
+      List<String> imageUrls,
+      int imageIndex,
+      String enDescription,
+      String frDescription,
+      CONTENT_TYPE contentType,
+      SUPPORTED_LANGUAGES languageOfTheDocument,
+      List<String> classifiers) {
+    this.url = url;
+    this.enTitle = enTitle;
+    this.frTitle = frTitle;
+    this.author = author;
+    this.date = date;
+    this.imageUrls = imageUrls;
+    this.imageIndex = imageIndex;
+    this.enDescription = enDescription;
+    this.frDescription = frDescription;
+    this.contentType = contentType;
+    this.languageOfTheDocument = languageOfTheDocument;
+    this.classifiers = classifiers;
+  }
 }
