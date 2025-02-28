@@ -17,14 +17,11 @@ public enum SUPPORTED_LANGUAGES {
 class SupportedLanguagesDeserializer extends JsonDeserializer<SUPPORTED_LANGUAGES> {
   @Override
   public SUPPORTED_LANGUAGES deserialize(JsonParser p, DeserializationContext ctxt)
-      throws IOException, JacksonException {
-    switch (p.getText().toUpperCase()) {
-      case "ENGLISH":
-        return SUPPORTED_LANGUAGES.ENGLISH;
-      case "FRENCH":
-        return SUPPORTED_LANGUAGES.FRENCH;
-      default:
-        return SUPPORTED_LANGUAGES.OTHER;
-    }
+      throws IOException {
+    return switch (p.getText().toUpperCase()) {
+      case "EN" -> SUPPORTED_LANGUAGES.ENGLISH;
+      case "FR" -> SUPPORTED_LANGUAGES.FRENCH;
+      default -> SUPPORTED_LANGUAGES.OTHER;
+    };
   }
 }
