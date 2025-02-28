@@ -10,7 +10,6 @@ spotless {
     java {
         googleJavaFormat()
     }
-
 }
 
 group = "com.polytech"
@@ -29,7 +28,8 @@ repositories {
 
 dockerCompose {
     useComposeFiles = listOf("docker-compose.yml")
-    startedServices = listOf("mongo_db","keycloak")
+    startedServices = listOf("mongo_db", "keycloak")
+
     useDockerComposeV2 = true
     isRequiredBy(tasks.bootTestRun)
     isRequiredBy(tasks.bootRun)
@@ -58,7 +58,6 @@ dependencies {
     implementation("io.github.openfeign:feign-okhttp:13.5")
 }
 
-
 dependencyManagement {
     imports {
         mavenBom("org.springframework.ai:spring-ai-bom:${property("springAiVersion")}")
@@ -68,4 +67,14 @@ dependencyManagement {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+// Custom task to build and run docker-compose
+task("buildAndRun") {
+    dependsOn("bootJar") // Ensures the build is run first
+    doLast {
+        exec {
+            commandLine("docker-compose", "up", "-d")
+        }
+    }
 }

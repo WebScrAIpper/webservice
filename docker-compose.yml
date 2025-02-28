@@ -31,16 +31,13 @@ services:
       - main-network
     volumes:
       - ./realm-export.json:/opt/keycloak/data/import/realm-export.json
+    # Keycloak Image does not contain curl anymore so we just sleep to make things easier
     healthcheck:
-      test: [ "CMD", "sleep", "55" ]
+      test: [ "CMD", "sleep", "50" ]
       start_period: 1s
       retries: 1
       interval: 1s
       timeout: 60s
-
-
-
-
 
   mongo_db:
     image: mongo:latest
