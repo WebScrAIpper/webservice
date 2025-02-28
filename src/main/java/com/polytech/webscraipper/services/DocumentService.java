@@ -79,6 +79,8 @@ public class DocumentService {
     // 2. Scraping website content
     String scrappedContent = builder.scrapContent(url, content);
 
+    String siteName = getSiteName(url);
+
     // 3. Generating the prompt dynamically
     var prompt = builder.generatePrompt(scrappedContent, classifierService.getAllClassifiers());
 
@@ -109,7 +111,13 @@ public class DocumentService {
       updateDatabase(res);
 
       langfuseSDK.traces.postTrace(
-          prompt.prompt, aiAnswer, SESSION_ID, Map.of("url", url), List.of("SUCCESS"), null);
+          prompt.prompt,
+          aiAnswer,
+          SESSION_ID,
+          Map.of("url", url),
+          List.of("SUCCESS"),
+          null,
+          siteName);
 
       return res;
     } catch (TimeoutException | InterruptedException | ExecutionException e) {
@@ -121,7 +129,8 @@ public class DocumentService {
           SESSION_ID,
           Map.of("url", url),
           List.of("ERROR"),
-          e.getMessage());
+          e.getMessage(),
+          siteName);
 
       logger.error("The AI response could not be parsed: " + aiAnswer);
       throw new DocumentException("The AI response could not be parsed: " + e.getMessage());
@@ -146,5 +155,17 @@ public class DocumentService {
 
     // Saving the document
     documentRepo.save(res);
+  }
+
+  private String getSiteName(String url) {
+    if (url == null || url.isEmpty()) {
+      return "Unknown";
+    }
+    String[] parts = url.split("//");
+    if (parts.length > 1) {
+      String domain = parts[1].split("/")[0];
+      return domain.replace("www.", "");
+    }
+    return url;
   }
 }
