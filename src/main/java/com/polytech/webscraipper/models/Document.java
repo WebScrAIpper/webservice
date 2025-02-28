@@ -9,6 +9,8 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 
 @org.springframework.data.mongodb.core.mapping.Document
 public class Document {
+
+  @JsonProperty("url")
   private String url;
 
   @JsonProperty("en_title")
@@ -17,7 +19,10 @@ public class Document {
   @JsonProperty("fr_title")
   protected String frTitle;
 
+  @JsonProperty("author")
   protected String author;
+
+  @JsonProperty("date")
   protected String date;
 
   @JsonProperty("image_urls")
@@ -27,18 +32,20 @@ public class Document {
   protected int imageIndex;
 
   @JsonProperty("en_description")
-  public String enDescription;
+  protected String enDescription;
 
   @JsonProperty("fr_description")
-  public String frDescription;
+  protected String frDescription;
 
   @JsonProperty("content_type")
-  public CONTENT_TYPE contentType;
+  protected CONTENT_TYPE contentType;
 
   @JsonProperty("language_of_the_document")
-  public SUPPORTED_LANGUAGES languageOfTheDocument;
+  protected SUPPORTED_LANGUAGES languageOfTheDocument;
 
-  @DBRef public List<Classifier> classifiers;
+  @JsonProperty("classifiers")
+  @DBRef
+  protected List<Classifier> classifiers;
 
   public Document() {}
 
