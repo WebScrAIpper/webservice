@@ -3,6 +3,7 @@ package com.polytech.webscraipper.builders;
 import com.polytech.webscraipper.BaseLogger;
 import com.polytech.webscraipper.dto.DocumentDto;
 import com.polytech.webscraipper.exceptions.DocumentException;
+import com.polytech.webscraipper.sdk.LangfuseSDK;
 import com.polytech.webscraipper.sdk.responses.PromptResponse;
 import com.polytech.webscraipper.services.langfusesubservices.PromptManagementService;
 import java.util.List;
@@ -17,6 +18,7 @@ public class DefaultBuilder implements ISummaryBuilder {
   @Autowired PromptManagementService promptManagementService;
 
   private BaseLogger logger = new BaseLogger(DefaultBuilder.class);
+  @Autowired private LangfuseSDK langfuseSDK;
 
   public DefaultBuilder() {}
 
@@ -39,7 +41,7 @@ public class DefaultBuilder implements ISummaryBuilder {
   @Override
   public DocumentDto polishAnswer(String url, DocumentDto documentDto) throws DocumentException {
 
-    documentDto.setUrl(url);
+    documentDto.url = url;
     return documentDto;
   }
 
