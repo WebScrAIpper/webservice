@@ -5,154 +5,60 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import java.util.List;
 
 public class DocumentDto {
-  private String url;
+  public String url;
 
   @JsonProperty("en_title")
-  protected String en_title;
+  public String enTitle;
 
   @JsonProperty("fr_title")
-  protected String fr_title;
+  public String frTitle;
 
-  protected String author;
-  protected String date;
-  protected List<String> imageUrls;
-  protected int imageIndex;
+  public String author;
+  public String date;
+  public List<String> imageUrls;
+  public int imageIndex;
 
   @JsonProperty("en_description")
-  protected String en_description;
+  public String enDescription;
 
   @JsonProperty("fr_description")
-  protected String fr_description;
+  public String frDescription;
 
-  protected CONTENT_TYPE content_type;
+  @JsonProperty("content_type")
+  public CONTENT_TYPE contentType;
 
   @JsonDeserialize(using = SupportedLanguagesDeserializer.class)
-  protected SUPPORTED_LANGUAGES languageOfTheDocument;
+  @JsonProperty("language_of_the_document")
+  public SUPPORTED_LANGUAGES languageOfTheDocument;
 
-  protected List<String> classifiers;
+  public List<String> classifiers;
 
   public DocumentDto() {}
 
   public DocumentDto(
       String url,
-      String en_title,
-      String fr_title,
+      String enTitle,
+      String frTitle,
       String author,
       String date,
       List<String> imageUrls,
       int imageIndex,
-      String en_description,
-      String fr_description,
-      CONTENT_TYPE content_type,
+      String enDescription,
+      String frDescription,
+      CONTENT_TYPE contentType,
       SUPPORTED_LANGUAGES languageOfTheDocument,
       List<String> classifiers) {
     this.url = url;
-    this.en_title = en_title;
-    this.fr_title = fr_title;
+    this.enTitle = enTitle;
+    this.frTitle = frTitle;
     this.author = author;
     this.date = date;
     this.imageUrls = imageUrls;
     this.imageIndex = imageIndex;
-    this.en_description = en_description;
-    this.fr_description = fr_description;
-    this.content_type = content_type;
+    this.enDescription = enDescription;
+    this.frDescription = frDescription;
+    this.contentType = contentType;
     this.languageOfTheDocument = languageOfTheDocument;
-    this.classifiers = classifiers;
-  }
-
-  public String getUrl() {
-    return url;
-  }
-
-  public void setUrl(String url) {
-    this.url = url;
-  }
-
-  public String getEnTitle() {
-    return en_title;
-  }
-
-  public void setEnTitle(String en_title) {
-    this.en_title = en_title;
-  }
-
-  public String getAuthor() {
-    return author;
-  }
-
-  public void setAuthor(String author) {
-    this.author = author;
-  }
-
-  public String getDate() {
-    return date;
-  }
-
-  public void setDate(String date) {
-    this.date = date;
-  }
-
-  public List<String> getImageUrls() {
-    return imageUrls;
-  }
-
-  public void setImageUrls(List<String> imageUrls) {
-    this.imageUrls = imageUrls;
-  }
-
-  public int getImageIndex() {
-    return imageIndex;
-  }
-
-  public void setImageIndex(int imageIndex) {
-    this.imageIndex = imageIndex;
-  }
-
-  public String getEnDescription() {
-    return en_description;
-  }
-
-  public void setEnDescription(String en_description) {
-    this.en_description = en_description;
-  }
-
-  public String getFrTitle() {
-    return fr_title;
-  }
-
-  public void setFrTitle(String fr_title) {
-    this.fr_title = fr_title;
-  }
-
-  public String getFrDescription() {
-    return fr_description;
-  }
-
-  public void setFrDescription(String fr_description) {
-    this.fr_description = fr_description;
-  }
-
-  public CONTENT_TYPE getContent_type() {
-    return content_type;
-  }
-
-  public void setContent_type(CONTENT_TYPE content_type) {
-    this.content_type = content_type;
-  }
-
-  public SUPPORTED_LANGUAGES getLanguageOfTheDocument() {
-    return languageOfTheDocument;
-  }
-
-  public void setLanguageOfTheDocument(SUPPORTED_LANGUAGES languageOfTheDocument) {
-    this.languageOfTheDocument = languageOfTheDocument;
-  }
-
-  public List<String> getClassifiers() {
-    return classifiers;
-  }
-
-  public void setClassifiers(List<String> classifiers) {
     this.classifiers = classifiers;
   }
 }

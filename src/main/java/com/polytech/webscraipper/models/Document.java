@@ -39,17 +39,17 @@ public class Document {
   public Document() {}
 
   public Document(DocumentDto documentDto, List<Classifier> classifiers) {
-    this.url = documentDto.getUrl();
-    this.enTitle = documentDto.getEnTitle();
-    this.frTitle = documentDto.getFrTitle();
-    this.author = documentDto.getAuthor();
-    this.date = documentDto.getDate();
-    this.imageUrls = documentDto.getImageUrls();
-    this.imageIndex = documentDto.getImageIndex();
-    this.enDescription = documentDto.getEnDescription();
-    this.frDescription = documentDto.getFrDescription();
-    this.contentType = documentDto.getContent_type();
-    this.languageOfTheDocument = documentDto.getLanguageOfTheDocument();
+    this.url = documentDto.url;
+    this.enTitle = documentDto.enTitle;
+    this.frTitle = documentDto.frTitle;
+    this.author = documentDto.author;
+    this.date = documentDto.date;
+    this.imageUrls = documentDto.imageUrls;
+    this.imageIndex = documentDto.imageIndex;
+    this.enDescription = documentDto.enDescription;
+    this.frDescription = documentDto.frDescription;
+    this.contentType = documentDto.contentType;
+    this.languageOfTheDocument = documentDto.languageOfTheDocument;
     this.classifiers = classifiers;
   }
 

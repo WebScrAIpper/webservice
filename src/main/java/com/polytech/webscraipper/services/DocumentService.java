@@ -142,7 +142,7 @@ public class DocumentService {
 
     var currentlyExisingClassifiers = classifierService.getAllClassifiers();
     // Handle Classifiers
-    for (String classifier : res.getClassifiers()) {
+    for (String classifier : res.classifiers) {
       if (currentlyExisingClassifiers.stream().noneMatch(c -> c.name.equals(classifier))) {
         newClassifiers.add(classifier);
       }
@@ -157,7 +157,7 @@ public class DocumentService {
     List<Classifier> classifiersOfTheDocument = new ArrayList<>();
 
     List<Classifier> updatedExistingClassifiers = classifierService.getAllClassifiers();
-    for (String classifier : res.getClassifiers()) {
+    for (String classifier : res.classifiers) {
 
       var classifierObj =
           updatedExistingClassifiers.stream().filter(c -> c.name.equals(classifier)).findFirst();

@@ -41,7 +41,7 @@ public class DefaultBuilder implements ISummaryBuilder {
   @Override
   public DocumentDto polishAnswer(String url, DocumentDto documentDto) throws DocumentException {
 
-    documentDto.setUrl(url);
+    documentDto.url = url;
     return documentDto;
   }
 
