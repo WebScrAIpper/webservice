@@ -1,0 +1,183 @@
+<html lang="en" prefix="og: https://ogp.me/ns#">
+ <head>
+  <meta charset="utf-8">
+  <title>Keycloak</title>
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:image" content="https://www.keycloak.org/preview/index.png">
+  <meta name="twitter:site" content="@keycloak">
+  <meta property="og:site_name" content="Keycloak">
+  <meta property="og:title" content="Keycloak">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" property="og:description" content="Keycloak - the open source identity and access management solution. Add single-sign-on and authentication to applications and secure services with minimum effort.">
+  <meta name="author" content="Keycloak Team">
+  <meta name="keywords" content="sso,idm,openid connect,saml,kerberos,ldap">
+  <link href="https://www.keycloak.org/resources/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://www.keycloak.org/resources/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="https://www.keycloak.org/resources/css/keycloak.css" rel="stylesheet">
+  <link rel="canonical" href="https://www.keycloak.org/">
+  <meta property="og:url" content="https://www.keycloak.org/">
+  <link rel="shortcut icon" href="https://www.keycloak.org/resources/favicon.ico">
+  <link rel="alternate" type="application/rss+xml" title="Keycloak's Blog" href="https://www.keycloak.org/rss.xml">
+ </head>
+ <body>
+  <header class="navbar navbar-expand-md bg-light shadow-sm">
+  </header>
+  <div class="jumbotron jumbotron-fluid bg-light kc-bg-triangles">
+   <div class="container pt-4 pb-4">
+    <div class="row">
+     <div class="col">
+      <h1 class="fs-xlarge">Open Source Identity and Access Management</h1>
+      <p class="fs-4">Add authentication to applications and secure services with minimum effort.<br>
+        No need to deal with storing users or authenticating users.</p>
+      <p class="fs-4">Keycloak provides user federation, strong authentication, user management, fine-grained authorization, and more.</p>
+      <div class="mt-5"><a class="btn btn-primary btn-lg" href="https://www.keycloak.org/guides">Get Started</a> <a class="btn btn-light btn-lg" href="https://www.keycloak.org/downloads">Download</a>
+      </div>
+      <div class="mt-1">
+       Latest release 26.1.2
+      </div>
+     </div>
+     <div class="col col-4 d-none d-lg-block"><img class="img-fluid" src="https://www.keycloak.org/resources/images/icon.svg" width="550" aria-hidden="true" alt="Keycloak">
+     </div>
+    </div>
+   </div>
+  </div>
+  <div class="jumbotron jumbotron-fluid bg-dark text-white">
+   <div class="container bg-dark p-3">
+    <div class="row">
+     <div class="col-md-1 col-sm-12 fw-bold">
+      News
+     </div>
+     <div class="col"><span class="badge bg-secondary">25 Feb</span> <a href="2025/02/recordings-available-fosdem.html">New videos about OpenID Connect and Keycloak from FOSDEM 2025</a>
+     </div>
+     <div class="col"><span class="badge bg-secondary">20 Feb</span> <a href="2025/02/keycloak-js-2620-released.html">Keycloak JS 26.2.0 released</a>
+     </div>
+     <div class="col"><span class="badge bg-secondary">19 Feb</span> <a href="2025/02/updated-extension-page.html">Keycloak Extensions show GitHub stars</a>
+     </div>
+    </div>
+   </div>
+  </div>
+  <div class="container mt-5">
+   <div class="row mt-5">
+    <div class="col">
+     <h2>Single-Sign On</h2>
+     <p>Users authenticate with Keycloak rather than individual applications. This means that your applications don't have to deal with login forms, authenticating users, and storing users. Once logged-in to Keycloak, users don't have to login again to access a different application.</p>
+     <p>This also applies to logout. Keycloak provides single-sign out, which means users only have to logout once to be logged-out of all applications that use Keycloak.</p>
+    </div>
+    <div class="col-5 text-end d-none d-md-block"><img class="img-fluid" src="resources/images/screen-login.png" alt="Screenshot showing a user's login screen as presented by Keycloak">
+    </div>
+   </div>
+   <div class="row mt-5 border-top pt-5">
+    <div class="col">
+     <h2>Identity Brokering and Social Login</h2>
+     <p>Enabling login with social networks is easy to add through the admin console. It's just a matter of selecting the social network you want to add. No code or changes to your application is required.</p>
+     <p>Keycloak can also authenticate users with existing OpenID Connect or SAML 2.0 Identity Providers. Again, this is just a matter of configuring the Identity Provider through the admin console.</p>
+    </div>
+    <div class="col-5 text-end d-none d-md-block"><img class="img-fluid" src="resources/images/dia-identity-brokering.png" alt="Diagram illustrating brokering">
+    </div>
+   </div>
+   <div class="row mt-5 border-top pt-5">
+    <div class="col">
+     <h2>User Federation</h2>
+     <p>Keycloak has built-in support to connect to existing LDAP or Active Directory servers. You can also implement your own provider if you have users in other stores, such as a relational database.</p>
+    </div>
+    <div class="col-5 text-end d-none d-md-block"><img class="img-fluid" src="resources/images/dia-user-fed.png" alt="Diagram illustrating user federation">
+    </div>
+   </div>
+   <div class="row mt-5 border-top pt-5">
+    <div class="col">
+     <h2>Admin Console</h2>
+     <p>Through the admin console administrators can centrally manage all aspects of the Keycloak server.</p>
+     <p>They can enable and disable various features. They can configure identity brokering and user federation.</p>
+     <p>They can create and manage applications and services, and define fine-grained authorization policies.</p>
+     <p>They can also manage users, including permissions and sessions.</p>
+    </div>
+    <div class="col-5 text-end d-none d-md-block"><img class="img-fluid border" src="resources/images/screen-admin.png" alt="Screenshot of the admin console">
+    </div>
+   </div>
+   <div class="row mt-5 border-top pt-5">
+    <div class="col">
+     <h2>Account Management Console</h2>
+     <p>Through the account management console users can manage their own accounts. They can update the profile, change passwords, and setup two-factor authentication.</p>
+     <p>Users can also manage sessions as well as view history for the account.</p>
+     <p>If you've enabled social login or identity brokering users can also link their accounts with additional providers to allow them to authenticate to the same account with different identity providers.</p>
+    </div>
+    <div class="col-5 text-end d-none d-md-block"><img class="img-fluid border" src="resources/images/screen-account.png" alt="Screenshot of the account management console">
+    </div>
+   </div>
+   <div class="row mt-5 border-top pt-5">
+    <div class="col">
+     <h2>Standard Protocols</h2>
+     <p>Keycloak is based on standard protocols and provides support for OpenID Connect, OAuth 2.0, and SAML.</p>
+    </div>
+    <div class="col-5 text-end d-none d-md-block"><img class="img-fluid" src="resources/images/dia-protocols.png" alt="Logos of OpenID certification, SAML and OAuth 2.0" aria-hidden="true">
+    </div>
+   </div>
+   <div class="row mt-5 border-top pt-5">
+    <div class="col">
+     <h2>Authorization Services</h2>
+     <p>If role based authorization doesn't cover your needs, Keycloak provides fine-grained authorization services as well. This allows you to manage permissions for all your services from the Keycloak admin console and gives you the power to define exactly the policies you need.</p>
+    </div>
+   </div>
+  </div>
+  <div class="container bg-light mt-5 py-4">
+   <div class="row row-cols-1 row-cols-lg-4">
+    <div class="col d-flex align-items-start">
+     <div class="row m-3"><span class="fw-bold"><i class="fa fa-key pe-2" aria-hidden="true"></i> Single-Sign On</span> <span>Login once to multiple applications</span>
+     </div>
+    </div>
+    <div class="col d-flex align-items-start">
+     <div class="row m-3"><span class="fw-bold"><i class="fa fa-exchange-alt pe-2" aria-hidden="true"></i> Standard Protocols</span> <span>OpenID Connect, OAuth 2.0 and SAML 2.0</span>
+     </div>
+    </div>
+    <div class="col d-flex align-items-start">
+     <div class="row m-3"><span class="fw-bold"><i class="fa fa-cog pe-2" aria-hidden="true"></i> Centralized Management</span> <span>For admins and users</span>
+     </div>
+    </div>
+    <div class="col d-flex align-items-start">
+     <div class="row m-3"><span class="fw-bold"><i class="fa fa-shield-alt pe-2" aria-hidden="true"></i> Adapters</span> <span>Secure applications and services easily</span>
+     </div>
+    </div>
+    <div class="col d-flex align-items-start">
+     <div class="row m-3"><span class="fw-bold"><i class="fa fa-users pe-2" aria-hidden="true"></i> LDAP and Active Directory</span> <span>Connect to existing user directories</span>
+     </div>
+    </div>
+    <div class="col d-flex align-items-start">
+     <div class="row m-3"><span class="fw-bold"><i class="fa fa-cloud pe-2" aria-hidden="true"></i> Social Login</span> <span>Easily enable social login</span>
+     </div>
+    </div>
+    <div class="col d-flex align-items-start">
+     <div class="row m-3"><span class="fw-bold"><i class="fa fa-cloud pe-2" aria-hidden="true"></i> Identity Brokering</span> <span>OpenID Connect or SAML 2.0 IdPs</span>
+     </div>
+    </div>
+    <div class="col d-flex align-items-start">
+     <div class="row m-3"><span class="fw-bold"><i class="fa fa-bolt pe-2" aria-hidden="true"></i> High Performance</span> <span>Lightweight, fast and scalable</span>
+     </div>
+    </div>
+    <div class="col d-flex align-items-start">
+     <div class="row m-3"><span class="fw-bold"><i class="fa fa-server pe-2" aria-hidden="true"></i> Clustering</span> <span>For scalability and availability</span>
+     </div>
+    </div>
+    <div class="col d-flex align-items-start">
+     <div class="row m-3"><span class="fw-bold"><i class="fa fa-eye pe-2" aria-hidden="true"></i> Themes</span> <span>Customize look and feel</span>
+     </div>
+    </div>
+    <div class="col d-flex align-items-start">
+     <div class="row m-3"><span class="fw-bold"><i class="fa fa-edit pe-2" aria-hidden="true"></i> Extensible</span> <span>Customize through code</span>
+     </div>
+    </div>
+    <div class="col d-flex align-items-start">
+     <div class="row m-3"><span class="fw-bold"><i class="fa fa-lock pe-2" aria-hidden="true"></i> Password Policies</span> <span>Customize password policies</span>
+     </div>
+    </div>
+   </div>
+  </div>
+  <div class="container mt-5" data-nosnippet="">
+   <footer class="py-3 my-4 border-top">
+    <p class="text-center text-muted">Keycloak is a Cloud Native Computing Foundation incubation project</p>
+    <div class="text-center"><img alt="Cloud Native Computing Foundation" src="https://www.keycloak.org/resources/images/cncf_logo.png">
+    </div>
+    <p class="mt-4 text-center small text-muted">© Keycloak Authors 2025. © 2025 The Linux Foundation. All rights reserved. The Linux Foundation has registered trademarks and uses trademarks. For a list of trademarks of The Linux Foundation, please see our <a href="https://www.linuxfoundation.org/trademark-usage">Trademark Usage page</a>.</p>
+   </footer>
+  </div>
+ </body>
+</html>
