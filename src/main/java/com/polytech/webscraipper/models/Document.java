@@ -1,13 +1,11 @@
 package com.polytech.webscraipper.models;
 
-import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.polytech.webscraipper.dto.CONTENT_TYPE;
 import com.polytech.webscraipper.dto.DocumentDto;
 import com.polytech.webscraipper.dto.SUPPORTED_LANGUAGES;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-
 import java.util.List;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 
 @org.springframework.data.mongodb.core.mapping.Document
 public class Document {
@@ -36,8 +34,7 @@ public class Document {
   @JsonProperty("language_of_the_document")
   public SUPPORTED_LANGUAGES languageOfTheDocument;
 
-  @DBRef
-  public List<Classifier> classifiers;
+  @DBRef public List<Classifier> classifiers;
 
   public Document() {}
 

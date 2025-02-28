@@ -1,6 +1,6 @@
 package com.polytech.webscraipper.repositories;
 
-import com.polytech.webscraipper.dto.ClassifierDto;
+import com.polytech.webscraipper.models.Classifier;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface ClassifierRepository extends MongoRepository<ClassifierDto, String> {}
+public interface ClassifierRepository extends MongoRepository<Classifier, String> {}

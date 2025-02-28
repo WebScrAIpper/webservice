@@ -1,5 +1,6 @@
 package com.polytech.webscraipper.controller;
 
+import com.polytech.webscraipper.models.Classifier;
 import com.polytech.webscraipper.services.ClassifierService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ public class ClassifierController {
   public ClassifierController() {}
 
   @GetMapping("/classifiers")
-  public List<String> getExistingClassifiers() {
+  public List<Classifier> getExistingClassifiers() {
     return classifierService.getAllClassifiers();
   }
 

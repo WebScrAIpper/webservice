@@ -8,6 +8,8 @@ import com.polytech.webscraipper.builders.ISummaryBuilder;
 import com.polytech.webscraipper.dto.DocumentDto;
 import com.polytech.webscraipper.exceptions.DocumentException;
 import com.polytech.webscraipper.exceptions.ScrappingException;
+import com.polytech.webscraipper.models.Classifier;
+import com.polytech.webscraipper.models.Document;
 import com.polytech.webscraipper.repositories.DocumentRepository;
 import com.polytech.webscraipper.sdk.LangfuseSDK;
 import com.polytech.webscraipper.utils.FunctionTimer;
@@ -40,11 +42,11 @@ public class DocumentService {
 
   public DocumentService() {}
 
-  public Optional<DocumentDto> getDocumentByUrl(String url) {
+  public Optional<Document> getDocumentByUrl(String url) {
     return documentRepo.findByUrl(url);
   }
 
-  public List<DocumentDto> getAllDocuments() {
+  public List<Document> getAllDocuments() {
     return documentRepo.findAll();
   }
 
@@ -80,7 +82,8 @@ public class DocumentService {
     String scrappedContent = builder.scrapContent(url, content);
 
     // 3. Generating the prompt dynamically
-    var prompt = builder.generatePrompt(scrappedContent, classifierService.getAllClassifiers());
+    var prompt =
+        builder.generatePrompt(scrappedContent, classifierService.getAllClassifiersNames());
 
     logger.debug("Prompt: " + prompt.prompt);
     DocumentDto documentDto;
@@ -135,16 +138,40 @@ public class DocumentService {
    * @param res the document to save
    */
   private void updateDatabase(DocumentDto res) {
+    List<String> newClassifiers = new ArrayList<>();
+
+    var currentlyExisingClassifiers = classifierService.getAllClassifiers();
     // Handle Classifiers
-    var newClassifiers =
-        Arrays.stream(res.getClassifiers())
-            .filter(classifier -> !classifierService.getAllClassifiers().contains(classifier))
-            .toArray(String[]::new);
+    for (String classifier : res.getClassifiers()) {
+      if (currentlyExisingClassifiers.stream().noneMatch(c -> c.name.equals(classifier))) {
+        newClassifiers.add(classifier);
+      }
+    }
+
+    // Handle new classifiers
     for (String newClassifier : newClassifiers) {
+      // Handle classifiers requested by the AI
       classifierService.addClassifier(newClassifier);
     }
 
+    List<Classifier> classifiersOfTheDocument = new ArrayList<>();
+
+    List<Classifier> updatedExistingClassifiers = classifierService.getAllClassifiers();
+    for (String classifier : res.getClassifiers()) {
+
+      var classifierObj =
+          updatedExistingClassifiers.stream().filter(c -> c.name.equals(classifier)).findFirst();
+      if (classifierObj.isEmpty()) {
+        logger.warn(
+            "The classifier " + classifier + " was not found in the database, might be a bug");
+        continue;
+      }
+      classifiersOfTheDocument.add(classifierObj.get());
+    }
+
+    Document document = new Document(res, classifiersOfTheDocument);
+
     // Saving the document
-    documentRepo.save(res);
+    documentRepo.save(document);
   }
 }
