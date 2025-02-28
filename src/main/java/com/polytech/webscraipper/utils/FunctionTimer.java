@@ -55,7 +55,7 @@ public class FunctionTimer {
                   + (timeAtNow - taskStartTimes.get(taskName)) / 1000
                   + " seconds.");
         },
-        5,
+        10,
         5,
         TimeUnit.SECONDS);
     return scheduler;
@@ -65,7 +65,7 @@ public class FunctionTimer {
     scheduler.shutdown();
     long timeAtEnd = System.currentTimeMillis();
     BaseLogger logger = new BaseLogger(DefaultBuilder.class);
-    logger.warn(
+    logger.info(
         taskName
             + " completed in "
             + (timeAtEnd - taskStartTimes.get(taskName)) / 1000
