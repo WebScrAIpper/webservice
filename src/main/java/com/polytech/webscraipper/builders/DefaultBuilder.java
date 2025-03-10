@@ -35,7 +35,7 @@ public class DefaultBuilder implements ISummaryBuilder {
         "Removed "
             + (originalSize - basicScrapping)
             + " characters from the document with basic scraping");
-            
+
     // Remove all ads
     document.select("div[class*='ad'], div[id*='ad'],div[name*='ad']").remove();
 
