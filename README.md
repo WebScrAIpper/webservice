@@ -24,7 +24,7 @@ setx LANGFUSE_API_SK "sk-XXXXXXXXXXX"
 setx LANGFUSE_API_PK "pk-XXXXXXXXXXX"
 ```
 
-### Setting up python virtual environment
+### *(Only for developper mode)* Set up python virtual environment
 Linux and MacOS:
 ```cmd
 python3 -m venv src/main/python/.venv
@@ -42,19 +42,18 @@ pip install youtube_transcript_api yt-dlp
 ```
 
 ## Starting the application
-
-### Developper mode
 Run the following command to start the application:
+### Developper mode
 ```
-./gradlew bootRun
+./gradlew clean bootRun
 ```
 
 ### Production mode
 ```
-docker compose up --build -d
+./gradlew buildAndRun
 ```
 
-### Formatting
+## Formatting
 
 We use spotless for formatting. Run the following command to format the code:
 ```bash
@@ -66,7 +65,7 @@ To automatically format the code on push, run the following command:
 git config core.hooksPath .githooks 
 ```
 
-### Zscaler Certificate Setup
+## Zscaler Certificate Setup
 
 If your network uses Zscaler for SSL inspection, you must add the Zscaler Root CA certificate to the JDK keystore to ensure secure connections.
 Importing the Certificate
@@ -77,9 +76,9 @@ Run the following command to import the certificate into the JDK keystore:
 keytool -import -alias zscaler -keystore "C:\Program Files\OpenJDK\Jdk-21.0.1\lib\security\cacerts" -file "C:\data\tmp\Zscaler Root CA.crt"
 ```
 
-### Logging with SLF4J in the WebScraper Project
+## Logging with SLF4J in the WebScrAIpper Project
 
-In the WebScraper project, we use SLF4J (Simple Logging Facade for Java) for logging. To ensure consistent logging across the application, we use the `BaseLogger` class, which provides a logger instance.
+In the WebScrAIpper project, we use SLF4J (Simple Logging Facade for Java) for logging. To ensure consistent logging across the application, we use the `BaseLogger` class, which provides a logger instance.
 
 #### Usage
 
@@ -89,7 +88,7 @@ In the WebScraper project, we use SLF4J (Simple Logging Facade for Java) for log
 #### Example
 
 ```java
-package com.polytech.webscraper;
+package com.polytech.webscraipper;
 
 public class MyClass {
     private final BaseLogger logger = new BaseLogger();
@@ -104,4 +103,4 @@ public class MyClass {
 
 #### Log Output
 
-All log messages are output to the console and written to logs/webscraper.log for real-time and retrospective review.
+All log messages are output to the console and written to logs/webscraipper.log for real-time and retrospective review.
