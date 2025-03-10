@@ -92,7 +92,7 @@ public class PipelineTests {
 
       // 3. Generating the prompt dynamically
       PromptResponse prompt =
-          builder.generatePrompt(scrappedContent, classifierService.getAllClassifiers());
+          builder.generatePrompt(scrappedContent, classifierService.getAllClassifiersNames());
 
       DocumentDto documentDto;
       String aiAnswer = "No answer";
@@ -157,7 +157,7 @@ public class PipelineTests {
     assertEquals(10, traces.size(), "Expected 10 traces for the session");
 
     for (DocumentDto documentDto : documentDtos) {
-      logger.info("DocumentDto: " + documentDto.getAuthor());
+      logger.info("DocumentDto: " + documentDto.author);
     }
   }
 

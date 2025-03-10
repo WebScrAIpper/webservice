@@ -3,8 +3,8 @@ package com.polytech.webscraipper.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.polytech.webscraipper.BaseLogger;
 import com.polytech.webscraipper.builders.DefaultBuilder;
-import com.polytech.webscraipper.dto.DocumentDto;
 import com.polytech.webscraipper.exceptions.DocumentException;
+import com.polytech.webscraipper.models.Document;
 import com.polytech.webscraipper.services.DocumentService;
 import java.io.IOException;
 import java.net.URLDecoder;
@@ -24,18 +24,18 @@ public class DocumentController {
   @Autowired private DocumentService documentService;
   @Autowired private ObjectMapper objectMapper;
 
-  private BaseLogger logger = new BaseLogger(DefaultBuilder.class);
+  private final BaseLogger logger = new BaseLogger(DefaultBuilder.class);
 
   public DocumentController() {}
 
   @GetMapping("/documents")
-  public List<DocumentDto> getAllDocuments() {
+  public List<Document> getAllDocuments() {
     return documentService.getAllDocuments();
   }
 
   @GetMapping("/document")
-  public Optional<DocumentDto> getDocumentByURL(@RequestParam String url) {
-    Optional<DocumentDto> document = documentService.getDocumentByUrl(url);
+  public Optional<Document> getDocumentByURL(@RequestParam String url) {
+    Optional<Document> document = documentService.getDocumentByUrl(url);
     if (document.isEmpty()) {
       throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Document Not Found");
     }
