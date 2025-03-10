@@ -64,7 +64,8 @@ public class DocumentController {
     if (document.isPresent()) {
       logger.info("Tried to build document summary for an already existing document.");
       try {
-        return ResponseEntity.status(HttpStatus.OK).body(objectMapper.writeValueAsString(document.get()));
+        return ResponseEntity.status(HttpStatus.OK)
+            .body(objectMapper.writeValueAsString(document.get()));
       } catch (JsonProcessingException e) {
         logger.error("An unexpected error occurred while building the document summary.", e);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
