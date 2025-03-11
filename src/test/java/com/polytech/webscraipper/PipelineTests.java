@@ -66,6 +66,7 @@ public class PipelineTests {
     urlToFileMap.put(
         "https://spring.io/projects/spring-boot", "src/test/resources/static/spring-boot.html");
     urlToFileMap.put("https://vuejs.org/", "src/test/resources/static/vuejs.html");
+    urlToFileMap.put("https://lemonde.fr/", "src/test/resources/static/leMonde.html");
 
     List<DocumentDto> documentDtos = new ArrayList<>();
 
@@ -154,7 +155,7 @@ public class PipelineTests {
     // Get the trace after waiting
     var traces = langfuseSDK.traces.getAllTraces(null, null, USER_ID, SESSION_ID);
     assertNotNull(traces, "Expected non-null trace list");
-    assertEquals(10, traces.size(), "Expected 10 traces for the session");
+    assertEquals(11, traces.size(), "Expected 11 traces for the session");
 
     for (DocumentDto documentDto : documentDtos) {
       logger.info("DocumentDto: " + documentDto.author);

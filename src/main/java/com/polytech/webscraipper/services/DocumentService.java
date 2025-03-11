@@ -87,6 +87,7 @@ public class DocumentService {
     var prompt =
         builder.generatePrompt(scrappedContent, classifierService.getAllClassifiersNames());
 
+    logger.debug("Prompt size: " + prompt.prompt.length());
     DocumentDto documentDto;
     String aiAnswer = "No answer";
     try {

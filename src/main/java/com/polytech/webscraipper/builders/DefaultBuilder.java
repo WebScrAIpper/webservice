@@ -25,11 +25,53 @@ public class DefaultBuilder implements ISummaryBuilder {
   @Override
   public String scrapContent(String url, String pageContent) {
     Document document = Jsoup.parse(pageContent);
-    var size = document.text().length();
-    document.select("script, style, form, nav, aside, button, svg").remove();
-    var newSize = document.text().length();
-    logger.debug("Removed " + (size - newSize) + " characters from the document");
-    // TODO: think about the iframe
+    int originalSize = document.text().length();
+
+    // Remove unnecessary elements
+    document
+        .select("script, style, form, nav, aside, button, svg, footer, header, link[rel]")
+        .remove();
+
+    int basicScrapping = document.text().length();
+    logger.debug(
+        "Removed "
+            + (originalSize - basicScrapping)
+            + " characters from the document with basic scraping");
+
+    // Remove all ads
+    document.select("div[class*='ad'], div[id*='ad'],div[name*='ad']").remove();
+
+    // Remove related articles (often in sections with "related" or "recommend")
+    document
+        .select(
+            "div[class*='related'], section[class*='related'], div[id*='related'], div[class*='recommend']")
+        .remove();
+
+    // Remove sponsored content
+    document.select("div[class*='sponsored'], div[id*='sponsored']").remove();
+
+    // Remove all <a> tags and their content
+    document.select("a").remove();
+
+    // Remove <link> elements like <link rel="preconnect">
+    document.select("link").remove();
+
+    // Remove <div> elements that don't contain any text
+    document
+        .select("div")
+        .forEach(
+            element -> {
+              if (element.text().isEmpty()) {
+                element.remove();
+              }
+            });
+
+    int extraScrapping = document.text().length();
+    logger.debug(
+        "Removed "
+            + (basicScrapping - extraScrapping)
+            + " characters from the document with the extra scraping");
+
     return document.toString();
   }
 
