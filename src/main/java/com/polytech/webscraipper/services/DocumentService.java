@@ -141,8 +141,8 @@ public class DocumentService {
   }
 
   /**
-   * Update the database when a summary is built.
-   * TODO: This function might be replaced by an api call to the outgoing application.
+   * Update the database when a summary is built. <br>
+   * TODO: This function might be replaced by an apicall to the outgoing application.
    *
    * @param res the document to save
    */
