@@ -4,3 +4,5 @@
 
 # Paths that should not be included in the languages and contributions statistics insights
 src/test/resources/** linguist-generated
+
+README.md linguist-documentation
