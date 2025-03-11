@@ -3,5 +3,4 @@
 *.jar binary
 
 # Paths that should not be included in the languages and contributions statistics insights
-src/test/resources/* linguist-vendored
-src/test/resources/* linguist-generated
+src/test/resources/** linguist-generated
