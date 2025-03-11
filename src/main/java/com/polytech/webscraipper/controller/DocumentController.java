@@ -1,5 +1,6 @@
 package com.polytech.webscraipper.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.polytech.webscraipper.BaseLogger;
 import com.polytech.webscraipper.builders.DefaultBuilder;
@@ -59,10 +60,17 @@ public class DocumentController {
           .body("The 'url' parameter is required and cannot be empty.");
     }
 
-    if (documentService.getDocumentByUrl(url).isPresent()) {
-      logger.error("Tried to build document summary for an already existing document.");
-      return ResponseEntity.status(HttpStatus.CONFLICT)
-          .body("A document with this URL already exists.");
+    var document = documentService.getDocumentByUrl(url);
+    if (document.isPresent()) {
+      logger.info("Tried to build document summary for an already existing document.");
+      try {
+        return ResponseEntity.status(HttpStatus.OK)
+            .body(objectMapper.writeValueAsString(document.get()));
+      } catch (JsonProcessingException e) {
+        logger.error("An unexpected error occurred while building the document summary.", e);
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+            .body("An unexpected error occurred while building the document summary.");
+      }
     }
 
     try {
